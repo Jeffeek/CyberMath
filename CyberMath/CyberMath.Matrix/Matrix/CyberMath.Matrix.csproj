@@ -5,4 +5,8 @@
     <AssemblyName>CyberMath.Matrix</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MatrixBase\MatrixBase.csproj" />
+  </ItemGroup>
+
 </Project>

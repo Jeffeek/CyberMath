@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Text;
+using MatrixBase;
 
 namespace CyberMath.Matrix.Models
 {
@@ -29,7 +30,7 @@ namespace CyberMath.Matrix.Models
 
         #region Operations
 
-        public IMatrix<T> Transpose()
+        public IMatrixBase<T> Transpose()
         {
             int w = _innerMatrix.GetLength(0);
             int h = _innerMatrix.GetLength(1);
@@ -125,11 +126,21 @@ namespace CyberMath.Matrix.Models
 
         public override string ToString() => GetAsString();
 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return _innerMatrix.GetEnumerator();
+        }
+
         #endregion
 
         #region Creation
 
-        public IMatrix<T> CreateMatrixWithoutColumn(int columnIndex)
+        public IMatrixBase<T> CreateMatrixWithoutColumn(int columnIndex)
         {
             if (columnIndex < 0 || columnIndex >= ColumnsCount)
             {
@@ -141,7 +152,7 @@ namespace CyberMath.Matrix.Models
             return result;
         }
 
-        public IMatrix<T> CreateMatrixWithoutRow(int rowIndex)
+        public IMatrixBase<T> CreateMatrixWithoutRow(int rowIndex)
         {
             if (rowIndex < 0 || rowIndex >= RowsCount)
             {

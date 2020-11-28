@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using CyberMath.Matrix.Models;
+using MatrixBase;
 
 namespace CyberMath.Matrix.Extensions
 {
@@ -70,13 +71,13 @@ namespace CyberMath.Matrix.Extensions
             return result;
         }
 
-        public static IMatrix<double> CreateInvertibleMatrix(this Matrix<int> matrix)
+        public static IMatrixBase<double> CreateInvertibleMatrix(this Matrix<int> matrix)
         {
             if (!matrix.IsSquare)
                 return null;
             var determinant = matrix.CalculateDeterminant();
 
-            IMatrix<double> result = new Matrix<double>(matrix.RowsCount, matrix.ColumnsCount);
+            IMatrixBase<double> result = new Matrix<double>(matrix.RowsCount, matrix.ColumnsCount);
             matrix.ProcessFunctionOverData((i, j) =>
             {
                 result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
@@ -216,6 +217,8 @@ namespace CyberMath.Matrix.Extensions
         #endregion
 
         #endregion
+
+
 
     }
 }
