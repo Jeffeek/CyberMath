@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CyberMath.Matrix.Exceptions;
 using CyberMath.Matrix.Models;
 using MatrixBase;
 
@@ -16,17 +17,49 @@ namespace CyberMath.Matrix.Extensions
         {
             if (a.ColumnsCount == b.RowsCount) return a.InternalMulAtoB(b);
             if (b.ColumnsCount == a.RowsCount) return a.InternalMulBtoA(b);
-            throw new Exception("Multiplication of this matrices is not possible");
+            throw new IncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
         public static Matrix<int> Add(this Matrix<int> a, Matrix<int> b)
         {
+            if (a.ColumnsCount != b.ColumnsCount) throw new IncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
+            if (a.RowsCount != b.RowsCount) throw new IncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
             var matrix = new Matrix<int>(a.RowsCount, a.ColumnsCount);
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ColumnsCount; j++)
                 {
                     matrix[i, j] = a[i, j] + b[i, j];
+                }
+            }
+
+            return matrix;
+        }
+
+        public static Matrix<int> Sub(this Matrix<int> a, Matrix<int> b)
+        {
+            if (a.ColumnsCount != b.ColumnsCount) throw new IncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
+            if (a.RowsCount != b.RowsCount) throw new IncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
+            var matrix = new Matrix<int>(a.RowsCount, a.ColumnsCount);
+            for (int i = 0; i < a.RowsCount; i++)
+            {
+                for (int j = 0; j < a.ColumnsCount; j++)
+                {
+                    matrix[i, j] = a[i, j] - b[i, j];
+                }
+            }
+
+            return matrix;
+        }
+
+        public static Matrix<int> MulOnNumber(this Matrix<int> a, int number)
+        {
+            var matrix = new Matrix<int>(a.RowsCount, a.ColumnsCount);
+            for (int i = 0; i < a.RowsCount; i++)
+            {
+                for (int j = 0; j < a.ColumnsCount; j++)
+                {
+                    matrix[i, j] = a[i, j] * number;
                 }
             }
 
@@ -218,7 +251,7 @@ namespace CyberMath.Matrix.Extensions
 
         #endregion
 
-
+        //TODO: add long, short, double, decimal, string
 
     }
 }
