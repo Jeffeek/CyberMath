@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CyberMath.Structures.Generators.NumberGenerators
 {
-    public interface IRandomGenerator<T>
+    public interface IRandomGenerator<T> where T : struct
     {
         public int Seed { get; }
         T GenerateOne(T min, T max);
