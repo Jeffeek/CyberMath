@@ -291,5 +291,95 @@ namespace CyberMath.Matrix.Tests
 
             Assert.ThrowsException<IncomparableOperationException>(() => matrix1.Sub(matrix2));
         }
+
+        [TestMethod]
+        public void Mul_int_positive()
+        {
+            var matrix = new Matrix<int>(3, 3)
+            {
+                [0, 0] = 6,
+                [0, 1] = 3,
+                [0, 2] = 5,
+                [1, 0] = 4,
+                [1, 1] = 34,
+                [1, 2] = 6,
+                [2, 0] = 34,
+                [2, 1] = 0,
+                [2, 2] = 2
+            };
+
+            var matrix2 = new Matrix<int>(3, 3)
+            {
+                [0, 0] = 6,
+                [0, 1] = 3,
+                [0, 2] = 5,
+                [1, 0] = 4,
+                [1, 1] = 34,
+                [1, 2] = 6,
+                [2, 0] = 34,
+                [2, 1] = 0,
+                [2, 2] = 2
+            };
+
+            var actual = matrix.Multiplication(matrix2);
+            var expected = new Matrix<int>(3, 3)
+            {
+                [0, 0] = 218,
+                [0, 1] = 120,
+                [0, 2] = 58,
+                [1, 0] = 364,
+                [1, 1] = 1168,
+                [1, 2] = 236,
+                [2, 0] = 272,
+                [2, 1] = 102,
+                [2, 2] = 174
+            };
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Assert.IsTrue(actual[i, j] == expected[i, j]);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void Mul_int_exception()
+        {
+            var matrix = new Matrix<int>(3, 4)
+            {
+                [0, 0] = 6,
+                [0, 1] = 3,
+                [0, 2] = 5,
+                [0, 3] = 5,
+                [1, 0] = 4,
+                [1, 1] = 34,
+                [1, 2] = 6,
+                [1, 3] = 6,
+                [2, 0] = 34,
+                [2, 1] = 0,
+                [2, 2] = 2,
+                [2, 3] = 2
+            };
+
+            var matrix2 = new Matrix<int>(3, 4)
+            {
+                [0, 0] = 6,
+                [0, 1] = 3,
+                [0, 2] = 5,
+                [0, 3] = 5,
+                [1, 0] = 4,
+                [1, 1] = 34,
+                [1, 2] = 6,
+                [1, 3] = 6,
+                [2, 0] = 34,
+                [2, 1] = 0,
+                [2, 2] = 2,
+                [2, 3] = 2
+            };
+
+            Assert.ThrowsException<IncomparableOperationException>(() => matrix.Multiplication(matrix2));
+        }
     }
 }
