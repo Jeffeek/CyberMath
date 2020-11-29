@@ -32,14 +32,11 @@ namespace CyberMath.Matrix.Models
 
         public IMatrixBase<T> Transpose()
         {
-            int w = _innerMatrix.GetLength(0);
-            int h = _innerMatrix.GetLength(1);
+            Matrix<T> result = new Matrix<T>(ColumnsCount, RowsCount);
 
-            Matrix<T> result = new Matrix<T>(h, w);
-
-            for (int i = 0; i < w; i++)
+            for (int i = 0; i < RowsCount; i++)
             {
-                for (int j = 0; j < h; j++)
+                for (int j = 0; j < ColumnsCount; j++)
                 {
                     result[j, i] = _innerMatrix[i, j];
                 }

@@ -235,14 +235,12 @@ namespace CyberMath.Matrix.Extensions
 
         public static void FillRandomly(this Matrix<int> matrix, int min = -50, int max = 50)
         {
-            var rnd = new Random();
+            var rnd = new Random(DateTime.Now.Millisecond + DateTime.Now.Second * DateTime.Now.Day);
             for (int i = 0; i < matrix.RowsCount; i++)
             {
                 for (int j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    double coefficient = rnd.NextDouble();
-                    coefficient = coefficient > 0.5 ? coefficient : 0.5;
-                    matrix[i, j] = rnd.Next(min, max);
+                    matrix[i, j] = rnd.Next(min, max + 1);
                 }
             }
         }
