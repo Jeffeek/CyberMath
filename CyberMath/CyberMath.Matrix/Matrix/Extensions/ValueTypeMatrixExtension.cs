@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CyberMath.Matrix.Exceptions;
 using CyberMath.Matrix.Models;
 using MatrixBase;
+using MatrixBase.Exceptions;
 
 namespace CyberMath.Matrix.Extensions
 {
@@ -17,13 +15,13 @@ namespace CyberMath.Matrix.Extensions
         {
             if (a.ColumnsCount == b.RowsCount) return a.InternalMulAtoB(b);
             if (b.ColumnsCount == a.RowsCount) return a.InternalMulBtoA(b);
-            throw new IncomparableOperationException("Multiplication of this matrices is not possible");
+            throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
         public static Matrix<int> Add(this Matrix<int> a, Matrix<int> b)
         {
-            if (a.ColumnsCount != b.ColumnsCount) throw new IncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
-            if (a.RowsCount != b.RowsCount) throw new IncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
+            if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
+            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
             var matrix = new Matrix<int>(a.RowsCount, a.ColumnsCount);
             for (int i = 0; i < a.RowsCount; i++)
             {
@@ -38,8 +36,8 @@ namespace CyberMath.Matrix.Extensions
 
         public static Matrix<int> Sub(this Matrix<int> a, Matrix<int> b)
         {
-            if (a.ColumnsCount != b.ColumnsCount) throw new IncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
-            if (a.RowsCount != b.RowsCount) throw new IncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
+            if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
+            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
             var matrix = new Matrix<int>(a.RowsCount, a.ColumnsCount);
             for (int i = 0; i < a.RowsCount; i++)
             {
@@ -257,13 +255,13 @@ namespace CyberMath.Matrix.Extensions
         {
             if (a.ColumnsCount == b.RowsCount) return a.InternalMulAtoB(b);
             if (b.ColumnsCount == a.RowsCount) return a.InternalMulBtoA(b);
-            throw new IncomparableOperationException("Multiplication of this matrices is not possible");
+            throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
         public static Matrix<long> Add(this Matrix<long> a, Matrix<long> b)
         {
-            if (a.ColumnsCount != b.ColumnsCount) throw new IncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
-            if (a.RowsCount != b.RowsCount) throw new IncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
+            if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
+            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
             var matrix = new Matrix<long>(a.RowsCount, a.ColumnsCount);
             for (int i = 0; i < a.RowsCount; i++)
             {
@@ -278,8 +276,8 @@ namespace CyberMath.Matrix.Extensions
 
         public static Matrix<long> Sub(this Matrix<long> a, Matrix<long> b)
         {
-            if (a.ColumnsCount != b.ColumnsCount) throw new IncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
-            if (a.RowsCount != b.RowsCount) throw new IncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
+            if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
+            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
             var matrix = new Matrix<long>(a.RowsCount, a.ColumnsCount);
             for (int i = 0; i < a.RowsCount; i++)
             {

@@ -1,6 +1,6 @@
-using CyberMath.Matrix.Exceptions;
 using CyberMath.Matrix.Extensions;
 using CyberMath.Matrix.Models;
+using MatrixBase.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CyberMath.Matrix.Tests
@@ -92,7 +92,7 @@ namespace CyberMath.Matrix.Tests
                 [2, 2] = 2
             };
 
-            Assert.ThrowsException<IncomparableOperationException>(() => matrix1.Add(matrix2));
+            Assert.ThrowsException<MatrixIncomparableOperationException>(() => matrix1.Add(matrix2));
         }
 
         [TestMethod]
@@ -127,7 +127,7 @@ namespace CyberMath.Matrix.Tests
                 [2, 2] = 2
             };
 
-            Assert.ThrowsException<IncomparableOperationException>(() => matrix1.Add(matrix2));
+            Assert.ThrowsException<MatrixIncomparableOperationException>(() => matrix1.Add(matrix2));
         }
 
         [TestMethod]
@@ -254,7 +254,7 @@ namespace CyberMath.Matrix.Tests
                 [2, 2] = 2
             };
 
-            Assert.ThrowsException<IncomparableOperationException>(() => matrix1.Sub(matrix2));
+            Assert.ThrowsException<MatrixIncomparableOperationException>(() => matrix1.Sub(matrix2));
         }
 
         [TestMethod]
@@ -289,7 +289,7 @@ namespace CyberMath.Matrix.Tests
                 [2, 2] = 2
             };
 
-            Assert.ThrowsException<IncomparableOperationException>(() => matrix1.Sub(matrix2));
+            Assert.ThrowsException<MatrixIncomparableOperationException>(() => matrix1.Sub(matrix2));
         }
 
         [TestMethod]
@@ -379,7 +379,7 @@ namespace CyberMath.Matrix.Tests
                 [2, 3] = 2
             };
 
-            Assert.ThrowsException<IncomparableOperationException>(() => matrix.Multiplication(matrix2));
+            Assert.ThrowsException<MatrixIncomparableOperationException>(() => matrix.Multiplication(matrix2));
         }
     }
 }

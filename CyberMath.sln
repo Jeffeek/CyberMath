@@ -13,13 +13,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1D6A63CB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Matrix.Tests", "Matrix.Tests", "{B608EE9C-AB44-4B57-B38A-E8C412AEDA3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.JaggedMatrix", "CyberMath\CyberMath.Matrix\CyberMath.JaggedMatrix\CyberMath.JaggedMatrix.csproj", "{C4A6892E-16C9-4210-AE28-2E545B57B460}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.JaggedMatrix", "CyberMath\CyberMath.Matrix\CyberMath.JaggedMatrix\CyberMath.JaggedMatrix.csproj", "{C4A6892E-16C9-4210-AE28-2E545B57B460}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.JaggedMatrix.Tests", "CyberMath.Tests\CyberMath.JaggedMatrix.Tests\CyberMath.JaggedMatrix.Tests.csproj", "{4DEC728C-B734-4A01-8542-78FF24C72046}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.JaggedMatrix.Tests", "CyberMath.Tests\CyberMath.JaggedMatrix.Tests\CyberMath.JaggedMatrix.Tests.csproj", "{4DEC728C-B734-4A01-8542-78FF24C72046}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.Matrix.Tests", "CyberMath.Tests\CyberMath.Matrix.Tests\CyberMath.Matrix.Tests.csproj", "{12771771-D58A-437B-A885-4E8B94E29615}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Matrix.Tests", "CyberMath.Tests\CyberMath.Matrix.Tests\CyberMath.Matrix.Tests.csproj", "{12771771-D58A-437B-A885-4E8B94E29615}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixBase", "CyberMath\CyberMath.Matrix\MatrixBase\MatrixBase.csproj", "{8CEA434D-F801-402D-8309-52B741018CD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatrixBase", "CyberMath\CyberMath.Matrix\MatrixBase\MatrixBase.csproj", "{8CEA434D-F801-402D-8309-52B741018CD4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{B8604DAE-E1A9-4A45-8CB0-A1C84B63C263}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.Structures.Generators", "CyberMath\CyberMath.Structures.Generators\CyberMath.Structures.Generators.csproj", "{CB1757B5-47D9-460C-ABF6-6C089F18FA5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +51,10 @@ Global
 		{8CEA434D-F801-402D-8309-52B741018CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CEA434D-F801-402D-8309-52B741018CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CEA434D-F801-402D-8309-52B741018CD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB1757B5-47D9-460C-ABF6-6C089F18FA5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB1757B5-47D9-460C-ABF6-6C089F18FA5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB1757B5-47D9-460C-ABF6-6C089F18FA5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB1757B5-47D9-460C-ABF6-6C089F18FA5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +67,8 @@ Global
 		{4DEC728C-B734-4A01-8542-78FF24C72046} = {B608EE9C-AB44-4B57-B38A-E8C412AEDA3A}
 		{12771771-D58A-437B-A885-4E8B94E29615} = {B608EE9C-AB44-4B57-B38A-E8C412AEDA3A}
 		{8CEA434D-F801-402D-8309-52B741018CD4} = {6BEC328D-9AB9-47A5-BF9A-A7F6C6FC7989}
+		{B8604DAE-E1A9-4A45-8CB0-A1C84B63C263} = {5B60535D-1E08-46DF-9E68-51CDBDC0E2E0}
+		{CB1757B5-47D9-460C-ABF6-6C089F18FA5A} = {B8604DAE-E1A9-4A45-8CB0-A1C84B63C263}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7E269A4-25A3-44C8-B284-55DF80EEAA03}

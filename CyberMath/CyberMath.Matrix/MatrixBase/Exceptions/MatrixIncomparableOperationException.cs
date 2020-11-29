@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace CyberMath.Matrix.Exceptions
+namespace MatrixBase.Exceptions
 {
-    public class IncomparableOperationException : Exception
+    public class MatrixIncomparableOperationException : Exception
     {
         private string _message = "Impossible operation for this matrices";
         public override string Message => _message;
 
-        public IncomparableOperationException(string message)
+        public MatrixIncomparableOperationException(string message)
         {
             _message = message;
         }
