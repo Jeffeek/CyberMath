@@ -26,8 +26,6 @@ namespace CyberMath.Matrix.Models
             _innerMatrix = new T[rowsCount, columnsCount];
         }
 
-        #region Public Methods
-
         #region Operations
 
         public IMatrixBase<T> Transpose()
@@ -160,8 +158,6 @@ namespace CyberMath.Matrix.Models
                 result[i, j] = i < rowIndex ? this[i, j] : this[i + 1, j]);
             return result;
         }
-
-        #endregion
 
         #endregion
     }
