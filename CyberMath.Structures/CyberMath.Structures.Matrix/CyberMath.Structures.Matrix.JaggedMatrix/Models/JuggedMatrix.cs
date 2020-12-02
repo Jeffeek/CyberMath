@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CyberMath.Structures.Matrix.MatrixBase;
@@ -39,8 +38,8 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
 
         public void Dispose()
         {
-            GC.SuppressFinalize(this);
             GC.Collect();
+            GC.SuppressFinalize(this);
         }
 
         public IEnumerator GetEnumerator()
@@ -72,7 +71,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
             {
                 for (int j = 0; j < ElementsInRow(i); j++)
                 {
-                    func?.Invoke(i, j);
+                    func.Invoke(i, j);
                 }
             }
         }
@@ -91,23 +90,37 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
             return sb.ToString();
         }
 
-        public IMatrixBase<T> CreateMatrixWithoutColumn(int columnIndex) => throw new NotImplementedException();
+        public IMatrixBase<T> CreateMatrixWithoutColumn(int columnIndex)
+        {
+            throw new NotImplementedException();
+        }
 
-        public IMatrixBase<T> CreateMatrixWithoutRow(int rowIndex) => throw new NotImplementedException();
+        public IMatrixBase<T> CreateMatrixWithoutRow(int rowIndex)
+        {
+            throw new NotImplementedException();
+        }
 
         public int ElementsInRow(int index) => _innerMatrix[index].Length;
 
         public IJuggedMatrix<T> SortRows()
         {
-            var orderedmMatrix = _innerMatrix.OrderBy(x => x.Length).ToArray();
-            var matrix = new JuggedMatrix<T>(orderedmMatrix.GetLength(0), orderedmMatrix.Select(x => x.Length).ToArray());
+            var orderedMatrix = _innerMatrix.OrderBy(x => x.Length).ToArray();
+            var matrix = new JuggedMatrix<T>(orderedMatrix.GetLength(0),
+                orderedMatrix.Select(x => x.Length).ToArray())
+            {
+                _innerMatrix = orderedMatrix
+            };
             return matrix;
         }
 
         public IJuggedMatrix<T> SortRowsByDescending()
         {
-            var orderedmMatrix = _innerMatrix.OrderByDescending(x => x.Length).ToArray();
-            var matrix = new JuggedMatrix<T>(orderedmMatrix.GetLength(0), orderedmMatrix.Select(x => x.Length).ToArray());
+            var orderedMatrix = _innerMatrix.OrderByDescending(x => x.Length).ToArray();
+            var matrix = new JuggedMatrix<T>(orderedMatrix.GetLength(0),
+                orderedMatrix.Select(x => x.Length).ToArray())
+            {
+                _innerMatrix = orderedMatrix
+            };
             return matrix;
         }
     }
