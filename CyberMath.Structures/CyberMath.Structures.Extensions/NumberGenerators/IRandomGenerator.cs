@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace CyberMath.Structures.Generators.NumberGenerators
 {
@@ -10,7 +9,7 @@ namespace CyberMath.Structures.Generators.NumberGenerators
 
         IEnumerable<T> Generate(T min, T max)
         {
-            while(true)
+            while (true)
                 yield return GenerateOne(min, max);
         }
     }

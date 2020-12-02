@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
 
-namespace MatrixBase
+namespace CyberMath.Structures.Matrix.MatrixBase
 {
     public interface IMatrixBase<T> : IDisposable, IEnumerable
     {
+        int RowsCount { get; }
         bool IsSquare { get; }
         T this[int row, int column] { get; set; }
         IMatrixBase<T> Transpose();

@@ -4,7 +4,7 @@ namespace CyberMath.Structures.Generators.NumberGenerators
 {
     public class DoubleRandomGenerator : IRandomGenerator<double>
     {
-        private Random _random;
+        private readonly Random _random;
         public int Seed { get; }
 
         public DoubleRandomGenerator(int seed)

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CyberMath\CyberMath.Matrix\Matrix\CyberMath.Matrix.csproj" />
+    <ProjectReference Include="..\..\CyberMath.Structures\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.Matrix\CyberMath.Structures.Matrix.Matrix.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,10 +1,11 @@
-﻿using System;
-using CyberMath.Matrix.Models;
-using CyberMath.Structures.Helpers.Extensions;
-using MatrixBase;
-using MatrixBase.Exceptions;
+﻿using CyberMath.Structures.Extensions;
+using CyberMath.Structures.Matrix.Matrix.Models;
+using CyberMath.Structures.Matrix.MatrixBase;
+using CyberMath.Structures.MatrixBase.Exceptions;
+using System;
+using System.Text;
 
-namespace CyberMath.Matrix.Extensions
+namespace CyberMath.Structures.Matrix.Matrix.Extensions
 {
     public static class ValueTypeMatrixExtension
     {
@@ -113,7 +114,7 @@ namespace CyberMath.Matrix.Extensions
             matrix.ProcessFunctionOverData((i, j) =>
             {
                 result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
-                    matrix.CalculateMinor(i, j) / determinant);
+                    matrix.CalculateMinor(i, j) / determinant, 2);
             });
 
             result = result.Transpose();
@@ -339,7 +340,7 @@ namespace CyberMath.Matrix.Extensions
             matrix.ProcessFunctionOverData((i, j) =>
             {
                 result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
-                    matrix.CalculateMinor(i, j) / determinant);
+                    matrix.CalculateMinor(i, j) / determinant, 2);
             });
 
             result = result.Transpose();
@@ -565,7 +566,7 @@ namespace CyberMath.Matrix.Extensions
             matrix.ProcessFunctionOverData((i, j) =>
             {
                 result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
-                    matrix.CalculateMinor(i, j) / determinant);
+                    matrix.CalculateMinor(i, j) / determinant, 2);
             });
 
             result = result.Transpose();
@@ -791,7 +792,7 @@ namespace CyberMath.Matrix.Extensions
             matrix.ProcessFunctionOverData((i, j) =>
             {
                 result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
-                    matrix.CalculateMinor(i, j) / determinant);
+                    matrix.CalculateMinor(i, j) / determinant, 4);
             });
 
             result = result.Transpose();
@@ -926,6 +927,109 @@ namespace CyberMath.Matrix.Extensions
 
         #endregion
 
+        #region string
+
+        #region Math
+
+        public static Matrix<string> Add(this Matrix<string> a, Matrix<string> b)
+        {
+            if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
+            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
+            var matrix = new Matrix<string>(a.RowsCount, a.ColumnsCount);
+            for (int i = 0; i < a.RowsCount; i++)
+            {
+                for (int j = 0; j < a.ColumnsCount; j++)
+                {
+                    matrix[i, j] = a[i, j] + b[i, j];
+                }
+            }
+
+            return matrix;
+        }
+
+        public static Matrix<string> MulOnNumber(this Matrix<string> a, int number)
+        {
+            var matrix = new Matrix<string>(a.RowsCount, a.ColumnsCount);
+            for (int i = 0; i < a.RowsCount; i++)
+            {
+                for (int j = 0; j < a.ColumnsCount; j++)
+                {
+                    matrix[i, j] = a[i, j].Concat(number);
+                }
+            }
+
+            return matrix;
+        }
+
+        #endregion
+
+        #region Sum Operations
+
+        public static string DiagonalSum(this Matrix<string> matrix)
+        {
+            var sb = new StringBuilder();
+            for (int i = 0; i < matrix.RowsCount; i++)
+                sb.Append(matrix[i, i]);
+            return sb.ToString();
+        }
+
+        public static string Sum(this Matrix<string> matrix)
+        {
+            var sb = new StringBuilder();
+            for (int i = 0; i < matrix.RowsCount; i++)
+            {
+                for (int j = 0; j < matrix.ColumnsCount; j++)
+                {
+                    sb.Append(matrix[i, j]);
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        #endregion
+
+        #region Find Ops
+
+        public static bool IsMaxInColumn(this Matrix<string> matrix, int i, int j)
+        {
+            for (int k = 0; k < matrix.RowsCount; k++)
+            {
+                if (matrix[k, j].CompareTo(matrix[i, j]) == 1)
+                    return false;
+            }
+            return true;
+        }
+
+        public static bool IsMinInRow(this Matrix<string> matrix, int i, int j)
+        {
+            for (int k = 0; k < matrix.ColumnsCount; k++)
+            {
+                if (matrix[i, k].CompareTo(matrix[i, j]) == -1)
+                    return false;
+            }
+            return true;
+        }
+
+        #endregion
+
+        #region Fill
+
+        public static void FillRandomly(this Matrix<string> matrix, Guid guid, int length = 10)
+        {
+            for (int i = 0; i < matrix.RowsCount; i++)
+            {
+                for (int j = 0; j < matrix.ColumnsCount; j++)
+                {
+                    matrix[i, j] = guid.ToString().Substring(0, length);
+                }
+            }
+        }
+
+        #endregion
+
+        #endregion
+
         #region Nullable
 
         #region Int32?
@@ -977,7 +1081,7 @@ namespace CyberMath.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<int?> MulOnNumber(this Matrix<int?> a, int? number)
+        public static Matrix<int?> MulOnNumber(this Matrix<int?> a, int number)
         {
             var matrix = new Matrix<int?>(a.RowsCount, a.ColumnsCount);
             for (int i = 0; i < a.RowsCount; i++)
@@ -998,7 +1102,7 @@ namespace CyberMath.Matrix.Extensions
 
         #region Operations
 
-        public static int? CalculateDeterminant(this Matrix<int?> matrix)
+        public static int CalculateDeterminant(this Matrix<int?> matrix)
         {
             if (!matrix.IsSquare)
             {
@@ -1011,15 +1115,15 @@ namespace CyberMath.Matrix.Extensions
                     matrix[1, 1] != null && 
                     matrix[0, 1] != null && 
                     matrix[1, 0] != null)
-                return matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0];
+                return matrix[0, 0].Value * matrix[1, 1].Value - matrix[0, 1].Value * matrix[1, 0].Value;
                 else
-                    return null;
+                    return 0;
             }
             int result = 0;
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] ?? 0 *
-                                                            ((matrix.CreateMatrixWithoutColumn(j) as Matrix<int?>)?.CreateMatrixWithoutRow(1) as Matrix<int?>).CalculateDeterminant() ?? 0;
+                                                            ((matrix.CreateMatrixWithoutColumn(j) as Matrix<int?>)?.CreateMatrixWithoutRow(1) as Matrix<int?>).CalculateDeterminant();
             }
             return result;
         }
@@ -1033,14 +1137,14 @@ namespace CyberMath.Matrix.Extensions
             IMatrixBase<double?> result = new Matrix<double?>(matrix.RowsCount, matrix.ColumnsCount);
             matrix.ProcessFunctionOverData((i, j) =>
             {
-                result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 * matrix.CalculateMinor(i, j) / determinant ?? 0, 2);
+                result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 * matrix.CalculateMinor(i, j) / determinant, 2);
             });
 
             result = result.Transpose();
             return result;
         }
 
-        private static double? CalculateMinor(this Matrix<int?> matrix, int i, int j)
+        private static double CalculateMinor(this Matrix<int?> matrix, int i, int j)
         {
             return ((matrix.CreateMatrixWithoutColumn(j) as Matrix<int?>)?.CreateMatrixWithoutRow(i) as Matrix<int?>).CalculateDeterminant();
         }
@@ -1084,7 +1188,8 @@ namespace CyberMath.Matrix.Extensions
                 {
                     if (matrix[i, j] != null)
                     {
-                        if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) continue;
+                        if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) 
+                            continue;
                         sum += matrix[i, j].Value;
                     }
                 }
@@ -1108,6 +1213,8 @@ namespace CyberMath.Matrix.Extensions
                     {
                         if (matrix[i, k] != null && matrix[k, j] != null)
                             result[i, j] += matrix[i, k] * b[k, j];
+                        else
+                            break;
                     }
                 }
             }
@@ -1174,19 +1281,13 @@ namespace CyberMath.Matrix.Extensions
             {
                 for (int j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    if (includeNull)
+                    if (i + j * i / j - i + j % 2 == 0 && includeNull)
                     {
-                        if (i + j * i / j - i + j % 2 == 0)
-                            matrix[i, j] = null;
-                        else
-                        {
-                            matrix[i, j] = rnd.Next(min, max);
-                        }
+                        matrix[i, j] = null;
+                        continue;
                     }
-                    else
-                    {
-                        matrix[i, j] = rnd.Next(min, max);
-                    }
+
+                    matrix[i, j] = rnd.Next(min, max);
                 }
             }
         }
@@ -1195,7 +1296,7 @@ namespace CyberMath.Matrix.Extensions
 
         #endregion
 
-        #region Long?
+        #region long?
 
         #region Math
 
@@ -1244,11 +1345,9 @@ namespace CyberMath.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<long?> MulOnNumber(this Matrix<long?> a, long? number)
+        public static Matrix<long?> MulOnNumber(this Matrix<long?> a, long number)
         {
             var matrix = new Matrix<long?>(a.RowsCount, a.ColumnsCount);
-            if (number == null)
-                return matrix;
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ColumnsCount; j++)
@@ -1265,7 +1364,7 @@ namespace CyberMath.Matrix.Extensions
 
         #region Operations
 
-        public static long? CalculateDeterminant(this Matrix<long?> matrix)
+        public static long CalculateDeterminant(this Matrix<long?> matrix)
         {
             if (!matrix.IsSquare)
             {
@@ -1278,15 +1377,15 @@ namespace CyberMath.Matrix.Extensions
                     matrix[1, 1] != null &&
                     matrix[0, 1] != null &&
                     matrix[1, 0] != null)
-                    return matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0];
+                    return matrix[0, 0].Value * matrix[1, 1].Value - matrix[0, 1].Value * matrix[1, 0].Value;
                 else
-                    return null;
+                    return 0;
             }
             long result = 0;
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] == null ? 0 : matrix[1, j].Value *
-                                                            ((matrix.CreateMatrixWithoutColumn(j) as Matrix<long?>)?.CreateMatrixWithoutRow(1) as Matrix<long?>).CalculateDeterminant() ?? 0;
+                                                            ((matrix.CreateMatrixWithoutColumn(j) as Matrix<long?>)?.CreateMatrixWithoutRow(1) as Matrix<long?>).CalculateDeterminant();
             }
             return result;
         }
@@ -1294,14 +1393,15 @@ namespace CyberMath.Matrix.Extensions
         public static IMatrixBase<double> CreateInvertibleMatrix(this Matrix<long?> matrix)
         {
             if (!matrix.IsSquare)
-                return null;
-            var determinant = matrix.CalculateDeterminant() ?? 0;
+                throw new InvalidOperationException(
+                    "Creating invertible matrix is possible only for square matrix");
+            var determinant = matrix.CalculateDeterminant();
 
             IMatrixBase<double> result = new Matrix<double>(matrix.RowsCount, matrix.ColumnsCount);
             matrix.ProcessFunctionOverData((i, j) =>
             {
                 result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
-                    matrix.CalculateMinor(i, j) / determinant);
+                    matrix.CalculateMinor(i, j) / determinant, 2);
             });
 
             result = result.Transpose();
@@ -1310,47 +1410,58 @@ namespace CyberMath.Matrix.Extensions
 
         private static double CalculateMinor(this Matrix<long?> matrix, int i, int j)
         {
-            return ((matrix.CreateMatrixWithoutColumn(j) as Matrix<long?>)?.CreateMatrixWithoutRow(i) as Matrix<long?>).CalculateDeterminant() ?? 0;
+            return ((matrix.CreateMatrixWithoutColumn(j) as Matrix<long?>)?.CreateMatrixWithoutRow(i) as Matrix<long?>).CalculateDeterminant();
         }
 
         #endregion
 
         #region Sum Operations
 
-        public static long? DiagonalSum(this Matrix<long?> matrix)
+        public static long DiagonalSum(this Matrix<long?> matrix)
         {
-            long? sum = 0;
+            long sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
-                sum += matrix[i, i];
+            {
+                if (matrix[i, i] != null)
+                {
+                    sum += matrix[i, i].Value;
+                }
+            }
             return sum;
         }
 
-        public static long? Sum(this Matrix<long?> matrix)
+        public static long Sum(this Matrix<long?> matrix)
         {
-            long? sum = 0;
+            long sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
             {
                 for (int j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    sum += matrix[i, j];
+                    if (matrix[i, j] != null)
+                    {
+                        sum += matrix[i, j].Value;
+                    }
                 }
             }
 
             return sum;
         }
 
-        public static long? SumSaddlePoints(this Matrix<long?> matrix)
+        public static long SumSaddlePoints(this Matrix<long?> matrix)
         {
-            long? sum = 0;
+            long sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
             {
                 for (int j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) continue;
-                    sum += matrix[i, j];
+                    if (matrix[i, j] != null)
+                    {
+                        if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) 
+                            continue;
+                        sum += matrix[i, j].Value;
+                    }
                 }
             }
-
             return sum;
         }
 
@@ -1435,19 +1546,12 @@ namespace CyberMath.Matrix.Extensions
             {
                 for (int j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    if (includeNull)
+                    if (i + j * i / j - i + j % 2 == 0 && includeNull)
                     {
-                        if (i + j * i / j - i + j % 2 == 0)
-                            matrix[i, j] = null;
-                        else
-                        {
-                            matrix[i, j] = rnd.Next((int)min,(int)max);
-                        }
+                        matrix[i, j] = null;
+                        continue;
                     }
-                    else
-                    {
-                        matrix[i, j] = rnd.Next((int)min,(int)max);
-                    }
+                    matrix[i, j] = rnd.Next((int) min, (int) max);
                 }
             }
         }
@@ -1476,7 +1580,10 @@ namespace CyberMath.Matrix.Extensions
             {
                 for (int j = 0; j < a.ColumnsCount; j++)
                 {
-                    matrix[i, j] = a[i, j] + b[i, j];
+                    if (a[i, j] != null && b[i, j] != null)
+                        matrix[i, j] = a[i, j] + b[i, j];
+                    else
+                        matrix[i, j] = null;
                 }
             }
 
@@ -1492,21 +1599,27 @@ namespace CyberMath.Matrix.Extensions
             {
                 for (int j = 0; j < a.ColumnsCount; j++)
                 {
-                    matrix[i, j] = a[i, j] - b[i, j];
+                    if (a[i, j] != null && b[i, j] != null)
+                        matrix[i, j] = a[i, j] - b[i, j];
+                    else
+                        matrix[i, j] = null;
                 }
             }
 
             return matrix;
         }
 
-        public static Matrix<double?> MulOnNumber(this Matrix<double?> a, double? number)
+        public static Matrix<double?> MulOnNumber(this Matrix<double?> a, double number)
         {
             var matrix = new Matrix<double?>(a.RowsCount, a.ColumnsCount);
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ColumnsCount; j++)
                 {
-                    matrix[i, j] = a[i, j] * number;
+                    if (matrix[i, j] != null)
+                        matrix[i, j] = a[i, j] * number;
+                    else
+                        matrix[i, j] = null;
                 }
             }
 
@@ -1517,7 +1630,7 @@ namespace CyberMath.Matrix.Extensions
 
         #region Operations
 
-        public static double? CalculateDeterminant(this Matrix<double?> matrix)
+        public static double CalculateDeterminant(this Matrix<double?> matrix)
         {
             if (!matrix.IsSquare)
             {
@@ -1526,12 +1639,17 @@ namespace CyberMath.Matrix.Extensions
             }
             if (matrix.ColumnsCount == 2)
             {
-                return matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0];
+                if (matrix[0, 0] != null &&
+                    matrix[1,1] != null &&
+                    matrix[0, 1] != null &&
+                    matrix[1, 0] != null)
+                return matrix[0, 0].Value * matrix[1, 1].Value - matrix[0, 1].Value * matrix[1, 0].Value;
+                return 0;
             }
-            double? result = 0;
+            double result = 0;
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
-                result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] *
+                result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] ?? 0 *
                                                             ((matrix.CreateMatrixWithoutColumn(j) as Matrix<double?>)?.CreateMatrixWithoutRow(1) as Matrix<double?>).CalculateDeterminant();
             }
             return result;
@@ -1547,14 +1665,14 @@ namespace CyberMath.Matrix.Extensions
             matrix.ProcessFunctionOverData((i, j) =>
             {
                 result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
-                    matrix.CalculateMinor(i, j) / determinant ?? 0);
+                    matrix.CalculateMinor(i, j) / determinant, 2);
             });
 
             result = result.Transpose();
             return result;
         }
 
-        private static double? CalculateMinor(this Matrix<double?> matrix, int i, int j)
+        private static double CalculateMinor(this Matrix<double?> matrix, int i, int j)
         {
             return ((matrix.CreateMatrixWithoutColumn(j) as Matrix<double?>)?.CreateMatrixWithoutRow(i) as Matrix<double?>).CalculateDeterminant();
         }
@@ -1563,37 +1681,45 @@ namespace CyberMath.Matrix.Extensions
 
         #region Sum Operations
 
-        public static double? DiagonalSum(this Matrix<double?> matrix)
+        public static double DiagonalSum(this Matrix<double?> matrix)
         {
-            double? sum = 0;
+            double sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
-                sum += matrix[i, i];
+            {
+                if (matrix[i, i] != null)
+                    sum += matrix[i, i].Value;
+            }
             return sum;
         }
 
-        public static double? Sum(this Matrix<double?> matrix)
+        public static double Sum(this Matrix<double?> matrix)
         {
-            double? sum = 0;
+            double sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
             {
                 for (int j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    sum += matrix[i, j];
+                    if (matrix[i, j] != null)
+                        sum += matrix[i, j].Value;
                 }
             }
 
             return sum;
         }
 
-        public static double? SumSaddlePoints(this Matrix<double?> matrix)
+        public static double SumSaddlePoints(this Matrix<double?> matrix)
         {
-            double? sum = 0;
+            double sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
             {
                 for (int j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) continue;
-                    sum += matrix[i, j];
+                    if (matrix[i, j] != null)
+                    {
+                        if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j))
+                            continue;
+                        sum += matrix[i, j].Value;
+                    }
                 }
             }
 
@@ -1613,7 +1739,10 @@ namespace CyberMath.Matrix.Extensions
                 {
                     for (int k = 0; k < b.RowsCount; k++)
                     {
-                        result[i, j] += matrix[i, k] * b[k, j];
+                        if (matrix[i, k] != null && b[k, j] != null)
+                            result[i, j] += matrix[i, k] * b[k, j];
+                        else
+                            break;
                     }
                 }
             }
@@ -1630,7 +1759,10 @@ namespace CyberMath.Matrix.Extensions
                 {
                     for (int k = 0; k < matrix.RowsCount; k++)
                     {
-                        result[i, j] += b[i, k] * matrix[k, j];
+                        if (matrix[i, k] != null && b[k, j] != null)
+                            result[i, j] += matrix[i, k] * b[k, j];
+                        else
+                            break;
                     }
                 }
             }
@@ -1646,8 +1778,9 @@ namespace CyberMath.Matrix.Extensions
         {
             for (int k = 0; k < matrix.RowsCount; k++)
             {
-                if (matrix[k, j] > matrix[i, j])
-                    return false;
+                if (matrix[k, j] != null && matrix[i, j] != null)
+                    if (matrix[k, j] > matrix[i, j])
+                        return false;
             }
             return true;
         }
@@ -1656,8 +1789,9 @@ namespace CyberMath.Matrix.Extensions
         {
             for (int k = 0; k < matrix.ColumnsCount; k++)
             {
-                if (matrix[i, k] < matrix[i, j])
-                    return false;
+                if (matrix[i, k] != null && matrix[i, j] != null)
+                    if (matrix[i, k] < matrix[i, j])
+                        return false;
             }
             return true;
         }
@@ -1666,27 +1800,21 @@ namespace CyberMath.Matrix.Extensions
 
         #region Fill
 
-        public static void FillRandomly(this Matrix<double?> matrix, double? min = -50d, double? max = 50d, bool includeNull = false)
+        public static void FillRandomly(this Matrix<double?> matrix, double min = -50d, double max = 50d, bool includeNull = false)
         {
             var rnd = new Random();
             for (int i = 0; i < matrix.RowsCount; i++)
             {
                 for (int j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    if (min != null && max != null)
-                        matrix[i, j] = rnd.NextDouble(min.Value, max.Value);
-                    else 
+                    double value = rnd.NextDouble(min, max);
+                    if (i + j * i / j - i + j % 2 == 0 && includeNull)
                     {
-                        if (includeNull)
-                        {
-                            if (i + j * i / j - i + j % 2 == 0)
-                                matrix[i, j] = null;
-                            else
-                            {
-                                matrix[i, j] = rnd.NextDouble(-50.0d, 50.0d);
-                            }
-                        }
+                        matrix[i, j] = null;
+                        continue;
                     }
+
+                    matrix[i, j] = value;
                 }
             }
         }

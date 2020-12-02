@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+	<AssemblyName>CyberMath.Structures.Matrix.JaggedMatrix</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CyberMath.Structures.Matrix.MatrixBase\CyberMath.Structures.Matrix.MatrixBase.csproj" />
+  </ItemGroup>
+
+</Project>

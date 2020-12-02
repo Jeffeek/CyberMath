@@ -1,9 +1,9 @@
-﻿using System;
+﻿using CyberMath.Structures.Matrix.MatrixBase;
+using System;
 using System.Collections;
 using System.Text;
-using MatrixBase;
 
-namespace CyberMath.Matrix.Models
+namespace CyberMath.Structures.Matrix.Matrix.Models
 {
     public class Matrix<T> : IMatrix<T>
     {

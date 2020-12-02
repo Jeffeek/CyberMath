@@ -1,6 +1,6 @@
 ﻿using System;
-using CyberMath.Matrix.Extensions;
-using CyberMath.Matrix.Models;
+using CyberMath.Structures.Matrix.Matrix.Extensions;
+using CyberMath.Structures.Matrix.Matrix.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CyberMath.Matrix.Tests
@@ -57,28 +57,28 @@ namespace CyberMath.Matrix.Tests
             int n = 3;
             var matrix = new Matrix<int>(n, n)
             {
-                [0, 0] = 234,
+                [0, 0] = 5,
                 [0, 1] = 2,
-                [0, 2] = 1,
+                [0, 2] = 17,
                 [1, 0] = 3,
                 [1, 1] = 42,
                 [1, 2] = -90,
-                [2, 0] = 4,
+                [2, 0] = 1,
                 [2, 1] = 2,
                 [2, 2] = 2
             };
 
             var expected = new Matrix<double>(n,n)
             {
-                [0, 0] = 0.00d,
+                [0, 0] = 0.51d,
                 [0, 1] = -1.00d,
-                [0, 2] = 0.00d,
+                [0, 2] = -1.73d,
                 [1, 0] = -1.00d,
-                [1, 1] = 0.01d,
+                [1, 1] = -0.01d,
                 [1, 2] = -1.00d,
-                [2, 0] = 0.00d,
+                [2, 0] = -0.07d,
                 [2, 1] = -1.00,
-                [2, 2] = 0.16d
+                [2, 2] = 0.40d
             };
 
             var actual = matrix.CreateInvertibleMatrix() as Matrix<double>;
