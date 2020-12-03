@@ -6,12 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Extensions\**" />
-    <EmbeddedResource Remove="Extensions\**" />
-    <None Remove="Extensions\**" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\..\CyberMath.Structures.Extensions\CyberMath.Structures.Extensions.csproj" />
     <ProjectReference Include="..\CyberMath.Structures.Matrix.MatrixBase\CyberMath.Structures.Matrix.MatrixBase.csproj" />
   </ItemGroup>
 

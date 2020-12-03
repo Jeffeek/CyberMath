@@ -5,7 +5,7 @@ using CyberMath.Structures.Matrix.Matrix.Models;
 
 namespace CyberMath.Structures.Matrix.Matrix.Extensions
 {
-    public static class ReferenceTypeMatrixExtensions
+    public static class GenericMatrixExtensions
     {
         #region Sum
 

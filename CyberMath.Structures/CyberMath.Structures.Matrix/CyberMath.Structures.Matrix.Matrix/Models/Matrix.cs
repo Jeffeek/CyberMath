@@ -1,7 +1,6 @@
 ﻿using CyberMath.Structures.Matrix.MatrixBase;
 using System;
 using System.Collections;
-using System.Linq;
 using System.Text;
 
 namespace CyberMath.Structures.Matrix.Matrix.Models

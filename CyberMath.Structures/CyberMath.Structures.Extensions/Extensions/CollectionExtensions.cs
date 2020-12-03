@@ -28,5 +28,10 @@ namespace CyberMath.Structures.Extensions.Extensions
                 collection.Swap(i, randomIndex);
             }
         }
+
+        public static IEnumerable<int> GetRepeatedIntEnumerable(int value)
+        {
+            yield return value;
+        }
     }
 }

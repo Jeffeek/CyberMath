@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using CyberMath.Structures.Matrix.MatrixBase;
 
@@ -106,11 +105,8 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
                 {
                     if (j == columnIndex)
                         continue;
-                    else
-                    {
-                        newMatrix[i, currentColumn] = this[i, j];
-                        currentColumn++;
-                    }
+                    newMatrix[i, currentColumn] = this[i, j];
+                    currentColumn++;
                 }
             }
 
@@ -127,7 +123,10 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
             {
                 if (i != rowIndex)
                 {
-                    newMatrix._innerMatrix[currentRow] = _innerMatrix[i];
+                    int elementsInRow = ElementsInRow(i);
+                    newMatrix._innerMatrix[currentRow] = new T[elementsInRow];
+                    for (int j = 0; j < elementsInRow; j++)
+                        newMatrix[currentRow, j] = this[i, j];
                     currentRow++;
                 }
             }

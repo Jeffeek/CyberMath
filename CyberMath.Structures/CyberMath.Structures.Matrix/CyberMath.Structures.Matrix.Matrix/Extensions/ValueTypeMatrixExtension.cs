@@ -1,6 +1,5 @@
 ﻿using CyberMath.Structures.Extensions;
 using CyberMath.Structures.Matrix.Matrix.Models;
-using CyberMath.Structures.Matrix.MatrixBase;
 using CyberMath.Structures.MatrixBase.Exceptions;
 using System;
 using System.Text;
@@ -13,14 +12,14 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Math
 
-        public static Matrix<int> Multiplication(this Matrix<int> a, Matrix<int> b)
+        public static IMatrix<int> Multiplication(this IMatrix<int> a, IMatrix<int> b)
         {
             if (a.ColumnsCount == b.RowsCount) return a.InternalMulAtoB(b);
             if (b.ColumnsCount == a.RowsCount) return a.InternalMulBtoA(b);
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
-        public static Matrix<int> Add(this Matrix<int> a, Matrix<int> b)
+        public static IMatrix<int> Add(this IMatrix<int> a, IMatrix<int> b)
         {
             if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
             if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
@@ -36,7 +35,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<int> Sub(this Matrix<int> a, Matrix<int> b)
+        public static IMatrix<int> Sub(this IMatrix<int> a, IMatrix<int> b)
         {
             if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
             if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
@@ -52,7 +51,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<int> MulOnNumber(this Matrix<int> a, int number)
+        public static IMatrix<int> MulOnNumber(this Matrix<int> a, int number)
         {
             var matrix = new Matrix<int>(a.RowsCount, a.ColumnsCount);
             for (int i = 0; i < a.RowsCount; i++)
@@ -70,7 +69,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Creation
 
-        public static Matrix<int> CreateIdentityMatrix(int n)
+        public static IMatrix<int> CreateIdentityMatrix(int n)
         {
             var result = new Matrix<int>(n, n);
             for (var i = 0; i < n; i++)
@@ -84,7 +83,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Operations
 
-        public static int CalculateDeterminant(this Matrix<int> matrix)
+        public static int CalculateDeterminant(this IMatrix<int> matrix)
         {
             if (!matrix.IsSquare)
             {
@@ -99,12 +98,12 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] *
-                                                            ((matrix.CreateMatrixWithoutColumn(j) as Matrix<int>)?.CreateMatrixWithoutRow(1) as Matrix<int>).CalculateDeterminant();
+                          ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<int>)?.CreateMatrixWithoutRow(1) as IMatrix<int>).CalculateDeterminant();
             }
             return result;
         }
 
-        public static IMatrix<double> CreateInvertibleMatrix(this Matrix<int> matrix)
+        public static IMatrix<double> CreateInvertibleMatrix(this IMatrix<int> matrix)
         {
             if (!matrix.IsSquare)
                 return null;
@@ -121,24 +120,25 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        private static double CalculateMinor(this Matrix<int> matrix, int i, int j)
+        private static double CalculateMinor(this IMatrix<int> matrix, int i, int j)
         {
-            return ((matrix.CreateMatrixWithoutColumn(j) as Matrix<int>)?.CreateMatrixWithoutRow(i) as Matrix<int>).CalculateDeterminant();
+            return ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<int>)?.CreateMatrixWithoutRow(i) as IMatrix<int>).CalculateDeterminant();
         }
 
         #endregion
 
         #region Sum Operations
 
-        public static int DiagonalSum(this Matrix<int> matrix)
+        public static int DiagonalSum(this IMatrix<int> matrix)
         {
+            if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             int sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
                 sum += matrix[i, i];
             return sum;
         }
 
-        public static int Sum(this Matrix<int> matrix)
+        public static int Sum(this IMatrix<int> matrix)
         {
             int sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -152,14 +152,15 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return sum;
         }
 
-        public static int SumSaddlePoints(this Matrix<int> matrix)
+        public static int SumSaddlePoints(this IMatrix<int> matrix)
         {
             int sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
             {
                 for (int j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) continue;
+                    if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) 
+                        continue;
                     sum += matrix[i, j];
                 }
             }
@@ -171,7 +172,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Math
 
-        private static Matrix<int> InternalMulAtoB(this Matrix<int> matrix, Matrix<int> b)
+        private static IMatrix<int> InternalMulAtoB(this IMatrix<int> matrix, IMatrix<int> b)
         {
             var result = new Matrix<int>(matrix.RowsCount, b.ColumnsCount);
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -188,7 +189,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        private static Matrix<int> InternalMulBtoA(this Matrix<int> matrix, Matrix<int> b)
+        private static IMatrix<int> InternalMulBtoA(this IMatrix<int> matrix, IMatrix<int> b)
         {
             var result = new Matrix<int>(b.RowsCount, matrix.ColumnsCount);
             for (int i = 0; i < b.RowsCount; i++)
@@ -209,7 +210,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Find Ops
 
-        public static bool IsMaxInColumn(this Matrix<int> matrix,int i, int j)
+        public static bool IsMaxInColumn(this IMatrix<int> matrix,int i, int j)
         {
             for (int k = 0; k < matrix.RowsCount; k++)
             {
@@ -219,7 +220,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return true;
         }
 
-        public static bool IsMinInRow(this Matrix<int> matrix, int i, int j)
+        public static bool IsMinInRow(this IMatrix<int> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.ColumnsCount; k++)
             {
@@ -233,7 +234,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Fill
 
-        public static void FillRandomly(this Matrix<int> matrix, int min = -50, int max = 50)
+        public static void FillRandomly(this IMatrix<int> matrix, int min = -50, int max = 50)
         {
             var rnd = new Random(DateTime.Now.Millisecond + DateTime.Now.Second * DateTime.Now.Day);
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -253,14 +254,14 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Math
 
-        public static Matrix<long> Multiplication(this Matrix<long> a, Matrix<long> b)
+        public static IMatrix<long> Multiplication(this IMatrix<long> a, IMatrix<long> b)
         {
             if (a.ColumnsCount == b.RowsCount) return a.InternalMulAtoB(b);
             if (b.ColumnsCount == a.RowsCount) return a.InternalMulBtoA(b);
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
-        public static Matrix<long> Add(this Matrix<long> a, Matrix<long> b)
+        public static IMatrix<long> Add(this IMatrix<long> a, IMatrix<long> b)
         {
             if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
             if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
@@ -276,7 +277,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<long> Sub(this Matrix<long> a, Matrix<long> b)
+        public static IMatrix<long> Sub(this IMatrix<long> a, IMatrix<long> b)
         {
             if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
             if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
@@ -292,7 +293,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<long> MulOnNumber(this Matrix<long> a, long number)
+        public static IMatrix<long> MulOnNumber(this IMatrix<long> a, long number)
         {
             var matrix = new Matrix<long>(a.RowsCount, a.ColumnsCount);
             for (int i = 0; i < a.RowsCount; i++)
@@ -310,7 +311,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Operations
 
-        public static long CalculateDeterminant(this Matrix<long> matrix)
+        public static long CalculateDeterminant(this IMatrix<long> matrix)
         {
             if (!matrix.IsSquare)
             {
@@ -325,12 +326,12 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] *
-                                                            ((matrix.CreateMatrixWithoutColumn(j) as Matrix<long>)?.CreateMatrixWithoutRow(1) as Matrix<long>).CalculateDeterminant();
+                          ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<long>)?.CreateMatrixWithoutRow(1) as IMatrix<long>).CalculateDeterminant();
             }
             return result;
         }
 
-        public static IMatrix<double> CreateInvertibleMatrix(this Matrix<long> matrix)
+        public static IMatrix<double> CreateInvertibleMatrix(this IMatrix<long> matrix)
         {
             if (!matrix.IsSquare)
                 return null;
@@ -347,24 +348,25 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        private static double CalculateMinor(this Matrix<long> matrix, int i, int j)
+        private static double CalculateMinor(this IMatrix<long> matrix, int i, int j)
         {
-            return ((matrix.CreateMatrixWithoutColumn(j) as Matrix<long>)?.CreateMatrixWithoutRow(i) as Matrix<long>).CalculateDeterminant();
+            return ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<long>)?.CreateMatrixWithoutRow(i) as IMatrix<long>).CalculateDeterminant();
         }
 
         #endregion
 
         #region Sum Operations
 
-        public static long DiagonalSum(this Matrix<long> matrix)
+        public static long DiagonalSum(this IMatrix<long> matrix)
         {
+            if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             long sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
                 sum += matrix[i, i];
             return sum;
         }
 
-        public static long Sum(this Matrix<long> matrix)
+        public static long Sum(this IMatrix<long> matrix)
         {
             long sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -378,7 +380,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return sum;
         }
 
-        public static long SumSaddlePoints(this Matrix<long> matrix)
+        public static long SumSaddlePoints(this IMatrix<long> matrix)
         {
             long sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -397,7 +399,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Math
 
-        private static Matrix<long> InternalMulAtoB(this Matrix<long> matrix, Matrix<long> b)
+        private static IMatrix<long> InternalMulAtoB(this IMatrix<long> matrix, IMatrix<long> b)
         {
             var result = new Matrix<long>(matrix.RowsCount, b.ColumnsCount);
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -414,7 +416,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        private static Matrix<long> InternalMulBtoA(this Matrix<long> matrix, Matrix<long> b)
+        private static IMatrix<long> InternalMulBtoA(this IMatrix<long> matrix, IMatrix<long> b)
         {
             var result = new Matrix<long>(b.RowsCount, matrix.ColumnsCount);
             for (int i = 0; i < b.RowsCount; i++)
@@ -435,7 +437,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Find Ops
 
-        public static bool IsMaxInColumn(this Matrix<long> matrix, int i, int j)
+        public static bool IsMaxInColumn(this IMatrix<long> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.RowsCount; k++)
             {
@@ -445,7 +447,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return true;
         }
 
-        public static bool IsMinInRow(this Matrix<long> matrix, int i, int j)
+        public static bool IsMinInRow(this IMatrix<long> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.ColumnsCount; k++)
             {
@@ -459,7 +461,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Fill
 
-        public static void FillRandomly(this Matrix<long> matrix, long min = -50, long max = 50)
+        public static void FillRandomly(this IMatrix<long> matrix, long min = -50, long max = 50)
         {
             var rnd = new Random();
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -479,14 +481,14 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Math
 
-        public static Matrix<double> Multiplication(this Matrix<double> a, Matrix<double> b)
+        public static IMatrix<double> Multiplication(this IMatrix<double> a, IMatrix<double> b)
         {
             if (a.ColumnsCount == b.RowsCount) return a.InternalMulAtoB(b);
             if (b.ColumnsCount == a.RowsCount) return a.InternalMulBtoA(b);
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
-        public static Matrix<double> Add(this Matrix<double> a, Matrix<double> b)
+        public static IMatrix<double> Add(this IMatrix<double> a, IMatrix<double> b)
         {
             if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
             if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
@@ -502,7 +504,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<double> Sub(this Matrix<double> a, Matrix<double> b)
+        public static IMatrix<double> Sub(this IMatrix<double> a, IMatrix<double> b)
         {
             if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
             if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
@@ -518,7 +520,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<double> MulOnNumber(this Matrix<double> a, double number)
+        public static IMatrix<double> MulOnNumber(this IMatrix<double> a, double number)
         {
             var matrix = new Matrix<double>(a.RowsCount, a.ColumnsCount);
             for (int i = 0; i < a.RowsCount; i++)
@@ -536,7 +538,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Operations
 
-        public static double CalculateDeterminant(this Matrix<double> matrix)
+        public static double CalculateDeterminant(this IMatrix<double> matrix)
         {
             if (!matrix.IsSquare)
             {
@@ -551,12 +553,12 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] *
-                                                            ((matrix.CreateMatrixWithoutColumn(j) as Matrix<double>)?.CreateMatrixWithoutRow(1) as Matrix<double>).CalculateDeterminant();
+                          ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<double>)?.CreateMatrixWithoutRow(1) as IMatrix<double>).CalculateDeterminant();
             }
             return result;
         }
 
-        public static IMatrix<double> CreateInvertibleMatrix(this Matrix<double> matrix)
+        public static IMatrix<double> CreateInvertibleMatrix(this IMatrix<double> matrix)
         {
             if (!matrix.IsSquare)
                 return null;
@@ -573,24 +575,25 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        private static double CalculateMinor(this Matrix<double> matrix, int i, int j)
+        private static double CalculateMinor(this IMatrix<double> matrix, int i, int j)
         {
-            return ((matrix.CreateMatrixWithoutColumn(j) as Matrix<double>)?.CreateMatrixWithoutRow(i) as Matrix<double>).CalculateDeterminant();
+            return ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<double>)?.CreateMatrixWithoutRow(i) as IMatrix<double>).CalculateDeterminant();
         }
 
         #endregion
 
         #region Sum Operations
 
-        public static double DiagonalSum(this Matrix<double> matrix)
+        public static double DiagonalSum(this IMatrix<double> matrix)
         {
+            if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             double sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
                 sum += matrix[i, i];
             return sum;
         }
 
-        public static double Sum(this Matrix<double> matrix)
+        public static double Sum(this IMatrix<double> matrix)
         {
             double sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -604,7 +607,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return sum;
         }
 
-        public static double SumSaddlePoints(this Matrix<double> matrix)
+        public static double SumSaddlePoints(this IMatrix<double> matrix)
         {
             double sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -623,7 +626,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Math
 
-        private static Matrix<double> InternalMulAtoB(this Matrix<double> matrix, Matrix<double> b)
+        private static IMatrix<double> InternalMulAtoB(this IMatrix<double> matrix, IMatrix<double> b)
         {
             var result = new Matrix<double>(matrix.RowsCount, b.ColumnsCount);
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -640,7 +643,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        private static Matrix<double> InternalMulBtoA(this Matrix<double> matrix, Matrix<double> b)
+        private static IMatrix<double> InternalMulBtoA(this IMatrix<double> matrix, IMatrix<double> b)
         {
             var result = new Matrix<double>(b.RowsCount, matrix.ColumnsCount);
             for (int i = 0; i < b.RowsCount; i++)
@@ -661,7 +664,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Find Ops
 
-        public static bool IsMaxInColumn(this Matrix<double> matrix, int i, int j)
+        public static bool IsMaxInColumn(this IMatrix<double> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.RowsCount; k++)
             {
@@ -671,7 +674,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return true;
         }
 
-        public static bool IsMinInRow(this Matrix<double> matrix, int i, int j)
+        public static bool IsMinInRow(this IMatrix<double> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.ColumnsCount; k++)
             {
@@ -685,7 +688,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Fill
 
-        public static void FillRandomly(this Matrix<double> matrix, double min = -50d, double max = 50d)
+        public static void FillRandomly(this IMatrix<double> matrix, double min = -50d, double max = 50d)
         {
             var rnd = new Random();
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -705,14 +708,14 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Math
 
-        public static Matrix<decimal> Multiplication(this Matrix<decimal> a, Matrix<decimal> b)
+        public static IMatrix<decimal> Multiplication(this IMatrix<decimal> a, IMatrix<decimal> b)
         {
             if (a.ColumnsCount == b.RowsCount) return a.InternalMulAtoB(b);
             if (b.ColumnsCount == a.RowsCount) return a.InternalMulBtoA(b);
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
-        public static Matrix<decimal> Add(this Matrix<decimal> a, Matrix<decimal> b)
+        public static IMatrix<decimal> Add(this IMatrix<decimal> a, IMatrix<decimal> b)
         {
             if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
             if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
@@ -728,7 +731,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<decimal> Sub(this Matrix<decimal> a, Matrix<decimal> b)
+        public static IMatrix<decimal> Sub(this IMatrix<decimal> a, IMatrix<decimal> b)
         {
             if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
             if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
@@ -744,7 +747,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<decimal> MulOnNumber(this Matrix<decimal> a, decimal number)
+        public static IMatrix<decimal> MulOnNumber(this IMatrix<decimal> a, decimal number)
         {
             var matrix = new Matrix<decimal>(a.RowsCount, a.ColumnsCount);
             for (int i = 0; i < a.RowsCount; i++)
@@ -762,7 +765,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Operations
 
-        public static decimal CalculateDeterminant(this Matrix<decimal> matrix)
+        public static decimal CalculateDeterminant(this IMatrix<decimal> matrix)
         {
             if (!matrix.IsSquare)
             {
@@ -777,12 +780,12 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] *
-                                                            ((matrix.CreateMatrixWithoutColumn(j) as Matrix<decimal>)?.CreateMatrixWithoutRow(1) as Matrix<decimal>).CalculateDeterminant();
+                          ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<decimal>)?.CreateMatrixWithoutRow(1) as IMatrix<decimal>).CalculateDeterminant();
             }
             return result;
         }
 
-        public static IMatrix<decimal> CreateInvertibleMatrix(this Matrix<decimal> matrix)
+        public static IMatrix<decimal> CreateInvertibleMatrix(this IMatrix<decimal> matrix)
         {
             if (!matrix.IsSquare)
                 return null;
@@ -799,24 +802,25 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        private static decimal CalculateMinor(this Matrix<decimal> matrix, int i, int j)
+        private static decimal CalculateMinor(this IMatrix<decimal> matrix, int i, int j)
         {
-            return ((matrix.CreateMatrixWithoutColumn(j) as Matrix<decimal>)?.CreateMatrixWithoutRow(i) as Matrix<decimal>).CalculateDeterminant();
+            return ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<decimal>)?.CreateMatrixWithoutRow(i) as IMatrix<decimal>).CalculateDeterminant();
         }
 
         #endregion
 
         #region Sum Operations
 
-        public static decimal DiagonalSum(this Matrix<decimal> matrix)
+        public static decimal DiagonalSum(this IMatrix<decimal> matrix)
         {
+            if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             decimal sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
                 sum += matrix[i, i];
             return sum;
         }
 
-        public static decimal Sum(this Matrix<decimal> matrix)
+        public static decimal Sum(this IMatrix<decimal> matrix)
         {
             decimal sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -830,7 +834,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return sum;
         }
 
-        public static decimal SumSaddlePoints(this Matrix<decimal> matrix)
+        public static decimal SumSaddlePoints(this IMatrix<decimal> matrix)
         {
             decimal sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -849,7 +853,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Math
 
-        private static Matrix<decimal> InternalMulAtoB(this Matrix<decimal> matrix, Matrix<decimal> b)
+        private static IMatrix<decimal> InternalMulAtoB(this IMatrix<decimal> matrix, IMatrix<decimal> b)
         {
             var result = new Matrix<decimal>(matrix.RowsCount, b.ColumnsCount);
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -866,7 +870,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        private static Matrix<decimal> InternalMulBtoA(this Matrix<decimal> matrix, Matrix<decimal> b)
+        private static IMatrix<decimal> InternalMulBtoA(this IMatrix<decimal> matrix, IMatrix<decimal> b)
         {
             var result = new Matrix<decimal>(b.RowsCount, matrix.ColumnsCount);
             for (int i = 0; i < b.RowsCount; i++)
@@ -887,7 +891,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Find Ops
 
-        public static bool IsMaxInColumn(this Matrix<decimal> matrix, int i, int j)
+        public static bool IsMaxInColumn(this IMatrix<decimal> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.RowsCount; k++)
             {
@@ -897,7 +901,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return true;
         }
 
-        public static bool IsMinInRow(this Matrix<decimal> matrix, int i, int j)
+        public static bool IsMinInRow(this IMatrix<decimal> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.ColumnsCount; k++)
             {
@@ -911,7 +915,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Fill
 
-        public static void FillRandomly(this Matrix<decimal> matrix, decimal min = -50, decimal max = 50)
+        public static void FillRandomly(this IMatrix<decimal> matrix, decimal min = -50, decimal max = 50)
         {
             var rnd = new Random();
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -931,7 +935,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Math
 
-        public static Matrix<string> Add(this Matrix<string> a, Matrix<string> b)
+        public static IMatrix<string> Add(this IMatrix<string> a, IMatrix<string> b)
         {
             if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
             if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
@@ -947,7 +951,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<string> MulOnNumber(this Matrix<string> a, int number)
+        public static IMatrix<string> MulOnNumber(this IMatrix<string> a, int number)
         {
             var matrix = new Matrix<string>(a.RowsCount, a.ColumnsCount);
             for (int i = 0; i < a.RowsCount; i++)
@@ -965,22 +969,23 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Sum Operations
 
-        public static string DiagonalSum(this Matrix<string> matrix)
+        public static string DiagonalSum(this IMatrix<string> matrix)
         {
+            if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             var sb = new StringBuilder();
             for (int i = 0; i < matrix.RowsCount; i++)
-                sb.Append(matrix[i, i]);
+                sb.Append(matrix[i, i]).Append(' ');
             return sb.ToString();
         }
 
-        public static string Sum(this Matrix<string> matrix)
+        public static string Sum(this IMatrix<string> matrix)
         {
             var sb = new StringBuilder();
             for (int i = 0; i < matrix.RowsCount; i++)
             {
                 for (int j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    sb.Append(matrix[i, j]);
+                    sb.Append(matrix[i, j]).Append(' ');
                 }
             }
 
@@ -991,7 +996,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Find Ops
 
-        public static bool IsMaxInColumn(this Matrix<string> matrix, int i, int j)
+        public static bool IsMaxInColumn(this IMatrix<string> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.RowsCount; k++)
             {
@@ -1001,7 +1006,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return true;
         }
 
-        public static bool IsMinInRow(this Matrix<string> matrix, int i, int j)
+        public static bool IsMinInRow(this IMatrix<string> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.ColumnsCount; k++)
             {
@@ -1015,7 +1020,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Fill
 
-        public static void FillRandomly(this Matrix<string> matrix, Guid guid, int length = 10)
+        public static void FillRandomly(this IMatrix<string> matrix, Guid guid, int length = 10)
         {
             for (int i = 0; i < matrix.RowsCount; i++)
             {
@@ -1036,14 +1041,14 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Math
 
-        public static Matrix<int?> Multiplication(this Matrix<int?> a, Matrix<int?> b)
+        public static IMatrix<int?> Multiplication(this IMatrix<int?> a, IMatrix<int?> b)
         {
             if (a.ColumnsCount == b.RowsCount) return a.InternalMulAtoB(b);
             if (b.ColumnsCount == a.RowsCount) return a.InternalMulBtoA(b);
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
-        public static Matrix<int?> Add(this Matrix<int?> a, Matrix<int?> b)
+        public static IMatrix<int?> Add(this IMatrix<int?> a, IMatrix<int?> b)
         {
             if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
             if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
@@ -1062,7 +1067,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<int?> Sub(this Matrix<int?> a, Matrix<int?> b)
+        public static IMatrix<int?> Sub(this IMatrix<int?> a, IMatrix<int?> b)
         {
             if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
             if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
@@ -1081,7 +1086,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<int?> MulOnNumber(this Matrix<int?> a, int number)
+        public static IMatrix<int?> MulOnNumber(this IMatrix<int?> a, int number)
         {
             var matrix = new Matrix<int?>(a.RowsCount, a.ColumnsCount);
             for (int i = 0; i < a.RowsCount; i++)
@@ -1102,7 +1107,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Operations
 
-        public static int CalculateDeterminant(this Matrix<int?> matrix)
+        public static int CalculateDeterminant(this IMatrix<int?> matrix)
         {
             if (!matrix.IsSquare)
             {
@@ -1123,12 +1128,12 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] ?? 0 *
-                                                            ((matrix.CreateMatrixWithoutColumn(j) as Matrix<int?>)?.CreateMatrixWithoutRow(1) as Matrix<int?>).CalculateDeterminant();
+                                                            ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<int?>)?.CreateMatrixWithoutRow(1) as IMatrix<int?>).CalculateDeterminant();
             }
             return result;
         }
 
-        public static IMatrix<double?> CreateInvertibleMatrix(this Matrix<int?> matrix)
+        public static IMatrix<double?> CreateInvertibleMatrix(this IMatrix<int?> matrix)
         {
             if (!matrix.IsSquare)
                 return null;
@@ -1144,17 +1149,18 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        private static double CalculateMinor(this Matrix<int?> matrix, int i, int j)
+        private static double CalculateMinor(this IMatrix<int?> matrix, int i, int j)
         {
-            return ((matrix.CreateMatrixWithoutColumn(j) as Matrix<int?>)?.CreateMatrixWithoutRow(i) as Matrix<int?>).CalculateDeterminant();
+            return ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<int?>)?.CreateMatrixWithoutRow(i) as IMatrix<int?>).CalculateDeterminant();
         }
 
         #endregion
 
         #region Sum Operations
 
-        public static int DiagonalSum(this Matrix<int?> matrix)
+        public static int DiagonalSum(this IMatrix<int?> matrix)
         {
+            if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             int sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
             {
@@ -1164,7 +1170,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return sum;
         }
 
-        public static int Sum(this Matrix<int?> matrix)
+        public static int Sum(this IMatrix<int?> matrix)
         {
             int sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -1179,7 +1185,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return sum;
         }
 
-        public static int SumSaddlePoints(this Matrix<int?> matrix)
+        public static int SumSaddlePoints(this IMatrix<int?> matrix)
         {
             int sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -1202,7 +1208,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Math
 
-        private static Matrix<int?> InternalMulAtoB(this Matrix<int?> matrix, Matrix<int?> b)
+        private static IMatrix<int?> InternalMulAtoB(this IMatrix<int?> matrix, IMatrix<int?> b)
         {
             var result = new Matrix<int?>(matrix.RowsCount, b.ColumnsCount);
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -1222,7 +1228,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        private static Matrix<int?> InternalMulBtoA(this Matrix<int?> matrix, Matrix<int?> b)
+        private static IMatrix<int?> InternalMulBtoA(this IMatrix<int?> matrix, IMatrix<int?> b)
         {
             var result = new Matrix<int?>(b.RowsCount, matrix.ColumnsCount);
             for (int i = 0; i < b.RowsCount; i++)
@@ -1244,7 +1250,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Find Ops
 
-        public static bool IsMaxInColumn(this Matrix<int?> matrix, int i, int j)
+        public static bool IsMaxInColumn(this IMatrix<int?> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.RowsCount; k++)
             {
@@ -1257,7 +1263,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return true;
         }
 
-        public static bool IsMinInRow(this Matrix<int?> matrix, int i, int j)
+        public static bool IsMinInRow(this IMatrix<int?> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.ColumnsCount; k++)
             {
@@ -1274,7 +1280,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Fill
 
-        public static void FillRandomly(this Matrix<int?> matrix, int min = -50, int max = 50, bool includeNull = false)
+        public static void FillRandomly(this IMatrix<int?> matrix, int min = -50, int max = 50, bool includeNull = false)
         {
             var rnd = new Random();
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -1300,14 +1306,14 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Math
 
-        public static Matrix<long?> Multiplication(this Matrix<long?> a, Matrix<long?> b)
+        public static IMatrix<long?> Multiplication(this IMatrix<long?> a, IMatrix<long?> b)
         {
             if (a.ColumnsCount == b.RowsCount) return a.InternalMulAtoB(b);
             if (b.ColumnsCount == a.RowsCount) return a.InternalMulBtoA(b);
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
-        public static Matrix<long?> Add(this Matrix<long?> a, Matrix<long?> b)
+        public static IMatrix<long?> Add(this IMatrix<long?> a, IMatrix<long?> b)
         {
             if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
             if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
@@ -1326,7 +1332,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<long?> Sub(this Matrix<long?> a, Matrix<long?> b)
+        public static IMatrix<long?> Sub(this IMatrix<long?> a, IMatrix<long?> b)
         {
             if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
             if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
@@ -1345,7 +1351,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<long?> MulOnNumber(this Matrix<long?> a, long number)
+        public static IMatrix<long?> MulOnNumber(this IMatrix<long?> a, long number)
         {
             var matrix = new Matrix<long?>(a.RowsCount, a.ColumnsCount);
             for (int i = 0; i < a.RowsCount; i++)
@@ -1364,7 +1370,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Operations
 
-        public static long CalculateDeterminant(this Matrix<long?> matrix)
+        public static long CalculateDeterminant(this IMatrix<long?> matrix)
         {
             if (!matrix.IsSquare)
             {
@@ -1385,12 +1391,12 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] == null ? 0 : matrix[1, j].Value *
-                                                            ((matrix.CreateMatrixWithoutColumn(j) as Matrix<long?>)?.CreateMatrixWithoutRow(1) as Matrix<long?>).CalculateDeterminant();
+                                                                             ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<long?>)?.CreateMatrixWithoutRow(1) as IMatrix<long?>).CalculateDeterminant();
             }
             return result;
         }
 
-        public static IMatrix<double> CreateInvertibleMatrix(this Matrix<long?> matrix)
+        public static IMatrix<double> CreateInvertibleMatrix(this IMatrix<long?> matrix)
         {
             if (!matrix.IsSquare)
                 throw new InvalidOperationException(
@@ -1408,17 +1414,18 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        private static double CalculateMinor(this Matrix<long?> matrix, int i, int j)
+        private static double CalculateMinor(this IMatrix<long?> matrix, int i, int j)
         {
-            return ((matrix.CreateMatrixWithoutColumn(j) as Matrix<long?>)?.CreateMatrixWithoutRow(i) as Matrix<long?>).CalculateDeterminant();
+            return ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<long?>)?.CreateMatrixWithoutRow(i) as IMatrix<long?>).CalculateDeterminant();
         }
 
         #endregion
 
         #region Sum Operations
 
-        public static long DiagonalSum(this Matrix<long?> matrix)
+        public static long DiagonalSum(this IMatrix<long?> matrix)
         {
+            if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             long sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
             {
@@ -1430,7 +1437,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return sum;
         }
 
-        public static long Sum(this Matrix<long?> matrix)
+        public static long Sum(this IMatrix<long?> matrix)
         {
             long sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -1447,7 +1454,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return sum;
         }
 
-        public static long SumSaddlePoints(this Matrix<long?> matrix)
+        public static long SumSaddlePoints(this IMatrix<long?> matrix)
         {
             long sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -1469,7 +1476,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Math
 
-        private static Matrix<long?> InternalMulAtoB(this Matrix<long?> matrix, Matrix<long?> b)
+        private static IMatrix<long?> InternalMulAtoB(this IMatrix<long?> matrix, IMatrix<long?> b)
         {
             var result = new Matrix<long?>(matrix.RowsCount, b.ColumnsCount);
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -1489,7 +1496,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        private static Matrix<long?> InternalMulBtoA(this Matrix<long?> matrix, Matrix<long?> b)
+        private static IMatrix<long?> InternalMulBtoA(this IMatrix<long?> matrix, IMatrix<long?> b)
         {
             var result = new Matrix<long?>(b.RowsCount, matrix.ColumnsCount);
             for (int i = 0; i < b.RowsCount; i++)
@@ -1513,7 +1520,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Find Ops
 
-        public static bool IsMaxInColumn(this Matrix<long?> matrix, int i, int j)
+        public static bool IsMaxInColumn(this IMatrix<long?> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.RowsCount; k++)
             {
@@ -1524,7 +1531,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return true;
         }
 
-        public static bool IsMinInRow(this Matrix<long?> matrix, int i, int j)
+        public static bool IsMinInRow(this IMatrix<long?> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.ColumnsCount; k++)
             {
@@ -1539,7 +1546,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Fill
 
-        public static void FillRandomly(this Matrix<long?> matrix, long min = -50, long max = 50, bool includeNull = false)
+        public static void FillRandomly(this IMatrix<long?> matrix, long min = -50, long max = 50, bool includeNull = false)
         {
             var rnd = new Random();
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -1564,14 +1571,14 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Math
 
-        public static Matrix<double?> Multiplication(this Matrix<double?> a, Matrix<double?> b)
+        public static IMatrix<double?> Multiplication(this IMatrix<double?> a, IMatrix<double?> b)
         {
             if (a.ColumnsCount == b.RowsCount) return a.InternalMulAtoB(b);
             if (b.ColumnsCount == a.RowsCount) return a.InternalMulBtoA(b);
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
-        public static Matrix<double?> Add(this Matrix<double?> a, Matrix<double?> b)
+        public static IMatrix<double?> Add(this IMatrix<double?> a, IMatrix<double?> b)
         {
             if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
             if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
@@ -1590,7 +1597,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<double?> Sub(this Matrix<double?> a, Matrix<double?> b)
+        public static IMatrix<double?> Sub(this IMatrix<double?> a, IMatrix<double?> b)
         {
             if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
             if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
@@ -1609,7 +1616,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return matrix;
         }
 
-        public static Matrix<double?> MulOnNumber(this Matrix<double?> a, double number)
+        public static IMatrix<double?> MulOnNumber(this IMatrix<double?> a, double number)
         {
             var matrix = new Matrix<double?>(a.RowsCount, a.ColumnsCount);
             for (int i = 0; i < a.RowsCount; i++)
@@ -1630,7 +1637,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Operations
 
-        public static double CalculateDeterminant(this Matrix<double?> matrix)
+        public static double CalculateDeterminant(this IMatrix<double?> matrix)
         {
             if (!matrix.IsSquare)
             {
@@ -1650,12 +1657,12 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] ?? 0 *
-                                                            ((matrix.CreateMatrixWithoutColumn(j) as Matrix<double?>)?.CreateMatrixWithoutRow(1) as Matrix<double?>).CalculateDeterminant();
+                                                            ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<double?>)?.CreateMatrixWithoutRow(1) as IMatrix<double?>).CalculateDeterminant();
             }
             return result;
         }
 
-        public static IMatrix<double?> CreateInvertibleMatrix(this Matrix<double?> matrix)
+        public static IMatrix<double?> CreateInvertibleMatrix(this IMatrix<double?> matrix)
         {
             if (!matrix.IsSquare)
                 return null;
@@ -1672,17 +1679,18 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        private static double CalculateMinor(this Matrix<double?> matrix, int i, int j)
+        private static double CalculateMinor(this IMatrix<double?> matrix, int i, int j)
         {
-            return ((matrix.CreateMatrixWithoutColumn(j) as Matrix<double?>)?.CreateMatrixWithoutRow(i) as Matrix<double?>).CalculateDeterminant();
+            return ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<double?>)?.CreateMatrixWithoutRow(i) as IMatrix<double?>).CalculateDeterminant();
         }
 
         #endregion
 
         #region Sum Operations
 
-        public static double DiagonalSum(this Matrix<double?> matrix)
+        public static double DiagonalSum(this IMatrix<double?> matrix)
         {
+            if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             double sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
             {
@@ -1692,7 +1700,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return sum;
         }
 
-        public static double Sum(this Matrix<double?> matrix)
+        public static double Sum(this IMatrix<double?> matrix)
         {
             double sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -1707,7 +1715,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return sum;
         }
 
-        public static double SumSaddlePoints(this Matrix<double?> matrix)
+        public static double SumSaddlePoints(this IMatrix<double?> matrix)
         {
             double sum = 0;
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -1730,7 +1738,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Math
 
-        private static Matrix<double?> InternalMulAtoB(this Matrix<double?> matrix, Matrix<double?> b)
+        private static IMatrix<double?> InternalMulAtoB(this IMatrix<double?> matrix, IMatrix<double?> b)
         {
             var result = new Matrix<double?>(matrix.RowsCount, b.ColumnsCount);
             for (int i = 0; i < matrix.RowsCount; i++)
@@ -1750,7 +1758,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        private static Matrix<double?> InternalMulBtoA(this Matrix<double?> matrix, Matrix<double?> b)
+        private static IMatrix<double?> InternalMulBtoA(this IMatrix<double?> matrix, IMatrix<double?> b)
         {
             var result = new Matrix<double?>(b.RowsCount, matrix.ColumnsCount);
             for (int i = 0; i < b.RowsCount; i++)
@@ -1774,7 +1782,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Find Ops
 
-        public static bool IsMaxInColumn(this Matrix<double?> matrix, int i, int j)
+        public static bool IsMaxInColumn(this IMatrix<double?> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.RowsCount; k++)
             {
@@ -1785,7 +1793,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return true;
         }
 
-        public static bool IsMinInRow(this Matrix<double?> matrix, int i, int j)
+        public static bool IsMinInRow(this IMatrix<double?> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.ColumnsCount; k++)
             {
@@ -1800,7 +1808,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
 
         #region Fill
 
-        public static void FillRandomly(this Matrix<double?> matrix, double min = -50d, double max = 50d, bool includeNull = false)
+        public static void FillRandomly(this IMatrix<double?> matrix, double min = -50d, double max = 50d, bool includeNull = false)
         {
             var rnd = new Random();
             for (int i = 0; i < matrix.RowsCount; i++)
