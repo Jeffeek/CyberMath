@@ -25,13 +25,7 @@ namespace CyberMath.Matrix.Tests
                 [2, 1] = 0,
                 [2, 2] = 1
             };
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    Assert.IsTrue(actual[i,j] == expected[i,j]);
-                }
-            }
+            Assert.AreEqual(actual, expected);
         }
 
         [TestMethod]
@@ -70,14 +64,7 @@ namespace CyberMath.Matrix.Tests
             };
 
             var actual = matrix.Transpose();
-
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    Assert.IsTrue(actual[i, j] == expected[i, j]);
-                }
-            }
+            Assert.AreEqual(actual, expected);
         }
 
         [TestMethod]
@@ -113,15 +100,7 @@ namespace CyberMath.Matrix.Tests
             };
 
             var actual = matrix.CreateMatrixWithoutColumn(3) as Matrix<int>;
-
-            Assert.IsTrue(expected.ColumnsCount == actual.ColumnsCount);
-            for (int i = 0; i < expected.RowsCount; i++)
-            {
-                for (int j = 0; j < expected.ColumnsCount; j++)
-                {
-                    Assert.IsTrue(actual[i, j] == expected[i, j]);
-                }
-            }
+            Assert.AreEqual(actual, expected);
         }
 
         [TestMethod]
@@ -179,15 +158,7 @@ namespace CyberMath.Matrix.Tests
             };
 
             var actual = matrix.CreateMatrixWithoutRow(3) as Matrix<int>;
-
-            Assert.IsTrue(expected.ColumnsCount == actual.ColumnsCount);
-            for (int i = 0; i < expected.RowsCount; i++)
-            {
-                for (int j = 0; j < expected.ColumnsCount; j++)
-                {
-                    Assert.IsTrue(actual[i, j] == expected[i, j]);
-                }
-            }
+            Assert.AreEqual(actual, expected);
         }
 
         [TestMethod]

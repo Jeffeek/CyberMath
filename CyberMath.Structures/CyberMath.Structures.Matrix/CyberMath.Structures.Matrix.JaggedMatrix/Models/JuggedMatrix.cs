@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using CyberMath.Structures.Matrix.MatrixBase;
 
@@ -20,6 +21,12 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
             InitMatrix(elementsAtRow);
             if (elementsAtRow.All(x => x == RowsCount))
                 IsSquare = true;
+        }
+
+        private JuggedMatrix(int rowsCount)
+        {
+            RowsCount = rowsCount;
+            _innerMatrix = new T[RowsCount][];
         }
 
         private void InitMatrix(params int[] elementsAtRow)
@@ -55,15 +62,6 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
             }
         }
 
-        public IMatrixBase<T> Transpose()
-        {
-            var newmat = Enumerable
-                                    .Range(0, _innerMatrix[0].Length - 1)
-                                    .Select(i => _innerMatrix.Select(r => r[i]).ToArray()).ToArray();
-            IJuggedMatrix<T> transposed = new JuggedMatrix<T>(newmat.GetLength(0), newmat.Select(x => x.Length).ToArray());
-            return transposed;
-        }
-
         public void ProcessFunctionOverData(Action<int, int> func)
         {
             if (ReferenceEquals(func, null)) return;
@@ -92,12 +90,49 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
 
         public IMatrixBase<T> CreateMatrixWithoutColumn(int columnIndex)
         {
-            throw new NotImplementedException();
+            int maxColumn = _innerMatrix.Max(x => x.Length);
+            if (columnIndex < 0) throw new ArgumentException("Column index is < 0");
+            if (columnIndex >= maxColumn) throw new ArgumentException("Column index is out of range in matrix");
+            JuggedMatrix<T> newMatrix = new JuggedMatrix<T>(RowsCount);
+            for (int i = 0; i < RowsCount; i++)
+            {
+                int currentColumn = 0;
+                int elementsInRow = ElementsInRow(i);
+                if (columnIndex < elementsInRow)
+                    newMatrix._innerMatrix[i] = new T[elementsInRow-1];
+                else
+                    newMatrix._innerMatrix[i] = new T[elementsInRow];
+                for (int j = 0; j < elementsInRow; j++)
+                {
+                    if (j == columnIndex)
+                        continue;
+                    else
+                    {
+                        newMatrix[i, currentColumn] = this[i, j];
+                        currentColumn++;
+                    }
+                }
+            }
+
+            return newMatrix;
         }
 
         public IMatrixBase<T> CreateMatrixWithoutRow(int rowIndex)
         {
-            throw new NotImplementedException();
+            if (rowIndex < 0) throw new ArgumentException("Row index is < 0");
+            if (rowIndex >= RowsCount) throw new ArgumentException("Row index is out of range in matrix");
+            var newMatrix = new JuggedMatrix<T>(RowsCount - 1);
+            int currentRow = 0;
+            for (int i = 0; i < RowsCount; i++)
+            {
+                if (i != rowIndex)
+                {
+                    newMatrix._innerMatrix[currentRow] = _innerMatrix[i];
+                    currentRow++;
+                }
+            }
+
+            return newMatrix;
         }
 
         public int ElementsInRow(int index) => _innerMatrix[index].Length;

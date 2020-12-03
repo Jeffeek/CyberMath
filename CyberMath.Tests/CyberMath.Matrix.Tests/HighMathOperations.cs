@@ -82,14 +82,7 @@ namespace CyberMath.Matrix.Tests
             };
 
             var actual = matrix.CreateInvertibleMatrix() as Matrix<double>;
-
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    Assert.IsTrue(expected[i,j] == actual[i,j]);
-                }
-            }
+            Assert.AreEqual(actual, expected);
         }
 
         [TestMethod]

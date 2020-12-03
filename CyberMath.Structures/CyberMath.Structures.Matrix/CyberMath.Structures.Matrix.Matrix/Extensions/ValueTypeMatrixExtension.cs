@@ -104,13 +104,13 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        public static IMatrixBase<double> CreateInvertibleMatrix(this Matrix<int> matrix)
+        public static IMatrix<double> CreateInvertibleMatrix(this Matrix<int> matrix)
         {
             if (!matrix.IsSquare)
                 return null;
             var determinant = matrix.CalculateDeterminant();
 
-            IMatrixBase<double> result = new Matrix<double>(matrix.RowsCount, matrix.ColumnsCount);
+            IMatrix<double> result = new Matrix<double>(matrix.RowsCount, matrix.ColumnsCount);
             matrix.ProcessFunctionOverData((i, j) =>
             {
                 result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
@@ -330,13 +330,13 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        public static IMatrixBase<double> CreateInvertibleMatrix(this Matrix<long> matrix)
+        public static IMatrix<double> CreateInvertibleMatrix(this Matrix<long> matrix)
         {
             if (!matrix.IsSquare)
                 return null;
             var determinant = matrix.CalculateDeterminant();
 
-            IMatrixBase<double> result = new Matrix<double>(matrix.RowsCount, matrix.ColumnsCount);
+            IMatrix<double> result = new Matrix<double>(matrix.RowsCount, matrix.ColumnsCount);
             matrix.ProcessFunctionOverData((i, j) =>
             {
                 result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
@@ -556,13 +556,13 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        public static IMatrixBase<double> CreateInvertibleMatrix(this Matrix<double> matrix)
+        public static IMatrix<double> CreateInvertibleMatrix(this Matrix<double> matrix)
         {
             if (!matrix.IsSquare)
                 return null;
             var determinant = matrix.CalculateDeterminant();
 
-            IMatrixBase<double> result = new Matrix<double>(matrix.RowsCount, matrix.ColumnsCount);
+            IMatrix<double> result = new Matrix<double>(matrix.RowsCount, matrix.ColumnsCount);
             matrix.ProcessFunctionOverData((i, j) =>
             {
                 result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
@@ -782,13 +782,13 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        public static IMatrixBase<decimal> CreateInvertibleMatrix(this Matrix<decimal> matrix)
+        public static IMatrix<decimal> CreateInvertibleMatrix(this Matrix<decimal> matrix)
         {
             if (!matrix.IsSquare)
                 return null;
             var determinant = matrix.CalculateDeterminant();
 
-            IMatrixBase<decimal> result = new Matrix<decimal>(matrix.RowsCount, matrix.ColumnsCount);
+            IMatrix<decimal> result = new Matrix<decimal>(matrix.RowsCount, matrix.ColumnsCount);
             matrix.ProcessFunctionOverData((i, j) =>
             {
                 result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
@@ -1128,13 +1128,13 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        public static IMatrixBase<double?> CreateInvertibleMatrix(this Matrix<int?> matrix)
+        public static IMatrix<double?> CreateInvertibleMatrix(this Matrix<int?> matrix)
         {
             if (!matrix.IsSquare)
                 return null;
             var determinant = matrix.CalculateDeterminant();
 
-            IMatrixBase<double?> result = new Matrix<double?>(matrix.RowsCount, matrix.ColumnsCount);
+            IMatrix<double?> result = new Matrix<double?>(matrix.RowsCount, matrix.ColumnsCount);
             matrix.ProcessFunctionOverData((i, j) =>
             {
                 result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 * matrix.CalculateMinor(i, j) / determinant, 2);
@@ -1390,14 +1390,14 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        public static IMatrixBase<double> CreateInvertibleMatrix(this Matrix<long?> matrix)
+        public static IMatrix<double> CreateInvertibleMatrix(this Matrix<long?> matrix)
         {
             if (!matrix.IsSquare)
                 throw new InvalidOperationException(
                     "Creating invertible matrix is possible only for square matrix");
             var determinant = matrix.CalculateDeterminant();
 
-            IMatrixBase<double> result = new Matrix<double>(matrix.RowsCount, matrix.ColumnsCount);
+            IMatrix<double> result = new Matrix<double>(matrix.RowsCount, matrix.ColumnsCount);
             matrix.ProcessFunctionOverData((i, j) =>
             {
                 result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
@@ -1655,13 +1655,13 @@ namespace CyberMath.Structures.Matrix.Matrix.Extensions
             return result;
         }
 
-        public static IMatrixBase<double?> CreateInvertibleMatrix(this Matrix<double?> matrix)
+        public static IMatrix<double?> CreateInvertibleMatrix(this Matrix<double?> matrix)
         {
             if (!matrix.IsSquare)
                 return null;
             var determinant = matrix.CalculateDeterminant();
 
-            IMatrixBase<double?> result = new Matrix<double?>(matrix.RowsCount, matrix.ColumnsCount);
+            IMatrix<double?> result = new Matrix<double?>(matrix.RowsCount, matrix.ColumnsCount);
             matrix.ProcessFunctionOverData((i, j) =>
             {
                 result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *

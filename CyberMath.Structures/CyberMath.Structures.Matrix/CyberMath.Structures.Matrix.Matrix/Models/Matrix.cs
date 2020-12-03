@@ -1,6 +1,7 @@
 ﻿using CyberMath.Structures.Matrix.MatrixBase;
 using System;
 using System.Collections;
+using System.Linq;
 using System.Text;
 
 namespace CyberMath.Structures.Matrix.Matrix.Models
@@ -28,7 +29,7 @@ namespace CyberMath.Structures.Matrix.Matrix.Models
 
         #region Operations
 
-        public IMatrixBase<T> Transpose()
+        public IMatrix<T> Transpose()
         {
             Matrix<T> result = new Matrix<T>(ColumnsCount, RowsCount);
 
@@ -62,9 +63,18 @@ namespace CyberMath.Structures.Matrix.Matrix.Models
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return Equals(_innerMatrix, other._innerMatrix) &&
-                   ColumnsCount == other.ColumnsCount &&
-                   RowsCount == other.RowsCount;
+            if (RowsCount != other.RowsCount) return false;
+            if (ColumnsCount != other.ColumnsCount) return false;
+            for (int i = 0; i < RowsCount; i++)
+            {
+                for (int j = 0; j < ColumnsCount; j++)
+                {
+                    if (!this[i, j].Equals(other[i, j]))
+                        return false;
+                }
+            }
+
+            return true;
         }
 
         public override bool Equals(object obj)

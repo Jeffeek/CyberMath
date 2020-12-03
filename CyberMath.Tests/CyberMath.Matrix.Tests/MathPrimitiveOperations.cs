@@ -52,13 +52,7 @@ namespace CyberMath.Matrix.Tests
             };
 
             var actual = matrix1.Add(matrix2);
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    Assert.IsTrue(actual[i,j] == expected[i,j]);
-                }
-            }
+            Assert.AreEqual(actual, expected);
         }
 
         [TestMethod]
@@ -162,13 +156,7 @@ namespace CyberMath.Matrix.Tests
                 [2, 2] = 10
             };
 
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    Assert.IsTrue(actual[i, j] == expected[i, j]);
-                }
-            }
+            Assert.AreEqual(actual, expected);
         }
 
         [TestMethod]
@@ -214,13 +202,7 @@ namespace CyberMath.Matrix.Tests
             };
 
             var actual = matrix1.Sub(matrix2);
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    Assert.IsTrue(actual[i, j] == expected[i, j]);
-                }
-            }
+            Assert.AreEqual(actual, expected);
         }
 
         [TestMethod]
@@ -336,13 +318,7 @@ namespace CyberMath.Matrix.Tests
                 [2, 2] = 174
             };
 
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    Assert.IsTrue(actual[i, j] == expected[i, j]);
-                }
-            }
+            Assert.AreEqual(actual, expected);
         }
 
         [TestMethod]
