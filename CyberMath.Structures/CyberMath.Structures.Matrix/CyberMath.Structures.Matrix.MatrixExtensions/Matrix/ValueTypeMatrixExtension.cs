@@ -4,7 +4,7 @@ using CyberMath.Structures.MatrixBase.Exceptions;
 using System;
 using System.Text;
 
-namespace CyberMath.Structures.Matrix.Matrix.Extensions
+namespace CyberMath.Structures.Matrix.MatrixExtensions
 {
     public static class ValueTypeMatrixExtension
     {

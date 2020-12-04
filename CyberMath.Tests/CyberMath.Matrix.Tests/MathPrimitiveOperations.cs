@@ -1,6 +1,5 @@
-
-using CyberMath.Structures.Matrix.Matrix.Extensions;
 using CyberMath.Structures.Matrix.Matrix.Models;
+using CyberMath.Structures.Matrix.MatrixExtensions;
 using CyberMath.Structures.MatrixBase.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

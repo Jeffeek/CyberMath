@@ -11,5 +11,10 @@ namespace CyberMath.Structures.MatrixBase.Exceptions
         {
             _message = message;
         }
+
+        public MatrixIncomparableOperationException()
+        {
+            
+        }
     }
 }

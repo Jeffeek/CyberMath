@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CyberMath.Structures.Matrix.JaggedMatrix.Models;
+﻿using CyberMath.Structures.Matrix.JaggedMatrix.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CyberMath.JaggedMatrix.Tests

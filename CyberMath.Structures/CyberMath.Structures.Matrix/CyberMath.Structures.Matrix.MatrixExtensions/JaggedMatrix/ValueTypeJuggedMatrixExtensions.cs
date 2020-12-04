@@ -1,23 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CyberMath.Structures.Extensions;
 using CyberMath.Structures.Matrix.JaggedMatrix.Models;
+using CyberMath.Structures.Matrix.MatrixBase;
+using CyberMath.Structures.Matrix.MatrixExtensions;
 using CyberMath.Structures.MatrixBase.Exceptions;
 
 namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
 {
     public static class ValueTypeJuggedMatrixExtensions
     {
-        private static int[] GetCountPerRow<T>(IJuggedMatrix<T> matrix)
-        {
-            var elements = new int[matrix.RowsCount];
-            for (int i = 0; i < elements.Length; i++)
-                elements[i] = matrix.ElementsInRow(i);
-            return elements;
-        }
-
         #region Int32
 
         #region Math
@@ -30,7 +23,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
                 if (a.ElementsInRow(i) != b.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<int>(a.RowsCount, GetCountPerRow(a));
+            var juggedMatrix = new JuggedMatrix<int>(a.RowsCount, a.GetCountPerRow());
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ElementsInRow(i); j++)
@@ -50,7 +43,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
                 if (a.ElementsInRow(i) != b.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<int>(a.RowsCount, GetCountPerRow(a));
+            var juggedMatrix = new JuggedMatrix<int>(a.RowsCount, a.GetCountPerRow());
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ElementsInRow(i); j++)
@@ -64,7 +57,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
 
         public static IJuggedMatrix<int> MulOnNumber(this IJuggedMatrix<int> a, int number)
         {
-            var juggedMatrix = new JuggedMatrix<int>(a.RowsCount, GetCountPerRow(a));
+            var juggedMatrix = new JuggedMatrix<int>(a.RowsCount, a.GetCountPerRow());
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ElementsInRow(i); j++)
@@ -136,30 +129,6 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
 
         #endregion
 
-        #region Find Ops
-
-        public static bool IsMaxInColumn(this IJuggedMatrix<int> juggedMatrix, int i, int j)
-        {
-            for (int k = 0; k < juggedMatrix.RowsCount; k++)
-            {
-                if (juggedMatrix[k, j] > juggedMatrix[i, j])
-                    return false;
-            }
-            return true;
-        }
-
-        public static bool IsMinInRow(this IJuggedMatrix<int> juggedMatrix, int i, int j)
-        {
-            for (int k = 0; k < juggedMatrix.ElementsInRow(i); k++)
-            {
-                if (juggedMatrix[i, k] < juggedMatrix[i, j])
-                    return false;
-            }
-            return true;
-        }
-
-        #endregion
-
         #region Fill
 
         public static void FillRandomly(this IJuggedMatrix<int> juggedMatrix, int min = -50, int max = 50)
@@ -190,7 +159,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
                 if (a.ElementsInRow(i) != b.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<long>(a.RowsCount, GetCountPerRow(a));
+            var juggedMatrix = new JuggedMatrix<long>(a.RowsCount, a.GetCountPerRow());
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ElementsInRow(i); j++)
@@ -210,7 +179,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
                 if (a.ElementsInRow(i) != b.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<long>(a.RowsCount, GetCountPerRow(a));
+            var juggedMatrix = new JuggedMatrix<long>(a.RowsCount, a.GetCountPerRow());
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ElementsInRow(i); j++)
@@ -224,7 +193,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
 
         public static IJuggedMatrix<long> MulOnNumber(this IJuggedMatrix<long> a, long number)
         {
-            var juggedMatrix = new JuggedMatrix<long>(a.RowsCount, GetCountPerRow(a));
+            var juggedMatrix = new JuggedMatrix<long>(a.RowsCount, a.GetCountPerRow());
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ElementsInRow(i); j++)
@@ -281,30 +250,6 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
 
         #endregion
 
-        #region Find Ops
-
-        public static bool IsMaxInColumn(this IJuggedMatrix<long> juggedMatrix, int i, int j)
-        {
-            for (int k = 0; k < juggedMatrix.RowsCount; k++)
-            {
-                if (juggedMatrix[k, j] > juggedMatrix[i, j])
-                    return false;
-            }
-            return true;
-        }
-
-        public static bool IsMinInRow(this IJuggedMatrix<long> juggedMatrix, int i, int j)
-        {
-            for (int k = 0; k < juggedMatrix.ElementsInRow(i); k++)
-            {
-                if (juggedMatrix[i, k] < juggedMatrix[i, j])
-                    return false;
-            }
-            return true;
-        }
-
-        #endregion
-
         #region Fill
 
         public static void FillRandomly(this IJuggedMatrix<long> juggedMatrix, int min = -50, int max = 50)
@@ -335,7 +280,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
                 if (a.ElementsInRow(i) != b.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<double>(a.RowsCount, GetCountPerRow(a));
+            var juggedMatrix = new JuggedMatrix<double>(a.RowsCount, a.GetCountPerRow());
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ElementsInRow(i); j++)
@@ -355,7 +300,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
                 if (a.ElementsInRow(i) != b.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<double>(a.RowsCount, GetCountPerRow(a));
+            var juggedMatrix = new JuggedMatrix<double>(a.RowsCount, a.GetCountPerRow());
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ElementsInRow(i); j++)
@@ -369,7 +314,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
 
         public static IJuggedMatrix<double> MulOnNumber(this IJuggedMatrix<double> a, double number)
         {
-            var juggedMatrix = new JuggedMatrix<double>(a.RowsCount, GetCountPerRow(a));
+            var juggedMatrix = new JuggedMatrix<double>(a.RowsCount, a.GetCountPerRow());
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ElementsInRow(i); j++)
@@ -426,30 +371,6 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
 
         #endregion
 
-        #region Find Ops
-
-        public static bool IsMaxInColumn(this IJuggedMatrix<double> juggedMatrix, int i, int j)
-        {
-            for (int k = 0; k < juggedMatrix.RowsCount; k++)
-            {
-                if (juggedMatrix[k, j] > juggedMatrix[i, j])
-                    return false;
-            }
-            return true;
-        }
-
-        public static bool IsMinInRow(this IJuggedMatrix<double> juggedMatrix, int i, int j)
-        {
-            for (int k = 0; k < juggedMatrix.ElementsInRow(i); k++)
-            {
-                if (juggedMatrix[i, k] < juggedMatrix[i, j])
-                    return false;
-            }
-            return true;
-        }
-
-        #endregion
-
         #region Fill
 
         public static void FillRandomly(this IJuggedMatrix<double> juggedMatrix, double min = -50, double max = 50)
@@ -480,7 +401,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
                 if (a.ElementsInRow(i) != b.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<decimal>(a.RowsCount, GetCountPerRow(a));
+            var juggedMatrix = new JuggedMatrix<decimal>(a.RowsCount, a.GetCountPerRow());
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ElementsInRow(i); j++)
@@ -500,7 +421,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
                 if (a.ElementsInRow(i) != b.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<decimal>(a.RowsCount, GetCountPerRow(a));
+            var juggedMatrix = new JuggedMatrix<decimal>(a.RowsCount, a.GetCountPerRow());
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ElementsInRow(i); j++)
@@ -514,7 +435,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
 
         public static IJuggedMatrix<decimal> MulOnNumber(this IJuggedMatrix<decimal> a, decimal number)
         {
-            var juggedMatrix = new JuggedMatrix<decimal>(a.RowsCount, GetCountPerRow(a));
+            var juggedMatrix = new JuggedMatrix<decimal>(a.RowsCount, a.GetCountPerRow());
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ElementsInRow(i); j++)
@@ -571,30 +492,6 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
 
         #endregion
 
-        #region Find Ops
-
-        public static bool IsMaxInColumn(this IJuggedMatrix<decimal> juggedMatrix, int i, int j)
-        {
-            for (int k = 0; k < juggedMatrix.RowsCount; k++)
-            {
-                if (juggedMatrix[k, j] > juggedMatrix[i, j])
-                    return false;
-            }
-            return true;
-        }
-
-        public static bool IsMinInRow(this IJuggedMatrix<decimal> juggedMatrix, int i, int j)
-        {
-            for (int k = 0; k < juggedMatrix.ElementsInRow(i); k++)
-            {
-                if (juggedMatrix[i, k] < juggedMatrix[i, j])
-                    return false;
-            }
-            return true;
-        }
-
-        #endregion
-
         #region Fill
 
         public static void FillRandomly(this IJuggedMatrix<decimal> juggedMatrix, decimal min = -50, decimal max = 50)
@@ -625,7 +522,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
                 if (a.ElementsInRow(i) != b.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<string>(a.RowsCount, GetCountPerRow(a));
+            var juggedMatrix = new JuggedMatrix<string>(a.RowsCount, a.GetCountPerRow());
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ElementsInRow(i); j++)
@@ -645,7 +542,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
                 if (a.ElementsInRow(i) != b.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<string>(a.RowsCount, GetCountPerRow(a));
+            var juggedMatrix = new JuggedMatrix<string>(a.RowsCount, a.GetCountPerRow());
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ElementsInRow(i); j++)
@@ -659,7 +556,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
 
         public static IJuggedMatrix<string> MulOnNumber(this IJuggedMatrix<string> a, int number)
         {
-            var juggedMatrix = new JuggedMatrix<string>(a.RowsCount, GetCountPerRow(a));
+            var juggedMatrix = new JuggedMatrix<string>(a.RowsCount, a.GetCountPerRow());
             for (int i = 0; i < a.RowsCount; i++)
             {
                 for (int j = 0; j < a.ElementsInRow(i); j++)
@@ -716,32 +613,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
 
         #endregion
 
-        #region Find Ops
-
-        public static bool IsMaxInColumn(this IJuggedMatrix<string> juggedMatrix, int i, int j)
-        {
-            for (int k = 0; k < juggedMatrix.RowsCount; k++)
-            {
-                if (String.Compare(juggedMatrix[k, j], juggedMatrix[i, j], StringComparison.Ordinal) == 1)
-                    return false;
-            }
-            return true;
-        }
-
-        public static bool IsMinInRow(this IJuggedMatrix<string> juggedMatrix, int i, int j)
-        {
-            for (int k = 0; k < juggedMatrix.ElementsInRow(i); k++)
-            {
-                if (String.Compare(juggedMatrix[k, j], juggedMatrix[i, j], StringComparison.Ordinal) == -1)
-                    return false;
-            }
-            return true;
-        }
-
         #endregion
-
-        #endregion
-
 
         //TODO: implement nullable
         #region Nullable
@@ -750,262 +622,144 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
 
         #region Math
 
-        //public static JuggedMatrix<int?> Multiplication(this JuggedMatrix<int?> a, JuggedMatrix<int?> b)
-        //{
-        //    if (a.ColumnsCount == b.RowsCount) return a.InternalMulAtoB(b);
-        //    if (b.ColumnsCount == a.RowsCount) return a.InternalMulBtoA(b);
-        //    throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
-        //}
+        public static IJuggedMatrix<int?> Add(this IJuggedMatrix<int?> a, IJuggedMatrix<int?> b)
+        {
+            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+            for (int i = 0; i < a.RowsCount; i++)
+            {
+                if (a.ElementsInRow(i) != b.ElementsInRow(i))
+                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+            }
+            var juggedMatrix = new JuggedMatrix<int?>(a.RowsCount, a.GetCountPerRow());
+            for (int i = 0; i < a.RowsCount; i++)
+            {
+                for (int j = 0; j < a.ElementsInRow(i); j++)
+                {
+                    if (a[i, j] != null && b[i, j] != null)
+                        juggedMatrix[i, j] = a[i, j].Value + b[i, j].Value;
+                }
+            }
 
-        //public static JuggedMatrix<int?> Add(this JuggedMatrix<int?> a, JuggedMatrix<int?> b)
-        //{
-        //    if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
-        //    if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
-        //    var JuggedMatrix = new JuggedMatrix<int?>(a.RowsCount, a.ColumnsCount);
-        //    for (int i = 0; i < a.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < a.ColumnsCount; j++)
-        //        {
-        //            if (a[i, j] != null && b[i, j] != null)
-        //                JuggedMatrix[i, j] = a[i, j] + b[i, j];
-        //            else
-        //                JuggedMatrix[i, j] = null;
-        //        }
-        //    }
+            return juggedMatrix;
+        }
 
-        //    return JuggedMatrix;
-        //}
+        public static IJuggedMatrix<int?> Sub(this IJuggedMatrix<int?> a, IJuggedMatrix<int?> b)
+        {
+            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+            for (int i = 0; i < a.RowsCount; i++)
+            {
+                if (a.ElementsInRow(i) != b.ElementsInRow(i))
+                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+            }
+            var juggedMatrix = new JuggedMatrix<int?>(a.RowsCount, a.GetCountPerRow());
+            for (int i = 0; i < a.RowsCount; i++)
+            {
+                for (int j = 0; j < a.ElementsInRow(i); j++)
+                {
+                    if (a[i, j] != null && b[i, j] != null)
+                        juggedMatrix[i, j] = a[i, j].Value - b[i, j].Value;
+                }
+            }
 
-        //public static JuggedMatrix<int?> Sub(this JuggedMatrix<int?> a, JuggedMatrix<int?> b)
-        //{
-        //    if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of columns should be the same");
-        //    if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
-        //    var JuggedMatrix = new JuggedMatrix<int?>(a.RowsCount, a.ColumnsCount);
-        //    for (int i = 0; i < a.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < a.ColumnsCount; j++)
-        //        {
-        //            if (a[i, j] != null && b[i, j] != null)
-        //                JuggedMatrix[i, j] = a[i, j] - b[i, j];
-        //            else
-        //                JuggedMatrix[i, j] = null;
-        //        }
-        //    }
+            return juggedMatrix;
+        }
 
-        //    return JuggedMatrix;
-        //}
+        public static IJuggedMatrix<int?> MulOnNumber(this IJuggedMatrix<int?> a, int number)
+        {
+            var juggedMatrix = new JuggedMatrix<int?>(a.RowsCount, a.GetCountPerRow());
+            for (int i = 0; i < a.RowsCount; i++)
+            {
+                for (int j = 0; j < a.ElementsInRow(i); j++)
+                {
+                    juggedMatrix[i, j] = a[i, j].Value * number;
+                }
+            }
 
-        //public static JuggedMatrix<int?> MulOnNumber(this JuggedMatrix<int?> a, int number)
-        //{
-        //    var JuggedMatrix = new JuggedMatrix<int?>(a.RowsCount, a.ColumnsCount);
-        //    for (int i = 0; i < a.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < a.ColumnsCount; j++)
-        //        {
-        //            if (JuggedMatrix[i, j] != null)
-        //                JuggedMatrix[i, j] = a[i, j] * number;
-        //            else
-        //                JuggedMatrix[i, j] = null;
-        //        }
-        //    }
-
-        //    return JuggedMatrix;
-        //}
+            return juggedMatrix;
+        }
 
         #endregion
 
-        #region Operations
+        #region Creation
 
-        //public static int CalculateDeterminant(this JuggedMatrix<int?> JuggedMatrix)
-        //{
-        //    if (!JuggedMatrix.IsSquare)
-        //    {
-        //        throw new InvalidOperationException(
-        //            "Determinant can be calculated only for square JuggedMatrix");
-        //    }
-        //    if (JuggedMatrix.ColumnsCount == 2)
-        //    {
-        //        if (JuggedMatrix[0, 0] != null &&
-        //            JuggedMatrix[1, 1] != null &&
-        //            JuggedMatrix[0, 1] != null &&
-        //            JuggedMatrix[1, 0] != null)
-        //            return JuggedMatrix[0, 0].Value * JuggedMatrix[1, 1].Value - JuggedMatrix[0, 1].Value * JuggedMatrix[1, 0].Value;
-        //        else
-        //            return 0;
-        //    }
-        //    int result = 0;
-        //    for (var j = 0; j < JuggedMatrix.ColumnsCount; j++)
-        //    {
-        //        result += (j % 2 == 1 ? 1 : -1) * JuggedMatrix[1, j] ?? 0 *
-        //                                                    ((JuggedMatrix.CreateMatrixWithoutColumn(j) as JuggedMatrix<int?>)?.CreateMatrixWithoutRow(1) as JuggedMatrix<int?>).CalculateDeterminant();
-        //    }
-        //    return result;
-        //}
-
-        //public static IMatrix<double?> CreateInvertibleMatrix(this JuggedMatrix<int?> JuggedMatrix)
-        //{
-        //    if (!JuggedMatrix.IsSquare)
-        //        return null;
-        //    var determinant = JuggedMatrix.CalculateDeterminant();
-
-        //    IMatrix<double?> result = new JuggedMatrix<double?>(JuggedMatrix.RowsCount, JuggedMatrix.ColumnsCount);
-        //    JuggedMatrix.ProcessFunctionOverData((i, j) =>
-        //    {
-        //        result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 * JuggedMatrix.CalculateMinor(i, j) / determinant, 2);
-        //    });
-
-        //    result = result.Transpose();
-        //    return result;
-        //}
-
-        //private static double CalculateMinor(this JuggedMatrix<int?> JuggedMatrix, int i, int j)
-        //{
-        //    return ((JuggedMatrix.CreateMatrixWithoutColumn(j) as JuggedMatrix<int?>)?.CreateMatrixWithoutRow(i) as JuggedMatrix<int?>).CalculateDeterminant();
-        //}
+        public static IJuggedMatrix<int?> CreateIdentityMatrix(int n, bool includeNull = false)
+        {
+            var result = new JuggedMatrix<int?>(n, Structures.Extensions.Extensions.CollectionExtensions.
+                GetRepeatedIntEnumerable(n).Take(n).ToArray());
+            for (var i = 0; i < n; i++)
+            {
+                result[i, i] = 1;
+                if (includeNull && i % 2 == 0)
+                    result[i, i] = null;
+            }
+            return result;
+        }
 
         #endregion
 
         #region Sum Operations
 
-        //public static int DiagonalSum(this JuggedMatrix<int?> JuggedMatrix)
-        //{
-        //    if (!JuggedMatrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
-        //    int sum = 0;
-        //    for (int i = 0; i < JuggedMatrix.RowsCount; i++)
-        //    {
-        //        if (JuggedMatrix[i, i] != null)
-        //            sum += JuggedMatrix[i, i].Value;
-        //    }
-        //    return sum;
-        //}
+        public static int DiagonalSum(this IJuggedMatrix<int?> juggedMatrix)
+        {
+            if (!juggedMatrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
+            int sum = 0;
+            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+                if (juggedMatrix[i, i] != null)
+                    sum += juggedMatrix[i, i].Value;
+            return sum;
+        }
 
-        //public static int Sum(this JuggedMatrix<int?> JuggedMatrix)
-        //{
-        //    int sum = 0;
-        //    for (int i = 0; i < JuggedMatrix.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < JuggedMatrix.ColumnsCount; j++)
-        //        {
-        //            if (JuggedMatrix[i, j] != null)
-        //                sum += JuggedMatrix[i, j].Value;
-        //        }
-        //    }
+        public static int Sum(this IJuggedMatrix<int?> juggedMatrix)
+        {
+            int sum = 0;
+            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            {
+                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                {
+                    if (juggedMatrix[i, j] != null)
+                        sum += juggedMatrix[i, j].Value;
+                }
+            }
 
-        //    return sum;
-        //}
+            return sum;
+        }
 
-        //public static int SumSaddlePoints(this JuggedMatrix<int?> JuggedMatrix)
-        //{
-        //    int sum = 0;
-        //    for (int i = 0; i < JuggedMatrix.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < JuggedMatrix.ColumnsCount; j++)
-        //        {
-        //            if (JuggedMatrix[i, j] != null)
-        //            {
-        //                if (!JuggedMatrix.IsMinInRow(i, j) || !JuggedMatrix.IsMaxInColumn(i, j))
-        //                    continue;
-        //                sum += JuggedMatrix[i, j].Value;
-        //            }
-        //        }
-        //    }
+        public static int SumSaddlePoints(this IJuggedMatrix<int?> juggedMatrix)
+        {
+            int sum = 0;
+            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            {
+                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                {
+                    if (juggedMatrix[i, j] != null)
+                    {
+                        if (!juggedMatrix.IsMinInRow(i, j) || !juggedMatrix.IsMaxInColumn(i, j))
+                            continue;
+                        sum += juggedMatrix[i, j].Value;
+                    }
+                }
+            }
 
-        //    return sum;
-        //}
+            return sum;
+        }
 
         #endregion
 
-        #region Math
-
-        //private static JuggedMatrix<int?> InternalMulAtoB(this JuggedMatrix<int?> JuggedMatrix, JuggedMatrix<int?> b)
-        //{
-        //    var result = new JuggedMatrix<int?>(JuggedMatrix.RowsCount, b.ColumnsCount);
-        //    for (int i = 0; i < JuggedMatrix.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < b.ColumnsCount; j++)
-        //        {
-        //            for (int k = 0; k < b.RowsCount; k++)
-        //            {
-        //                if (JuggedMatrix[i, k] != null && JuggedMatrix[k, j] != null)
-        //                    result[i, j] += JuggedMatrix[i, k] * b[k, j];
-        //                else
-        //                    break;
-        //            }
-        //        }
-        //    }
-
-        //    return result;
-        //}
-
-        //private static JuggedMatrix<int?> InternalMulBtoA(this JuggedMatrix<int?> JuggedMatrix, JuggedMatrix<int?> b)
-        //{
-        //    var result = new JuggedMatrix<int?>(b.RowsCount, JuggedMatrix.ColumnsCount);
-        //    for (int i = 0; i < b.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < JuggedMatrix.ColumnsCount; j++)
-        //        {
-        //            for (int k = 0; k < JuggedMatrix.RowsCount; k++)
-        //            {
-        //                if (JuggedMatrix[i, k] != null && JuggedMatrix[k, j] != null)
-        //                    result[i, j] += b[i, k] * JuggedMatrix[k, j];
-        //            }
-        //        }
-        //    }
-
-        //    return JuggedMatrix;
-        //}
-
-        #endregion
-
-        #region Find Ops
-
-        //public static bool IsMaxInColumn(this JuggedMatrix<int?> JuggedMatrix, int i, int j)
-        //{
-        //    for (int k = 0; k < JuggedMatrix.RowsCount; k++)
-        //    {
-        //        if (JuggedMatrix[k, j] != null && JuggedMatrix[i, j] != null)
-        //        {
-        //            if (JuggedMatrix[k, j] > JuggedMatrix[i, j])
-        //                return false;
-        //        }
-        //    }
-        //    return true;
-        //}
-
-        //public static bool IsMinInRow(this JuggedMatrix<int?> JuggedMatrix, int i, int j)
-        //{
-        //    for (int k = 0; k < JuggedMatrix.ColumnsCount; k++)
-        //    {
-        //        if (JuggedMatrix[i, k] != null && JuggedMatrix[i, j] != null)
-        //        {
-        //            if (JuggedMatrix[i, k] < JuggedMatrix[i, j])
-        //                return false;
-        //        }
-        //    }
-        //    return true;
-        //}
-
-        #endregion
+        
 
         #region Fill
 
-        //public static void FillRandomly(this JuggedMatrix<int?> JuggedMatrix, int min = -50, int max = 50, bool includeNull = false)
-        //{
-        //    var rnd = new Random();
-        //    for (int i = 0; i < JuggedMatrix.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < JuggedMatrix.ColumnsCount; j++)
-        //        {
-        //            if (i + j * i / j - i + j % 2 == 0 && includeNull)
-        //            {
-        //                JuggedMatrix[i, j] = null;
-        //                continue;
-        //            }
-
-        //            JuggedMatrix[i, j] = rnd.Next(min, max);
-        //        }
-        //    }
-        //}
+        public static void FillRandomly(this IJuggedMatrix<int?> juggedMatrix, int min = -50, int max = 50)
+        {
+            var rnd = new Random();
+            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            {
+                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                {
+                    juggedMatrix[i, j] = rnd.Next(min, max + 1);
+                }
+            }
+        }
 
         #endregion
 

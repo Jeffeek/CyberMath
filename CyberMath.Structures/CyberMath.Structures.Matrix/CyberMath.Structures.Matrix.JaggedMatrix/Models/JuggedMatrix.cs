@@ -42,12 +42,6 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
             set => _innerMatrix[row][column] = value;
         }
 
-        public void Dispose()
-        {
-            GC.Collect();
-            GC.SuppressFinalize(this);
-        }
-
         public IEnumerator GetEnumerator()
         {
             for (int i = 0; i < RowsCount; i++)
@@ -56,8 +50,6 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
                 {
                     yield return this[i, j];
                 }
-                if (i == RowsCount - 1)
-                    yield break;
             }
         }
 

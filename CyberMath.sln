@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Tests", "CyberMat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Structures.Matrix", "CyberMath.Structures.Matrix", "{C27C73E4-B7BE-4EBE-8A94-167079B07067}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.Structures.Matrix.MatrixExtensions", "CyberMath.Structures\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.MatrixExtensions\CyberMath.Structures.Matrix.MatrixExtensions.csproj", "{5D3A95C2-4C82-43E2-BAF6-098BE6934365}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{DFA6A4A2-E08B-458C-8D0E-458ED64D59BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFA6A4A2-E08B-458C-8D0E-458ED64D59BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFA6A4A2-E08B-458C-8D0E-458ED64D59BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D3A95C2-4C82-43E2-BAF6-098BE6934365}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D3A95C2-4C82-43E2-BAF6-098BE6934365}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D3A95C2-4C82-43E2-BAF6-098BE6934365}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D3A95C2-4C82-43E2-BAF6-098BE6934365}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +69,7 @@ Global
 		{3B032C66-6143-4C4D-9F8B-31A21A2DDB57} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
 		{DFA6A4A2-E08B-458C-8D0E-458ED64D59BE} = {36EC084A-0098-45F7-A07C-8A768BBEFD16}
 		{C27C73E4-B7BE-4EBE-8A94-167079B07067} = {36EC084A-0098-45F7-A07C-8A768BBEFD16}
+		{5D3A95C2-4C82-43E2-BAF6-098BE6934365} = {C27C73E4-B7BE-4EBE-8A94-167079B07067}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7E269A4-25A3-44C8-B284-55DF80EEAA03}

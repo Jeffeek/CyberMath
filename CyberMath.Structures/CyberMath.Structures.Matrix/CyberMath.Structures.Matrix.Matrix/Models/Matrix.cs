@@ -7,7 +7,6 @@ namespace CyberMath.Structures.Matrix.Matrix.Models
 {
     public class Matrix<T> : IMatrix<T>
     {
-        private bool _isDisposed = false;
         private readonly T[,] _innerMatrix;
         public int ColumnsCount { get; }
         public int RowsCount { get; }
@@ -18,6 +17,8 @@ namespace CyberMath.Structures.Matrix.Matrix.Models
             get => _innerMatrix[row, column];
             set => _innerMatrix[row, column] = value;
         }
+
+        public int ElementsInRow(int i) => ColumnsCount;
 
         public Matrix(int rowsCount, int columnsCount)
         {
@@ -45,11 +46,12 @@ namespace CyberMath.Structures.Matrix.Matrix.Models
 
         public void ProcessFunctionOverData(Action<int, int> func)
         {
+            if (ReferenceEquals(func, null)) return;
             for (var i = 0; i < RowsCount; i++)
             {
                 for (var j = 0; j < ColumnsCount; j++)
                 {
-                    func?.Invoke(i, j);
+                    func.Invoke(i, j);
                 }
             }
         }
@@ -94,19 +96,6 @@ namespace CyberMath.Structures.Matrix.Matrix.Models
                 return hashCode;
             }
         }
-
-        #region Dispose
-
-        public void Dispose()
-        {
-            if (!_isDisposed)
-            {
-                GC.Collect();
-                _isDisposed = true;
-            }
-        }
-
-        #endregion
 
         #endregion
 
