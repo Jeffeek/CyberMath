@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CyberMath.Structures.Extensions.NumberGenerators
+namespace CyberMath.Primitives.Int32
 {
-    public static class CyberMath
+    public static class Int32PrimeNumbers
     {
-        public static bool IsPrime(this long number)
+        public static bool IsPrime(this int number)
         {
             if (number < 0) throw new Exception("Number was lower than zero");
+            if (number == 0) return false;
+            if (number == 2) return true;
             for (int i = 2; i <= Math.Sqrt(number); i++)
             {
                 if (number % i == 0)
@@ -46,6 +48,8 @@ namespace CyberMath.Structures.Extensions.NumberGenerators
                 if (IsPrime(number))
                     yield return number;
                 number++;
+                if (System.Int32.MaxValue == number)
+                    yield break;
             }
         }
     }

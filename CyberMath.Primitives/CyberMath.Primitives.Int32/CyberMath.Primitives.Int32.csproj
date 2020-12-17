@@ -41,7 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DivideExtension\Int32Extension.cs" />
+    <Compile Include="Int32Extension.cs" />
+    <Compile Include="Int32PrimeNumbers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
