@@ -5,9 +5,11 @@ using System.Linq;
 
 namespace CyberMath.Structures.BinaryTree
 {
-    public class BinaryTree<T> : ICollection<T> 
+    public class BinaryTree<T> : ICollection<T>, IDisposable
         where T : IComparable<T>, IComparable
     {
+        private bool _disposed = false;
+
         public TreeNode<T> Root { get; private set; }
 
         public bool Remove(T item)
@@ -150,6 +152,13 @@ namespace CyberMath.Structures.BinaryTree
         public List<T> Postorder() => Root == null ? new List<T>() : Postorder(Root);
         public List<T> Inorder() => Root == null ? new List<T>() : Inorder(Root);
 
+        public void MergeWith(BinaryTree<T> secondBinaryTree)
+        {
+            var elements = secondBinaryTree.Inorder();
+            for (int i = 0; i < secondBinaryTree.Count; i++)
+                Add(elements[i]);
+        }
+
         private List<T> Preorder(TreeNode<T> node)
         {
             var list = new List<T>();
@@ -194,6 +203,18 @@ namespace CyberMath.Structures.BinaryTree
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (!disposing) return;
+            Clear();
+            GC.SuppressFinalize(this);
         }
     }
 }

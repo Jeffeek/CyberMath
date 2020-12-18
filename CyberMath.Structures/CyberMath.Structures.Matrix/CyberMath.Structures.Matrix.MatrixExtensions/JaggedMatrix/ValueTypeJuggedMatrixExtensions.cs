@@ -731,12 +731,10 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
             {
                 for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
-                    if (juggedMatrix[i, j] != null)
-                    {
-                        if (!juggedMatrix.IsMinInRow(i, j) || !juggedMatrix.IsMaxInColumn(i, j))
-                            continue;
-                        sum += juggedMatrix[i, j].Value;
-                    }
+                    if (juggedMatrix[i, j] == null) continue;
+                    if (!juggedMatrix.IsMinInRow(i, j) || !juggedMatrix.IsMaxInColumn(i, j))
+                        continue;
+                    sum += juggedMatrix[i, j].Value;
                 }
             }
 
