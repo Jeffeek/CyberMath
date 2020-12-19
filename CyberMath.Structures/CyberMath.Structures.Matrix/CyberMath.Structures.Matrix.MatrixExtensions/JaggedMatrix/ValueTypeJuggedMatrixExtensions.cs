@@ -2,15 +2,17 @@
 using System.Linq;
 using System.Text;
 using CyberMath.Structures.Extensions;
+using CyberMath.Structures.Extensions.Extensions;
 using CyberMath.Structures.Matrix.JaggedMatrix.Models;
 using CyberMath.Structures.Matrix.MatrixBase;
-using CyberMath.Structures.Matrix.MatrixExtensions;
-using CyberMath.Structures.MatrixBase.Exceptions;
+using CyberMath.Structures.Matrix.MatrixBase.Exceptions;
 
-namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
+namespace CyberMath.Structures.Matrix.MatrixExtensions.JaggedMatrix
 {
     public static class ValueTypeJuggedMatrixExtensions
     {
+        #region NOT nullable
+
         #region Int32
 
         #region Math
@@ -75,7 +77,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
 
         public static IJuggedMatrix<int> CreateIdentityMatrix(int n)
         {
-            var result = new JuggedMatrix<int>(n, Structures.Extensions.Extensions.CollectionExtensions.
+            var result = new JuggedMatrix<int>(n, CollectionExtensions.
                 GetRepeatedIntEnumerable(n).Take(n).ToArray());
             for (var i = 0; i < n; i++)
             {
@@ -613,9 +615,10 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
 
         #endregion
 
+#endregion
+
         #endregion
 
-        //TODO: implement nullable
         #region Nullable
 
         #region Int32?
@@ -724,26 +727,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
             return sum;
         }
 
-        public static int SumSaddlePoints(this IJuggedMatrix<int?> juggedMatrix)
-        {
-            int sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
-            {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
-                {
-                    if (juggedMatrix[i, j] == null) continue;
-                    if (!juggedMatrix.IsMinInRow(i, j) || !juggedMatrix.IsMaxInColumn(i, j))
-                        continue;
-                    sum += juggedMatrix[i, j].Value;
-                }
-            }
-
-            return sum;
-        }
-
         #endregion
-
-        
 
         #region Fill
 
@@ -829,179 +813,38 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
 
         #endregion
 
-        #region Operations
-
-        //public static long CalculateDeterminant(this JuggedMatrix<long?> JuggedMatrix)
-        //{
-        //    if (!JuggedMatrix.IsSquare)
-        //    {
-        //        throw new InvalidOperationException(
-        //            "Determinant can be calculated only for square JuggedMatrix");
-        //    }
-        //    if (JuggedMatrix.ColumnsCount == 2)
-        //    {
-        //        if (JuggedMatrix[0, 0] != null &&
-        //            JuggedMatrix[1, 1] != null &&
-        //            JuggedMatrix[0, 1] != null &&
-        //            JuggedMatrix[1, 0] != null)
-        //            return JuggedMatrix[0, 0].Value * JuggedMatrix[1, 1].Value - JuggedMatrix[0, 1].Value * JuggedMatrix[1, 0].Value;
-        //        else
-        //            return 0;
-        //    }
-        //    long result = 0;
-        //    for (var j = 0; j < JuggedMatrix.ColumnsCount; j++)
-        //    {
-        //        result += (j % 2 == 1 ? 1 : -1) * JuggedMatrix[1, j] == null ? 0 : JuggedMatrix[1, j].Value *
-        //                                                                     ((JuggedMatrix.CreateMatrixWithoutColumn(j) as JuggedMatrix<long?>)?.CreateMatrixWithoutRow(1) as JuggedMatrix<long?>).CalculateDeterminant();
-        //    }
-        //    return result;
-        //}
-
-        //public static IMatrix<double> CreateInvertibleMatrix(this JuggedMatrix<long?> JuggedMatrix)
-        //{
-        //    if (!JuggedMatrix.IsSquare)
-        //        throw new InvalidOperationException(
-        //            "Creating invertible JuggedMatrix is possible only for square JuggedMatrix");
-        //    var determinant = JuggedMatrix.CalculateDeterminant();
-
-        //    IMatrix<double> result = new JuggedMatrix<double>(JuggedMatrix.RowsCount, JuggedMatrix.ColumnsCount);
-        //    JuggedMatrix.ProcessFunctionOverData((i, j) =>
-        //    {
-        //        result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
-        //            JuggedMatrix.CalculateMinor(i, j) / determinant, 2);
-        //    });
-
-        //    result = result.Transpose();
-        //    return result;
-        //}
-
-        //private static double CalculateMinor(this JuggedMatrix<long?> JuggedMatrix, int i, int j)
-        //{
-        //    return ((JuggedMatrix.CreateMatrixWithoutColumn(j) as JuggedMatrix<long?>)?.CreateMatrixWithoutRow(i) as JuggedMatrix<long?>).CalculateDeterminant();
-        //}
-
-        #endregion
-
         #region Sum Operations
 
-        //public static long DiagonalSum(this JuggedMatrix<long?> JuggedMatrix)
-        //{
-        //    if (!JuggedMatrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
-        //    long sum = 0;
-        //    for (int i = 0; i < JuggedMatrix.RowsCount; i++)
-        //    {
-        //        if (JuggedMatrix[i, i] != null)
-        //        {
-        //            sum += JuggedMatrix[i, i].Value;
-        //        }
-        //    }
-        //    return sum;
-        //}
+        public static long DiagonalSum(this JuggedMatrix<long?> JuggedMatrix)
+        {
+            if (!JuggedMatrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
+            long sum = 0;
+            for (int i = 0; i < JuggedMatrix.RowsCount; i++)
+            {
+                if (JuggedMatrix[i, i] != null)
+                {
+                    sum += JuggedMatrix[i, i].Value;
+                }
+            }
+            return sum;
+        }
 
-        //public static long Sum(this JuggedMatrix<long?> JuggedMatrix)
-        //{
-        //    long sum = 0;
-        //    for (int i = 0; i < JuggedMatrix.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < JuggedMatrix.ColumnsCount; j++)
-        //        {
-        //            if (JuggedMatrix[i, j] != null)
-        //            {
-        //                sum += JuggedMatrix[i, j].Value;
-        //            }
-        //        }
-        //    }
+        public static long Sum(this JuggedMatrix<long?> juggedMatrix)
+        {
+            long sum = 0;
+            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            {
+                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                {
+                    if (juggedMatrix[i, j] != null)
+                    {
+                        sum += juggedMatrix[i, j].Value;
+                    }
+                }
+            }
 
-        //    return sum;
-        //}
-
-        //public static long SumSaddlePoints(this JuggedMatrix<long?> JuggedMatrix)
-        //{
-        //    long sum = 0;
-        //    for (int i = 0; i < JuggedMatrix.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < JuggedMatrix.ColumnsCount; j++)
-        //        {
-        //            if (JuggedMatrix[i, j] != null)
-        //            {
-        //                if (!JuggedMatrix.IsMinInRow(i, j) || !JuggedMatrix.IsMaxInColumn(i, j))
-        //                    continue;
-        //                sum += JuggedMatrix[i, j].Value;
-        //            }
-        //        }
-        //    }
-        //    return sum;
-        //}
-
-        #endregion
-
-        #region Math
-
-        //private static JuggedMatrix<long?> InternalMulAtoB(this JuggedMatrix<long?> JuggedMatrix, JuggedMatrix<long?> b)
-        //{
-        //    var result = new JuggedMatrix<long?>(JuggedMatrix.RowsCount, b.ColumnsCount);
-        //    for (int i = 0; i < JuggedMatrix.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < b.ColumnsCount; j++)
-        //        {
-        //            for (int k = 0; k < b.RowsCount; k++)
-        //            {
-        //                if (JuggedMatrix[i, k] == null && b[k, j] == null)
-        //                    JuggedMatrix[i, k] = null;
-        //                else
-        //                    result[i, j] += JuggedMatrix[i, k] * b[k, j];
-        //            }
-        //        }
-        //    }
-
-        //    return result;
-        //}
-
-        //private static IJuggedMatrix<long?> InternalMulBtoA(this JuggedMatrix<long?> JuggedMatrix, JuggedMatrix<long?> b)
-        //{
-        //    var result = new JuggedMatrix<long?>(b.RowsCount, JuggedMatrix.ColumnsCount);
-        //    for (int i = 0; i < b.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < JuggedMatrix.ColumnsCount; j++)
-        //        {
-        //            for (int k = 0; k < JuggedMatrix.RowsCount; k++)
-        //            {
-        //                if (b[i, k] != null && JuggedMatrix[k, j] == null)
-        //                    result[i, j] = null;
-        //                else
-        //                    result[i, j] += b[i, k] * JuggedMatrix[k, j];
-        //            }
-        //        }
-        //    }
-
-        //    return JuggedMatrix;
-        //}
-
-        #endregion
-
-        #region Find Ops
-
-        //public static bool IsMaxInColumn(this JuggedMatrix<long?> JuggedMatrix, int i, int j)
-        //{
-        //    for (int k = 0; k < JuggedMatrix.RowsCount; k++)
-        //    {
-        //        if (JuggedMatrix[k, j] != null && JuggedMatrix[i, j] != null)
-        //            if (JuggedMatrix[k, j] > JuggedMatrix[i, j])
-        //                return false;
-        //    }
-        //    return true;
-        //}
-
-        //public static bool IsMinInRow(this JuggedMatrix<long?> JuggedMatrix, int i, int j)
-        //{
-        //    for (int k = 0; k < JuggedMatrix.ColumnsCount; k++)
-        //    {
-        //        if (JuggedMatrix[k, j] != null && JuggedMatrix[i, j] != null)
-        //            if (JuggedMatrix[k, j] < JuggedMatrix[i, j])
-        //                return false;
-        //    }
-        //    return true;
-        //}
+            return sum;
+        }
 
         #endregion
 
@@ -1096,197 +939,57 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
 
         #endregion
 
-        #region Operations
-
-        //public static double CalculateDeterminant(this JuggedMatrix<double?> JuggedMatrix)
-        //{
-        //    if (!JuggedMatrix.IsSquare)
-        //    {
-        //        throw new InvalidOperationException(
-        //            "Determinant can be calculated only for square JuggedMatrix");
-        //    }
-        //    if (JuggedMatrix.ColumnsCount == 2)
-        //    {
-        //        if (JuggedMatrix[0, 0] != null &&
-        //            JuggedMatrix[1, 1] != null &&
-        //            JuggedMatrix[0, 1] != null &&
-        //            JuggedMatrix[1, 0] != null)
-        //            return JuggedMatrix[0, 0].Value * JuggedMatrix[1, 1].Value - JuggedMatrix[0, 1].Value * JuggedMatrix[1, 0].Value;
-        //        return 0;
-        //    }
-        //    double result = 0;
-        //    for (var j = 0; j < JuggedMatrix.ColumnsCount; j++)
-        //    {
-        //        result += (j % 2 == 1 ? 1 : -1) * JuggedMatrix[1, j] ?? 0 *
-        //                                                    ((JuggedMatrix.CreateMatrixWithoutColumn(j) as JuggedMatrix<double?>)?.CreateMatrixWithoutRow(1) as JuggedMatrix<double?>).CalculateDeterminant();
-        //    }
-        //    return result;
-        //}
-
-        //public static IMatrix<double?> CreateInvertibleMatrix(this JuggedMatrix<double?> JuggedMatrix)
-        //{
-        //    if (!JuggedMatrix.IsSquare)
-        //        return null;
-        //    var determinant = JuggedMatrix.CalculateDeterminant();
-
-        //    IMatrix<double?> result = new JuggedMatrix<double?>(JuggedMatrix.RowsCount, JuggedMatrix.ColumnsCount);
-        //    JuggedMatrix.ProcessFunctionOverData((i, j) =>
-        //    {
-        //        result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
-        //            JuggedMatrix.CalculateMinor(i, j) / determinant, 2);
-        //    });
-
-        //    result = result.Transpose();
-        //    return result;
-        //}
-
-        //private static double CalculateMinor(this JuggedMatrix<double?> JuggedMatrix, int i, int j)
-        //{
-        //    return ((JuggedMatrix.CreateMatrixWithoutColumn(j) as JuggedMatrix<double?>)?.CreateMatrixWithoutRow(i) as JuggedMatrix<double?>).CalculateDeterminant();
-        //}
-
-        #endregion
-
         #region Sum Operations
 
-        //public static double DiagonalSum(this JuggedMatrix<double?> JuggedMatrix)
-        //{
-        //    if (!JuggedMatrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
-        //    double sum = 0;
-        //    for (int i = 0; i < JuggedMatrix.RowsCount; i++)
-        //    {
-        //        if (JuggedMatrix[i, i] != null)
-        //            sum += JuggedMatrix[i, i].Value;
-        //    }
-        //    return sum;
-        //}
+        public static double DiagonalSum(this JuggedMatrix<double?> juggedMatrix)
+        {
+            if (!juggedMatrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
+            double sum = 0;
+            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            {
+                if (juggedMatrix[i, i] != null)
+                    sum += juggedMatrix[i, i].Value;
+            }
+            return sum;
+        }
 
-        //public static double Sum(this JuggedMatrix<double?> JuggedMatrix)
-        //{
-        //    double sum = 0;
-        //    for (int i = 0; i < JuggedMatrix.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < JuggedMatrix.ColumnsCount; j++)
-        //        {
-        //            if (JuggedMatrix[i, j] != null)
-        //                sum += JuggedMatrix[i, j].Value;
-        //        }
-        //    }
+        public static double Sum(this JuggedMatrix<double?> juggedMatrix)
+        {
+            double sum = 0;
+            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            {
+                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                {
+                    if (juggedMatrix[i, j] != null)
+                        sum += juggedMatrix[i, j].Value;
+                }
+            }
 
-        //    return sum;
-        //}
-
-        //public static double SumSaddlePoints(this JuggedMatrix<double?> JuggedMatrix)
-        //{
-        //    double sum = 0;
-        //    for (int i = 0; i < JuggedMatrix.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < JuggedMatrix.ColumnsCount; j++)
-        //        {
-        //            if (JuggedMatrix[i, j] != null)
-        //            {
-        //                if (!JuggedMatrix.IsMinInRow(i, j) || !JuggedMatrix.IsMaxInColumn(i, j))
-        //                    continue;
-        //                sum += JuggedMatrix[i, j].Value;
-        //            }
-        //        }
-        //    }
-
-        //    return sum;
-        //}
-
-        #endregion
-
-        #region Math
-
-        //private static JuggedMatrix<double?> InternalMulAtoB(this JuggedMatrix<double?> JuggedMatrix, JuggedMatrix<double?> b)
-        //{
-        //    var result = new JuggedMatrix<double?>(JuggedMatrix.RowsCount, b.ColumnsCount);
-        //    for (int i = 0; i < JuggedMatrix.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < b.ColumnsCount; j++)
-        //        {
-        //            for (int k = 0; k < b.RowsCount; k++)
-        //            {
-        //                if (JuggedMatrix[i, k] != null && b[k, j] != null)
-        //                    result[i, j] += JuggedMatrix[i, k] * b[k, j];
-        //                else
-        //                    break;
-        //            }
-        //        }
-        //    }
-
-        //    return result;
-        //}
-
-        //private static JuggedMatrix<double?> InternalMulBtoA(this JuggedMatrix<double?> JuggedMatrix, JuggedMatrix<double?> b)
-        //{
-        //    var result = new JuggedMatrix<double?>(b.RowsCount, JuggedMatrix.ColumnsCount);
-        //    for (int i = 0; i < b.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < JuggedMatrix.ColumnsCount; j++)
-        //        {
-        //            for (int k = 0; k < JuggedMatrix.RowsCount; k++)
-        //            {
-        //                if (JuggedMatrix[i, k] != null && b[k, j] != null)
-        //                    result[i, j] += JuggedMatrix[i, k] * b[k, j];
-        //                else
-        //                    break;
-        //            }
-        //        }
-        //    }
-
-        //    return JuggedMatrix;
-        //}
-
-        #endregion
-
-        #region Find Ops
-
-        //public static bool IsMaxInColumn(this JuggedMatrix<double?> JuggedMatrix, int i, int j)
-        //{
-        //    for (int k = 0; k < JuggedMatrix.RowsCount; k++)
-        //    {
-        //        if (JuggedMatrix[k, j] != null && JuggedMatrix[i, j] != null)
-        //            if (JuggedMatrix[k, j] > JuggedMatrix[i, j])
-        //                return false;
-        //    }
-        //    return true;
-        //}
-
-        //public static bool IsMinInRow(this JuggedMatrix<double?> JuggedMatrix, int i, int j)
-        //{
-        //    for (int k = 0; k < JuggedMatrix.ColumnsCount; k++)
-        //    {
-        //        if (JuggedMatrix[i, k] != null && JuggedMatrix[i, j] != null)
-        //            if (JuggedMatrix[i, k] < JuggedMatrix[i, j])
-        //                return false;
-        //    }
-        //    return true;
-        //}
+            return sum;
+        }
 
         #endregion
 
         #region Fill
 
-        //public static void FillRandomly(this JuggedMatrix<double?> JuggedMatrix, double min = -50d, double max = 50d, bool includeNull = false)
-        //{
-        //    var rnd = new Random();
-        //    for (int i = 0; i < JuggedMatrix.RowsCount; i++)
-        //    {
-        //        for (int j = 0; j < JuggedMatrix.ColumnsCount; j++)
-        //        {
-        //            double value = rnd.NextDouble(min, max);
-        //            if (i + j * i / j - i + j % 2 == 0 && includeNull)
-        //            {
-        //                JuggedMatrix[i, j] = null;
-        //                continue;
-        //            }
+        public static void FillRandomly(this JuggedMatrix<double?> juggedMatrix, double min = -50d, double max = 50d, bool includeNull = false)
+        {
+            var rnd = new Random();
+            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            {
+                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                {
+                    double value = rnd.NextDouble(min, max);
+                    if (i + j * i / j - i + j % 2 == 0 && includeNull)
+                    {
+                        juggedMatrix[i, j] = null;
+                        continue;
+                    }
 
-        //            JuggedMatrix[i, j] = value;
-        //        }
-        //    }
-        //}
+                    juggedMatrix[i, j] = value;
+                }
+            }
+        }
 
         #endregion
 

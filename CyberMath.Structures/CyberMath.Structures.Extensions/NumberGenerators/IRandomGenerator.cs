@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CyberMath.Structures.Generators.NumberGenerators
+namespace CyberMath.Structures.Extensions.NumberGenerators
 {
     public interface IRandomGenerator<T> where T : struct
     {

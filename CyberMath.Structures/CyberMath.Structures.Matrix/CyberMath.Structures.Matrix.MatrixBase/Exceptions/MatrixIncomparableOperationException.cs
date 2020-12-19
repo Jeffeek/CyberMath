@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CyberMath.Structures.MatrixBase.Exceptions
+namespace CyberMath.Structures.Matrix.MatrixBase.Exceptions
 {
     public class MatrixIncomparableOperationException : Exception
     {

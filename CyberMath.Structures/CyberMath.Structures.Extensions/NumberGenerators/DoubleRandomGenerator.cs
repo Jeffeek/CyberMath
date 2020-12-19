@@ -1,5 +1,4 @@
 ﻿using System;
-using CyberMath.Structures.Generators.NumberGenerators;
 
 namespace CyberMath.Structures.Extensions.NumberGenerators
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CyberMath.Structures.Generators.NumberGenerators
+namespace CyberMath.Structures.Extensions.NumberGenerators
 {
     public class IntRandomGenerator : IRandomGenerator<int>
     {

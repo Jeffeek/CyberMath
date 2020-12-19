@@ -58,28 +58,29 @@ namespace CyberMath.Structures.BinaryTree
             else 
             { 
                 TreeNode<T> leftmost = current.Right.Left;
-                TreeNode<T> leftmostParent = current.Right;
+                TreeNode<T> leftMostParent = current.Right;
                 while (leftmost.Left != null)
                 {
-                    leftmostParent = leftmost; leftmost = leftmost.Left;
+                    leftMostParent = leftmost; leftmost = leftmost.Left;
                 } 
-                leftmostParent.Left = leftmost.Right;
+                leftMostParent.Left = leftmost.Right;
                 leftmost.Left = current.Left;
                 leftmost.Right = current.Right;
-                if (parent == null)
+                switch (parent)
                 {
-                    Root = leftmost;
-                } 
-                else 
-                {
-                    int result = parent.CompareTo(current.Data);
-                    if (result > 0)
+                    case null:
                     {
-                        parent.Left = leftmost;
+                        Root = leftmost;
+                        break;
                     }
-                    else if (result < 0)
+                    default:
                     {
-                        parent.Right = leftmost;
+                        int result = parent.CompareTo(current.Data);
+                        if (result > 0)
+                            parent.Left = leftmost;
+                        else if (result < 0) parent.Right = leftmost;
+
+                        break;
                     }
                 }
             }
@@ -207,7 +208,9 @@ namespace CyberMath.Structures.BinaryTree
 
         public void Dispose()
         {
+            if (_disposed) return;
             Dispose(true);
+            _disposed = true;
         }
 
         private void Dispose(bool disposing)

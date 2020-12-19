@@ -25,11 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.Matrix
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Primitives", "CyberMath.Primitives", "{882477EC-65BA-4FC6-8339-9F6FF1CA9965}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.Primitives.Int32", "CyberMath.Primitives\CyberMath.Primitives.Int32\CyberMath.Primitives.Int32.csproj", "{C3493004-23D9-46F3-B7BD-A46BB0D2F7E4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.BinaryTree", "CyberMath.Structures\CyberMath.Structures.BinaryTree\CyberMath.Structures.BinaryTree.csproj", "{981AF0A1-708F-492C-A392-265B259E8CFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.BinaryTree.Tests", "CyberMath.Tests\CyberMath.BinaryTree.Tests\CyberMath.BinaryTree.Tests.csproj", "{A88B3BB0-D673-4034-B433-5458CF601DB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.BinaryTree.Tests", "CyberMath.Tests\CyberMath.BinaryTree.Tests\CyberMath.BinaryTree.Tests.csproj", "{A88B3BB0-D673-4034-B433-5458CF601DB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.Primitives.Int32", "CyberMath.Primitives\CyberMath.Primitives.Int32\CyberMath.Primitives.Int32.csproj", "{55FF8684-A7D7-4168-BFD8-391979355561}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +65,6 @@ Global
 		{5D3A95C2-4C82-43E2-BAF6-098BE6934365}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D3A95C2-4C82-43E2-BAF6-098BE6934365}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D3A95C2-4C82-43E2-BAF6-098BE6934365}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C3493004-23D9-46F3-B7BD-A46BB0D2F7E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3493004-23D9-46F3-B7BD-A46BB0D2F7E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3493004-23D9-46F3-B7BD-A46BB0D2F7E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3493004-23D9-46F3-B7BD-A46BB0D2F7E4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{981AF0A1-708F-492C-A392-265B259E8CFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{981AF0A1-708F-492C-A392-265B259E8CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{981AF0A1-708F-492C-A392-265B259E8CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -77,6 +73,10 @@ Global
 		{A88B3BB0-D673-4034-B433-5458CF601DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A88B3BB0-D673-4034-B433-5458CF601DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A88B3BB0-D673-4034-B433-5458CF601DB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55FF8684-A7D7-4168-BFD8-391979355561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55FF8684-A7D7-4168-BFD8-391979355561}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55FF8684-A7D7-4168-BFD8-391979355561}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55FF8684-A7D7-4168-BFD8-391979355561}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,9 +90,9 @@ Global
 		{DFA6A4A2-E08B-458C-8D0E-458ED64D59BE} = {36EC084A-0098-45F7-A07C-8A768BBEFD16}
 		{C27C73E4-B7BE-4EBE-8A94-167079B07067} = {36EC084A-0098-45F7-A07C-8A768BBEFD16}
 		{5D3A95C2-4C82-43E2-BAF6-098BE6934365} = {C27C73E4-B7BE-4EBE-8A94-167079B07067}
-		{C3493004-23D9-46F3-B7BD-A46BB0D2F7E4} = {882477EC-65BA-4FC6-8339-9F6FF1CA9965}
 		{981AF0A1-708F-492C-A392-265B259E8CFE} = {36EC084A-0098-45F7-A07C-8A768BBEFD16}
 		{A88B3BB0-D673-4034-B433-5458CF601DB5} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
+		{55FF8684-A7D7-4168-BFD8-391979355561} = {882477EC-65BA-4FC6-8339-9F6FF1CA9965}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7E269A4-25A3-44C8-B284-55DF80EEAA03}

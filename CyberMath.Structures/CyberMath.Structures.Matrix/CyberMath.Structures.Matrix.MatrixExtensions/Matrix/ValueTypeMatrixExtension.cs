@@ -1,10 +1,11 @@
-﻿using CyberMath.Structures.Extensions;
-using CyberMath.Structures.Matrix.Matrix.Models;
-using CyberMath.Structures.MatrixBase.Exceptions;
-using System;
+﻿using System;
 using System.Text;
+using CyberMath.Structures.Extensions;
+using CyberMath.Structures.Extensions.Extensions;
+using CyberMath.Structures.Matrix.Matrix.Models;
+using CyberMath.Structures.Matrix.MatrixBase.Exceptions;
 
-namespace CyberMath.Structures.Matrix.MatrixExtensions
+namespace CyberMath.Structures.Matrix.MatrixExtensions.Matrix
 {
     public static class ValueTypeMatrixExtension
     {

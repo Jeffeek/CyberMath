@@ -1,11 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace CyberMath.Structures.Extensions
+namespace CyberMath.Structures.Extensions.Extensions
 {
     public static class StringExtensions
     {
+        public static bool IsPalindrome(this string input)
+        {
+            if (ReferenceEquals(input, null)) return false;
+            var reversed = String.Concat(input.Reverse());
+            return input == reversed;
+        }
+
         public static string Concat(this string input, int count, bool appendLine = false)
         {
             var sb = new StringBuilder();

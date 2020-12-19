@@ -1,7 +1,7 @@
 ﻿using System;
 using CyberMath.Structures.Matrix.Matrix.Models;
 
-namespace CyberMath.Structures.Matrix.MatrixExtensions
+namespace CyberMath.Structures.Matrix.MatrixExtensions.Matrix
 {
     public static class GenericMatrixExtensions
     {

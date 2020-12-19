@@ -10,6 +10,7 @@ namespace CyberMath.Structures.Extensions.Extensions
             if (ReferenceEquals(collection, null)) return;
             if (firstIndex < 0 || firstIndex >= collection.Count) return;
             if (secondIndex < 0 || secondIndex >= collection.Count) return;
+            if (firstIndex == secondIndex) return;
             T temp = collection[firstIndex];
             collection[firstIndex] = collection[secondIndex];
             collection[secondIndex] = temp;

@@ -1,4 +1,4 @@
-﻿using CyberMath.Structures.Extensions.Extensions;
+﻿using System;
 
 namespace CyberMath.Primitives.Int32
 {
