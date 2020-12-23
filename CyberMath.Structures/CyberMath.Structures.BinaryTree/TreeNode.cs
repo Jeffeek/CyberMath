@@ -2,7 +2,7 @@
 
 namespace CyberMath.Structures.BinaryTree
 {
-    public sealed class TreeNode<T> where T : IComparable<T>, IComparable
+    internal sealed class TreeNode<T> where T : IComparable<T>, IComparable
     {
         public T Data { get; private set; }
         public TreeNode<T> Left { get; set; }

@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CyberMath.Structures.BinaryTree
 {
-    public class BinaryTree<T> : ICollection<T>, IDisposable
+    public class BinaryTree<T> : ICollection<T>, IDisposable, IReadOnlyCollection<T>
         where T : IComparable<T>, IComparable
     {
-        private bool _disposed = false;
+        private bool _disposed;
 
-        public TreeNode<T> Root { get; private set; }
+        private TreeNode<T> _root;
 
         public bool Remove(T item)
         {
@@ -22,17 +21,14 @@ namespace CyberMath.Structures.BinaryTree
             {
                 if (parent == null)
                 {
-                    Root = current.Left;
+                    _root = current.Left;
                 }
                 else
                 {
-                    int result = parent.CompareTo(current.Data);
+                    var result = parent.CompareTo(current.Data);
                     if (result > 0)
                         parent.Left = current.Left;
-                    else if (result < 0)
-                    {
-                        parent.Right = current.Left;
-                    }
+                    else if (result < 0) parent.Right = current.Left;
                 }
             }
             else if (current.Right.Left == null)
@@ -40,61 +36,54 @@ namespace CyberMath.Structures.BinaryTree
                 current.Right.Left = current.Left;
                 if (parent == null)
                 {
-                    Root = current.Right;
-                } 
-                else 
-                { 
-                    int result = parent.CompareTo(current.Data);
+                    _root = current.Right;
+                }
+                else
+                {
+                    var result = parent.CompareTo(current.Data);
                     if (result > 0)
-                    {
                         parent.Left = current.Right;
-                    }
-                    else if (result < 0)
-                    {
-                        parent.Right = current.Right;
-                    }
+                    else if (result < 0) parent.Right = current.Right;
                 }
             }
-            else 
-            { 
-                TreeNode<T> leftmost = current.Right.Left;
-                TreeNode<T> leftMostParent = current.Right;
+            else
+            {
+                var leftmost = current.Right.Left;
+                var leftMostParent = current.Right;
                 while (leftmost.Left != null)
                 {
-                    leftMostParent = leftmost; leftmost = leftmost.Left;
-                } 
+                    leftMostParent = leftmost;
+                    leftmost = leftmost.Left;
+                }
+
                 leftMostParent.Left = leftmost.Right;
                 leftmost.Left = current.Left;
                 leftmost.Right = current.Right;
-                switch (parent)
+                if (parent == null)
                 {
-                    case null:
-                    {
-                        Root = leftmost;
-                        break;
-                    }
-                    default:
-                    {
-                        int result = parent.CompareTo(current.Data);
-                        if (result > 0)
-                            parent.Left = leftmost;
-                        else if (result < 0) parent.Right = leftmost;
-
-                        break;
-                    }
+                    _root = leftmost;
+                }
+                else
+                {
+                    var result = parent.CompareTo(current.Data);
+                    if (result > 0)
+                        parent.Left = leftmost;
+                    else if (result < 0)
+                        parent.Right = leftmost;
                 }
             }
+
             return true;
         }
 
         private TreeNode<T> FindWithParent(T value, out TreeNode<T> parent)
         {
-            TreeNode<T> current = Root;
+            var current = _root;
             parent = null;
 
             while (current != null)
             {
-                int result = current.CompareTo(value);
+                var result = current.CompareTo(value);
                 if (result > 0)
                 {
                     parent = current;
@@ -106,7 +95,9 @@ namespace CyberMath.Structures.BinaryTree
                     current = current.Right;
                 }
                 else
+                {
                     break;
+                }
             }
 
             return current;
@@ -118,45 +109,59 @@ namespace CyberMath.Structures.BinaryTree
 
         public void Add(T data)
         {
-            if (Root == null)
+            if (_root == null)
             {
-                Root = new TreeNode<T>(data);
+                _root = new TreeNode<T>(data);
                 Count = 1;
                 return;
             }
 
-            Root.Add(data);
+            _root.Add(data);
             Count++;
         }
 
         public void Clear()
         {
-            Root = null;
+            _root = null;
             Count = 0;
         }
 
-        public bool Contains(T item) => FindWithParent(item, out _) != null;
+        public bool Contains(T item)
+        {
+            return FindWithParent(item, out _) != null;
+        }
 
         public void CopyTo(T[] array, int arrayIndex)
         {
             if (arrayIndex < 0 || arrayIndex >= array.Length) return;
             var binaryTreeArrayInorder = Inorder();
-            int currentBinaryTreeIndex = 0;
-            for (int i = arrayIndex; i < array.Length; i++)
+            var currentBinaryTreeIndex = 0;
+            for (var i = arrayIndex; i < array.Length; i++)
             {
                 array[i] = binaryTreeArrayInorder[currentBinaryTreeIndex];
                 currentBinaryTreeIndex++;
             }
         }
 
-        public List<T> Preorder() => Root == null ? new List<T>() : Preorder(Root);
-        public List<T> Postorder() => Root == null ? new List<T>() : Postorder(Root);
-        public List<T> Inorder() => Root == null ? new List<T>() : Inorder(Root);
+        public List<T> Preorder()
+        {
+            return _root == null ? new List<T>() : Preorder(_root);
+        }
+
+        public List<T> Postorder()
+        {
+            return _root == null ? new List<T>() : Postorder(_root);
+        }
+
+        public List<T> Inorder()
+        {
+            return _root == null ? new List<T>() : Inorder(_root);
+        }
 
         public void MergeWith(BinaryTree<T> secondBinaryTree)
         {
             var elements = secondBinaryTree.Inorder();
-            for (int i = 0; i < secondBinaryTree.Count; i++)
+            for (var i = 0; i < secondBinaryTree.Count; i++)
                 Add(elements[i]);
         }
 
@@ -218,6 +223,12 @@ namespace CyberMath.Structures.BinaryTree
             if (!disposing) return;
             Clear();
             GC.SuppressFinalize(this);
+        }
+
+        public void AddRange(params T[] elements)
+        {
+            foreach (var element in elements)
+                Add(element);
         }
     }
 }
