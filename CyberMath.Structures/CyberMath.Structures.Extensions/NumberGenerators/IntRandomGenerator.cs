@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CyberMath.Structures.Extensions.NumberGenerators
 {
@@ -23,6 +24,12 @@ namespace CyberMath.Structures.Extensions.NumberGenerators
         public int GenerateOne(int min = -50, int max = 50)
         {
             return _random.Next(min, max + 1);
+        }
+
+        public IEnumerable<int> GenerateMany(int min = -50, int max = 50)
+        {
+            while (true)
+                yield return GenerateOne(min, max);
         }
     }
 }

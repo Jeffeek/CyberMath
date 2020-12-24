@@ -25,7 +25,7 @@ namespace CyberMath.Structures.BinaryTree
                 }
                 else
                 {
-                    var result = parent.CompareTo(current.Data);
+                    var result = parent.CompareTo(current);
                     if (result > 0)
                         parent.Left = current.Left;
                     else if (result < 0) parent.Right = current.Left;
@@ -40,7 +40,7 @@ namespace CyberMath.Structures.BinaryTree
                 }
                 else
                 {
-                    var result = parent.CompareTo(current.Data);
+                    var result = parent.CompareTo(current);
                     if (result > 0)
                         parent.Left = current.Right;
                     else if (result < 0) parent.Right = current.Right;
@@ -65,7 +65,7 @@ namespace CyberMath.Structures.BinaryTree
                 }
                 else
                 {
-                    var result = parent.CompareTo(current.Data);
+                    var result = parent.CompareTo(current);
                     if (result > 0)
                         parent.Left = leftmost;
                     else if (result < 0)
@@ -83,7 +83,7 @@ namespace CyberMath.Structures.BinaryTree
 
             while (current != null)
             {
-                var result = current.CompareTo(value);
+                var result = current.Data.CompareTo(value);
                 if (result > 0)
                 {
                     parent = current;
@@ -199,6 +199,30 @@ namespace CyberMath.Structures.BinaryTree
             if (node.Right != null)
                 list.AddRange(Inorder(node.Right));
             return list;
+        }
+
+        public T Max()
+        {
+            if (_root == null) throw new NullReferenceException("Tree is empty");
+            var current = _root;
+            while (current.Right != null)
+            {
+                current = current.Right;
+            }
+
+            return current.Data;
+        }
+
+        public T Min()
+        {
+            if (_root == null) throw new NullReferenceException("Tree is empty");
+            var current = _root;
+            while (current.Left != null)
+            {
+                current = current.Left;
+            }
+
+            return current.Data;
         }
 
         public IEnumerator<T> GetEnumerator()

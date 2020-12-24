@@ -1,4 +1,6 @@
+using System.Linq;
 using CyberMath.Structures.BinaryTree;
+using CyberMath.Structures.Extensions.NumberGenerators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CyberMath.BinaryTree.Tests
@@ -26,6 +28,30 @@ namespace CyberMath.BinaryTree.Tests
                 tree.Add(i);
             tree.Remove(5);
             CollectionAssert.AreEqual(tree.Inorder(), new[] { 0, 1, 2, 3, 4, 6, 7, 8, 9 });
+        }
+
+        [TestMethod]
+        public void BinaryTreeMax_test()
+        {
+            var listOfNums = new IntRandomGenerator().GenerateMany(-10000, 10000).Take(1000).ToArray();
+            var tree = new BinaryTree<int>();
+            tree.AddRange(listOfNums.ToArray());
+
+            int expected = listOfNums.Max();
+            int actual = tree.Max();
+            Assert.IsTrue(expected == actual);
+        }
+
+        [TestMethod]
+        public void BinaryTreeMin_test()
+        {
+            var listOfNums = new IntRandomGenerator().GenerateMany(-10000, 10000).Take(1000).ToArray();
+            var tree = new BinaryTree<int>();
+            tree.AddRange(listOfNums.ToArray());
+
+            int expected = listOfNums.Min();
+            int actual = tree.Min();
+            Assert.IsTrue(expected == actual);
         }
     }
 }

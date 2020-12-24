@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CyberMath.Structures.Extensions.NumberGenerators
 {
@@ -21,6 +22,12 @@ namespace CyberMath.Structures.Extensions.NumberGenerators
         public double GenerateOne(double min = -50.0d, double max = -50.0d)
         {
             return _random.NextDouble() * (max - min) + min;
+        }
+
+        public IEnumerable<double> GenerateMany(double min = -50.0d, double max = 50.0d)
+        {
+            while (true)
+                yield return GenerateOne(min, max);
         }
     }
 }
