@@ -29,7 +29,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.Binary
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.BinaryTree.Tests", "CyberMath.Tests\CyberMath.BinaryTree.Tests\CyberMath.BinaryTree.Tests.csproj", "{A88B3BB0-D673-4034-B433-5458CF601DB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.Primitives.Int32", "CyberMath.Primitives\CyberMath.Primitives.Int32\CyberMath.Primitives.Int32.csproj", "{55FF8684-A7D7-4168-BFD8-391979355561}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Primitives.Int32", "CyberMath.Primitives\CyberMath.Primitives.Int32\CyberMath.Primitives.Int32.csproj", "{55FF8684-A7D7-4168-BFD8-391979355561}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Structures.Equations", "CyberMath.Structures.Equations", "{E9E0B06B-0F44-425E-8025-C1DA8DEB0A6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.Structures.Equations.QuadraticEquation", "CyberMath.Structures\CyberMath.Structures.Equations\CyberMath.Structures.Equations.QuadraticEquation\CyberMath.Structures.Equations.QuadraticEquation.csproj", "{1863A7F6-7989-4940-9A8A-EAC2C4CA5F58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.QuadraticEquation.Tests", "CyberMath.Tests\CyberMath.QuadraticEquation.Tests\CyberMath.QuadraticEquation.Tests.csproj", "{94DE13C6-15F6-41FA-A78E-269058D0A10F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +83,14 @@ Global
 		{55FF8684-A7D7-4168-BFD8-391979355561}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55FF8684-A7D7-4168-BFD8-391979355561}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55FF8684-A7D7-4168-BFD8-391979355561}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1863A7F6-7989-4940-9A8A-EAC2C4CA5F58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1863A7F6-7989-4940-9A8A-EAC2C4CA5F58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1863A7F6-7989-4940-9A8A-EAC2C4CA5F58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1863A7F6-7989-4940-9A8A-EAC2C4CA5F58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94DE13C6-15F6-41FA-A78E-269058D0A10F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94DE13C6-15F6-41FA-A78E-269058D0A10F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94DE13C6-15F6-41FA-A78E-269058D0A10F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94DE13C6-15F6-41FA-A78E-269058D0A10F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +107,9 @@ Global
 		{981AF0A1-708F-492C-A392-265B259E8CFE} = {36EC084A-0098-45F7-A07C-8A768BBEFD16}
 		{A88B3BB0-D673-4034-B433-5458CF601DB5} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
 		{55FF8684-A7D7-4168-BFD8-391979355561} = {882477EC-65BA-4FC6-8339-9F6FF1CA9965}
+		{E9E0B06B-0F44-425E-8025-C1DA8DEB0A6A} = {36EC084A-0098-45F7-A07C-8A768BBEFD16}
+		{1863A7F6-7989-4940-9A8A-EAC2C4CA5F58} = {E9E0B06B-0F44-425E-8025-C1DA8DEB0A6A}
+		{94DE13C6-15F6-41FA-A78E-269058D0A10F} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7E269A4-25A3-44C8-B284-55DF80EEAA03}
