@@ -10,6 +10,12 @@ namespace CyberMath.Structures.BinaryTreeBase
     {
         private bool _disposed = false;
 
+        protected BinaryTreeBase(params T[] values) => AddRange(values);
+
+        protected BinaryTreeBase(IEnumerable<T> values) => AddRange(values.ToArray());
+
+        protected BinaryTreeBase() { }
+        
         public abstract IBinaryTreeNode<T> Root { get; protected set; }
         public abstract void Add(T item);
         public abstract bool Remove(T item);
@@ -28,11 +34,18 @@ namespace CyberMath.Structures.BinaryTreeBase
 
         private bool InternalContains(IBinaryTreeNode<T> node, T data)
         {
-            if (ReferenceEquals(node, null)) return false;
-            if (node.Data.CompareTo(data) == 0) return true;
-            if (node.Data.CompareTo(data) == 1) return InternalContains(node.Left, data);
-            if (node.Data.CompareTo(data) == -1) return InternalContains(node.Right, data);
-            return false;
+            while (true)
+            {
+                if (ReferenceEquals(node, null)) return false;
+                if (node.Data.CompareTo(data) == 0) return true;
+                if (node.Data.CompareTo(data) == 1)
+                {
+                    node = node.Left;
+                    continue;
+                }
+
+                node = node.Right;
+            }
         }
 
         public void CopyTo(T[] array, int arrayIndex)
@@ -122,26 +135,8 @@ namespace CyberMath.Structures.BinaryTreeBase
             if (Root == null) throw new NullReferenceException("Tree is empty");
             var current = Root;
             while (current.Right != null)
-            {
                 current = current.Right;
-            }
-
             return current.Data;
-        }
-
-        protected BinaryTreeBase(params T[] values)
-        {
-            AddRange(values);
-        }
-
-        protected BinaryTreeBase(IEnumerable<T> values)
-        {
-            AddRange(values.ToArray());
-        }
-
-        protected BinaryTreeBase()
-        {
-            
         }
 
         public T Min()
@@ -149,10 +144,7 @@ namespace CyberMath.Structures.BinaryTreeBase
             if (Root == null) throw new NullReferenceException("Tree is empty");
             var current = Root;
             while (current.Left != null)
-            {
-                current = current.Right;
-            }
-
+                current = current.Left;
             return current.Data;
         }
 
