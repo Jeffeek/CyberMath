@@ -27,7 +27,7 @@ namespace CyberMath.BinaryTree.Tests
             for (int i = 0; i < 10; i++)
                 tree.Add(i);
             tree.Remove(5);
-            CollectionAssert.AreEqual(tree.Inorder(), new[] { 0, 1, 2, 3, 4, 6, 7, 8, 9 });
+            CollectionAssert.AreEqual(tree.Inorder().ToArray(), new[] { 0, 1, 2, 3, 4, 6, 7, 8, 9 });
         }
 
         [TestMethod]

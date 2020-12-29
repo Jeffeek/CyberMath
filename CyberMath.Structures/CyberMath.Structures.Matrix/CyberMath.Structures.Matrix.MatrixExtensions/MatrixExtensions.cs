@@ -34,7 +34,7 @@ namespace CyberMath.Structures.Matrix.MatrixExtensions
 
         public static IJuggedMatrix<T> ToJuggedMatrix<T>(this IMatrix<T> matrix)
         {
-            var juggedMatrix = new JuggedMatrix<T>(matrix.RowsCount, CollectionExtensions.GetRepeatedIntEnumerable(matrix.ColumnsCount).Take(matrix.RowsCount).ToArray());
+            var juggedMatrix = new JuggedMatrix<T>(matrix.RowsCount, Enumerable.Repeat(matrix.ColumnsCount, matrix.RowsCount).ToArray());
             for (int i = 0; i < juggedMatrix.RowsCount; i++)
             {
                 for (int j = 0; j < matrix.ColumnsCount; j++)

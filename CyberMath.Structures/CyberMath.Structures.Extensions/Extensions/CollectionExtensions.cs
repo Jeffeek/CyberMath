@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CyberMath.Structures.Extensions.Extensions
 {
@@ -19,7 +22,7 @@ namespace CyberMath.Structures.Extensions.Extensions
         public static void Shuffle<T>(this IList<T> collection)
         {
             if (ReferenceEquals(collection, null)) return;
-            if (collection.Count == 1) return;
+            if (collection.Count < 2) return;
             var rnd = new Random();
             for (int i = 0; i < collection.Count; i++)
             {
@@ -30,9 +33,13 @@ namespace CyberMath.Structures.Extensions.Extensions
             }
         }
 
-        public static IEnumerable<int> GetRepeatedIntEnumerable(int value)
+        public static T GetRandomItem<T>(IList<T> collection)
         {
-            yield return value;
+            if (ReferenceEquals(collection, null)) return default;
+            if (collection.Count == 0) return default;
+            if (collection.Count == 1) return collection[0];
+            var rnd = new Random();
+            return collection[rnd.Next(0, collection.Count)];
         }
     }
 }

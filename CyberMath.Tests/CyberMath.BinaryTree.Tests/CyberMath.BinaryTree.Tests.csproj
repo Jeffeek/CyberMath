@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CyberMath.Structures\CyberMath.Structures.BinaryTree\CyberMath.Structures.BinaryTree.csproj" />
+    <ProjectReference Include="..\..\CyberMath.Structures\CyberMath.Structures.BinaryTrees\CyberMath.Structures.BinaryTree\CyberMath.Structures.BinaryTree.csproj" />
     <ProjectReference Include="..\..\CyberMath.Structures\CyberMath.Structures.Extensions\CyberMath.Structures.Extensions.csproj" />
   </ItemGroup>
 

@@ -77,8 +77,7 @@ namespace CyberMath.Structures.Matrix.MatrixExtensions.JaggedMatrix
 
         public static IJuggedMatrix<int> CreateIdentityMatrix(int n)
         {
-            var result = new JuggedMatrix<int>(n, CollectionExtensions.
-                GetRepeatedIntEnumerable(n).Take(n).ToArray());
+            var result = new JuggedMatrix<int>(n, Enumerable.Repeat(n, n).ToArray());
             for (var i = 0; i < n; i++)
             {
                 result[i, i] = 1;
@@ -687,8 +686,7 @@ namespace CyberMath.Structures.Matrix.MatrixExtensions.JaggedMatrix
 
         public static IJuggedMatrix<int?> CreateIdentityMatrix(int n, bool includeNull = false)
         {
-            var result = new JuggedMatrix<int?>(n, Structures.Extensions.Extensions.CollectionExtensions.
-                GetRepeatedIntEnumerable(n).Take(n).ToArray());
+            var result = new JuggedMatrix<int?>(n, Enumerable.Repeat(n, n).ToArray());
             for (var i = 0; i < n; i++)
             {
                 result[i, i] = 1;

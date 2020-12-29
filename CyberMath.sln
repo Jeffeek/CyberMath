@@ -25,17 +25,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.Matrix
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Primitives", "CyberMath.Primitives", "{882477EC-65BA-4FC6-8339-9F6FF1CA9965}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.BinaryTree", "CyberMath.Structures\CyberMath.Structures.BinaryTree\CyberMath.Structures.BinaryTree.csproj", "{981AF0A1-708F-492C-A392-265B259E8CFE}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.BinaryTree.Tests", "CyberMath.Tests\CyberMath.BinaryTree.Tests\CyberMath.BinaryTree.Tests.csproj", "{A88B3BB0-D673-4034-B433-5458CF601DB5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Primitives.Int32", "CyberMath.Primitives\CyberMath.Primitives.Int32\CyberMath.Primitives.Int32.csproj", "{55FF8684-A7D7-4168-BFD8-391979355561}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Structures.Equations", "CyberMath.Structures.Equations", "{E9E0B06B-0F44-425E-8025-C1DA8DEB0A6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.Structures.Equations.QuadraticEquation", "CyberMath.Structures\CyberMath.Structures.Equations\CyberMath.Structures.Equations.QuadraticEquation\CyberMath.Structures.Equations.QuadraticEquation.csproj", "{1863A7F6-7989-4940-9A8A-EAC2C4CA5F58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.Equations.QuadraticEquation", "CyberMath.Structures\CyberMath.Structures.Equations\CyberMath.Structures.Equations.QuadraticEquation\CyberMath.Structures.Equations.QuadraticEquation.csproj", "{1863A7F6-7989-4940-9A8A-EAC2C4CA5F58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.QuadraticEquation.Tests", "CyberMath.Tests\CyberMath.QuadraticEquation.Tests\CyberMath.QuadraticEquation.Tests.csproj", "{94DE13C6-15F6-41FA-A78E-269058D0A10F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.QuadraticEquation.Tests", "CyberMath.Tests\CyberMath.QuadraticEquation.Tests\CyberMath.QuadraticEquation.Tests.csproj", "{94DE13C6-15F6-41FA-A78E-269058D0A10F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Structures.BinaryTrees", "CyberMath.Structures.BinaryTrees", "{65886522-FAF3-4E56-B004-B4EBD2F4B6DD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.BinaryTree", "CyberMath.Structures\CyberMath.Structures.BinaryTrees\CyberMath.Structures.BinaryTree\CyberMath.Structures.BinaryTree.csproj", "{5C8A1B5D-D5FB-47F6-8964-457F226B104A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.BinaryTreeBase", "CyberMath.Structures\CyberMath.Structures.BinaryTrees\CyberMath.Structures.BinaryTreeBase\CyberMath.Structures.BinaryTreeBase.csproj", "{39DB149C-4915-4A41-8358-2491BC96F891}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,10 +75,6 @@ Global
 		{5D3A95C2-4C82-43E2-BAF6-098BE6934365}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D3A95C2-4C82-43E2-BAF6-098BE6934365}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D3A95C2-4C82-43E2-BAF6-098BE6934365}.Release|Any CPU.Build.0 = Release|Any CPU
-		{981AF0A1-708F-492C-A392-265B259E8CFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{981AF0A1-708F-492C-A392-265B259E8CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{981AF0A1-708F-492C-A392-265B259E8CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{981AF0A1-708F-492C-A392-265B259E8CFE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A88B3BB0-D673-4034-B433-5458CF601DB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A88B3BB0-D673-4034-B433-5458CF601DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A88B3BB0-D673-4034-B433-5458CF601DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -91,6 +91,14 @@ Global
 		{94DE13C6-15F6-41FA-A78E-269058D0A10F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94DE13C6-15F6-41FA-A78E-269058D0A10F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94DE13C6-15F6-41FA-A78E-269058D0A10F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C8A1B5D-D5FB-47F6-8964-457F226B104A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C8A1B5D-D5FB-47F6-8964-457F226B104A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C8A1B5D-D5FB-47F6-8964-457F226B104A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C8A1B5D-D5FB-47F6-8964-457F226B104A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39DB149C-4915-4A41-8358-2491BC96F891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39DB149C-4915-4A41-8358-2491BC96F891}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39DB149C-4915-4A41-8358-2491BC96F891}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39DB149C-4915-4A41-8358-2491BC96F891}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,12 +112,14 @@ Global
 		{DFA6A4A2-E08B-458C-8D0E-458ED64D59BE} = {36EC084A-0098-45F7-A07C-8A768BBEFD16}
 		{C27C73E4-B7BE-4EBE-8A94-167079B07067} = {36EC084A-0098-45F7-A07C-8A768BBEFD16}
 		{5D3A95C2-4C82-43E2-BAF6-098BE6934365} = {C27C73E4-B7BE-4EBE-8A94-167079B07067}
-		{981AF0A1-708F-492C-A392-265B259E8CFE} = {36EC084A-0098-45F7-A07C-8A768BBEFD16}
 		{A88B3BB0-D673-4034-B433-5458CF601DB5} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
 		{55FF8684-A7D7-4168-BFD8-391979355561} = {882477EC-65BA-4FC6-8339-9F6FF1CA9965}
 		{E9E0B06B-0F44-425E-8025-C1DA8DEB0A6A} = {36EC084A-0098-45F7-A07C-8A768BBEFD16}
 		{1863A7F6-7989-4940-9A8A-EAC2C4CA5F58} = {E9E0B06B-0F44-425E-8025-C1DA8DEB0A6A}
 		{94DE13C6-15F6-41FA-A78E-269058D0A10F} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
+		{65886522-FAF3-4E56-B004-B4EBD2F4B6DD} = {36EC084A-0098-45F7-A07C-8A768BBEFD16}
+		{5C8A1B5D-D5FB-47F6-8964-457F226B104A} = {65886522-FAF3-4E56-B004-B4EBD2F4B6DD}
+		{39DB149C-4915-4A41-8358-2491BC96F891} = {65886522-FAF3-4E56-B004-B4EBD2F4B6DD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7E269A4-25A3-44C8-B284-55DF80EEAA03}
