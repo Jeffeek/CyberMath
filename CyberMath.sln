@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.Matrix.Matrix", "CyberMath.Structures\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.Matrix\CyberMath.Structures.Matrix.Matrix.csproj", "{946F70D1-4730-413D-8E28-F88CECC0A2D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.Matrix", "CyberMath.Structures\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.Matrix\CyberMath.Structures.Matrix.csproj", "{946F70D1-4730-413D-8E28-F88CECC0A2D0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.Matrix.MatrixBase", "CyberMath.Structures\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.MatrixBase\CyberMath.Structures.Matrix.MatrixBase.csproj", "{84944C3D-2D7B-418B-BB9E-C22FC40C6F01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.MatrixBase", "CyberMath.Structures\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.MatrixBase\CyberMath.Structures.MatrixBase.csproj", "{84944C3D-2D7B-418B-BB9E-C22FC40C6F01}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.Matrix.JaggedMatrix", "CyberMath.Structures\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.JaggedMatrix\CyberMath.Structures.Matrix.JaggedMatrix.csproj", "{96D9DCF4-9A96-4499-9628-B6C7C4711439}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.JaggedMatrix", "CyberMath.Structures\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.JaggedMatrix\CyberMath.Structures.JaggedMatrix.csproj", "{96D9DCF4-9A96-4499-9628-B6C7C4711439}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Matrix.Tests", "CyberMath.Tests\CyberMath.Matrix.Tests\CyberMath.Matrix.Tests.csproj", "{CB74BFC0-649E-4BDE-B293-50CA786E1E84}"
 EndProject
@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Tests", "CyberMat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Structures.Matrix", "CyberMath.Structures.Matrix", "{C27C73E4-B7BE-4EBE-8A94-167079B07067}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.Matrix.MatrixExtensions", "CyberMath.Structures\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.MatrixExtensions\CyberMath.Structures.Matrix.MatrixExtensions.csproj", "{5D3A95C2-4C82-43E2-BAF6-098BE6934365}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.MatrixExtensions", "CyberMath.Structures\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.MatrixExtensions\CyberMath.Structures.MatrixExtensions.csproj", "{5D3A95C2-4C82-43E2-BAF6-098BE6934365}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Primitives", "CyberMath.Primitives", "{882477EC-65BA-4FC6-8339-9F6FF1CA9965}"
 EndProject
@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Primitives.Int32"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Structures.Equations", "CyberMath.Structures.Equations", "{E9E0B06B-0F44-425E-8025-C1DA8DEB0A6A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.Equations.QuadraticEquation", "CyberMath.Structures\CyberMath.Structures.Equations\CyberMath.Structures.Equations.QuadraticEquation\CyberMath.Structures.Equations.QuadraticEquation.csproj", "{1863A7F6-7989-4940-9A8A-EAC2C4CA5F58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.QuadraticEquation", "CyberMath.Structures\CyberMath.Structures.Equations\CyberMath.Structures.Equations.QuadraticEquation\CyberMath.Structures.QuadraticEquation.csproj", "{1863A7F6-7989-4940-9A8A-EAC2C4CA5F58}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.QuadraticEquation.Tests", "CyberMath.Tests\CyberMath.QuadraticEquation.Tests\CyberMath.QuadraticEquation.Tests.csproj", "{94DE13C6-15F6-41FA-A78E-269058D0A10F}"
 EndProject
@@ -40,6 +40,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.BinaryTree", "CyberMath.Structures\CyberMath.Structures.BinaryTrees\CyberMath.Structures.BinaryTree\CyberMath.Structures.BinaryTree.csproj", "{5C8A1B5D-D5FB-47F6-8964-457F226B104A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.BinaryTreeBase", "CyberMath.Structures\CyberMath.Structures.BinaryTrees\CyberMath.Structures.BinaryTreeBase\CyberMath.Structures.BinaryTreeBase.csproj", "{39DB149C-4915-4A41-8358-2491BC96F891}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.AVLBinaryTree", "CyberMath.Structures\CyberMath.Structures.BinaryTrees\CyberMath.Structures.AVLBinaryTree\CyberMath.Structures.AVLBinaryTree.csproj", "{CB3ABA77-9230-4A22-9C3A-E34AAAE72D5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.AVLBinaryTree.Tests", "CyberMath.Tests\CyberMath.AVLBinaryTree.Tests\CyberMath.AVLBinaryTree.Tests.csproj", "{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +103,14 @@ Global
 		{39DB149C-4915-4A41-8358-2491BC96F891}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39DB149C-4915-4A41-8358-2491BC96F891}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39DB149C-4915-4A41-8358-2491BC96F891}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB3ABA77-9230-4A22-9C3A-E34AAAE72D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB3ABA77-9230-4A22-9C3A-E34AAAE72D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB3ABA77-9230-4A22-9C3A-E34AAAE72D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB3ABA77-9230-4A22-9C3A-E34AAAE72D5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,6 +132,8 @@ Global
 		{65886522-FAF3-4E56-B004-B4EBD2F4B6DD} = {36EC084A-0098-45F7-A07C-8A768BBEFD16}
 		{5C8A1B5D-D5FB-47F6-8964-457F226B104A} = {65886522-FAF3-4E56-B004-B4EBD2F4B6DD}
 		{39DB149C-4915-4A41-8358-2491BC96F891} = {65886522-FAF3-4E56-B004-B4EBD2F4B6DD}
+		{CB3ABA77-9230-4A22-9C3A-E34AAAE72D5A} = {65886522-FAF3-4E56-B004-B4EBD2F4B6DD}
+		{A09CCBB6-1736-42AE-8575-D43FEA4B46FB} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7E269A4-25A3-44C8-B284-55DF80EEAA03}

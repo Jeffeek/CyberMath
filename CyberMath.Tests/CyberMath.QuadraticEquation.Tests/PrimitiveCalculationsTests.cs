@@ -24,7 +24,6 @@ namespace CyberMath.QuadraticEquation.Tests
         [TestMethod]
         public void QuadraticEquation_stringParse_w0()
         {
-            int a = 5, b = -16, c = 12;
             var equation = new Structures.Equations.QuadraticEquation.QuadraticEquation("5x^2 -16x+12=0");
             double expectedDeterminant = 16;
             double actualDeterminant = equation.Determinant;
@@ -40,7 +39,6 @@ namespace CyberMath.QuadraticEquation.Tests
         [TestMethod]
         public void QuadraticEquation_stringParse_wo0()
         {
-            int a = 5, b = -16, c = 12;
             var equation = new Structures.Equations.QuadraticEquation.QuadraticEquation("5x^2 -16x  +12");
             double expectedDeterminant = 16;
             double actualDeterminant = equation.Determinant;

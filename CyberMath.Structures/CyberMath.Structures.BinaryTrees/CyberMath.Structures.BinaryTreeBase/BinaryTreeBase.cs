@@ -16,9 +16,112 @@ namespace CyberMath.Structures.BinaryTreeBase
 
         protected BinaryTreeBase() { }
         
-        public abstract IBinaryTreeNode<T> Root { get; protected set; }
+        public IBinaryTreeNode<T> Root { get; protected set; }
+        
         public abstract void Add(T item);
-        public abstract bool Remove(T item);
+        
+        public virtual bool Remove(T item)
+        {
+            var current = Root;
+            var parent = Root;
+            bool isLeftChild = false;
+            if (current == null) return false;
+            while (current != null && current.Data.CompareTo(item) != 0)
+            {
+                parent = current;
+                if (item?.CompareTo(current.Data) == -1)
+                {
+                    current = current.Left;
+                    isLeftChild = true;
+                }
+                else
+                {
+                    current = current.Right;
+                    isLeftChild = false;
+                }
+            }
+
+            if (current == null)
+                return false;
+
+            switch (current.Right)
+            {
+                case null when current.Left == null:
+                    {
+                        if (current.Data.CompareTo(Root.Data) == 0)
+                            Root = null;
+                        else
+                        {
+                            if (isLeftChild)
+                                parent.Left = null;
+                            else
+                                parent.Right = null;
+                        }
+
+                        break;
+                    }
+                case null when current.Data.CompareTo(Root.Data) == 0:
+                    Root = current.Left;
+                    break;
+                case null when isLeftChild:
+                    parent.Left = current.Left;
+                    break;
+                case null:
+                    parent.Right = current.Left;
+                    break;
+                default:
+                    {
+                        if (current.Left == null)
+                        {
+                            if (current.Data.CompareTo(Root.Data) == 0)
+                                Root = current.Right;
+                            else
+                            {
+                                if (isLeftChild)
+                                    parent.Left = current.Right;
+                                else
+                                    parent.Right = current.Right;
+                            }
+                        }
+                        else
+                        {
+                            IBinaryTreeNode<T> successor = GetSuccessor(current);
+                            if (current.Data.CompareTo(Root.Data) == 0)
+                                Root = successor;
+                            else if (isLeftChild)
+                                parent.Left = successor;
+                            else
+                                parent.Right = successor;
+                        }
+
+                        break;
+                    }
+            }
+
+            return true;
+        }
+
+        private IBinaryTreeNode<T> GetSuccessor(IBinaryTreeNode<T> node)
+        {
+            var parentOfSuccessor = node;
+            var successor = node;
+            var current = node.Right;
+
+            while (current != null)
+            {
+                parentOfSuccessor = successor;
+                successor = current;
+                current = current.Left;
+            }
+            if (successor.CompareTo(node.Right) != 0)
+            {
+                parentOfSuccessor.Left = successor.Right;
+                successor.Right = node.Right;
+            }
+            successor.Left = node.Left;
+
+            return successor;
+        }
 
         public void Clear()
         {
@@ -26,25 +129,24 @@ namespace CyberMath.Structures.BinaryTreeBase
             Count = 0;
         }
 
-        public bool Contains(T item)
-        {
-            if (ReferenceEquals(Root, null)) return false;
-            return InternalContains(Root, item);
-        }
+        public bool Contains(T item) => !ReferenceEquals(Root, null) && InternalContains(Root, item);
 
         private bool InternalContains(IBinaryTreeNode<T> node, T data)
         {
             while (true)
             {
                 if (ReferenceEquals(node, null)) return false;
-                if (node.Data.CompareTo(data) == 0) return true;
-                if (node.Data.CompareTo(data) == 1)
+                switch (node.Data.CompareTo(data))
                 {
-                    node = node.Left;
-                    continue;
+                    case 0:
+                        return true;
+                    case 1:
+                        node = node.Left;
+                        continue;
+                    default:
+                        node = node.Right;
+                        break;
                 }
-
-                node = node.Right;
             }
         }
 
@@ -88,7 +190,7 @@ namespace CyberMath.Structures.BinaryTreeBase
             GC.SuppressFinalize(this);
         }
 
-        public IEnumerable<T> Inorder() => Root == null ? Enumerable.Empty<T>() : InternalInorder(Root);
+        public IEnumerable<T> Inorder() => ReferenceEquals(Root, null) ? Enumerable.Empty<T>() : InternalInorder(Root);
 
         private IEnumerable<T> InternalInorder(IBinaryTreeNode<T> node)
         {
@@ -102,7 +204,7 @@ namespace CyberMath.Structures.BinaryTreeBase
             return list;
         }
 
-        public IEnumerable<T> Preorder() => Root == null ? Enumerable.Empty<T>() : InternalPreorder(Root);
+        public IEnumerable<T> Preorder() => ReferenceEquals(Root, null) ? Enumerable.Empty<T>() : InternalPreorder(Root);
 
         private IEnumerable<T> InternalPreorder(IBinaryTreeNode<T> node)
         {
@@ -116,7 +218,7 @@ namespace CyberMath.Structures.BinaryTreeBase
             return list.AsEnumerable();
         }
 
-        public IEnumerable<T> Postorder() => Root == null ? Enumerable.Empty<T>() : InternalPostorder(Root);
+        public IEnumerable<T> Postorder() => ReferenceEquals(Root, null) ? Enumerable.Empty<T>() : InternalPostorder(Root);
 
         private IEnumerable<T> InternalPostorder(IBinaryTreeNode<T> node)
         {

@@ -6,9 +6,6 @@ namespace CyberMath.Structures.BinaryTree
     public class BinaryTreeNode<T> : BinaryTreeNodeBase<T>
         where T : IComparable<T>, IComparable
     {
-        public override IBinaryTreeNode<T> Left { get; set; }
-        public override IBinaryTreeNode<T> Right { get; set; }
-
         public BinaryTreeNode(T data) : base(data) { }
         
         public override void Add(T value)

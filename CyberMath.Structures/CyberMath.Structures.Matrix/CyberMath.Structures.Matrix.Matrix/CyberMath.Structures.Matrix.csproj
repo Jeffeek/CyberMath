@@ -6,6 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CyberMath.Structures.Matrix.MatrixBase\CyberMath.Structures.Matrix.MatrixBase.csproj" />
+    <ProjectReference Include="..\CyberMath.Structures.Matrix.MatrixBase\CyberMath.Structures.MatrixBase.csproj" />
   </ItemGroup>
 </Project>

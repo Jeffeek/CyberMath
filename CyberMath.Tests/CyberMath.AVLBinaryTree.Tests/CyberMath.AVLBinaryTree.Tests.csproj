@@ -14,7 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CyberMath.Structures\CyberMath.Structures.Equations\CyberMath.Structures.Equations.QuadraticEquation\CyberMath.Structures.QuadraticEquation.csproj" />
+    <ProjectReference Include="..\..\CyberMath.Structures\CyberMath.Structures.BinaryTrees\CyberMath.Structures.AVLBinaryTree\CyberMath.Structures.AVLBinaryTree.csproj" />
+    <ProjectReference Include="..\..\CyberMath.Structures\CyberMath.Structures.Extensions\CyberMath.Structures.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

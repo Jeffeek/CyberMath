@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.JaggedMatrix\CyberMath.Structures.Matrix.JaggedMatrix.csproj" />
-    <ProjectReference Include="..\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.Matrix\CyberMath.Structures.Matrix.Matrix.csproj" />
+    <ProjectReference Include="..\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.JaggedMatrix\CyberMath.Structures.JaggedMatrix.csproj" />
+    <ProjectReference Include="..\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.Matrix\CyberMath.Structures.Matrix.csproj" />
   </ItemGroup>
 
 </Project>
