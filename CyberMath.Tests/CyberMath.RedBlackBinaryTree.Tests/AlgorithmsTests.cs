@@ -69,13 +69,13 @@ namespace CyberMath.RedBlackBinaryTree.Tests
             var list = new List<int>();
             var rnd = new Random();
             var firstTree = new RedBlackBinaryTree<int>();
+            var secondTree = new RedBlackBinaryTree<int>();
             for (int i = 0; i < 500; i++)
             {
                 int num = rnd.Next(-50, 50);
                 firstTree.Add(num);
                 list.Add(num);
             }
-            var secondTree = new RedBlackBinaryTree<int>();
             for (int i = 500; i < 1000; i++)
             {
                 int num = rnd.Next(-50, 50);
@@ -83,6 +83,7 @@ namespace CyberMath.RedBlackBinaryTree.Tests
                 list.Add(num);
             }
             firstTree.MergeWith(secondTree);
+            list = list.Distinct().ToList();
             list.Sort();
             CollectionAssert.AreEqual(list, firstTree.Inorder().ToArray());
         }
