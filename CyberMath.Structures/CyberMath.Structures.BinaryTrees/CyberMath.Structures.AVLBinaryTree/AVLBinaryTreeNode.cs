@@ -10,7 +10,7 @@ namespace CyberMath.Structures.AVLBinaryTree
         
         public AVLBinaryTreeNode(T data) : base(data) { }
 
-        public override void Add(T value) => InternalInsert(this, value);
+        public override IBinaryTreeNode<T> Insert(T value) => InternalInsert(this, value);
 
         internal AVLBinaryTreeNode<T> InternalInsert(AVLBinaryTreeNode<T> node, T data)
         {

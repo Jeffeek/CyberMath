@@ -11,6 +11,6 @@ namespace CyberMath.Structures.BinaryTreeBase
         IBinaryTreeNode<T> Left { get; set; }
         IBinaryTreeNode<T> Right { get; set; }
         T Data { get; }
-        void Add(T value);
+        IBinaryTreeNode<T> Insert(T value);
     }
 }

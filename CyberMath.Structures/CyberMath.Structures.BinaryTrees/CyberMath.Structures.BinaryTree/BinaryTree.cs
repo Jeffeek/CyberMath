@@ -20,7 +20,8 @@ namespace CyberMath.Structures.BinaryTree
                 return;
             }
 
-            Root.Add(item);
+            if (Contains(item)) return;
+            Root = Root.Insert(item);
             Count++;
         }
     }

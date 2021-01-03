@@ -10,6 +10,27 @@ namespace CyberMath.Structures.BinaryTreeBase
     {
         private bool _disposed = false;
 
+        public IBinaryTreeNode<T> FindNode(T value)
+        {
+            var current = Root;
+            while (!ReferenceEquals(current, null))
+            {
+                switch (current.Data.CompareTo(value))
+                {
+                    case 0:
+                        return current;
+                    case -1:
+                        current = current.Right;
+                        break;
+                    default:
+                        current = current.Left;
+                        break;
+                }
+            }
+
+            return default;
+        }
+        
         protected BinaryTreeBase(params T[] values) => AddRange(values);
 
         protected BinaryTreeBase(IEnumerable<T> values) => AddRange(values.ToArray());
@@ -129,7 +150,7 @@ namespace CyberMath.Structures.BinaryTreeBase
             Count = 0;
         }
 
-        public bool Contains(T item) => !ReferenceEquals(Root, null) && InternalContains(Root, item);
+        public bool Contains(T item) => InternalContains(Root, item);
 
         private bool InternalContains(IBinaryTreeNode<T> node, T data)
         {

@@ -14,7 +14,7 @@ namespace CyberMath.AVLBinaryTree.Tests
         public void BinaryTree_Inorder_100_test()
         {
             var rnd = new Random();
-            var numbers = Enumerable.Range(0, 100).Select(x => rnd.Next(-30, 30)).ToArray();
+            var numbers = Enumerable.Range(0, 100).Select(x => rnd.Next(-30, 30)).Distinct().ToArray();
             var tree = new AVLBinaryTree<int>(numbers);
             var sortedNumbers = numbers.ToList();
             sortedNumbers.Sort();
@@ -26,7 +26,7 @@ namespace CyberMath.AVLBinaryTree.Tests
         public void BinaryTree_Inorder_1000_test()
         {
             var rnd = new Random();
-            var numbers = Enumerable.Range(0, 1000).Select(x => rnd.Next(-30, 30)).ToArray();
+            var numbers = Enumerable.Range(0, 1000).Select(x => rnd.Next(-30, 30)).Distinct().ToArray();
             var tree = new AVLBinaryTree<int>(numbers);
             var sortedNumbers = numbers.ToList();
             sortedNumbers.Sort();
@@ -38,7 +38,7 @@ namespace CyberMath.AVLBinaryTree.Tests
         public void BinaryTree_Inorder_10000_test()
         {
             var rnd = new Random();
-            var numbers = Enumerable.Range(0, 10000).Select(x => rnd.Next(-30, 30)).ToArray();
+            var numbers = Enumerable.Range(0, 10000).Select(x => rnd.Next(-30, 30)).Distinct().ToArray();
             var tree = new AVLBinaryTree<int>(numbers);
             var sortedNumbers = numbers.ToList();
             sortedNumbers.Sort();

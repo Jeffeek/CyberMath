@@ -83,6 +83,7 @@ namespace CyberMath.AVLBinaryTree.Tests
                 list.Add(num);
             }
             firstTree.MergeWith(secondTree);
+            list = list.Distinct().ToList();
             list.Sort();
             CollectionAssert.AreEqual(list, firstTree.Inorder().ToArray());
         }

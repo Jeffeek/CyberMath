@@ -8,24 +8,20 @@ namespace CyberMath.Structures.BinaryTree
     {
         public BinaryTreeNode(T data) : base(data) { }
         
-        public override void Add(T value)
+        public override IBinaryTreeNode<T> Insert(T value)
         {
             var node = new BinaryTreeNode<T>(value);
 
             if (node.Data.CompareTo(Data) == -1)
             {
-                if (Left == null)
-                    Left = node;
-                else
-                    Left.Add(value);
+                Left = Left == null ? node : Left.Insert(value);
             }
             else
             {
-                if (Right == null)
-                    Right = node;
-                else
-                    Right.Add(value);
+                Right = Right == null ? node : Right.Insert(value);
             }
+
+            return this;
         }
     }
 }

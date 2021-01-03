@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using CyberMath.Structures.BinaryTree;
+using CyberMath.Structures.RedBlackBinaryTree;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CyberMath.BinaryTree.Tests
+namespace CyberMath.RedBlackBinaryTree.Tests
 {
     [TestClass]
     public class AlgorithmsTests
@@ -13,10 +12,10 @@ namespace CyberMath.BinaryTree.Tests
         [TestMethod]
         public void BinaryTreeMergeTest()
         {
-            var firstTree = new BinaryTree<int>();
+            var firstTree = new RedBlackBinaryTree<int>();
             for (int i = 0; i < 10; i++)
                 firstTree.Add(i);
-            var secondTree = new BinaryTree<int>();
+            var secondTree = new RedBlackBinaryTree<int>();
             for (int i = 10; i < 20; i++)
                 firstTree.Add(i);
             firstTree.MergeWith(secondTree);
@@ -28,13 +27,13 @@ namespace CyberMath.BinaryTree.Tests
         public void BinaryTreeMergeTime_100_Test()
         {
             var list = new List<int>();
-            var firstTree = new BinaryTree<int>();
+            var firstTree = new RedBlackBinaryTree<int>();
             for (int i = 0; i < 50; i++)
             {
                 firstTree.Add(i);
                 list.Add(i);
             }
-            var secondTree = new BinaryTree<int>();
+            var secondTree = new RedBlackBinaryTree<int>();
             for (int i = 50; i < 100; i++)
             {
                 firstTree.Add(i);
@@ -48,13 +47,13 @@ namespace CyberMath.BinaryTree.Tests
         public void BinaryTreeMergeTime_1000_Test()
         {
             var list = new List<int>();
-            var firstTree = new BinaryTree<int>();
+            var firstTree = new RedBlackBinaryTree<int>();
             for (int i = 0; i < 500; i++)
             {
                 firstTree.Add(i);
                 list.Add(i);
             }
-            var secondTree = new BinaryTree<int>();
+            var secondTree = new RedBlackBinaryTree<int>();
             for (int i = 500; i < 1000; i++)
             {
                 firstTree.Add(i);
@@ -69,15 +68,14 @@ namespace CyberMath.BinaryTree.Tests
         {
             var list = new List<int>();
             var rnd = new Random();
-            var firstTree = new BinaryTree<int>();
+            var firstTree = new RedBlackBinaryTree<int>();
             for (int i = 0; i < 500; i++)
             {
                 int num = rnd.Next(-50, 50);
                 firstTree.Add(num);
                 list.Add(num);
             }
-
-            var secondTree = new BinaryTree<int>();
+            var secondTree = new RedBlackBinaryTree<int>();
             for (int i = 500; i < 1000; i++)
             {
                 int num = rnd.Next(-50, 50);
@@ -85,7 +83,6 @@ namespace CyberMath.BinaryTree.Tests
                 list.Add(num);
             }
             firstTree.MergeWith(secondTree);
-            list = list.Distinct().ToList();
             list.Sort();
             CollectionAssert.AreEqual(list, firstTree.Inorder().ToArray());
         }
@@ -93,7 +90,7 @@ namespace CyberMath.BinaryTree.Tests
         [TestMethod]
         public void BinaryTree_Contains_negative()
         {
-            var tree = new BinaryTree<int>();
+            var tree = new RedBlackBinaryTree<int>();
             tree.AddRange(1,2,3,4,5,6,-50,-99);
             var expected = false;
             var actual = tree.Contains(-999);
@@ -103,7 +100,7 @@ namespace CyberMath.BinaryTree.Tests
         [TestMethod]
         public void BinaryTree_Contains_positive()
         {
-            var tree = new BinaryTree<int>();
+            var tree = new RedBlackBinaryTree<int>();
             tree.AddRange(1, 2, 3, 4, 5, 6, -50, -99);
             var expected = true;
             var actual = tree.Contains(6);
