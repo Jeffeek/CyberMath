@@ -45,9 +45,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.AVLBin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.AVLBinaryTree.Tests", "CyberMath.Tests\CyberMath.AVLBinaryTree.Tests\CyberMath.AVLBinaryTree.Tests.csproj", "{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.Structures.RedBlackBinaryTree", "CyberMath.Structures\CyberMath.Structures.BinaryTrees\CyberMath.Structures.RedBlackBinaryTree\CyberMath.Structures.RedBlackBinaryTree.csproj", "{E8D02AF3-1553-487D-8187-66B03236681F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Structures.RedBlackBinaryTree", "CyberMath.Structures\CyberMath.Structures.BinaryTrees\CyberMath.Structures.RedBlackBinaryTree\CyberMath.Structures.RedBlackBinaryTree.csproj", "{E8D02AF3-1553-487D-8187-66B03236681F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.RedBlackBinaryTree.Tests", "CyberMath.Tests\CyberMath.RedBlackBinaryTree.Tests\CyberMath.RedBlackBinaryTree.Tests.csproj", "{552A42EF-2FDB-418E-BE68-63A12F1D0BFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.RedBlackBinaryTree.Tests", "CyberMath.Tests\CyberMath.RedBlackBinaryTree.Tests\CyberMath.RedBlackBinaryTree.Tests.csproj", "{552A42EF-2FDB-418E-BE68-63A12F1D0BFE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.PrimitivesExtensions.Tests", "CyberMath.Tests\CyberMath.PrimitivesExtensions.Tests\CyberMath.PrimitivesExtensions.Tests.csproj", "{B065F9D0-3C7D-42E2-B9FE-901522D08F8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.Primitives.Int64", "CyberMath.Primitives\CyberMath.Primitives.Int64\CyberMath.Primitives.Int64.csproj", "{922D52C8-5FD1-4C67-A579-3D0A9DBDE499}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +127,14 @@ Global
 		{552A42EF-2FDB-418E-BE68-63A12F1D0BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{552A42EF-2FDB-418E-BE68-63A12F1D0BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{552A42EF-2FDB-418E-BE68-63A12F1D0BFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B065F9D0-3C7D-42E2-B9FE-901522D08F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B065F9D0-3C7D-42E2-B9FE-901522D08F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B065F9D0-3C7D-42E2-B9FE-901522D08F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B065F9D0-3C7D-42E2-B9FE-901522D08F8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{922D52C8-5FD1-4C67-A579-3D0A9DBDE499}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{922D52C8-5FD1-4C67-A579-3D0A9DBDE499}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{922D52C8-5FD1-4C67-A579-3D0A9DBDE499}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{922D52C8-5FD1-4C67-A579-3D0A9DBDE499}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,6 +160,8 @@ Global
 		{A09CCBB6-1736-42AE-8575-D43FEA4B46FB} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
 		{E8D02AF3-1553-487D-8187-66B03236681F} = {65886522-FAF3-4E56-B004-B4EBD2F4B6DD}
 		{552A42EF-2FDB-418E-BE68-63A12F1D0BFE} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
+		{B065F9D0-3C7D-42E2-B9FE-901522D08F8E} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
+		{922D52C8-5FD1-4C67-A579-3D0A9DBDE499} = {882477EC-65BA-4FC6-8339-9F6FF1CA9965}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7E269A4-25A3-44C8-B284-55DF80EEAA03}

@@ -48,7 +48,7 @@ namespace CyberMath.RedBlackBinaryTree.Tests
         public void BinaryTree_Postorder_test()
         {
             var tree = new RedBlackBinaryTree<int>(6,55,-55,-40,8,66,554,74,12,7);
-            var ordered = new [] {-40, -55, 7, 12, 8, 74, 554, 66, 55, 6};
+            var ordered = new [] { -40, -55, 7, 12, 8, 66, 554, 74, 55, 6 };
             var postorder = tree.Postorder().ToArray();
             CollectionAssert.AreEqual(ordered, postorder);
         }
@@ -57,7 +57,7 @@ namespace CyberMath.RedBlackBinaryTree.Tests
         public void BinaryTree_Preorder_test()
         {
             var tree = new RedBlackBinaryTree<int>(6, 55, -55, -40, 8, 66, 554, 74, 12, 7);
-            var ordered = new [] { 6, - 55, -40, 55, 8, 7, 12, 66, 554, 74 };
+            var ordered = new [] { 6, -55, -40, 55, 8, 7, 12, 74, 66, 554};
             var preorder = tree.Preorder().ToArray();
             CollectionAssert.AreEqual(ordered, preorder);
         }

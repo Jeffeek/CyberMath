@@ -9,7 +9,6 @@ namespace CyberMath.Structures.BinaryTreeBase
         where T : IComparable<T>, IComparable
     {
         IBinaryTreeNode<T> Root { get; }
-        IBinaryTreeNode<T> FindNode(T value);
         IEnumerable<T> Inorder();
         IEnumerable<T> Preorder();
         IEnumerable<T> Postorder();

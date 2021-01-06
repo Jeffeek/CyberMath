@@ -12,6 +12,39 @@ namespace CyberMath.Structures.AVLBinaryTree
 
         public override IBinaryTreeNode<T> Insert(T value) => InternalInsert(this, value);
 
+        public override IBinaryTreeNode<T> Remove(T value) => InternalRemove(this, value);
+
+        private AVLBinaryTreeNode<T> InternalRemove(AVLBinaryTreeNode<T> node, T value)
+        {
+            if (ReferenceEquals(node, null))
+                return null;
+            if (value.CompareTo(node.Data) == -1)
+                node.Left = InternalRemove(node.Left as AVLBinaryTreeNode<T>, value);
+            else if (value.CompareTo(node.Data) == 1)
+                node.Right = InternalRemove(node.Right as AVLBinaryTreeNode<T>, value);
+            else
+            {
+                AVLBinaryTreeNode<T> leftNode = node.Left as AVLBinaryTreeNode<T>;
+                AVLBinaryTreeNode<T> rightNode = node.Right as AVLBinaryTreeNode<T>;
+                node = null;
+                if (ReferenceEquals(rightNode, null))
+                    return leftNode;
+                AVLBinaryTreeNode<T> min = rightNode.Min() as AVLBinaryTreeNode<T>;
+                min.Right = RemoveMin(rightNode);
+                min.Left = leftNode;
+                return Balance(min);
+            }
+            return Balance(node);
+        }
+
+        private AVLBinaryTreeNode<T> RemoveMin(AVLBinaryTreeNode<T> subTree)
+        {
+            if (ReferenceEquals(subTree.Left, null))
+                return subTree.Right as AVLBinaryTreeNode<T>;
+            subTree.Left = RemoveMin(subTree.Left as AVLBinaryTreeNode<T>);
+            return Balance(subTree);
+        }
+
         internal AVLBinaryTreeNode<T> InternalInsert(AVLBinaryTreeNode<T> node, T data)
         {
             if (ReferenceEquals(node, null)) return new AVLBinaryTreeNode<T>(data);

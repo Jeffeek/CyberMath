@@ -9,139 +9,25 @@ namespace CyberMath.Structures.BinaryTreeBase
            where T : IComparable, IComparable<T>
     {
         private bool _disposed = false;
-
-        public IBinaryTreeNode<T> FindNode(T value)
-        {
-            var current = Root;
-            while (!ReferenceEquals(current, null))
-            {
-                switch (current.Data.CompareTo(value))
-                {
-                    case 0:
-                        return current;
-                    case -1:
-                        current = current.Right;
-                        break;
-                    default:
-                        current = current.Left;
-                        break;
-                }
-            }
-
-            return default;
-        }
-        
-        protected BinaryTreeBase(params T[] values) => AddRange(values);
-
-        protected BinaryTreeBase(IEnumerable<T> values) => AddRange(values.ToArray());
-
-        protected BinaryTreeBase() { }
         
         public IBinaryTreeNode<T> Root { get; protected set; }
+        public int Count { get; protected set; }
+        public bool IsReadOnly => false;
+        public TraversalOrderType TraversalOrderType { get; set; }
         
+        protected BinaryTreeBase(params T[] values) => AddRange(values);
+        protected BinaryTreeBase(IEnumerable<T> values) => AddRange(values.ToArray());
+        protected BinaryTreeBase() { }
+
         public abstract void Add(T item);
-        
-        public virtual bool Remove(T item)
+
+        public bool Remove(T item)
         {
-            var current = Root;
-            var parent = Root;
-            bool isLeftChild = false;
-            if (current == null) return false;
-            while (current != null && current.Data.CompareTo(item) != 0)
-            {
-                parent = current;
-                if (item?.CompareTo(current.Data) == -1)
-                {
-                    current = current.Left;
-                    isLeftChild = true;
-                }
-                else
-                {
-                    current = current.Right;
-                    isLeftChild = false;
-                }
-            }
-
-            if (current == null)
-                return false;
-
-            switch (current.Right)
-            {
-                case null when current.Left == null:
-                    {
-                        if (current.Data.CompareTo(Root.Data) == 0)
-                            Root = null;
-                        else
-                        {
-                            if (isLeftChild)
-                                parent.Left = null;
-                            else
-                                parent.Right = null;
-                        }
-
-                        break;
-                    }
-                case null when current.Data.CompareTo(Root.Data) == 0:
-                    Root = current.Left;
-                    break;
-                case null when isLeftChild:
-                    parent.Left = current.Left;
-                    break;
-                case null:
-                    parent.Right = current.Left;
-                    break;
-                default:
-                    {
-                        if (current.Left == null)
-                        {
-                            if (current.Data.CompareTo(Root.Data) == 0)
-                                Root = current.Right;
-                            else
-                            {
-                                if (isLeftChild)
-                                    parent.Left = current.Right;
-                                else
-                                    parent.Right = current.Right;
-                            }
-                        }
-                        else
-                        {
-                            IBinaryTreeNode<T> successor = GetSuccessor(current);
-                            if (current.Data.CompareTo(Root.Data) == 0)
-                                Root = successor;
-                            else if (isLeftChild)
-                                parent.Left = successor;
-                            else
-                                parent.Right = successor;
-                        }
-
-                        break;
-                    }
-            }
-
+            if (ReferenceEquals(Root, null)) return false;
+            if (!Contains(item)) return false;
+            Root = Root.Remove(item);
+            Count--;
             return true;
-        }
-
-        private IBinaryTreeNode<T> GetSuccessor(IBinaryTreeNode<T> node)
-        {
-            var parentOfSuccessor = node;
-            var successor = node;
-            var current = node.Right;
-
-            while (current != null)
-            {
-                parentOfSuccessor = successor;
-                successor = current;
-                current = current.Left;
-            }
-            if (successor.CompareTo(node.Right) != 0)
-            {
-                parentOfSuccessor.Left = successor.Right;
-                successor.Right = node.Right;
-            }
-            successor.Left = node.Left;
-
-            return successor;
         }
 
         public void Clear()
@@ -150,9 +36,60 @@ namespace CyberMath.Structures.BinaryTreeBase
             Count = 0;
         }
 
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            if (arrayIndex < 0 || arrayIndex >= array.Length) return;
+            var binaryTreeArrayInorder = Inorder().ToArray();
+            var currentBinaryTreeIndex = 0;
+            for (var i = arrayIndex; i < array.Length; i++)
+            {
+                array[i] = binaryTreeArrayInorder[currentBinaryTreeIndex];
+                currentBinaryTreeIndex++;
+            }
+        }
+
+        #region Add and Merge
+
+        public void AddRange(params T[] values)
+        {
+            foreach (var element in values)
+                Add(element);
+        }
+
+        public void MergeWith(IBinaryTree<T> binaryTree)
+        {
+            if (binaryTree == null) throw new Exception("binaryTree was null");
+            var elements = binaryTree.Inorder();
+            AddRange(elements.ToArray());
+        }
+
+        #endregion
+        
+        #region Enumeration
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return TraversalOrderType switch
+            {
+                TraversalOrderType.Preorder => Preorder().GetEnumerator(),
+                TraversalOrderType.Inorder => Inorder().GetEnumerator(),
+                TraversalOrderType.Postorder => Postorder().GetEnumerator(),
+                _ => throw new Exception("Something went wrong! Traversal strategy is not defined")
+            };
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        #endregion
+        
+        #region Contains
+
         public bool Contains(T item) => InternalContains(Root, item);
 
-        private bool InternalContains(IBinaryTreeNode<T> node, T data)
+        protected bool InternalContains(IBinaryTreeNode<T> node, T data)
         {
             while (true)
             {
@@ -171,45 +108,9 @@ namespace CyberMath.Structures.BinaryTreeBase
             }
         }
 
-        public void CopyTo(T[] array, int arrayIndex)
-        {
-            if (arrayIndex < 0 || arrayIndex >= array.Length) return;
-            var binaryTreeArrayInorder = Inorder().ToArray();
-            var currentBinaryTreeIndex = 0;
-            for (var i = arrayIndex; i < array.Length; i++)
-            {
-                array[i] = binaryTreeArrayInorder[currentBinaryTreeIndex];
-                currentBinaryTreeIndex++;
-            }
-        }
+        #endregion
 
-        public int Count { get; protected set; }
-        
-        public bool IsReadOnly => false;
-        
-        public IEnumerator<T> GetEnumerator()
-        {
-            return Inorder().GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        public void Dispose()
-        {
-            if (_disposed) return;
-            Dispose(true);
-            _disposed = true;
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (!disposing) return;
-            Clear();
-            GC.SuppressFinalize(this);
-        }
+        #region Orders
 
         public IEnumerable<T> Inorder() => ReferenceEquals(Root, null) ? Enumerable.Empty<T>() : InternalInorder(Root);
 
@@ -253,35 +154,40 @@ namespace CyberMath.Structures.BinaryTreeBase
             return list.AsEnumerable();
         }
 
+        #endregion
+        
+        #region MinMax
+
         public T Max()
         {
             if (Root == null) throw new NullReferenceException("Tree is empty");
-            var current = Root;
-            while (current.Right != null)
-                current = current.Right;
-            return current.Data;
+            return Root.Max().Data;
         }
 
         public T Min()
         {
             if (Root == null) throw new NullReferenceException("Tree is empty");
-            var current = Root;
-            while (current.Left != null)
-                current = current.Left;
-            return current.Data;
+            return Root.Min().Data;
         }
 
-        public void AddRange(params T[] values)
+        #endregion
+
+        #region Dispose
+
+        public void Dispose()
         {
-            foreach (var element in values)
-                Add(element);
+            if (_disposed) return;
+            Dispose(true);
+            _disposed = true;
         }
 
-        public void MergeWith(IBinaryTree<T> binaryTree)
+        private void Dispose(bool disposing)
         {
-            var elements = binaryTree.Inorder();
-            foreach (var element in elements)
-                Add(element);
+            if (!disposing) return;
+            Clear();
+            GC.SuppressFinalize(this);
         }
+
+        #endregion
     }
 }

@@ -12,5 +12,8 @@ namespace CyberMath.Structures.BinaryTreeBase
         IBinaryTreeNode<T> Right { get; set; }
         T Data { get; }
         IBinaryTreeNode<T> Insert(T value);
+        IBinaryTreeNode<T> Remove(T value);
+        IBinaryTreeNode<T> Min();
+        IBinaryTreeNode<T> Max();
     }
 }

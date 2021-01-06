@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.Design.Serialization;
 using System.Diagnostics.CodeAnalysis;
 
 namespace CyberMath.Structures.BinaryTreeBase
@@ -10,7 +9,46 @@ namespace CyberMath.Structures.BinaryTreeBase
         public IBinaryTreeNode<T> Left { get; set; }
         public IBinaryTreeNode<T> Right { get; set; }
         public T Data { get; protected set; }
+        
         public abstract IBinaryTreeNode<T> Insert(T value);
+        public abstract IBinaryTreeNode<T> Remove(T value);
+        
+        public IBinaryTreeNode<T> Min()
+        {
+            var current = this as IBinaryTreeNode<T>;
+            while (current.Left != null)
+                current = current.Left;
+            return current;
+        }
+
+        public IBinaryTreeNode<T> Max()
+        {
+            var current = this as IBinaryTreeNode<T>;
+            while (current.Right != null)
+                current = current.Right;
+            return current;
+        }
+
+        protected IBinaryTreeNode<T> FindNode(IBinaryTreeNode<T> subTree, T value)
+        {
+            var current = subTree;
+            while (!ReferenceEquals(current, null))
+            {
+                switch (current.Data.CompareTo(value))
+                {
+                    case 0:
+                        return current;
+                    case -1:
+                        current = current.Right;
+                        break;
+                    default:
+                        current = current.Left;
+                        break;
+                }
+            }
+
+            return default;
+        }
 
         #region Constructors
 
@@ -18,6 +56,28 @@ namespace CyberMath.Structures.BinaryTreeBase
         protected BinaryTreeNodeBase(T data) => Data = data;
 
         #endregion
+
+        protected IBinaryTreeNode<T> GetSuccessor(IBinaryTreeNode<T> node)
+        {
+            var parentOfSuccessor = node;
+            var successor = node;
+            var current = node.Right;
+
+            while (current != null)
+            {
+                parentOfSuccessor = successor;
+                successor = current;
+                current = current.Left;
+            }
+            if (successor.CompareTo(node.Right) != 0)
+            {
+                parentOfSuccessor.Left = successor.Right;
+                successor.Right = node.Right;
+            }
+            successor.Left = node.Left;
+
+            return successor;
+        }
 
         #region CompareTo
 
