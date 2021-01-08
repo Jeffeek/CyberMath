@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CyberMath.Structures.RedBlackBinaryTree
+﻿namespace CyberMath.Structures.RedBlackBinaryTree
 {
     internal enum BinaryTreeColor : byte
     {

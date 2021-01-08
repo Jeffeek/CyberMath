@@ -199,18 +199,20 @@ namespace CyberMath.Structures.RedBlackBinaryTree
         {
             RedBlackBinaryTreeNode<T> item = FindNode(root, value) as RedBlackBinaryTreeNode<T>;
             RedBlackBinaryTreeNode<T> nodeY;
+
             if (item.Left == null && item.Right == null)
             {
+                if (item == root) return null;
                 nodeY = item._parent;
                 if (nodeY.Left as RedBlackBinaryTreeNode<T> == item)
                     nodeY.Left = null;
                 else
                     nodeY.Right = null;
             }
-            
             else if (item.Left == null)
             {
                 nodeY = item._parent;
+                if (nodeY == null) return item.Right as RedBlackBinaryTreeNode<T>;
                 if (nodeY.Left as RedBlackBinaryTreeNode<T> == item)
                     nodeY.Left = item.Right;
                 else
@@ -219,6 +221,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
             else if (item.Right == null)
             {
                 nodeY = item._parent;
+                if (nodeY == null) return item.Left as RedBlackBinaryTreeNode<T>;
                 if (nodeY.Left as RedBlackBinaryTreeNode<T> == item)
                     nodeY.Left = item.Left;
                 else
@@ -226,7 +229,6 @@ namespace CyberMath.Structures.RedBlackBinaryTree
             }
             else
             {
-                //???
                 var nodeX = item.Left.Max() as RedBlackBinaryTreeNode<T>;
                 item.Data = nodeX.Data;
                 nodeY = nodeX._parent;

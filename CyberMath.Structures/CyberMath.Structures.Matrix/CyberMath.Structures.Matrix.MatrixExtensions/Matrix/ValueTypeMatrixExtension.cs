@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
-using CyberMath.Structures.Extensions;
-using CyberMath.Structures.Extensions.Extensions;
+using CyberMath.Extensions.Extensions;
 using CyberMath.Structures.Matrix.Matrix.Models;
 using CyberMath.Structures.Matrix.MatrixBase.Exceptions;
 

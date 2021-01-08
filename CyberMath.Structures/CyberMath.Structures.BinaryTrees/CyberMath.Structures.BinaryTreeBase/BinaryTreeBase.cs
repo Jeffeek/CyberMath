@@ -11,13 +11,22 @@ namespace CyberMath.Structures.BinaryTreeBase
         private bool _disposed = false;
         
         public IBinaryTreeNode<T> Root { get; protected set; }
+        public bool IsEmpty => Count == 0;
         public int Count { get; protected set; }
         public bool IsReadOnly => false;
         public TraversalOrderType TraversalOrderType { get; set; }
-        
-        protected BinaryTreeBase(params T[] values) => AddRange(values);
-        protected BinaryTreeBase(IEnumerable<T> values) => AddRange(values.ToArray());
+
+        protected BinaryTreeBase(IEnumerable<T> values) => AddRange(values);
+
         protected BinaryTreeBase() { }
+
+        public int Depth()
+        {
+            if (IsEmpty) return -1;
+            return Root.Depth();
+        }
+
+        #region ICollection
 
         public abstract void Add(T item);
 
@@ -48,19 +57,22 @@ namespace CyberMath.Structures.BinaryTreeBase
             }
         }
 
+        #endregion
+
         #region Add and Merge
 
-        public void AddRange(params T[] values)
+        public void AddRange(IEnumerable<T> values)
         {
-            foreach (var element in values)
-                Add(element);
+            if (ReferenceEquals(values, null)) throw new ArgumentNullException(nameof(values));
+            foreach (var value in values)
+                Add(value);
         }
 
         public void MergeWith(IBinaryTree<T> binaryTree)
         {
-            if (binaryTree == null) throw new Exception("binaryTree was null");
-            var elements = binaryTree.Inorder();
-            AddRange(elements.ToArray());
+            if (binaryTree == null) throw new Exception($"{nameof(binaryTree)} was null");
+            foreach (var elem in binaryTree)
+                Add(elem);
         }
 
         #endregion
@@ -78,10 +90,7 @@ namespace CyberMath.Structures.BinaryTreeBase
             };
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         #endregion
         

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace CyberMath.Structures.Extensions.Extensions
+namespace CyberMath.Extensions.Extensions
 {
     public static class StringExtensions
     {

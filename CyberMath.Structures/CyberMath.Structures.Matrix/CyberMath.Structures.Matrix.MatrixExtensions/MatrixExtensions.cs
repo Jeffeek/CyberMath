@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using CyberMath.Structures.Extensions.Extensions;
 using CyberMath.Structures.Matrix.JaggedMatrix.Models;
 using CyberMath.Structures.Matrix.Matrix.Models;
 

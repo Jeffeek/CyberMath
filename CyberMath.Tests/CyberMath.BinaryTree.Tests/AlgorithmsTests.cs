@@ -94,7 +94,7 @@ namespace CyberMath.BinaryTree.Tests
         public void BinaryTree_Contains_negative()
         {
             var tree = new BinaryTree<int>();
-            tree.AddRange(1,2,3,4,5,6,-50,-99);
+            tree.AddRange(new[] { 1, 2, 3, 4, 5, 6, -50, -99 });
             var expected = false;
             var actual = tree.Contains(-999);
             Assert.AreEqual(expected, actual);
@@ -104,7 +104,7 @@ namespace CyberMath.BinaryTree.Tests
         public void BinaryTree_Contains_positive()
         {
             var tree = new BinaryTree<int>();
-            tree.AddRange(1, 2, 3, 4, 5, 6, -50, -99);
+            tree.AddRange(new[] { 1, 2, 3, 4, 5, 6, -50, -99 });
             var expected = true;
             var actual = tree.Contains(6);
             Assert.AreEqual(expected, actual);

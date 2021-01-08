@@ -8,9 +8,10 @@ namespace CyberMath.Structures.BinaryTreeBase
                                             IEquatable<IBinaryTreeNode<T>> 
         where T : IComparable<T>, IComparable
     {
-        IBinaryTreeNode<T> Left { get; set; }
-        IBinaryTreeNode<T> Right { get; set; }
+        IBinaryTreeNode<T> Left { get; }
+        IBinaryTreeNode<T> Right { get; }
         T Data { get; }
+        int Depth();
         IBinaryTreeNode<T> Insert(T value);
         IBinaryTreeNode<T> Remove(T value);
         IBinaryTreeNode<T> Min();

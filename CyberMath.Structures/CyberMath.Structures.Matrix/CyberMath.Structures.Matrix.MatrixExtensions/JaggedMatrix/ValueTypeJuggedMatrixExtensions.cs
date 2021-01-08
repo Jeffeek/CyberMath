@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using CyberMath.Structures.Extensions;
-using CyberMath.Structures.Extensions.Extensions;
+using CyberMath.Extensions.Extensions;
 using CyberMath.Structures.Matrix.JaggedMatrix.Models;
 using CyberMath.Structures.Matrix.MatrixBase;
 using CyberMath.Structures.Matrix.MatrixBase.Exceptions;

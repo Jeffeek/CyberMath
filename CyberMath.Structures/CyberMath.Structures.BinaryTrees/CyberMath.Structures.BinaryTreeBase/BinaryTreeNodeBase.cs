@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace CyberMath.Structures.BinaryTreeBase
@@ -6,10 +7,34 @@ namespace CyberMath.Structures.BinaryTreeBase
     public abstract class BinaryTreeNodeBase<T> : IBinaryTreeNode<T> 
         where T : IComparable<T>, IComparable
     {
-        public IBinaryTreeNode<T> Left { get; set; }
-        public IBinaryTreeNode<T> Right { get; set; }
-        public T Data { get; protected set; }
+        public IBinaryTreeNode<T> Left { get; protected set; }
+        public IBinaryTreeNode<T> Right { get; protected set; }
         
+        public T Data { get; protected set; }
+
+        public int Depth() => InternalDepth(this);
+
+        protected int InternalDepth(BinaryTreeNodeBase<T> node)
+        {
+            var levels = 0;
+            var queue = new Queue<IBinaryTreeNode<T>>();
+            queue.Enqueue(node);
+            while (queue.Count > 0)
+            {
+                var count = queue.Count;
+                for (var i = 0; i < count; i++)
+                {
+                    var tempNode = queue.Dequeue();
+                    if (tempNode.Right != null)
+                        queue.Enqueue(tempNode.Right);
+                    if (tempNode.Left != null)
+                        queue.Enqueue(tempNode.Left);
+                }
+                levels++;
+            }
+            return levels;
+        }
+
         public abstract IBinaryTreeNode<T> Insert(T value);
         public abstract IBinaryTreeNode<T> Remove(T value);
         
@@ -57,17 +82,17 @@ namespace CyberMath.Structures.BinaryTreeBase
 
         #endregion
 
-        protected IBinaryTreeNode<T> GetSuccessor(IBinaryTreeNode<T> node)
+        protected IBinaryTreeNode<T> GetSuccessor(BinaryTreeNodeBase<T> node)
         {
             var parentOfSuccessor = node;
             var successor = node;
-            var current = node.Right;
+            var current = node.Right as BinaryTreeNodeBase<T>;
 
             while (current != null)
             {
                 parentOfSuccessor = successor;
                 successor = current;
-                current = current.Left;
+                current = current.Left as BinaryTreeNodeBase<T>;
             }
             if (successor.CompareTo(node.Right) != 0)
             {

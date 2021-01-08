@@ -1,5 +1,4 @@
 ﻿using System;
-using CyberMath.Structures.Extensions.Extensions;
 
 namespace CyberMath.Primitives.Int32
 {

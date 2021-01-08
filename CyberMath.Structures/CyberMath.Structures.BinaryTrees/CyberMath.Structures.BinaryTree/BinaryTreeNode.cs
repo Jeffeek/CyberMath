@@ -11,16 +11,10 @@ namespace CyberMath.Structures.BinaryTree
         public override IBinaryTreeNode<T> Insert(T value)
         {
             var node = new BinaryTreeNode<T>(value);
-
             if (node.Data.CompareTo(Data) == -1)
-            {
                 Left = Left == null ? node : Left.Insert(value);
-            }
             else
-            {
                 Right = Right == null ? node : Right.Insert(value);
-            }
-
             return this;
         }
 
