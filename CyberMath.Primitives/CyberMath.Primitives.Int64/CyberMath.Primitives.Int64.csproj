@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\CyberMath.Extensions\CyberMath.Extensions.csproj" />
+  </ItemGroup>
+
 </Project>

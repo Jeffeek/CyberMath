@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 
 namespace CyberMath.Extensions.Extensions
@@ -25,13 +26,15 @@ namespace CyberMath.Extensions.Extensions
             count = Math.Abs(count);
             if (count == 1) return input;
             var sb = new StringBuilder();
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < count - 1; i++)
             {
                 if (appendLine)
-                    sb.AppendLine(input);
+                    sb.Append(input).Append(Environment.NewLine);
                 else
                     sb.Append(input);
             }
+
+            sb.Append(input);
             return sb.ToString();
         }
 
@@ -44,7 +47,6 @@ namespace CyberMath.Extensions.Extensions
             var sb = new StringBuilder(input);
             for (int i = 0; i < count - 1; i++)
                 sb.Append(separator).Append(input);
-            sb.Append(input);
             return sb.ToString();
         }
     }

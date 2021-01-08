@@ -11,8 +11,8 @@ namespace CyberMath.Structures.BinaryTreeBase
         private bool _disposed = false;
         
         public IBinaryTreeNode<T> Root { get; protected set; }
-        public bool IsEmpty => Count == 0;
         public int Count { get; protected set; }
+        public bool IsEmpty => Count == 0;
         public bool IsReadOnly => false;
         public TraversalOrderType TraversalOrderType { get; set; }
 

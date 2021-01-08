@@ -55,7 +55,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Primitives.Int64"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Tests.Performance", "CyberMath.Tests.Performance", "{E2BBB33F-3CE9-4EEF-8533-A80B361C66FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.PerformanceTests.BinaryTrees", "CyberMath.Tests\CyberMath.Tests.Performance\CyberMath.PerformanceTests.BinaryTrees\CyberMath.PerformanceTests.BinaryTrees.csproj", "{0EE32045-DC86-4D9F-B152-602EAEF50E1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.PerformanceTests.BinaryTrees", "CyberMath.Tests\CyberMath.Tests.Performance\CyberMath.PerformanceTests.BinaryTrees\CyberMath.PerformanceTests.BinaryTrees.csproj", "{0EE32045-DC86-4D9F-B152-602EAEF50E1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.Extensions.Tests", "CyberMath.Tests\CyberMath.Extensions.Tests\CyberMath.Extensions.Tests.csproj", "{EE570311-283A-4816-9CCB-9F553C7F5509}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -143,6 +145,10 @@ Global
 		{0EE32045-DC86-4D9F-B152-602EAEF50E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EE32045-DC86-4D9F-B152-602EAEF50E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EE32045-DC86-4D9F-B152-602EAEF50E1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE570311-283A-4816-9CCB-9F553C7F5509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE570311-283A-4816-9CCB-9F553C7F5509}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE570311-283A-4816-9CCB-9F553C7F5509}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE570311-283A-4816-9CCB-9F553C7F5509}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -171,6 +177,7 @@ Global
 		{922D52C8-5FD1-4C67-A579-3D0A9DBDE499} = {882477EC-65BA-4FC6-8339-9F6FF1CA9965}
 		{E2BBB33F-3CE9-4EEF-8533-A80B361C66FA} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
 		{0EE32045-DC86-4D9F-B152-602EAEF50E1E} = {E2BBB33F-3CE9-4EEF-8533-A80B361C66FA}
+		{EE570311-283A-4816-9CCB-9F553C7F5509} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7E269A4-25A3-44C8-B284-55DF80EEAA03}

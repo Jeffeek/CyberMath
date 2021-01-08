@@ -12,6 +12,9 @@ namespace CyberMath.Structures.BinaryTreeBase
         
         public T Data { get; protected set; }
 
+        public abstract IBinaryTreeNode<T> Insert(T value);
+        public abstract IBinaryTreeNode<T> Remove(T value);
+        
         public int Depth() => InternalDepth(this);
 
         protected int InternalDepth(BinaryTreeNodeBase<T> node)
@@ -35,9 +38,6 @@ namespace CyberMath.Structures.BinaryTreeBase
             return levels;
         }
 
-        public abstract IBinaryTreeNode<T> Insert(T value);
-        public abstract IBinaryTreeNode<T> Remove(T value);
-        
         public IBinaryTreeNode<T> Min()
         {
             var current = this as IBinaryTreeNode<T>;

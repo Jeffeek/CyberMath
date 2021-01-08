@@ -1,5 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
-using CyberMath.Structures.RedBlackBinaryTree;
 
 namespace CyberMath.PerformanceTests.BinaryTrees
 {
