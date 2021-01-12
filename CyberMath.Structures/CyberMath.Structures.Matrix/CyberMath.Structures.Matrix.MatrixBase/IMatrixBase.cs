@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace CyberMath.Structures.MatrixBase
 {
+    //TODO: summary
     public interface IMatrixBase<T> : IEnumerable<T>
     {
         int RowsCount { get; }

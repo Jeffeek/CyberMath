@@ -10,6 +10,7 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
 {
     public static class ValueTypeJuggedMatrixExtensions
     {
+        //TODO: summary & unit-test
         #region NOT nullable
 
         #region Int32

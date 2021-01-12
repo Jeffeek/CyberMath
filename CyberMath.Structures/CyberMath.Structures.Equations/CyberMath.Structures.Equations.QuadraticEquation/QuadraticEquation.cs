@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace CyberMath.Structures.QuadraticEquation
 {
+    //TODO: summary
     public class QuadraticEquation
     {
         private readonly Regex _quadraticEquationPattern = new Regex("([+-]?\\d+|[+-]?\\d+\\.[\\d]{1,})[Xx]\\^2([+-]?\\d+|[+-]?\\d+\\.[\\d]{1,})[Xx]([+-]?\\d+|[+-]?\\d+\\.[\\d]{1,})");
@@ -23,6 +24,7 @@ namespace CyberMath.Structures.QuadraticEquation
             CalculateDeterminant();
         }
 
+        //TODO: summary
         public QuadraticEquation(string quadraticEquation)
         {
             quadraticEquation = quadraticEquation.Replace(" ", string.Empty);

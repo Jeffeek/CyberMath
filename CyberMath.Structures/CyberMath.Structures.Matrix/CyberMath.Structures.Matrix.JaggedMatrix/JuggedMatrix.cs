@@ -7,6 +7,7 @@ using System.Text;
 
 namespace CyberMath.Structures.JaggedMatrix
 {
+    //TODO: summary
     public class JuggedMatrix<T> : IJuggedMatrix<T>
     {
         private T[][] _innerMatrix;

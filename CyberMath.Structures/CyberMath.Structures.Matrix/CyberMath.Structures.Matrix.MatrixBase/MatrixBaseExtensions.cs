@@ -2,6 +2,7 @@
 
 namespace CyberMath.Structures.MatrixBase
 {
+    //TODO: summary & unit-test
     public static class MatrixBaseExtensions
     {
         public static bool IsMaxInColumn<T>(this IMatrixBase<T> matrix, int i, int j) where T : IComparable

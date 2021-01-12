@@ -77,7 +77,7 @@ namespace CyberMath.Primitives.Int32
         /// <summary>
         /// Calculates the length of Int32 structure
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="number"></param>
         /// <returns></returns>
         public static int GetLength(this int number)
         {

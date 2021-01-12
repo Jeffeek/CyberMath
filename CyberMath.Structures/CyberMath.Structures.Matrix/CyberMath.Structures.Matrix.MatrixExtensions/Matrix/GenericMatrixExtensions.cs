@@ -5,6 +5,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 {
     public static class GenericMatrixExtensions
     {
+        //TODO: summary
         #region Sum
 
         #region int

@@ -2,6 +2,7 @@
 
 namespace CyberMath.Structures.MatrixBase.Exceptions
 {
+    //TODO: summary
     public class MatrixIncomparableOperationException : Exception
     {
         private readonly string _message = "Impossible operation for this matrices";

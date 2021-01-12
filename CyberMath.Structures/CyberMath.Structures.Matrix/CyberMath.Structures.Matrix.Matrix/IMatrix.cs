@@ -2,6 +2,7 @@
 
 namespace CyberMath.Structures.Matrix
 {
+    //TODO: summary
     public interface IMatrix<T> : IMatrixBase<T>
     {
         int ColumnsCount { get; }
