@@ -1,6 +1,6 @@
-using CyberMath.Structures.Matrix.Matrix.Models;
-using CyberMath.Structures.Matrix.MatrixBase.Exceptions;
-using CyberMath.Structures.Matrix.MatrixExtensions.Matrix;
+using CyberMath.Structures.Matrix;
+using CyberMath.Structures.MatrixBase.Exceptions;
+using CyberMath.Structures.MatrixExtensions.Matrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CyberMath.Matrix.Tests
@@ -142,7 +142,7 @@ namespace CyberMath.Matrix.Tests
             };
 
             var actual = matrix.MulOnNumber(number);
-            var expected = new Matrix<int>(3,3)
+            var expected = new Matrix<int>(3, 3)
             {
                 [0, 0] = 30,
                 [0, 1] = 15,

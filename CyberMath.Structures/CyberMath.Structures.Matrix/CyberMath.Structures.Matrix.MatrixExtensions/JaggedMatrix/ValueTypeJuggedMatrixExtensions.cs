@@ -1,12 +1,12 @@
-﻿using System;
+﻿using CyberMath.Extensions;
+using CyberMath.Structures.JaggedMatrix;
+using CyberMath.Structures.MatrixBase;
+using CyberMath.Structures.MatrixBase.Exceptions;
+using System;
 using System.Linq;
 using System.Text;
-using CyberMath.Extensions.Extensions;
-using CyberMath.Structures.Matrix.JaggedMatrix.Models;
-using CyberMath.Structures.Matrix.MatrixBase;
-using CyberMath.Structures.Matrix.MatrixBase.Exceptions;
 
-namespace CyberMath.Structures.Matrix.MatrixExtensions.JaggedMatrix
+namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
 {
     public static class ValueTypeJuggedMatrixExtensions
     {
@@ -547,7 +547,7 @@ namespace CyberMath.Structures.Matrix.MatrixExtensions.JaggedMatrix
             {
                 for (int j = 0; j < a.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = String.Concat(a[i, j].Except(b[i, j]));
+                    juggedMatrix[i, j] = string.Concat(a[i, j].Except(b[i, j]));
                 }
             }
 
@@ -613,7 +613,7 @@ namespace CyberMath.Structures.Matrix.MatrixExtensions.JaggedMatrix
 
         #endregion
 
-#endregion
+        #endregion
 
         #endregion
 

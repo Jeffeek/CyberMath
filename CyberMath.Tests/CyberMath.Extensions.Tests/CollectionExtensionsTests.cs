@@ -1,6 +1,5 @@
-﻿using System.Linq;
-using CyberMath.Extensions.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace CyberMath.Extensions.Tests
 {
@@ -10,9 +9,9 @@ namespace CyberMath.Extensions.Tests
         [TestMethod]
         public void Swap_test()
         {
-            var collection = new[] {1, 2, 3, 4};
+            var collection = new[] { 1, 2, 3, 4 };
             collection.Swap(0, 3);
-            var expected = new[] {4, 2, 3, 1};
+            var expected = new[] { 4, 2, 3, 1 };
             CollectionAssert.AreEqual(collection, expected);
         }
 

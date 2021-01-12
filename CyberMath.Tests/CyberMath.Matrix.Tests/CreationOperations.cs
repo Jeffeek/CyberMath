@@ -1,8 +1,7 @@
-﻿using System;
-using CyberMath.Structures.Matrix.Matrix.Models;
-using CyberMath.Structures.Matrix.MatrixExtensions;
-using CyberMath.Structures.Matrix.MatrixExtensions.Matrix;
+﻿using CyberMath.Structures.Matrix;
+using CyberMath.Structures.MatrixExtensions.Matrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace CyberMath.Matrix.Tests
 {
@@ -32,7 +31,7 @@ namespace CyberMath.Matrix.Tests
         [TestMethod]
         public void TransposeTest_int_success()
         {
-            var matrix = new Matrix<int>(3,4)
+            var matrix = new Matrix<int>(3, 4)
             {
                 [0, 0] = 50,
                 [0, 1] = 11,
@@ -48,7 +47,7 @@ namespace CyberMath.Matrix.Tests
                 [2, 3] = 77
             };
 
-            var expected = new Matrix<int>(4,3)
+            var expected = new Matrix<int>(4, 3)
             {
                 [0, 0] = 50,
                 [0, 1] = 50,

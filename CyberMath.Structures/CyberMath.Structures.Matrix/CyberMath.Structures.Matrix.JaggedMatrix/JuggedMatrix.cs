@@ -1,16 +1,19 @@
-﻿using System;
+﻿using CyberMath.Structures.MatrixBase;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CyberMath.Structures.Matrix.MatrixBase;
 
-namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
+namespace CyberMath.Structures.JaggedMatrix
 {
     public class JuggedMatrix<T> : IJuggedMatrix<T>
     {
         private T[][] _innerMatrix;
         public int RowsCount { get; }
         public bool IsSquare { get; }
+
+        #region Constructors
 
         public JuggedMatrix(int rowsCount, params int[] elementsAtRow)
         {
@@ -28,29 +31,22 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
             _innerMatrix = new T[RowsCount][];
         }
 
+        #endregion
+
+        #region Matrix Init
+
         private void InitMatrix(params int[] elementsAtRow)
         {
             for (int i = 0; i < RowsCount; i++)
-            {
                 _innerMatrix[i] = new T[elementsAtRow[i]];
-            }
         }
+
+        #endregion
 
         public T this[int row, int column]
         {
             get => _innerMatrix[row][column];
             set => _innerMatrix[row][column] = value;
-        }
-
-        public IEnumerator GetEnumerator()
-        {
-            for (int i = 0; i < RowsCount; i++)
-            {
-                for (int j = 0; j < ElementsInRow(i); j++)
-                {
-                    yield return this[i, j];
-                }
-            }
         }
 
         public void ProcessFunctionOverData(Action<int, int> func)
@@ -65,19 +61,9 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
             }
         }
 
-        public string GetAsString()
-        {
-            var sb = new StringBuilder();
-            for (int i = 0; i < RowsCount; i++)
-            {
-                for (int j = 0; j < ElementsInRow(i); j++)
-                {
-                    sb.Append($"{this[i, j]} | ");
-                }
-                sb.AppendLine();
-            }
-            return sb.ToString();
-        }
+        public int ElementsInRow(int rowIndex) => _innerMatrix[rowIndex].Length;
+
+        #region Matrix Creation 
 
         public IMatrixBase<T> CreateMatrixWithoutColumn(int columnIndex)
         {
@@ -90,7 +76,7 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
                 int currentColumn = 0;
                 int elementsInRow = ElementsInRow(i);
                 if (columnIndex < elementsInRow)
-                    newMatrix._innerMatrix[i] = new T[elementsInRow-1];
+                    newMatrix._innerMatrix[i] = new T[elementsInRow - 1];
                 else
                     newMatrix._innerMatrix[i] = new T[elementsInRow];
                 for (int j = 0; j < elementsInRow; j++)
@@ -126,7 +112,9 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
             return newMatrix;
         }
 
-        public int ElementsInRow(int index) => _innerMatrix[index].Length;
+        #endregion
+
+        #region Row Sorting
 
         public IJuggedMatrix<T> SortRows()
         {
@@ -148,6 +136,38 @@ namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
                 _innerMatrix = orderedMatrix
             };
             return matrix;
+        }
+
+        #endregion
+
+        #region Enumeration
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < RowsCount; i++)
+                for (int j = 0; j < ElementsInRow(i); j++)
+                    yield return this[i, j];
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        #endregion
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            for (int i = 0; i < RowsCount; i++)
+            {
+                for (int j = 0; j < ElementsInRow(i); j++)
+                {
+                    sb.Append($"{this[i, j]} | ");
+                }
+                sb.AppendLine();
+            }
+            return sb.ToString();
         }
     }
 }

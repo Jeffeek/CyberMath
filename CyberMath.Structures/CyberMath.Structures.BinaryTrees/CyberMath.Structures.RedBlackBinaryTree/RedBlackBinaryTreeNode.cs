@@ -1,5 +1,5 @@
-﻿using System;
-using CyberMath.Structures.BinaryTreeBase;
+﻿using CyberMath.Structures.BinaryTreeBase;
+using System;
 
 namespace CyberMath.Structures.RedBlackBinaryTree
 {
@@ -33,7 +33,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
         #endregion
 
         #region FixUp Methods
-        
+
         private RedBlackBinaryTreeNode<T> InsertFixUp(RedBlackBinaryTreeNode<T> root, RedBlackBinaryTreeNode<T> nodeX)
         {
             while (nodeX != root && nodeX._parent._color == BinaryTreeColor.Red)
@@ -87,7 +87,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
 
             return root;
         }
-        
+
         private RedBlackBinaryTreeNode<T> DeleteFixUp(RedBlackBinaryTreeNode<T> root, RedBlackBinaryTreeNode<T> nodeX)
         {
             while (nodeX != null && nodeX != root && nodeX._color == BinaryTreeColor.Black)
@@ -105,13 +105,13 @@ namespace CyberMath.Structures.RedBlackBinaryTree
                     if ((nodeW.Left as RedBlackBinaryTreeNode<T>)._color == BinaryTreeColor.Black &&
                         (nodeW.Right as RedBlackBinaryTreeNode<T>)._color == BinaryTreeColor.Black)
                     {
-                        nodeW._color = BinaryTreeColor.Red; 
-                        nodeX = nodeX._parent; 
+                        nodeW._color = BinaryTreeColor.Red;
+                        nodeX = nodeX._parent;
                     }
                     else if ((nodeW.Right as RedBlackBinaryTreeNode<T>)._color == BinaryTreeColor.Black)
                     {
-                        (nodeW.Left as RedBlackBinaryTreeNode<T>)._color = BinaryTreeColor.Black; 
-                        nodeW._color = BinaryTreeColor.Red; 
+                        (nodeW.Left as RedBlackBinaryTreeNode<T>)._color = BinaryTreeColor.Black;
+                        nodeW._color = BinaryTreeColor.Red;
                         root = RotateRight(root, nodeW);
                         nodeW = nodeX._parent.Right as RedBlackBinaryTreeNode<T>;
                     }
@@ -131,7 +131,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
                         root = RotateRight(root, nodeX._parent);
                         W = nodeX._parent.Left as RedBlackBinaryTreeNode<T>;
                     }
-                    if ((W.Right as RedBlackBinaryTreeNode<T>)._color == BinaryTreeColor.Black && 
+                    if ((W.Right as RedBlackBinaryTreeNode<T>)._color == BinaryTreeColor.Black &&
                         (W.Left as RedBlackBinaryTreeNode<T>)._color == BinaryTreeColor.Black)
                     {
                         W._color = BinaryTreeColor.Black;
@@ -155,7 +155,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
                 nodeX._color = BinaryTreeColor.Black;
             return root;
         }
-        
+
         #endregion
 
         #region Insert
@@ -249,7 +249,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
         }
 
         #endregion
-        
+
         #region Rotating
 
         private RedBlackBinaryTreeNode<T> RotateLeft(RedBlackBinaryTreeNode<T> root, RedBlackBinaryTreeNode<T> node)
@@ -287,7 +287,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
                 root = X;
             if (node._parent != null)
             {
-                if (node == node._parent.Right as RedBlackBinaryTreeNode<T>) 
+                if (node == node._parent.Right as RedBlackBinaryTreeNode<T>)
                     node._parent.Right = X;
                 if (node == node._parent.Left as RedBlackBinaryTreeNode<T>)
                     node._parent.Left = X;

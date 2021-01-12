@@ -1,8 +1,8 @@
+using CyberMath.Structures.AVLBinaryTree;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CyberMath.Structures.AVLBinaryTree;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CyberMath.AVLBinaryTree.Tests
 {
@@ -92,7 +92,7 @@ namespace CyberMath.AVLBinaryTree.Tests
         public void BinaryTree_Contains_negative()
         {
             var tree = new AVLBinaryTree<int>();
-            tree.AddRange(new []{1, 2, 3, 4, 5, 6, -50, -99});
+            tree.AddRange(new[] { 1, 2, 3, 4, 5, 6, -50, -99 });
             var expected = false;
             var actual = tree.Contains(-999);
             Assert.AreEqual(expected, actual);

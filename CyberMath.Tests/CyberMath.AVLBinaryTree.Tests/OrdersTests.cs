@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CyberMath.Structures.AVLBinaryTree;
+﻿using CyberMath.Structures.AVLBinaryTree;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Linq;
 
 namespace CyberMath.AVLBinaryTree.Tests
 {

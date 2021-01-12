@@ -1,9 +1,10 @@
-﻿using CyberMath.Structures.Matrix.MatrixBase;
+﻿using CyberMath.Structures.MatrixBase;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 
-namespace CyberMath.Structures.Matrix.Matrix.Models
+namespace CyberMath.Structures.Matrix
 {
     public class Matrix<T> : IMatrix<T>
     {
@@ -17,8 +18,6 @@ namespace CyberMath.Structures.Matrix.Matrix.Models
             get => _innerMatrix[row, column];
             set => _innerMatrix[row, column] = value;
         }
-
-        public int ElementsInRow(int i) => ColumnsCount;
 
         public Matrix(int rowsCount, int columnsCount)
         {
@@ -101,7 +100,9 @@ namespace CyberMath.Structures.Matrix.Matrix.Models
 
         #region Presentation
 
-        public string GetAsString()
+        public int ElementsInRow(int rowIndex) => ColumnsCount;
+
+        public override string ToString()
         {
             var sb = new StringBuilder();
             for (int i = 0; i < RowsCount; i++)
@@ -115,18 +116,6 @@ namespace CyberMath.Structures.Matrix.Matrix.Models
             }
 
             return sb.ToString();
-        }
-
-        public override string ToString() => GetAsString();
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        public IEnumerator GetEnumerator()
-        {
-            return _innerMatrix.GetEnumerator();
         }
 
         #endregion
@@ -156,6 +145,19 @@ namespace CyberMath.Structures.Matrix.Matrix.Models
                 result[i, j] = i < rowIndex ? this[i, j] : this[i + 1, j]);
             return result;
         }
+
+        #endregion
+
+        #region Enumeration
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < RowsCount; i++)
+                for (int j = 0; j < ColumnsCount; j++)
+                    yield return this[i, j];
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         #endregion
     }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CyberMath.Structures.Matrix.MatrixBase
+namespace CyberMath.Structures.MatrixBase
 {
     public static class MatrixBaseExtensions
     {

@@ -1,5 +1,5 @@
-﻿using System;
-using CyberMath.Structures.BinaryTreeBase;
+﻿using CyberMath.Structures.BinaryTreeBase;
+using System;
 
 namespace CyberMath.Structures.BinaryTree
 {
@@ -7,7 +7,7 @@ namespace CyberMath.Structures.BinaryTree
         where T : IComparable<T>, IComparable
     {
         public BinaryTreeNode(T data) : base(data) { }
-        
+
         public override IBinaryTreeNode<T> Insert(T value)
         {
             var node = new BinaryTreeNode<T>(value);
@@ -32,24 +32,24 @@ namespace CyberMath.Structures.BinaryTree
                     node.Right = InternalRemove(node.Right as BinaryTreeNode<T>, value);
                     break;
                 default:
-                {
-                    if (node.Left != null && node.Right != null)
                     {
-                        node.Data = (node.Right as BinaryTreeBase<T>).Min();
-                        node.Right = InternalRemove(node.Right as BinaryTreeNode<T>, node.Data);
-                    }
-                    else 
-                    {
-                        if (node.Left != null)
-                            node = node.Left as BinaryTreeNode<T>;
-                        else if (node.Right != null)
-                            node = node.Right as BinaryTreeNode<T>;
+                        if (node.Left != null && node.Right != null)
+                        {
+                            node.Data = (node.Right as BinaryTreeBase<T>).Min();
+                            node.Right = InternalRemove(node.Right as BinaryTreeNode<T>, node.Data);
+                        }
                         else
-                            node = null;
-                    }
+                        {
+                            if (node.Left != null)
+                                node = node.Left as BinaryTreeNode<T>;
+                            else if (node.Right != null)
+                                node = node.Right as BinaryTreeNode<T>;
+                            else
+                                node = null;
+                        }
 
-                    break;
-                }
+                        break;
+                    }
             }
             return node;
         }

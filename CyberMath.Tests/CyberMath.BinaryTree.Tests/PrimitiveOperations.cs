@@ -1,7 +1,7 @@
-using System.Linq;
 using CyberMath.Structures.BinaryTree;
-using CyberMath.Structures.Extensions.NumberGenerators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Linq;
 
 namespace CyberMath.BinaryTree.Tests
 {
@@ -17,7 +17,7 @@ namespace CyberMath.BinaryTree.Tests
             Assert.IsTrue(tree.Count == 10);
             var array = new int[10];
             tree.CopyTo(array, 0);
-            CollectionAssert.AreEqual(array, new[] {0,1,2,3,4,5,6,7,8,9});
+            CollectionAssert.AreEqual(array, new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
         }
 
         [TestMethod]
@@ -35,7 +35,8 @@ namespace CyberMath.BinaryTree.Tests
         [TestMethod]
         public void BinaryTreeMax_test()
         {
-            var listOfNums = new IntRandomGenerator().GenerateMany(-10000, 10000).Take(1000).ToArray();
+            var rnd = new Random();
+            var listOfNums = Enumerable.Range(0, 1000).Select(x => rnd.Next(-10_000, 10_000)).ToArray();
             var tree = new BinaryTree<int>();
             tree.AddRange(listOfNums.ToArray());
 
@@ -47,7 +48,8 @@ namespace CyberMath.BinaryTree.Tests
         [TestMethod]
         public void BinaryTreeMin_test()
         {
-            var listOfNums = new IntRandomGenerator().GenerateMany(-10000, 10000).Take(1000).ToArray();
+            var rnd = new Random();
+            var listOfNums = Enumerable.Range(0, 1000).Select(x => rnd.Next(-10_000, 10_000)).ToArray();
             var tree = new BinaryTree<int>();
             tree.AddRange(listOfNums.ToArray());
 

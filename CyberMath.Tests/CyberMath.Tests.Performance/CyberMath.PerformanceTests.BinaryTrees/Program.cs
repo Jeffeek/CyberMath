@@ -1,4 +1,6 @@
-﻿using BenchmarkDotNet.Running;
+﻿using System.Linq;
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Running;
 
 namespace CyberMath.PerformanceTests.BinaryTrees
 {
@@ -10,6 +12,7 @@ namespace CyberMath.PerformanceTests.BinaryTrees
             BenchmarkRunner.Run<BinaryTreesAddBenchmark>();
             BenchmarkRunner.Run<BinaryTreesRemoveBenchmark>();
             BenchmarkRunner.Run<BinaryTreesMaxMinBenchmark>();
+            BenchmarkRunner.Run<BinaryTreesOrdersBenchmark>();
         }
     }
 }

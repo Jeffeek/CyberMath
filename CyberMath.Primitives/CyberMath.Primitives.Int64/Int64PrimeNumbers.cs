@@ -1,6 +1,6 @@
-﻿using System;
+﻿using CyberMath.Extensions;
+using System;
 using System.Collections.Generic;
-using CyberMath.Extensions.Extensions;
 
 namespace CyberMath.Primitives.Int64
 {

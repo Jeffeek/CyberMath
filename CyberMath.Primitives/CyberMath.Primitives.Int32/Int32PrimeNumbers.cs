@@ -48,7 +48,7 @@ namespace CyberMath.Primitives.Int32
                 if (IsPrime(number))
                     yield return number;
                 number++;
-                if (System.Int32.MaxValue == number)
+                if (int.MaxValue == number)
                     yield break;
             }
         }

@@ -1,7 +1,6 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
-using CyberMath.Extensions.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CyberMath.Extensions.Tests
 {
@@ -31,10 +30,10 @@ namespace CyberMath.Extensions.Tests
         {
             var test = "test";
             var actual = test.Concat(10, true);
-            var expected = String.Join(Environment.NewLine, Enumerable.Repeat(test, 10));
+            var expected = string.Join(Environment.NewLine, Enumerable.Repeat(test, 10));
             Assert.AreEqual(actual, expected);
         }
-        
+
         [TestMethod]
         public void IsPalindrome_positive_test()
         {

@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace CyberMath.Structures.Equations.QuadraticEquation
+namespace CyberMath.Structures.QuadraticEquation
 {
     public class QuadraticEquation
     {
         private readonly Regex _quadraticEquationPattern = new Regex("([+-]?\\d+|[+-]?\\d+\\.[\\d]{1,})[Xx]\\^2([+-]?\\d+|[+-]?\\d+\\.[\\d]{1,})[Xx]([+-]?\\d+|[+-]?\\d+\\.[\\d]{1,})");
-        
+
         public double A { get; }
         public double B { get; }
         public double C { get; }
         public double Determinant { get; private set; }
-        
-        //TODO: предусмотреть корни с мнимой частью
+
         public double? FirstRoot { get; private set; }
         public double? SecondRoot { get; private set; }
 
@@ -26,7 +25,7 @@ namespace CyberMath.Structures.Equations.QuadraticEquation
 
         public QuadraticEquation(string quadraticEquation)
         {
-            quadraticEquation = quadraticEquation.Replace(" ", String.Empty);
+            quadraticEquation = quadraticEquation.Replace(" ", string.Empty);
             var match = _quadraticEquationPattern.Match(quadraticEquation);
             if (!match.Success) throw new Exception("Input quadratic equation is not valid");
             A = double.Parse(match.Groups[1].Value);
@@ -44,6 +43,11 @@ namespace CyberMath.Structures.Equations.QuadraticEquation
 
         private void CalculateRoots()
         {
+            if (Determinant == 0)
+            {
+                SecondRoot = FirstRoot = -B / (2 * A);
+                return;
+            }
             FirstRoot = (-B + Math.Sqrt(Determinant)) / (2 * A);
             SecondRoot = (-B - Math.Sqrt(Determinant)) / (2 * A);
         }

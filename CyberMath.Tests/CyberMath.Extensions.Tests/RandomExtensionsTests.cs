@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Linq;
-using CyberMath.Extensions.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CyberMath.Extensions.Tests
 {

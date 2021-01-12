@@ -1,6 +1,5 @@
-﻿using CyberMath.Structures.Matrix.Matrix.Models;
-using CyberMath.Structures.Matrix.MatrixExtensions;
-using CyberMath.Structures.Matrix.MatrixExtensions.Matrix;
+﻿using CyberMath.Structures.Matrix;
+using CyberMath.Structures.MatrixExtensions.Matrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CyberMath.Matrix.Tests
@@ -22,7 +21,7 @@ namespace CyberMath.Matrix.Tests
         [TestMethod]
         public void SumAgeTest()
         {
-            var matrix = new Matrix<Animal>(3,3)
+            var matrix = new Matrix<Animal>(3, 3)
             {
                 [0, 0] = new Animal(5),
                 [0, 1] = new Animal(5),

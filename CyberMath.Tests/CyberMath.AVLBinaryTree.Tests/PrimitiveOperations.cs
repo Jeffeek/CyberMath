@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using CyberMath.Structures.AVLBinaryTree;
-using CyberMath.Structures.Extensions.NumberGenerators;
+﻿using CyberMath.Structures.AVLBinaryTree;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Linq;
 
 namespace CyberMath.AVLBinaryTree.Tests
 {
@@ -33,10 +33,10 @@ namespace CyberMath.AVLBinaryTree.Tests
         [TestMethod]
         public void BinaryTreeMax_test()
         {
-            var listOfNums = new IntRandomGenerator().GenerateMany(-10000, 10000).Take(1000).ToArray();
+            var rnd = new Random();
+            var listOfNums = Enumerable.Range(0, 1000).Select(x => rnd.Next(-10_000, 10_000)).ToArray();
             var tree = new AVLBinaryTree<int>();
             tree.AddRange(listOfNums.ToArray());
-
             int expected = listOfNums.Max();
             int actual = tree.Max();
             Assert.IsTrue(expected == actual);
@@ -45,7 +45,8 @@ namespace CyberMath.AVLBinaryTree.Tests
         [TestMethod]
         public void BinaryTreeMin_test()
         {
-            var listOfNums = new IntRandomGenerator().GenerateMany(-10000, 10000).Take(1000).ToArray();
+            var rnd = new Random();
+            var listOfNums = Enumerable.Range(0, 1000).Select(x => rnd.Next(-10_000, 10_000)).ToArray();
             var tree = new AVLBinaryTree<int>();
             tree.AddRange(listOfNums.ToArray());
 

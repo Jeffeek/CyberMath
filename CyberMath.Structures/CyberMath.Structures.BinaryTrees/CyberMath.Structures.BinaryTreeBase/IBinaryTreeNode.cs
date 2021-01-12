@@ -5,7 +5,7 @@ namespace CyberMath.Structures.BinaryTreeBase
     public interface IBinaryTreeNode<T> :
                                             IComparable<IBinaryTreeNode<T>>,
                                             IComparable,
-                                            IEquatable<IBinaryTreeNode<T>> 
+                                            IEquatable<IBinaryTreeNode<T>>
         where T : IComparable<T>, IComparable
     {
         IBinaryTreeNode<T> Left { get; }

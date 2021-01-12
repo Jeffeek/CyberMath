@@ -1,4 +1,4 @@
-﻿using CyberMath.Structures.Matrix.JaggedMatrix.Models;
+﻿using CyberMath.Structures.JaggedMatrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CyberMath.JaggedMatrix.Tests
@@ -10,19 +10,19 @@ namespace CyberMath.JaggedMatrix.Tests
         public void SortByRowsTest()
         {
             int rowsCount = 3;
-            int[] columnArr = {2, 3, 1};
+            int[] columnArr = { 2, 3, 1 };
             var jugged = new JuggedMatrix<int>(rowsCount, columnArr)
             {
-                [0,0] = 3,
-                [0,1] = 1,
-                [1,0] = 10,
-                [1,1] = 11,
-                [1,2] = 3,
-                [2,0] = 5
+                [0, 0] = 3,
+                [0, 1] = 1,
+                [1, 0] = 10,
+                [1, 1] = 11,
+                [1, 2] = 3,
+                [2, 0] = 5
             };
 
             var actual = jugged.SortRows();
-            var expected = new JuggedMatrix<int>(rowsCount, 1,2,3)
+            var expected = new JuggedMatrix<int>(rowsCount, 1, 2, 3)
             {
                 [0, 0] = 5,
                 [1, 0] = 3,
@@ -63,7 +63,7 @@ namespace CyberMath.JaggedMatrix.Tests
                 [0, 1] = 11,
                 [0, 2] = 3,
                 [1, 0] = 3,
-                [1, 1] = 1, 
+                [1, 1] = 1,
                 [2, 0] = 5
             };
 

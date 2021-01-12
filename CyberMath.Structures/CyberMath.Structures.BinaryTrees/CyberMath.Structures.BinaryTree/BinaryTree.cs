@@ -1,6 +1,6 @@
-﻿using System;
+﻿using CyberMath.Structures.BinaryTreeBase;
+using System;
 using System.Collections.Generic;
-using CyberMath.Structures.BinaryTreeBase;
 
 namespace CyberMath.Structures.BinaryTree
 {
@@ -10,7 +10,7 @@ namespace CyberMath.Structures.BinaryTree
         public BinaryTree(params T[] values) : base(values) { }
 
         public BinaryTree(IEnumerable<T> values) : base(values) { }
-        
+
         public override void Add(T item)
         {
             if (Root == null)

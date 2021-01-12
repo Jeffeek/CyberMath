@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CyberMath.Structures.Matrix.JaggedMatrix.Extensions
+﻿namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
 {
     public static class GenericJaggedMatrixExtension
     {

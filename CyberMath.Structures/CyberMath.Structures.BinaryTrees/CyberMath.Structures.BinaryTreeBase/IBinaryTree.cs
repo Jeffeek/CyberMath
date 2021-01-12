@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace CyberMath.Structures.BinaryTreeBase
 {
-    public interface IBinaryTree<T> : 
-                                    ICollection<T>, 
+    public interface IBinaryTree<T> :
+                                    ICollection<T>,
                                     IDisposable
         where T : IComparable<T>, IComparable
     {

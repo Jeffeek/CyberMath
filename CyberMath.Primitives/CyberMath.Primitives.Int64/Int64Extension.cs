@@ -10,7 +10,7 @@ namespace CyberMath.Primitives.Int64
         /// <param name="number">number to check</param>
         /// <returns>is number odd</returns>
         public static bool IsOdd(this long number) => number % 2 == 0;
-        
+
         /// <summary>
         /// Checks is number even
         /// </summary>

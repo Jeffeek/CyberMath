@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CyberMath.Extensions.Extensions
+namespace CyberMath.Extensions
 {
     public static class RandomExtensions
     {

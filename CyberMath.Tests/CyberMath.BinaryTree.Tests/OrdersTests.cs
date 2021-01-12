@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CyberMath.Structures.BinaryTree;
+﻿using CyberMath.Structures.BinaryTree;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Linq;
 
 namespace CyberMath.BinaryTree.Tests
 {
@@ -49,8 +47,8 @@ namespace CyberMath.BinaryTree.Tests
         [TestMethod]
         public void BinaryTree_Postorder_test()
         {
-            var tree = new BinaryTree<int>(6,55,-55,-40,8,66,554,74,12,7);
-            var ordered = new [] {-40, -55, 7, 12, 8, 74, 554, 66, 55, 6};
+            var tree = new BinaryTree<int>(6, 55, -55, -40, 8, 66, 554, 74, 12, 7);
+            var ordered = new[] { -40, -55, 7, 12, 8, 74, 554, 66, 55, 6 };
             var postorder = tree.Postorder().ToArray();
             CollectionAssert.AreEqual(ordered, postorder);
         }
@@ -59,7 +57,7 @@ namespace CyberMath.BinaryTree.Tests
         public void BinaryTree_Preorder_test()
         {
             var tree = new BinaryTree<int>(6, 55, -55, -40, 8, 66, 554, 74, 12, 7);
-            var ordered = new [] { 6, - 55, -40, 55, 8, 7, 12, 66, 554, 74 };
+            var ordered = new[] { 6, -55, -40, 55, 8, 7, 12, 66, 554, 74 };
             var preorder = tree.Preorder().ToArray();
             CollectionAssert.AreEqual(ordered, preorder);
         }

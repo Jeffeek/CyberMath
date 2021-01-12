@@ -1,9 +1,8 @@
-﻿using System;
+﻿using CyberMath.Structures.BinaryTree;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using CyberMath.Structures.BinaryTree;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CyberMath.BinaryTree.Tests
 {
@@ -20,7 +19,7 @@ namespace CyberMath.BinaryTree.Tests
             for (int i = 10; i < 20; i++)
                 firstTree.Add(i);
             firstTree.MergeWith(secondTree);
-            var checkArray = new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+            var checkArray = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
             CollectionAssert.AreEqual(checkArray, firstTree.Inorder().ToArray());
         }
 
@@ -89,7 +88,7 @@ namespace CyberMath.BinaryTree.Tests
             list.Sort();
             CollectionAssert.AreEqual(list, firstTree.Inorder().ToArray());
         }
-        
+
         [TestMethod]
         public void BinaryTree_Contains_negative()
         {

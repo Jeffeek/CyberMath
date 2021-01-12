@@ -1,7 +1,7 @@
-using System.IO;
-using System.Linq;
 using CyberMath.Primitives.Int32;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
+using System.Linq;
 
 namespace CyberMath.PrimitivesExtensions.Tests
 {

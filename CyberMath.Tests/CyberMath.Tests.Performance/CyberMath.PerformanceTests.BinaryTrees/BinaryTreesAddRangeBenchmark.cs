@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using CyberMath.Structures.AVLBinaryTree;
 using CyberMath.Structures.BinaryTree;
 using CyberMath.Structures.RedBlackBinaryTree;
-using Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace;
+using System;
 
 namespace CyberMath.PerformanceTests.BinaryTrees
 {
     public class BinaryTreesAddRangeBenchmark
     {
-        [Params(1000, 100_000, 1_000_000)] 
+        [Params(1000, 100_000, 1_000_000)]
         public int Count;
 
         [Benchmark]
@@ -34,7 +31,7 @@ namespace CyberMath.PerformanceTests.BinaryTrees
             var tree = new RedBlackBinaryTree<int>();
             tree.AddRange(GetRandomItems());
         }
-        
+
         public int[] GetRandomItems()
         {
             var array = new int[Count];

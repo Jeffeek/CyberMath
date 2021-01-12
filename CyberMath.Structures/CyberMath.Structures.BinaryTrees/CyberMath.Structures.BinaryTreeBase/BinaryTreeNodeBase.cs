@@ -4,17 +4,17 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace CyberMath.Structures.BinaryTreeBase
 {
-    public abstract class BinaryTreeNodeBase<T> : IBinaryTreeNode<T> 
+    public abstract class BinaryTreeNodeBase<T> : IBinaryTreeNode<T>
         where T : IComparable<T>, IComparable
     {
         public IBinaryTreeNode<T> Left { get; protected set; }
         public IBinaryTreeNode<T> Right { get; protected set; }
-        
+
         public T Data { get; protected set; }
 
         public abstract IBinaryTreeNode<T> Insert(T value);
         public abstract IBinaryTreeNode<T> Remove(T value);
-        
+
         public int Depth() => InternalDepth(this);
 
         protected int InternalDepth(BinaryTreeNodeBase<T> node)
@@ -134,7 +134,7 @@ namespace CyberMath.Structures.BinaryTreeBase
         public static bool operator <(BinaryTreeNodeBase<T> first, BinaryTreeNodeBase<T> second) => first.CompareTo(second) == -1;
 
         public static bool operator ==(BinaryTreeNodeBase<T> first, BinaryTreeNodeBase<T> second) =>
-            first?.Equals(second) ?? ReferenceEquals(second, null); 
+            first?.Equals(second) ?? ReferenceEquals(second, null);
 
         public static bool operator !=(BinaryTreeNodeBase<T> first, BinaryTreeNodeBase<T> second) => !(first == second);
 

@@ -1,13 +1,13 @@
-﻿using System;
-using CyberMath.Structures.BinaryTreeBase;
+﻿using CyberMath.Structures.BinaryTreeBase;
+using System;
 
 namespace CyberMath.Structures.AVLBinaryTree
 {
-    public class AVLBinaryTreeNode<T> : BinaryTreeNodeBase<T> 
+    public class AVLBinaryTreeNode<T> : BinaryTreeNodeBase<T>
             where T : IComparable<T>, IComparable
     {
         private int _height = 0;
-        
+
         public AVLBinaryTreeNode(T data) : base(data) { }
 
         public override IBinaryTreeNode<T> Insert(T value) => InternalInsert(this, value);
@@ -24,12 +24,10 @@ namespace CyberMath.Structures.AVLBinaryTree
                 node.Right = InternalRemove(node.Right as AVLBinaryTreeNode<T>, value);
             else
             {
-                AVLBinaryTreeNode<T> leftNode = node.Left as AVLBinaryTreeNode<T>;
-                AVLBinaryTreeNode<T> rightNode = node.Right as AVLBinaryTreeNode<T>;
-                node = null;
-                if (ReferenceEquals(rightNode, null))
+                var leftNode = node.Left as AVLBinaryTreeNode<T>;
+                if (!(node.Right is AVLBinaryTreeNode<T> rightNode))
                     return leftNode;
-                AVLBinaryTreeNode<T> min = rightNode.Min() as AVLBinaryTreeNode<T>;
+                var min = rightNode.Min() as AVLBinaryTreeNode<T>;
                 min.Right = RemoveMin(rightNode);
                 min.Left = leftNode;
                 return Balance(min);
@@ -58,7 +56,7 @@ namespace CyberMath.Structures.AVLBinaryTree
         private int GetHeight(AVLBinaryTreeNode<T> node) => node?._height ?? 0;
 
         private int BFactor() => GetHeight(Right as AVLBinaryTreeNode<T>) - GetHeight(Left as AVLBinaryTreeNode<T>);
-        
+
         private void FixHeight(AVLBinaryTreeNode<T> node)
         {
             int hl = GetHeight(node.Left as AVLBinaryTreeNode<T>);

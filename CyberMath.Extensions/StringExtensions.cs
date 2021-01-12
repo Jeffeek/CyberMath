@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Text;
 
-namespace CyberMath.Extensions.Extensions
+namespace CyberMath.Extensions
 {
     public static class StringExtensions
     {
@@ -22,7 +21,7 @@ namespace CyberMath.Extensions.Extensions
         public static string Concat(this string input, int count, bool appendLine = false)
         {
             if (ReferenceEquals(input, null)) count = 0;
-            if (count == 0) return String.Empty;
+            if (count == 0) return string.Empty;
             count = Math.Abs(count);
             if (count == 1) return input;
             var sb = new StringBuilder();
@@ -41,7 +40,7 @@ namespace CyberMath.Extensions.Extensions
         public static string Concat(this string input, int count, string separator)
         {
             if (ReferenceEquals(input, null)) count = 0;
-            if (count == 0) return String.Empty;
+            if (count == 0) return string.Empty;
             count = Math.Abs(count);
             if (count == 1) return input;
             var sb = new StringBuilder(input);

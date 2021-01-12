@@ -1,6 +1,6 @@
-﻿using CyberMath.Structures.Matrix.MatrixBase;
+﻿using CyberMath.Structures.MatrixBase;
 
-namespace CyberMath.Structures.Matrix.JaggedMatrix.Models
+namespace CyberMath.Structures.JaggedMatrix
 {
     public interface IJuggedMatrix<T> : IMatrixBase<T>
     {

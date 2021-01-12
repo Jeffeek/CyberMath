@@ -1,4 +1,4 @@
-﻿using CyberMath.Structures.Matrix.JaggedMatrix.Models;
+﻿using CyberMath.Structures.JaggedMatrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CyberMath.JaggedMatrix.Tests
@@ -9,7 +9,7 @@ namespace CyberMath.JaggedMatrix.Tests
         [TestMethod]
         public void CreateJuggedMatrixWithoutColumn_0_Test()
         {
-            var jugged = new JuggedMatrix<int>(3, 2,1,3)
+            var jugged = new JuggedMatrix<int>(3, 2, 1, 3)
             {
                 [0, 0] = 1,
                 [0, 1] = 10,

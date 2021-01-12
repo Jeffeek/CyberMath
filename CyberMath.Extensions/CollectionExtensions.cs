@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CyberMath.Extensions.Extensions
+namespace CyberMath.Extensions
 {
     public static class CollectionExtensions
     {

@@ -86,12 +86,12 @@ namespace CyberMath.Primitives.Int32
             return
                 number < 100000 ?
                     number < 100 ?
-                    number < 10 ? 1 : 2 : 
-                    number < 1000 ? 3 : 
-                        number < 10000 ? 4 : 5 : 
-                    number < 10000000 ? 
-                        number < 1000000 ? 6 : 7 : 
-                        number < 100000000 ? 8 : 
+                    number < 10 ? 1 : 2 :
+                    number < 1000 ? 3 :
+                        number < 10000 ? 4 : 5 :
+                    number < 10000000 ?
+                        number < 1000000 ? 6 : 7 :
+                        number < 100000000 ? 8 :
                             number < 1000000000 ? 9 : 10;
         }
     }

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using CyberMath.Extensions;
+using CyberMath.Structures.Matrix;
+using CyberMath.Structures.MatrixBase.Exceptions;
+using System;
 using System.Text;
-using CyberMath.Extensions.Extensions;
-using CyberMath.Structures.Matrix.Matrix.Models;
-using CyberMath.Structures.Matrix.MatrixBase.Exceptions;
 
-namespace CyberMath.Structures.Matrix.MatrixExtensions.Matrix
+namespace CyberMath.Structures.MatrixExtensions.Matrix
 {
     public static class ValueTypeMatrixExtension
     {
@@ -159,7 +159,7 @@ namespace CyberMath.Structures.Matrix.MatrixExtensions.Matrix
             {
                 for (int j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) 
+                    if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j))
                         continue;
                     sum += matrix[i, j];
                 }
@@ -210,7 +210,7 @@ namespace CyberMath.Structures.Matrix.MatrixExtensions.Matrix
 
         #region Find Ops
 
-        public static bool IsMaxInColumn(this IMatrix<int> matrix,int i, int j)
+        public static bool IsMaxInColumn(this IMatrix<int> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.RowsCount; k++)
             {
@@ -1116,11 +1116,11 @@ namespace CyberMath.Structures.Matrix.MatrixExtensions.Matrix
             }
             if (matrix.ColumnsCount == 2)
             {
-                if (matrix[0, 0] != null && 
-                    matrix[1, 1] != null && 
-                    matrix[0, 1] != null && 
+                if (matrix[0, 0] != null &&
+                    matrix[1, 1] != null &&
+                    matrix[0, 1] != null &&
                     matrix[1, 0] != null)
-                return matrix[0, 0].Value * matrix[1, 1].Value - matrix[0, 1].Value * matrix[1, 0].Value;
+                    return matrix[0, 0].Value * matrix[1, 1].Value - matrix[0, 1].Value * matrix[1, 0].Value;
                 else
                     return 0;
             }
@@ -1177,7 +1177,7 @@ namespace CyberMath.Structures.Matrix.MatrixExtensions.Matrix
             {
                 for (int j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    if (matrix[i,j] != null)
+                    if (matrix[i, j] != null)
                         sum += matrix[i, j].Value;
                 }
             }
@@ -1194,7 +1194,7 @@ namespace CyberMath.Structures.Matrix.MatrixExtensions.Matrix
                 {
                     if (matrix[i, j] != null)
                     {
-                        if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) 
+                        if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j))
                             continue;
                         sum += matrix[i, j].Value;
                     }
@@ -1463,7 +1463,7 @@ namespace CyberMath.Structures.Matrix.MatrixExtensions.Matrix
                 {
                     if (matrix[i, j] != null)
                     {
-                        if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) 
+                        if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j))
                             continue;
                         sum += matrix[i, j].Value;
                     }
@@ -1558,7 +1558,7 @@ namespace CyberMath.Structures.Matrix.MatrixExtensions.Matrix
                         matrix[i, j] = null;
                         continue;
                     }
-                    matrix[i, j] = rnd.Next((int) min, (int) max);
+                    matrix[i, j] = rnd.Next((int)min, (int)max);
                 }
             }
         }
@@ -1647,10 +1647,10 @@ namespace CyberMath.Structures.Matrix.MatrixExtensions.Matrix
             if (matrix.ColumnsCount == 2)
             {
                 if (matrix[0, 0] != null &&
-                    matrix[1,1] != null &&
+                    matrix[1, 1] != null &&
                     matrix[0, 1] != null &&
                     matrix[1, 0] != null)
-                return matrix[0, 0].Value * matrix[1, 1].Value - matrix[0, 1].Value * matrix[1, 0].Value;
+                    return matrix[0, 0].Value * matrix[1, 1].Value - matrix[0, 1].Value * matrix[1, 0].Value;
                 return 0;
             }
             double result = 0;

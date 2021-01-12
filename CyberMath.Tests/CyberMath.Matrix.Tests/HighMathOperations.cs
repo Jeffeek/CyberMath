@@ -1,7 +1,7 @@
-﻿using System;
-using CyberMath.Structures.Matrix.Matrix.Models;
-using CyberMath.Structures.Matrix.MatrixExtensions.Matrix;
+﻿using CyberMath.Structures.Matrix;
+using CyberMath.Structures.MatrixExtensions.Matrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace CyberMath.Matrix.Tests
 {
@@ -68,7 +68,7 @@ namespace CyberMath.Matrix.Tests
                 [2, 2] = 2
             };
 
-            var expected = new Matrix<double>(n,n)
+            var expected = new Matrix<double>(n, n)
             {
                 [0, 0] = 0.51d,
                 [0, 1] = -1.00d,

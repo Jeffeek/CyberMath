@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace CyberMath.Structures.BinaryTreeBase
 {
-    public abstract class BinaryTreeBase<T> : IBinaryTree<T> 
+    public abstract class BinaryTreeBase<T> : IBinaryTree<T>
            where T : IComparable, IComparable<T>
     {
         private bool _disposed = false;
-        
+
         public IBinaryTreeNode<T> Root { get; protected set; }
         public int Count { get; protected set; }
         public bool IsEmpty => Count == 0;
@@ -76,7 +76,7 @@ namespace CyberMath.Structures.BinaryTreeBase
         }
 
         #endregion
-        
+
         #region Enumeration
 
         public IEnumerator<T> GetEnumerator()
@@ -93,7 +93,7 @@ namespace CyberMath.Structures.BinaryTreeBase
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         #endregion
-        
+
         #region Contains
 
         public bool Contains(T item) => InternalContains(Root, item);
@@ -126,12 +126,18 @@ namespace CyberMath.Structures.BinaryTreeBase
         private IEnumerable<T> InternalInorder(IBinaryTreeNode<T> node)
         {
             var list = new List<T>();
-            if (node == null) return list;
-            if (node.Left != null)
-                list.AddRange(InternalInorder(node.Left));
-            list.Add(node.Data);
-            if (node.Right != null)
-                list.AddRange(InternalInorder(node.Right));
+            var stack = new Stack<IBinaryTreeNode<T>>();
+            while (node != null || stack.Count > 0)
+            {
+                while (node != null)
+                {
+                    stack.Push(node);
+                    node = node.Left;
+                }
+                node = stack.Pop();
+                list.Add(node.Data);
+                node = node.Right;
+            }
             return list;
         }
 
@@ -140,13 +146,18 @@ namespace CyberMath.Structures.BinaryTreeBase
         private IEnumerable<T> InternalPreorder(IBinaryTreeNode<T> node)
         {
             var list = new List<T>();
-            if (node == null) return list;
-            list.Add(node.Data);
-            if (node.Left != null)
-                list.AddRange(InternalPreorder(node.Left));
-            if (node.Right != null)
-                list.AddRange(InternalPreorder(node.Right));
-            return list.AsEnumerable();
+            var stack = new Stack<IBinaryTreeNode<T>>();
+            stack.Push(node);
+            while (stack.Count > 0)
+            {
+                var cur = stack.Pop();
+                list.Add(cur.Data);
+                if (cur.Right != null)
+                    stack.Push(cur.Right);
+                if (cur.Left != null)
+                    stack.Push(cur.Left);
+            }
+            return list;
         }
 
         public IEnumerable<T> Postorder() => ReferenceEquals(Root, null) ? Enumerable.Empty<T>() : InternalPostorder(Root);
@@ -154,17 +165,49 @@ namespace CyberMath.Structures.BinaryTreeBase
         private IEnumerable<T> InternalPostorder(IBinaryTreeNode<T> node)
         {
             var list = new List<T>();
-            if (node == null) return list;
-            if (node.Left != null)
-                list.AddRange(InternalPostorder(node.Left));
-            if (node.Right != null)
-                list.AddRange(InternalPostorder(node.Right));
-            list.Add(node.Data);
-            return list.AsEnumerable();
+            Stack<IBinaryTreeNode<T>> stack = new Stack<IBinaryTreeNode<T>>();
+            stack.Push(node);
+            IBinaryTreeNode<T> prev = null;
+            while (stack.Count > 0)
+            {
+                var current = stack.Peek();
+
+                if (prev == null || prev.Left == current ||
+                    prev.Right == current)
+                {
+                    if (current.Left != null)
+                        stack.Push(current.Left);
+                    else if (current.Right != null)
+                        stack.Push(current.Right);
+                    else
+                    {
+                        stack.Pop();
+                        list.Add(current.Data);
+                    }
+                }
+                else if (current.Left == prev)
+                {
+                    if (current.Right != null)
+                        stack.Push(current.Right);
+                    else
+                    {
+                        stack.Pop();
+                        list.Add(current.Data);
+                    }
+                }
+                else if (current.Right == prev)
+                {
+                    stack.Pop();
+                    list.Add(current.Data);
+                }
+                prev = current;
+            }
+
+            return list;
         }
 
         #endregion
-        
+
         #region MinMax
 
         public T Max()

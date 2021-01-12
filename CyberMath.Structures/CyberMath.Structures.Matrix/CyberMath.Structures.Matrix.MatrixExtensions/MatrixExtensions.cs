@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using CyberMath.Structures.Matrix.JaggedMatrix.Models;
-using CyberMath.Structures.Matrix.Matrix.Models;
+﻿using CyberMath.Structures.JaggedMatrix;
+using CyberMath.Structures.Matrix;
+using System.Linq;
 
-namespace CyberMath.Structures.Matrix.MatrixExtensions
+namespace CyberMath.Structures.MatrixExtensions
 {
     public static class MatrixExtensions
     {
