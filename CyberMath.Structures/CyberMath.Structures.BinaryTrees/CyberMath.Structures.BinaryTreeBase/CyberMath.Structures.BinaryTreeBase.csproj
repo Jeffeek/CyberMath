@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>E:\projectsVS\CyberMath\CyberMath.Structures\CyberMath.Structures.BinaryTrees\CyberMath.Structures.BinaryTreeBase\CyberMath.Structures.BinaryTreeBase.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>

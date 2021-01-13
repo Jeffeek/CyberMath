@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>E:\projectsVS\CyberMath\CyberMath.Primitives\CyberMath.Primitives.Int32\CyberMath.Primitives.Int32.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\CyberMath.Extensions\CyberMath.Extensions.csproj" />
   </ItemGroup>

@@ -3,6 +3,10 @@ using System;
 
 namespace CyberMath.Structures.BinaryTree
 {
+    /// <summary>
+    /// Represents a vanilla Binary Tree NODE. Implements <see cref="BinaryTreeNodeBase{T}"/>
+    /// </summary>
+    /// <typeparam name="T"><see cref="IComparable{T}"/></typeparam>
     public class BinaryTreeNode<T> : BinaryTreeNodeBase<T>
         where T : IComparable<T>, IComparable
     {

@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 namespace CyberMath.Structures.BinaryTree
 {
+    /// <summary>
+    /// Represents vanilla Binary Tree. Implements <see cref="BinaryTreeBase{T}"/>
+    /// </summary>
+    /// <typeparam name="T"><see cref="IComparable{T}"/></typeparam>
     public class BinaryTree<T> : BinaryTreeBase<T>
         where T : IComparable<T>, IComparable
     {

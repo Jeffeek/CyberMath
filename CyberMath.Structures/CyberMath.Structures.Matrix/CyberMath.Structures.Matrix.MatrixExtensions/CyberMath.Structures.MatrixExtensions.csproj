@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>E:\projectsVS\CyberMath\CyberMath.Structures\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.MatrixExtensions\CyberMath.Structures.MatrixExtensions.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\..\CyberMath.Extensions\CyberMath.Extensions.csproj" />
     <ProjectReference Include="..\CyberMath.Structures.Matrix.JaggedMatrix\CyberMath.Structures.JaggedMatrix.csproj" />

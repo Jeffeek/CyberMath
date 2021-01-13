@@ -17,54 +17,54 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
 
         #region Math
 
-        public static IJuggedMatrix<int> Add(this IJuggedMatrix<int> a, IJuggedMatrix<int> b)
+        public static IJuggedMatrix<int> Add(this IJuggedMatrix<int> first, IJuggedMatrix<int> second)
         {
-            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < a.RowsCount; i++)
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                if (a.ElementsInRow(i) != b.ElementsInRow(i))
+                if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<int>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<int>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = a[i, j] + b[i, j];
+                    juggedMatrix[i, j] = first[i, j] + second[i, j];
                 }
             }
 
             return juggedMatrix;
         }
 
-        public static IJuggedMatrix<int> Sub(this IJuggedMatrix<int> a, IJuggedMatrix<int> b)
+        public static IJuggedMatrix<int> Sub(this IJuggedMatrix<int> first, IJuggedMatrix<int> second)
         {
-            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < a.RowsCount; i++)
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                if (a.ElementsInRow(i) != b.ElementsInRow(i))
+                if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<int>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<int>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = a[i, j] - b[i, j];
+                    juggedMatrix[i, j] = first[i, j] - second[i, j];
                 }
             }
 
             return juggedMatrix;
         }
 
-        public static IJuggedMatrix<int> MulOnNumber(this IJuggedMatrix<int> a, int number)
+        public static IJuggedMatrix<int> MulOnNumber(this IJuggedMatrix<int> first, int number)
         {
-            var juggedMatrix = new JuggedMatrix<int>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<int>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = a[i, j] * number;
+                    juggedMatrix[i, j] = first[i, j] * number;
                 }
             }
 
@@ -152,54 +152,54 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
 
         #region Math
 
-        public static IJuggedMatrix<long> Add(this IJuggedMatrix<long> a, IJuggedMatrix<long> b)
+        public static IJuggedMatrix<long> Add(this IJuggedMatrix<long> first, IJuggedMatrix<long> second)
         {
-            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < a.RowsCount; i++)
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                if (a.ElementsInRow(i) != b.ElementsInRow(i))
+                if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<long>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<long>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = a[i, j] + b[i, j];
+                    juggedMatrix[i, j] = first[i, j] + second[i, j];
                 }
             }
 
             return juggedMatrix;
         }
 
-        public static IJuggedMatrix<long> Sub(this IJuggedMatrix<long> a, IJuggedMatrix<long> b)
+        public static IJuggedMatrix<long> Sub(this IJuggedMatrix<long> first, IJuggedMatrix<long> second)
         {
-            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < a.RowsCount; i++)
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                if (a.ElementsInRow(i) != b.ElementsInRow(i))
+                if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<long>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<long>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = a[i, j] - b[i, j];
+                    juggedMatrix[i, j] = first[i, j] - second[i, j];
                 }
             }
 
             return juggedMatrix;
         }
 
-        public static IJuggedMatrix<long> MulOnNumber(this IJuggedMatrix<long> a, long number)
+        public static IJuggedMatrix<long> MulOnNumber(this IJuggedMatrix<long> first, long number)
         {
-            var juggedMatrix = new JuggedMatrix<long>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<long>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = a[i, j] * number;
+                    juggedMatrix[i, j] = first[i, j] * number;
                 }
             }
 
@@ -273,54 +273,54 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
 
         #region Math
 
-        public static IJuggedMatrix<double> Add(this IJuggedMatrix<double> a, IJuggedMatrix<double> b)
+        public static IJuggedMatrix<double> Add(this IJuggedMatrix<double> first, IJuggedMatrix<double> second)
         {
-            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < a.RowsCount; i++)
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                if (a.ElementsInRow(i) != b.ElementsInRow(i))
+                if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<double>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<double>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = a[i, j] + b[i, j];
+                    juggedMatrix[i, j] = first[i, j] + second[i, j];
                 }
             }
 
             return juggedMatrix;
         }
 
-        public static IJuggedMatrix<double> Sub(this IJuggedMatrix<double> a, IJuggedMatrix<double> b)
+        public static IJuggedMatrix<double> Sub(this IJuggedMatrix<double> first, IJuggedMatrix<double> second)
         {
-            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < a.RowsCount; i++)
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                if (a.ElementsInRow(i) != b.ElementsInRow(i))
+                if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<double>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<double>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = a[i, j] - b[i, j];
+                    juggedMatrix[i, j] = first[i, j] - second[i, j];
                 }
             }
 
             return juggedMatrix;
         }
 
-        public static IJuggedMatrix<double> MulOnNumber(this IJuggedMatrix<double> a, double number)
+        public static IJuggedMatrix<double> MulOnNumber(this IJuggedMatrix<double> first, double number)
         {
-            var juggedMatrix = new JuggedMatrix<double>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<double>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = a[i, j] * number;
+                    juggedMatrix[i, j] = first[i, j] * number;
                 }
             }
 
@@ -394,54 +394,54 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
 
         #region Math
 
-        public static IJuggedMatrix<decimal> Add(this IJuggedMatrix<decimal> a, IJuggedMatrix<decimal> b)
+        public static IJuggedMatrix<decimal> Add(this IJuggedMatrix<decimal> first, IJuggedMatrix<decimal> second)
         {
-            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < a.RowsCount; i++)
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                if (a.ElementsInRow(i) != b.ElementsInRow(i))
+                if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<decimal>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<decimal>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = a[i, j] + b[i, j];
+                    juggedMatrix[i, j] = first[i, j] + second[i, j];
                 }
             }
 
             return juggedMatrix;
         }
 
-        public static IJuggedMatrix<decimal> Sub(this IJuggedMatrix<decimal> a, IJuggedMatrix<decimal> b)
+        public static IJuggedMatrix<decimal> Sub(this IJuggedMatrix<decimal> first, IJuggedMatrix<decimal> second)
         {
-            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < a.RowsCount; i++)
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                if (a.ElementsInRow(i) != b.ElementsInRow(i))
+                if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<decimal>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<decimal>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = a[i, j] - b[i, j];
+                    juggedMatrix[i, j] = first[i, j] - second[i, j];
                 }
             }
 
             return juggedMatrix;
         }
 
-        public static IJuggedMatrix<decimal> MulOnNumber(this IJuggedMatrix<decimal> a, decimal number)
+        public static IJuggedMatrix<decimal> MulOnNumber(this IJuggedMatrix<decimal> first, decimal number)
         {
-            var juggedMatrix = new JuggedMatrix<decimal>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<decimal>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = a[i, j] * number;
+                    juggedMatrix[i, j] = first[i, j] * number;
                 }
             }
 
@@ -515,54 +515,54 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
 
         #region Math
 
-        public static IJuggedMatrix<string> Add(this IJuggedMatrix<string> a, IJuggedMatrix<string> b)
+        public static IJuggedMatrix<string> Add(this IJuggedMatrix<string> first, IJuggedMatrix<string> second)
         {
-            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < a.RowsCount; i++)
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                if (a.ElementsInRow(i) != b.ElementsInRow(i))
+                if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<string>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<string>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = a[i, j] + b[i, j];
+                    juggedMatrix[i, j] = first[i, j] + second[i, j];
                 }
             }
 
             return juggedMatrix;
         }
 
-        public static IJuggedMatrix<string> Sub(this IJuggedMatrix<string> a, IJuggedMatrix<string> b)
+        public static IJuggedMatrix<string> Sub(this IJuggedMatrix<string> first, IJuggedMatrix<string> second)
         {
-            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < a.RowsCount; i++)
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                if (a.ElementsInRow(i) != b.ElementsInRow(i))
+                if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<string>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<string>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = string.Concat(a[i, j].Except(b[i, j]));
+                    juggedMatrix[i, j] = string.Concat(first[i, j].Except(second[i, j]));
                 }
             }
 
             return juggedMatrix;
         }
 
-        public static IJuggedMatrix<string> MulOnNumber(this IJuggedMatrix<string> a, int number)
+        public static IJuggedMatrix<string> MulOnNumber(this IJuggedMatrix<string> first, int number)
         {
-            var juggedMatrix = new JuggedMatrix<string>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<string>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = a[i, j].Concat(number);
+                    juggedMatrix[i, j] = first[i, j].Concat(number);
                 }
             }
 
@@ -624,56 +624,57 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
 
         #region Math
 
-        public static IJuggedMatrix<int?> Add(this IJuggedMatrix<int?> a, IJuggedMatrix<int?> b)
+        public static IJuggedMatrix<int?> Add(this IJuggedMatrix<int?> first, IJuggedMatrix<int?> second)
         {
-            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < a.RowsCount; i++)
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                if (a.ElementsInRow(i) != b.ElementsInRow(i))
+                if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<int?>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<int?>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    if (a[i, j] != null && b[i, j] != null)
-                        juggedMatrix[i, j] = a[i, j].Value + b[i, j].Value;
+                    if (first[i, j] != null && second[i, j] != null)
+                        juggedMatrix[i, j] = first[i, j].Value + second[i, j].Value;
                 }
             }
 
             return juggedMatrix;
         }
 
-        public static IJuggedMatrix<int?> Sub(this IJuggedMatrix<int?> a, IJuggedMatrix<int?> b)
+        public static IJuggedMatrix<int?> Sub(this IJuggedMatrix<int?> first, IJuggedMatrix<int?> second)
         {
-            if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < a.RowsCount; i++)
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                if (a.ElementsInRow(i) != b.ElementsInRow(i))
+                if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
-            var juggedMatrix = new JuggedMatrix<int?>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<int?>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    if (a[i, j] != null && b[i, j] != null)
-                        juggedMatrix[i, j] = a[i, j].Value - b[i, j].Value;
+                    if (first[i, j] != null && second[i, j] != null)
+                        juggedMatrix[i, j] = first[i, j].Value - second[i, j].Value;
                 }
             }
 
             return juggedMatrix;
         }
 
-        public static IJuggedMatrix<int?> MulOnNumber(this IJuggedMatrix<int?> a, int number)
+        public static IJuggedMatrix<int?> MulOnNumber(this IJuggedMatrix<int?> first, int number)
         {
-            var juggedMatrix = new JuggedMatrix<int?>(a.RowsCount, a.GetCountPerRow());
-            for (int i = 0; i < a.RowsCount; i++)
+            var juggedMatrix = new JuggedMatrix<int?>(first.RowsCount, first.GetCountPerRow().ToArray());
+            for (int i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < a.ElementsInRow(i); j++)
+                for (int j = 0; j < first.ElementsInRow(i); j++)
                 {
-                    juggedMatrix[i, j] = a[i, j].Value * number;
+                    if (first[i, j] != null)
+                        juggedMatrix[i, j] = first[i, j].Value * number;
                 }
             }
 
@@ -749,24 +750,24 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
 
         #region Math
 
-        //public static JuggedMatrix<long?> Multiplication(this JuggedMatrix<long?> a, JuggedMatrix<long?> b)
+        //public static JuggedMatrix<long?> Multiplication(this JuggedMatrix<long?> first, JuggedMatrix<long?> second)
         //{
-        //    if (a.ColumnsCount == b.RowsCount) return a.InternalMulAtoB(b);
-        //    if (b.ColumnsCount == a.RowsCount) return a.InternalMulBtoA(b);
+        //    if (first.ColumnsCount == second.RowsCount) return first.InternalMulAtoB(second);
+        //    if (second.ColumnsCount == first.RowsCount) return first.InternalMulBtoA(second);
         //    throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         //}
 
-        //public static JuggedMatrix<long?> Add(this JuggedMatrix<long?> a, JuggedMatrix<long?> b)
+        //public static JuggedMatrix<long?> Add(this JuggedMatrix<long?> first, JuggedMatrix<long?> second)
         //{
-        //    if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
-        //    if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
-        //    var JuggedMatrix = new JuggedMatrix<long?>(a.RowsCount, a.ColumnsCount);
-        //    for (int i = 0; i < a.RowsCount; i++)
+        //    if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+        //    if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+        //    var JuggedMatrix = new JuggedMatrix<long?>(first.RowsCount, first.ColumnsCount);
+        //    for (int i = 0; i < first.RowsCount; i++)
         //    {
-        //        for (int j = 0; j < a.ColumnsCount; j++)
+        //        for (int j = 0; j < first.ColumnsCount; j++)
         //        {
-        //            if (a[i, j] != null && b[i, j] != null)
-        //                JuggedMatrix[i, j] = a[i, j] + b[i, j];
+        //            if (first[i, j] != null && second[i, j] != null)
+        //                JuggedMatrix[i, j] = first[i, j] + second[i, j];
         //            else
         //                JuggedMatrix[i, j] = null;
         //        }
@@ -775,17 +776,17 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         //    return JuggedMatrix;
         //}
 
-        //public static JuggedMatrix<long?> Sub(this JuggedMatrix<long?> a, JuggedMatrix<long?> b)
+        //public static JuggedMatrix<long?> Sub(this JuggedMatrix<long?> first, JuggedMatrix<long?> second)
         //{
-        //    if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of columns should be the same");
-        //    if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
-        //    var JuggedMatrix = new JuggedMatrix<long?>(a.RowsCount, a.ColumnsCount);
-        //    for (int i = 0; i < a.RowsCount; i++)
+        //    if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of columns should be the same");
+        //    if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+        //    var JuggedMatrix = new JuggedMatrix<long?>(first.RowsCount, first.ColumnsCount);
+        //    for (int i = 0; i < first.RowsCount; i++)
         //    {
-        //        for (int j = 0; j < a.ColumnsCount; j++)
+        //        for (int j = 0; j < first.ColumnsCount; j++)
         //        {
-        //            if (a[i, j] != null && b[i, j] != null)
-        //                JuggedMatrix[i, j] = a[i, j] - b[i, j];
+        //            if (first[i, j] != null && second[i, j] != null)
+        //                JuggedMatrix[i, j] = first[i, j] - second[i, j];
         //            else
         //                JuggedMatrix[i, j] = null;
         //        }
@@ -794,15 +795,15 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         //    return JuggedMatrix;
         //}
 
-        //public static JuggedMatrix<long?> MulOnNumber(this JuggedMatrix<long?> a, long number)
+        //public static JuggedMatrix<long?> MulOnNumber(this JuggedMatrix<long?> first, long number)
         //{
-        //    var JuggedMatrix = new JuggedMatrix<long?>(a.RowsCount, a.ColumnsCount);
-        //    for (int i = 0; i < a.RowsCount; i++)
+        //    var JuggedMatrix = new JuggedMatrix<long?>(first.RowsCount, first.ColumnsCount);
+        //    for (int i = 0; i < first.RowsCount; i++)
         //    {
-        //        for (int j = 0; j < a.ColumnsCount; j++)
+        //        for (int j = 0; j < first.ColumnsCount; j++)
         //        {
-        //            if (a[i, j] != null)
-        //                JuggedMatrix[i, j] = a[i, j] * number;
+        //            if (first[i, j] != null)
+        //                JuggedMatrix[i, j] = first[i, j] * number;
         //        }
         //    }
 
@@ -873,24 +874,24 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
 
         #region Math
 
-        //public static JuggedMatrix<double?> Multiplication(this JuggedMatrix<double?> a, JuggedMatrix<double?> b)
+        //public static JuggedMatrix<double?> Multiplication(this JuggedMatrix<double?> first, JuggedMatrix<double?> second)
         //{
-        //    if (a.ColumnsCount == b.RowsCount) return a.InternalMulAtoB(b);
-        //    if (b.ColumnsCount == a.RowsCount) return a.InternalMulBtoA(b);
+        //    if (first.ColumnsCount == second.RowsCount) return first.InternalMulAtoB(second);
+        //    if (second.ColumnsCount == first.RowsCount) return first.InternalMulBtoA(second);
         //    throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         //}
 
-        //public static JuggedMatrix<double?> Add(this JuggedMatrix<double?> a, JuggedMatrix<double?> b)
+        //public static JuggedMatrix<double?> Add(this JuggedMatrix<double?> first, JuggedMatrix<double?> second)
         //{
-        //    if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
-        //    if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
-        //    var JuggedMatrix = new JuggedMatrix<double?>(a.RowsCount, a.ColumnsCount);
-        //    for (int i = 0; i < a.RowsCount; i++)
+        //    if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+        //    if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+        //    var JuggedMatrix = new JuggedMatrix<double?>(first.RowsCount, first.ColumnsCount);
+        //    for (int i = 0; i < first.RowsCount; i++)
         //    {
-        //        for (int j = 0; j < a.ColumnsCount; j++)
+        //        for (int j = 0; j < first.ColumnsCount; j++)
         //        {
-        //            if (a[i, j] != null && b[i, j] != null)
-        //                JuggedMatrix[i, j] = a[i, j] + b[i, j];
+        //            if (first[i, j] != null && second[i, j] != null)
+        //                JuggedMatrix[i, j] = first[i, j] + second[i, j];
         //            else
         //                JuggedMatrix[i, j] = null;
         //        }
@@ -899,17 +900,17 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         //    return JuggedMatrix;
         //}
 
-        //public static JuggedMatrix<double?> Sub(this JuggedMatrix<double?> a, JuggedMatrix<double?> b)
+        //public static JuggedMatrix<double?> Sub(this JuggedMatrix<double?> first, JuggedMatrix<double?> second)
         //{
-        //    if (a.ColumnsCount != b.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of columns should be the same");
-        //    if (a.RowsCount != b.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
-        //    var JuggedMatrix = new JuggedMatrix<double?>(a.RowsCount, a.ColumnsCount);
-        //    for (int i = 0; i < a.RowsCount; i++)
+        //    if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of columns should be the same");
+        //    if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+        //    var JuggedMatrix = new JuggedMatrix<double?>(first.RowsCount, first.ColumnsCount);
+        //    for (int i = 0; i < first.RowsCount; i++)
         //    {
-        //        for (int j = 0; j < a.ColumnsCount; j++)
+        //        for (int j = 0; j < first.ColumnsCount; j++)
         //        {
-        //            if (a[i, j] != null && b[i, j] != null)
-        //                JuggedMatrix[i, j] = a[i, j] - b[i, j];
+        //            if (first[i, j] != null && second[i, j] != null)
+        //                JuggedMatrix[i, j] = first[i, j] - second[i, j];
         //            else
         //                JuggedMatrix[i, j] = null;
         //        }
@@ -918,15 +919,15 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         //    return JuggedMatrix;
         //}
 
-        //public static JuggedMatrix<double?> MulOnNumber(this JuggedMatrix<double?> a, double number)
+        //public static JuggedMatrix<double?> MulOnNumber(this JuggedMatrix<double?> first, double number)
         //{
-        //    var JuggedMatrix = new JuggedMatrix<double?>(a.RowsCount, a.ColumnsCount);
-        //    for (int i = 0; i < a.RowsCount; i++)
+        //    var JuggedMatrix = new JuggedMatrix<double?>(first.RowsCount, first.ColumnsCount);
+        //    for (int i = 0; i < first.RowsCount; i++)
         //    {
-        //        for (int j = 0; j < a.ColumnsCount; j++)
+        //        for (int j = 0; j < first.ColumnsCount; j++)
         //        {
         //            if (JuggedMatrix[i, j] != null)
-        //                JuggedMatrix[i, j] = a[i, j] * number;
+        //                JuggedMatrix[i, j] = first[i, j] * number;
         //            else
         //                JuggedMatrix[i, j] = null;
         //        }

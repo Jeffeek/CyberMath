@@ -4,12 +4,19 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace CyberMath.Structures.BinaryTreeBase
 {
+    /// <summary>
+    /// Implementing of native <see cref="IBinaryTreeNode{T}"/>
+    /// </summary>
+    /// <typeparam name="T"><see cref="IComparable{T}"/></typeparam>
     public abstract class BinaryTreeNodeBase<T> : IBinaryTreeNode<T>
         where T : IComparable<T>, IComparable
     {
+        public override int GetHashCode() => EqualityComparer<T>.Default.GetHashCode(Data);
+        protected bool Equals(BinaryTreeNodeBase<T> other) => this == other;
+
+
         public IBinaryTreeNode<T> Left { get; protected set; }
         public IBinaryTreeNode<T> Right { get; protected set; }
-
         public T Data { get; protected set; }
 
         public abstract IBinaryTreeNode<T> Insert(T value);
@@ -54,6 +61,12 @@ namespace CyberMath.Structures.BinaryTreeBase
             return current;
         }
 
+        /// <summary>
+        /// Finds node by <paramref name="value"/>
+        /// </summary>
+        /// <param name="subTree">A <see cref="IBinaryTreeNode{T}"/> subTree where to find</param>
+        /// <param name="value">Value to find</param>
+        /// <returns>Reference to the node with <paramref name="value"/></returns>
         protected IBinaryTreeNode<T> FindNode(IBinaryTreeNode<T> subTree, T value)
         {
             var current = subTree;
@@ -82,6 +95,11 @@ namespace CyberMath.Structures.BinaryTreeBase
 
         #endregion
 
+        /// <summary>
+        /// Finds the successor of <paramref name="node"/>
+        /// </summary>
+        /// <param name="node"><see cref="BinaryTreeNodeBase{T}"/> node from to find</param>
+        /// <returns>Reference to the successor</returns>
         protected IBinaryTreeNode<T> GetSuccessor(BinaryTreeNodeBase<T> node)
         {
             var parentOfSuccessor = node;

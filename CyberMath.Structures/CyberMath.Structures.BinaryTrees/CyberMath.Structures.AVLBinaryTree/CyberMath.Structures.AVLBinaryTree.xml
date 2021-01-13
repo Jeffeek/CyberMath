@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CyberMath.Structures.AVLBinaryTree</name>
+    </assembly>
+    <members>
+        <member name="T:CyberMath.Structures.AVLBinaryTree.AVLBinaryTree`1">
+            <summary>
+            Represents AVL Binary Tree. Implements <see cref="T:CyberMath.Structures.BinaryTreeBase.BinaryTreeBase`1"/>
+            </summary>
+            <typeparam name="T"><see cref="T:System.IComparable`1"/></typeparam>
+        </member>
+        <member name="T:CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode`1">
+            <summary>
+            Represents an AVL Binary Tree NODE. Implements <see cref="T:CyberMath.Structures.BinaryTreeBase.BinaryTreeNodeBase`1"/>
+            </summary>
+            <typeparam name="T"><see cref="T:System.IComparable`1"/></typeparam>
+        </member>
+        <member name="F:CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode`1._height">
+            <summary>
+            Height of initial <see cref="T:CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode`1"/>
+            </summary>
+        </member>
+        <member name="M:CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode`1.RemoveMin(CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode{`0})">
+            <summary>
+            Removes a minimal node from <paramref name="subTree"/>
+            </summary>
+            <param name="subTree"></param>
+            <returns>If <see cref="P:CyberMath.Structures.BinaryTreeBase.IBinaryTreeNode`1.Left"/> equals <see langword="null"/> returns reference to <see cref="P:CyberMath.Structures.BinaryTreeBase.IBinaryTreeNode`1.Right"/>. Else balanced <paramref name="subTree"/> after removing</returns>
+        </member>
+        <member name="M:CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode`1.BFactor">
+            <summary>
+            Calculates BFactor in initial <see cref="T:CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode`1"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode`1.FixHeight(CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode{`0})">
+            <summary>
+            Fixes <see cref="F:CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode`1._height"/> after fixing <paramref name="node"/>
+            </summary>
+            <param name="node">Node to fix</param>
+        </member>
+        <member name="M:CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode`1.RotateRight(CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode{`0})">
+            <summary>
+            Right rotating of <see cref="T:CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode`1"/>
+            </summary>
+            <param name="node">Node to rotate</param>
+            <returns>Reference to the rotated node</returns>
+        </member>
+        <member name="M:CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode`1.RotateLeft(CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode{`0})">
+            <summary>
+            Left rotating of <see cref="T:CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode`1"/>
+            </summary>
+            <param name="node">Node to rotate</param>
+            <returns>Reference to the rotated node</returns>
+        </member>
+        <member name="M:CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode`1.Balance(CyberMath.Structures.AVLBinaryTree.AVLBinaryTreeNode{`0})">
+            <summary>
+            Balancing <paramref name="node"/>
+            </summary>
+            <param name="node"></param>
+            <returns>Reference to the <paramref name="node"/> after balancing</returns>
+        </member>
+    </members>
+</doc>

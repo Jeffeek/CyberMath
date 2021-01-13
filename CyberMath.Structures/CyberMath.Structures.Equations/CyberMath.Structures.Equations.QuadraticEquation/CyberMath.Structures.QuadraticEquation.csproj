@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>E:\projectsVS\CyberMath\CyberMath.Structures\CyberMath.Structures.Equations\CyberMath.Structures.Equations.QuadraticEquation\CyberMath.Structures.QuadraticEquation.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>

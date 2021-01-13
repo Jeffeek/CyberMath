@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace CyberMath.Structures.MatrixExtensions
 {
+    /// <summary>
+    /// Extension methods for <see cref="IMatrix{T}"/> and <see cref="IJuggedMatrix{T}"/> for their transformation
+    /// </summary>
     public static class MatrixExtensions
     {
         //TODO: unit-test

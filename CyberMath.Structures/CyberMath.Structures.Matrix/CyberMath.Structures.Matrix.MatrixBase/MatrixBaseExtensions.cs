@@ -20,8 +20,9 @@ namespace CyberMath.Structures.MatrixBase
         {
             for (int k = 0; k < matrix.RowsCount; k++)
             {
-                if (matrix[k, j].CompareTo(matrix[i, j]) == 1)
-                    return false;
+                if (matrix[k, j] != null && matrix[i, j] != null)
+                    if (matrix[k, j].CompareTo(matrix[i, j]) == 1)
+                        return false;
             }
             return true;
         }
@@ -38,8 +39,9 @@ namespace CyberMath.Structures.MatrixBase
         {
             for (int k = 0; k < matrix.ElementsInRow(i); k++)
             {
-                if (matrix[i, k].CompareTo(matrix[i, j]) == -1)
-                    return false;
+                if (matrix[i, k] != null && matrix[i, j] != null)
+                    if (matrix[i, k].CompareTo(matrix[i, j]) == -1)
+                        return false;
             }
             return true;
         }

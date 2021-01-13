@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 namespace CyberMath.Structures.AVLBinaryTree
 {
+    /// <summary>
+    /// Represents AVL Binary Tree. Implements <see cref="BinaryTreeBase{T}"/>
+    /// </summary>
+    /// <typeparam name="T"><see cref="IComparable{T}"/></typeparam>
     public class AVLBinaryTree<T> : BinaryTreeBase<T>
     where T : IComparable, IComparable<T>
     {

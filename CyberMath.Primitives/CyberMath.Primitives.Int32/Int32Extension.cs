@@ -2,27 +2,31 @@
 
 namespace CyberMath.Primitives.Int32
 {
+    /// <summary>
+    /// Extension methods for <see cref="Int32"/>
+    /// </summary>
     public static class Int32Extension
     {
         /// <summary>
         /// Checks is number odd
         /// </summary>
         /// <param name="number">number to check</param>
-        /// <returns>is number odd</returns>
+        /// <returns><see langword="true"/> if number is odd; otherwise <see langword="false"/></returns>
         public static bool IsOdd(this int number) => number % 2 == 0;
+        
         /// <summary>
         /// Checks is number even
         /// </summary>
-        /// <param name="number">number to check</param>
+        /// <returns><see langword="true"/> if number is even; otherwise <see langword="false"/></returns>
         /// <returns>is number even</returns>
         public static bool IsEven(this int number) => number % 2 != 0;
 
         /// <summary>
-        /// Greatest common divisor
+        /// Calculates greatest common divisor between two <see cref="Int32"/> numbers
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
-        /// <returns></returns>
+        /// <returns>Greatest common divisor</returns>
         public static int GCD(this int a, int b)
         {
             if (a < b)
@@ -37,15 +41,15 @@ namespace CyberMath.Primitives.Int32
         }
 
         /// <summary>
-        /// lowest common multiple
+        /// Calculates lowest common multiple between two <see cref="Int32"/> numbers
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
-        /// <returns></returns>
+        /// <returns>Lowest common multiple</returns>
         public static int LCM(this int a, int b) => a / GCD(a, b) * b;
 
         /// <summary>
-        /// swaps two integers
+        /// Swaps two integers
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -56,6 +60,11 @@ namespace CyberMath.Primitives.Int32
             b = temp;
         }
 
+        /// <summary>
+        /// Checks <see cref="Int32"/> for palindromicity
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
         public static bool IsPalindrome(this int number)
         {
             number = Math.Abs(number);
@@ -75,10 +84,10 @@ namespace CyberMath.Primitives.Int32
         }
 
         /// <summary>
-        /// Calculates the length of Int32 structure
+        /// Calculates the length of <see cref="Int32"/> number
         /// </summary>
         /// <param name="number"></param>
-        /// <returns></returns>
+        /// <returns>Length of <paramref name="number"/></returns>
         public static int GetLength(this int number)
         {
             if (number == int.MinValue || number == int.MaxValue) return 10;

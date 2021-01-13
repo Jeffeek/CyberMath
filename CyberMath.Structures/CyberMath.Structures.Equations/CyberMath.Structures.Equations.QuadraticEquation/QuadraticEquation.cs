@@ -4,13 +4,11 @@ using System.Text.RegularExpressions;
 namespace CyberMath.Structures.QuadraticEquation
 {
     /// <summary>
-    /// Represents a class for building quadratic equation
+    /// Represents a class for building quadratic equation<para/>
+    /// <example>1x^2+2.5x+7=0 || 1.5x^2+2x+7.1</example>
     /// </summary>
     public class QuadraticEquation
     {
-        /// <summary>
-        /// 1x^2+2.5x+7=0 || 1.5x^2+2x+7.1
-        /// </summary>
         private readonly Regex _quadraticEquationPattern = new Regex("([+-]?\\d+|[+-]?\\d+\\.[\\d]{1,})[Xx]\\^2([+-]?\\d+|[+-]?\\d+\\.[\\d]{1,})[Xx]([+-]?\\d+|[+-]?\\d+\\.[\\d]{1,})");
 
         /// <summary>

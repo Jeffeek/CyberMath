@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CyberMath.Structures.RedBlackBinaryTree</name>
+    </assembly>
+    <members>
+        <member name="T:CyberMath.Structures.RedBlackBinaryTree.BinaryTreeColor">
+            <summary>
+            Enum for Red-Black Binary Tree NODE color
+            </summary>
+        </member>
+        <member name="T:CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTree`1">
+            <summary>
+            Represents Red-Black Binary Tree. Implements <see cref="T:CyberMath.Structures.BinaryTreeBase.BinaryTreeBase`1"/>
+            </summary>
+            <typeparam name="T"><see cref="T:System.IComparable`1"/></typeparam>
+        </member>
+        <member name="T:CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode`1">
+            <summary>
+            Represents Red-Black Binary Tree NODE. Implement <see cref="T:CyberMath.Structures.BinaryTreeBase.BinaryTreeNodeBase`1"/>
+            </summary>
+            <typeparam name="T"><see cref="T:System.IComparable`1"/></typeparam>
+        </member>
+        <member name="F:CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode`1._color">
+            <summary>
+            Color of initial <see cref="T:CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode`1"/>
+            </summary>
+        </member>
+        <member name="F:CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode`1._parent">
+            <summary>
+            Reference to the parent of the initial node
+            </summary>
+        </member>
+        <member name="M:CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode`1.GetUncle(CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode{`0})">
+            <summary>
+            Finds uncle of <paramref name="node"/>
+            </summary>
+            <param name="node"></param>
+            <returns>Uncle of <paramref name="node"/></returns>
+        </member>
+        <member name="M:CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode`1.GetSibling(CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode{`0})">
+            <summary>
+            Finds sibling of <paramref name="node"/>
+            </summary>
+            <param name="node"></param>
+            <returns>Sibling of <paramref name="node"/></returns>
+        </member>
+        <member name="M:CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode`1.GetGrandparent(CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode{`0})">
+            <summary>
+            Finds grandparent of <paramref name="node"/>
+            </summary>
+            <param name="node"></param>
+            <returns>Grandparent of <paramref name="node"/></returns>
+        </member>
+        <member name="M:CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode`1.InsertFixUp(CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode{`0},CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode{`0})">
+            <summary>
+            Fix up after inserting
+            </summary>
+            <param name="root">Reference to root</param>
+            <param name="nodeX">Reference to node which was inserted</param>
+            <returns>Reference to root</returns>
+        </member>
+        <member name="M:CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode`1.DeleteFixUp(CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode{`0},CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode{`0})">
+            <summary>
+            Fix up after removing
+            </summary>
+            <param name="root">Reference to root</param>
+            <param name="nodeX">Reference to node which helps to fix up</param>
+            <returns>Reference to root</returns>
+        </member>
+        <member name="M:CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode`1.RotateLeft(CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode{`0},CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode{`0})">
+            <summary>
+            Left rotate of <paramref name="node"/>
+            </summary>
+            <param name="root">Reference to root</param>
+            <param name="node">Reference to node to rotate</param>
+            <returns>Reference to <paramref name="root"/></returns>
+        </member>
+        <member name="M:CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode`1.RotateRight(CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode{`0},CyberMath.Structures.RedBlackBinaryTree.RedBlackBinaryTreeNode{`0})">
+            <summary>
+            Right rotate of <paramref name="node"/>
+            </summary>
+            <param name="root">Reference to root</param>
+            <param name="node">Reference to node to rotate</param>
+            <returns>Reference to <paramref name="root"/></returns>
+        </member>
+    </members>
+</doc>

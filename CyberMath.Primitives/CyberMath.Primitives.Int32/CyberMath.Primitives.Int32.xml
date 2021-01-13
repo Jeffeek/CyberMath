@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CyberMath.Primitives.Int32</name>
+    </assembly>
+    <members>
+        <member name="T:CyberMath.Primitives.Int32.Int32Extension">
+            <summary>
+            Extension methods for <see cref="N:CyberMath.Primitives.Int32"/>
+            </summary>
+        </member>
+        <member name="M:CyberMath.Primitives.Int32.Int32Extension.IsOdd(System.Int32)">
+            <summary>
+            Checks is number odd
+            </summary>
+            <param name="number">number to check</param>
+            <returns><see langword="true"/> if number is odd; otherwise <see langword="false"/></returns>
+        </member>
+        <member name="M:CyberMath.Primitives.Int32.Int32Extension.IsEven(System.Int32)">
+            <summary>
+            Checks is number even
+            </summary>
+            <returns><see langword="true"/> if number is even; otherwise <see langword="false"/></returns>
+            <returns>is number even</returns>
+        </member>
+        <member name="M:CyberMath.Primitives.Int32.Int32Extension.GCD(System.Int32,System.Int32)">
+            <summary>
+            Calculates greatest common divisor between two <see cref="N:CyberMath.Primitives.Int32"/> numbers
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns>Greatest common divisor</returns>
+        </member>
+        <member name="M:CyberMath.Primitives.Int32.Int32Extension.LCM(System.Int32,System.Int32)">
+            <summary>
+            Calculates lowest common multiple between two <see cref="N:CyberMath.Primitives.Int32"/> numbers
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns>Lowest common multiple</returns>
+        </member>
+        <member name="M:CyberMath.Primitives.Int32.Int32Extension.Swap(System.Int32@,System.Int32@)">
+            <summary>
+            Swaps two integers
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+        </member>
+        <member name="M:CyberMath.Primitives.Int32.Int32Extension.IsPalindrome(System.Int32)">
+            <summary>
+            Checks <see cref="N:CyberMath.Primitives.Int32"/> for palindromicity
+            </summary>
+            <param name="number"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CyberMath.Primitives.Int32.Int32Extension.GetLength(System.Int32)">
+            <summary>
+            Calculates the length of <see cref="N:CyberMath.Primitives.Int32"/> number
+            </summary>
+            <param name="number"></param>
+            <returns>Length of <paramref name="number"/></returns>
+        </member>
+        <member name="T:CyberMath.Primitives.Int32.Int32PrimeNumbers">
+            <summary>
+            Extension methods of prime numbers for <see cref="N:CyberMath.Primitives.Int32"/>
+            </summary>
+        </member>
+        <member name="M:CyberMath.Primitives.Int32.Int32PrimeNumbers.IsPrime(System.Int32)">
+            <summary>
+            Checks <paramref name="number"/> for primality
+            </summary>
+            <param name="number"></param>
+            <returns><see langword="true"/> if <paramref name="number"/> is prime; otherwise <see langword="false"/></returns>
+        </member>
+        <member name="M:CyberMath.Primitives.Int32.Int32PrimeNumbers.GenerateRandomPrimeNumber(System.Int32,System.Int32)">
+            <summary>
+            Generating one random prime number between <paramref name="min"/> and <paramref name="max"/>
+            </summary>
+            <param name="min"></param>
+            <param name="max"></param>
+            <returns>Prime number</returns>
+        </member>
+        <member name="M:CyberMath.Primitives.Int32.Int32PrimeNumbers.GeneratePrimeNumbers(System.Int32)">
+            <summary>
+            Generates <see cref="T:System.Collections.Generic.IEnumerable`1"/> collection of prime numbers which are less than <paramref name="max"/>
+            </summary>
+            <param name="max"></param>
+            <returns><see cref="T:System.Collections.Generic.IEnumerable`1"/> of prime numbers between 2 and <paramref name="max"/></returns>
+        </member>
+        <member name="M:CyberMath.Primitives.Int32.Int32PrimeNumbers.GeneratePrimeNumbers">
+            <summary>
+            Generator of prime numbers until <seealso cref="F:System.Int32.MaxValue"/>
+            </summary>
+            <returns><see cref="T:System.Collections.Generic.IEnumerable`1"/></returns>
+        </member>
+    </members>
+</doc>

@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>E:\projectsVS\CyberMath\CyberMath.Structures\CyberMath.Structures.BinaryTrees\CyberMath.Structures.BinaryTree\CyberMath.Structures.BinaryTree.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\CyberMath.Structures.BinaryTreeBase\CyberMath.Structures.BinaryTreeBase.csproj" />
   </ItemGroup>

@@ -3,9 +3,16 @@ using System;
 
 namespace CyberMath.Structures.AVLBinaryTree
 {
+    /// <summary>
+    /// Represents an AVL Binary Tree NODE. Implements <see cref="BinaryTreeNodeBase{T}"/>
+    /// </summary>
+    /// <typeparam name="T"><see cref="IComparable{T}"/></typeparam>
     public class AVLBinaryTreeNode<T> : BinaryTreeNodeBase<T>
             where T : IComparable<T>, IComparable
     {
+        /// <summary>
+        /// Height of initial <see cref="AVLBinaryTreeNode{T}"/>
+        /// </summary>
         private int _height = 0;
 
         public AVLBinaryTreeNode(T data) : base(data) { }
@@ -35,6 +42,11 @@ namespace CyberMath.Structures.AVLBinaryTree
             return Balance(node);
         }
 
+        /// <summary>
+        /// Removes a minimal node from <paramref name="subTree"/>
+        /// </summary>
+        /// <param name="subTree"></param>
+        /// <returns>If <see cref="IBinaryTreeNode{T}.Left"/> equals <see langword="null"/> returns reference to <see cref="IBinaryTreeNode{T}.Right"/>. Else balanced <paramref name="subTree"/> after removing</returns>
         private AVLBinaryTreeNode<T> RemoveMin(AVLBinaryTreeNode<T> subTree)
         {
             if (ReferenceEquals(subTree.Left, null))
@@ -43,7 +55,7 @@ namespace CyberMath.Structures.AVLBinaryTree
             return Balance(subTree);
         }
 
-        internal AVLBinaryTreeNode<T> InternalInsert(AVLBinaryTreeNode<T> node, T data)
+        private AVLBinaryTreeNode<T> InternalInsert(AVLBinaryTreeNode<T> node, T data)
         {
             if (ReferenceEquals(node, null)) return new AVLBinaryTreeNode<T>(data);
             if (data.CompareTo(node.Data) == -1)
@@ -55,8 +67,16 @@ namespace CyberMath.Structures.AVLBinaryTree
 
         private int GetHeight(AVLBinaryTreeNode<T> node) => node?._height ?? 0;
 
+        /// <summary>
+        /// Calculates BFactor in initial <see cref="AVLBinaryTreeNode{T}"/>
+        /// </summary>
+        /// <returns></returns>
         private int BFactor() => GetHeight(Right as AVLBinaryTreeNode<T>) - GetHeight(Left as AVLBinaryTreeNode<T>);
 
+        /// <summary>
+        /// Fixes <see cref="_height"/> after fixing <paramref name="node"/>
+        /// </summary>
+        /// <param name="node">Node to fix</param>
         private void FixHeight(AVLBinaryTreeNode<T> node)
         {
             int hl = GetHeight(node.Left as AVLBinaryTreeNode<T>);
@@ -64,6 +84,11 @@ namespace CyberMath.Structures.AVLBinaryTree
             node._height = (hl > hr ? hl : hr) + 1;
         }
 
+        /// <summary>
+        /// Right rotating of <see cref="AVLBinaryTreeNode{T}"/>
+        /// </summary>
+        /// <param name="node">Node to rotate</param>
+        /// <returns>Reference to the rotated node</returns>
         private AVLBinaryTreeNode<T> RotateRight(AVLBinaryTreeNode<T> node)
         {
             var q = node.Left as AVLBinaryTreeNode<T>;
@@ -74,6 +99,11 @@ namespace CyberMath.Structures.AVLBinaryTree
             return q;
         }
 
+        /// <summary>
+        /// Left rotating of <see cref="AVLBinaryTreeNode{T}"/>
+        /// </summary>
+        /// <param name="node">Node to rotate</param>
+        /// <returns>Reference to the rotated node</returns>
         private AVLBinaryTreeNode<T> RotateLeft(AVLBinaryTreeNode<T> node)
         {
             var rightNode = node.Right as AVLBinaryTreeNode<T>;
@@ -84,6 +114,11 @@ namespace CyberMath.Structures.AVLBinaryTree
             return rightNode;
         }
 
+        /// <summary>
+        /// Balancing <paramref name="node"/>
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns>Reference to the <paramref name="node"/> after balancing</returns>
         private AVLBinaryTreeNode<T> Balance(AVLBinaryTreeNode<T> node)
         {
             FixHeight(node);

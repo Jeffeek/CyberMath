@@ -5,6 +5,10 @@
 	<AssemblyName>CyberMath.Structures.Matrix.JaggedMatrix</AssemblyName>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>E:\projectsVS\CyberMath\CyberMath.Structures\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.JaggedMatrix\CyberMath.Structures.Matrix.JaggedMatrix.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\CyberMath.Structures.Matrix.MatrixBase\CyberMath.Structures.MatrixBase.csproj" />
   </ItemGroup>

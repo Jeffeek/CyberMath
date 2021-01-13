@@ -5,6 +5,10 @@ using System.Linq;
 
 namespace CyberMath.Structures.BinaryTreeBase
 {
+    /// <summary>
+    /// Implementing of native <see cref="IBinaryTree{T}"/>
+    /// </summary>
+    /// <typeparam name="T"><see cref="IComparable{T}"/></typeparam>
     public abstract class BinaryTreeBase<T> : IBinaryTree<T>
            where T : IComparable, IComparable<T>
     {

@@ -5,4 +5,8 @@
 	<AssemblyName>CyberMath.Extensions</AssemblyName>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>E:\projectsVS\CyberMath\CyberMath.Extensions\CyberMath.Extensions.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>

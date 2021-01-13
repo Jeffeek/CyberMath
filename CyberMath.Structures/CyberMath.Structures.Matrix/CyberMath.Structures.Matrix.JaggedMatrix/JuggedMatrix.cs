@@ -153,10 +153,7 @@ namespace CyberMath.Structures.JaggedMatrix
                     yield return this[i, j];
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         #endregion
 

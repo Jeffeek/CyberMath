@@ -5,4 +5,8 @@
 	<AssemblyName>CyberMath.Structures.Matrix.MatrixBase</AssemblyName>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>E:\projectsVS\CyberMath\CyberMath.Structures\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.MatrixBase\CyberMath.Structures.Matrix.MatrixBase.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>
