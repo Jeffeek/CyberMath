@@ -6,7 +6,10 @@ using System.Text;
 
 namespace CyberMath.Structures.Matrix
 {
-    //TODO: summary
+    /// <summary>
+    /// Implementation of <see cref="IMatrix{T}"/> with Math-functional methods
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Matrix<T> : IMatrix<T>
     {
         private readonly T[,] _innerMatrix;

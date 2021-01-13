@@ -6,7 +6,11 @@ namespace CyberMath.Extensions
 {
     public static class StringExtensions
     {
-        //TODO: summary
+        /// <summary>
+        /// Checks <paramref name="input"/> for palindromicity
+        /// </summary>
+        /// <param name="input">Input string</param>
+        /// <returns><see cref="Boolean"/> true if <paramref name="input"/> is palindrome</returns>
         public static bool IsPalindrome(this string input)
         {
             if (ReferenceEquals(input, null)) return false;
@@ -19,8 +23,14 @@ namespace CyberMath.Extensions
 
             return true;
         }
-        
-        //TODO: unit-test & summary
+
+        //TODO: unit-test
+        /// <summary>
+        /// Checks two string for anagramism
+        /// </summary>
+        /// <param name="inputOriginal">First string to check</param>
+        /// <param name="testInput">Second string to check</param>
+        /// <returns><see cref="Boolean"/>: true if two string are anagrams of each other</returns>
         public static bool IsAnagram(this string inputOriginal, string testInput)
         {
             if (ReferenceEquals(inputOriginal, null)) throw new ArgumentNullException(nameof(inputOriginal));
@@ -39,7 +49,12 @@ namespace CyberMath.Extensions
             return true;
         }
 
-        //TODO: unit-test & summary
+        //TODO: unit-test
+        /// <summary>
+        /// Creates a <see cref="Dictionary{TKey,TValue}"/> where <paramref name="TKey"/> is <see cref="Char"/> and <paramref name="TValue"/> is <see cref="Int32"/> (count of <paramref name="TKey"/> in input string)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>New <see cref="Dictionary{TKey,TValue}"/> where Key is char in input string and Value is count of this char</returns>
         public static Dictionary<char, int> CalculateFrequency(this string input)
         {
             if (ReferenceEquals(input, null)) throw new ArgumentNullException(nameof(input));
@@ -53,7 +68,13 @@ namespace CyberMath.Extensions
             return frequency;
         }
 
-        //TODO: summary
+        /// <summary>
+        /// Concatenates a string the <paramref name="count"/> of times and can append line if <paramref name="appendLine"/> is true
+        /// </summary>
+        /// <param name="input">Input string</param>
+        /// <param name="count">Count of repeating</param>
+        /// <param name="appendLine">Setting for appending.</param>
+        /// <returns>New concated string <paramref name="count"/> times</returns>
         public static string Concat(this string input, int count, bool appendLine = false)
         {
             if (ReferenceEquals(input, null)) count = 0;
@@ -72,8 +93,14 @@ namespace CyberMath.Extensions
             sb.Append(input);
             return sb.ToString();
         }
-        
-        //TODO: summary
+
+        /// <summary>
+        /// Concatenates a string the <paramref name="count"/> of times, separated by a <paramref name="separator"/>
+        /// </summary>
+        /// <param name="input">Input string</param>
+        /// <param name="count">Count of repeating</param>
+        /// <param name="separator">Separator between strings</param>
+        /// <returns>New concated string <paramref name="count"/> times with <paramref name="separator"/> between</returns>
         public static string Concat(this string input, int count, string separator)
         {
             if (ReferenceEquals(input, null)) count = 0;

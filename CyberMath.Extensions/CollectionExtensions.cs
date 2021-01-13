@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace CyberMath.Extensions
 {
+    /// <summary>
+    /// Extension methods for <see cref="IEnumerable{T}"/> and <see cref="IList{T}"/>
+    /// </summary>
     public static class CollectionExtensions
     {
         /// <summary>

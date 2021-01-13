@@ -1,4 +1,5 @@
-﻿using CyberMath.Structures.JaggedMatrix;
+﻿using System.Collections.Generic;
+using CyberMath.Structures.JaggedMatrix;
 using CyberMath.Structures.Matrix;
 using System.Linq;
 
@@ -6,16 +7,26 @@ namespace CyberMath.Structures.MatrixExtensions
 {
     public static class MatrixExtensions
     {
-        //TODO: summary & unit-test
-        public static int[] GetCountPerRow<T>(this IJuggedMatrix<T> matrix)
+        //TODO: unit-test
+        /// <summary>
+        /// Returns an array with count of elements on each row in <see cref="IJuggedMatrix{T}"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="matrix"></param>
+        /// <returns></returns>
+        public static IEnumerable<int> GetCountPerRow<T>(this IJuggedMatrix<T> matrix)
         {
-            var elements = new int[matrix.RowsCount];
-            for (int i = 0; i < elements.Length; i++)
-                elements[i] = matrix.ElementsInRow(i);
-            return elements;
+            for (int i = 0; i < matrix.RowsCount; i++)
+                yield return matrix.ElementsInRow(i);
         }
 
-        //TODO: summary & unit-test
+        //TODO: unit-test
+        /// <summary>
+        /// Creates a new instance of <see cref="IMatrix{T}"/> from <see cref="IJuggedMatrix{T}"/>
+        /// </summary>
+        /// <typeparam name="T">ANY</typeparam>
+        /// <param name="matrix">Initial matrix</param>
+        /// <returns>A new instance of <see cref="IMatrix{T}"/></returns>
         public static IMatrix<T> ToMatrix<T>(this IJuggedMatrix<T> juggedMatrix)
         {
             var matrix = new Matrix<T>(juggedMatrix.RowsCount, juggedMatrix.GetCountPerRow().Max());
@@ -33,7 +44,13 @@ namespace CyberMath.Structures.MatrixExtensions
             return matrix;
         }
 
-        //TODO: summary & unit-test
+        //TODO: unit-test
+        /// <summary>
+        /// Creates a new instance of <see cref="IJuggedMatrix{T}"/> from <see cref="IMatrix{T}"/>
+        /// </summary>
+        /// <typeparam name="T">ANY</typeparam>
+        /// <param name="matrix">Initial matrix</param>
+        /// <returns>A new instance of <see cref="IJuggedMatrix{T}"/></returns>
         public static IJuggedMatrix<T> ToJuggedMatrix<T>(this IMatrix<T> matrix)
         {
             var juggedMatrix = new JuggedMatrix<T>(matrix.RowsCount, Enumerable.Repeat(matrix.ColumnsCount, matrix.RowsCount).ToArray());
