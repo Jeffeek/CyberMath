@@ -35,8 +35,8 @@ namespace CyberMath.Matrix.Tests
                 [2, 2] = new Animal(5),
             };
 
-            int expected = 45;
-            int actual = matrix.Sum(x => x.Age);
+            var expected = 45;
+            var actual = matrix.Sum(x => x.Age);
             Assert.AreEqual(expected, actual);
         }
     }

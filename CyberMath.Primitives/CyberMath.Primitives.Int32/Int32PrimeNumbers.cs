@@ -18,7 +18,7 @@ namespace CyberMath.Primitives.Int32
             if (number < 0) throw new Exception("Number was lower than zero");
             if (number == 0) return false;
             if (number == 2) return true;
-            for (int i = 2; i <= Math.Sqrt(number); i++)
+            for (var i = 2; i <= Math.Sqrt(number); i++)
             {
                 if (number % i == 0)
                     return false;
@@ -38,8 +38,8 @@ namespace CyberMath.Primitives.Int32
             if (max < 0) throw new Exception("Max was less than zero");
             if (min > max) throw new Exception("Min was bigger than max");
             var rnd = new Random();
-            int stackCounter = 0;
-            int number = rnd.Next(min, max);
+            var stackCounter = 0;
+            var number = rnd.Next(min, max);
             while (!IsPrime(number))
             {
                 number = rnd.Next(min, max);
@@ -58,7 +58,7 @@ namespace CyberMath.Primitives.Int32
         public static IEnumerable<int> GeneratePrimeNumbers(int max)
         {
             if (max <= 2) throw new Exception("Max was less or equal 2");
-            for (int i = 2; i <= max; i++)
+            for (var i = 2; i <= max; i++)
             {
                 if (IsPrime(i))
                     yield return i;
@@ -71,7 +71,7 @@ namespace CyberMath.Primitives.Int32
         /// <returns><see cref="IEnumerable{T}"/></returns>
         public static IEnumerable<int> GeneratePrimeNumbers()
         {
-            int number = 2;
+            var number = 2;
             while (true)
             {
                 if (IsPrime(number))

@@ -127,7 +127,7 @@ namespace CyberMath.Matrix.Tests
         [TestMethod]
         public void Add_int_number_positive()
         {
-            int number = 5;
+            var number = 5;
             var matrix = new Matrix<int>(3, 3)
             {
                 [0, 0] = 6,

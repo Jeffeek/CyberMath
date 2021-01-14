@@ -43,9 +43,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<int>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     matrix[i, j] = first[i, j] + second[i, j];
                 }
@@ -65,9 +65,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<int>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     matrix[i, j] = first[i, j] - second[i, j];
                 }
@@ -85,9 +85,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static IMatrix<int> MulOnNumber(this Matrix<int> matrix, int number)
         {
             var newMatrix = new Matrix<int>(matrix.RowsCount, matrix.ColumnsCount);
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     newMatrix[i, j] = matrix[i, j] * number;
                 }
@@ -146,7 +146,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             {
                 return matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0];
             }
-            int result = 0;
+            var result = 0;
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] *
@@ -198,8 +198,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static int DiagonalSum(this IMatrix<int> matrix)
         {
             if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
-            int sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            var sum = 0;
+            for (var i = 0; i < matrix.RowsCount; i++)
                 sum += matrix[i, i];
             return sum;
         }
@@ -211,10 +211,10 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>Sum of all saddle points in matrix</returns>
         public static int SumSaddlePoints(this IMatrix<int> matrix)
         {
-            int sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            var sum = 0;
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j))
                         continue;
@@ -232,11 +232,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         private static IMatrix<int> InternalMulAtoB(this IMatrix<int> matrix, IMatrix<int> b)
         {
             var result = new Matrix<int>(matrix.RowsCount, b.ColumnsCount);
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < b.ColumnsCount; j++)
+                for (var j = 0; j < b.ColumnsCount; j++)
                 {
-                    for (int k = 0; k < b.RowsCount; k++)
+                    for (var k = 0; k < b.RowsCount; k++)
                     {
                         result[i, j] += matrix[i, k] * b[k, j];
                     }
@@ -249,11 +249,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         private static IMatrix<int> InternalMulBtoA(this IMatrix<int> matrix, IMatrix<int> b)
         {
             var result = new Matrix<int>(b.RowsCount, matrix.ColumnsCount);
-            for (int i = 0; i < b.RowsCount; i++)
+            for (var i = 0; i < b.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    for (int k = 0; k < matrix.RowsCount; k++)
+                    for (var k = 0; k < matrix.RowsCount; k++)
                     {
                         result[i, j] += b[i, k] * matrix[k, j];
                     }
@@ -276,9 +276,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static void FillRandomly(this IMatrix<int> matrix, int min = -50, int max = 50)
         {
             var rnd = new Random();
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     matrix[i, j] = rnd.Next(min, max + 1);
                 }
@@ -317,9 +317,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<long>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     matrix[i, j] = first[i, j] + second[i, j];
                 }
@@ -339,9 +339,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<long>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     matrix[i, j] = first[i, j] - second[i, j];
                 }
@@ -359,9 +359,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static IMatrix<long> MulOnNumber(this IMatrix<long> matrix, long number)
         {
             var newMatrix = new Matrix<long>(matrix.RowsCount, matrix.ColumnsCount);
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     newMatrix[i, j] = matrix[i, j] * number;
                 }
@@ -443,7 +443,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         {
             if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             long sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
                 sum += matrix[i, i];
             return sum;
         }
@@ -456,9 +456,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static long SumSaddlePoints(this IMatrix<long> matrix)
         {
             long sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) continue;
                     sum += matrix[i, j];
@@ -475,11 +475,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         private static IMatrix<long> InternalMulAtoB(this IMatrix<long> matrix, IMatrix<long> second)
         {
             var result = new Matrix<long>(matrix.RowsCount, second.ColumnsCount);
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < second.ColumnsCount; j++)
+                for (var j = 0; j < second.ColumnsCount; j++)
                 {
-                    for (int k = 0; k < second.RowsCount; k++)
+                    for (var k = 0; k < second.RowsCount; k++)
                     {
                         result[i, j] += matrix[i, k] * second[k, j];
                     }
@@ -492,11 +492,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         private static IMatrix<long> InternalMulBtoA(this IMatrix<long> matrix, IMatrix<long> second)
         {
             var result = new Matrix<long>(second.RowsCount, matrix.ColumnsCount);
-            for (int i = 0; i < second.RowsCount; i++)
+            for (var i = 0; i < second.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    for (int k = 0; k < matrix.RowsCount; k++)
+                    for (var k = 0; k < matrix.RowsCount; k++)
                     {
                         result[i, j] += second[i, k] * matrix[k, j];
                     }
@@ -519,9 +519,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static void FillRandomly(this IMatrix<long> matrix, long min = -50, long max = 50)
         {
             var rnd = new Random();
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     matrix[i, j] = rnd.NextLong(min, max);
                 }
@@ -560,9 +560,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<double>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     matrix[i, j] = first[i, j] + second[i, j];
                 }
@@ -582,9 +582,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<double>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     matrix[i, j] = first[i, j] - second[i, j];
                 }
@@ -602,9 +602,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static IMatrix<double> MulOnNumber(this IMatrix<double> matrix, double number)
         {
             var newMatrix = new Matrix<double>(matrix.RowsCount, matrix.ColumnsCount);
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     newMatrix[i, j] = matrix[i, j] * number;
                 }
@@ -686,7 +686,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         {
             if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             double sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
                 sum += matrix[i, i];
             return sum;
         }
@@ -699,9 +699,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static double SumSaddlePoints(this IMatrix<double> matrix)
         {
             double sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) continue;
                     sum += matrix[i, j];
@@ -718,11 +718,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         private static IMatrix<double> InternalMulAtoB(this IMatrix<double> matrix, IMatrix<double> second)
         {
             var result = new Matrix<double>(matrix.RowsCount, second.ColumnsCount);
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < second.ColumnsCount; j++)
+                for (var j = 0; j < second.ColumnsCount; j++)
                 {
-                    for (int k = 0; k < second.RowsCount; k++)
+                    for (var k = 0; k < second.RowsCount; k++)
                     {
                         result[i, j] += matrix[i, k] * second[k, j];
                     }
@@ -735,11 +735,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         private static IMatrix<double> InternalMulBtoA(this IMatrix<double> matrix, IMatrix<double> second)
         {
             var result = new Matrix<double>(second.RowsCount, matrix.ColumnsCount);
-            for (int i = 0; i < second.RowsCount; i++)
+            for (var i = 0; i < second.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    for (int k = 0; k < matrix.RowsCount; k++)
+                    for (var k = 0; k < matrix.RowsCount; k++)
                     {
                         result[i, j] += second[i, k] * matrix[k, j];
                     }
@@ -762,9 +762,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static void FillRandomly(this IMatrix<double> matrix, double min = -50d, double max = 50d)
         {
             var rnd = new Random();
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     matrix[i, j] = rnd.NextDouble(min, max);
                 }
@@ -791,9 +791,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<decimal>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     matrix[i, j] = first[i, j] + second[i, j];
                 }
@@ -807,9 +807,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<decimal>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     matrix[i, j] = first[i, j] - second[i, j];
                 }
@@ -821,9 +821,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static IMatrix<decimal> MulOnNumber(this IMatrix<decimal> first, decimal number)
         {
             var matrix = new Matrix<decimal>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     matrix[i, j] = first[i, j] * number;
                 }
@@ -905,7 +905,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         {
             if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             decimal sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
                 sum += matrix[i, i];
             return sum;
         }
@@ -918,9 +918,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static decimal SumSaddlePoints(this IMatrix<decimal> matrix)
         {
             decimal sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) continue;
                     sum += matrix[i, j];
@@ -937,11 +937,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         private static IMatrix<decimal> InternalMulAtoB(this IMatrix<decimal> matrix, IMatrix<decimal> second)
         {
             var result = new Matrix<decimal>(matrix.RowsCount, second.ColumnsCount);
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < second.ColumnsCount; j++)
+                for (var j = 0; j < second.ColumnsCount; j++)
                 {
-                    for (int k = 0; k < second.RowsCount; k++)
+                    for (var k = 0; k < second.RowsCount; k++)
                     {
                         result[i, j] += matrix[i, k] * second[k, j];
                     }
@@ -954,11 +954,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         private static IMatrix<decimal> InternalMulBtoA(this IMatrix<decimal> matrix, IMatrix<decimal> second)
         {
             var result = new Matrix<decimal>(second.RowsCount, matrix.ColumnsCount);
-            for (int i = 0; i < second.RowsCount; i++)
+            for (var i = 0; i < second.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    for (int k = 0; k < matrix.RowsCount; k++)
+                    for (var k = 0; k < matrix.RowsCount; k++)
                     {
                         result[i, j] += second[i, k] * matrix[k, j];
                     }
@@ -981,9 +981,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static void FillRandomly(this IMatrix<decimal> matrix, decimal min = -50, decimal max = 50)
         {
             var rnd = new Random();
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     matrix[i, j] = (decimal)rnd.NextDouble((double)min, (double)max);
                 }
@@ -1009,9 +1009,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<string>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     matrix[i, j] = first[i, j] + second[i, j];
                 }
@@ -1029,9 +1029,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static IMatrix<string> MulOnNumber(this IMatrix<string> matrix, int number)
         {
             var newMatrix = new Matrix<string>(matrix.RowsCount, matrix.ColumnsCount);
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     newMatrix[i, j] = matrix[i, j].Concat(number);
                 }
@@ -1053,7 +1053,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         {
             if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             var sb = new StringBuilder();
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
                 sb.Append(matrix[i, i]).Append(' ');
             return sb.ToString();
         }
@@ -1062,9 +1062,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         private static string Sum(this IMatrix<string> matrix)
         {
             var sb = new StringBuilder();
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     sb.Append(matrix[i, j]).Append(' ');
                 }
@@ -1085,9 +1085,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <param name="length">Length of string</param>
         public static void FillRandomly(this IMatrix<string> matrix, Guid guid, int length = 10)
         {
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     matrix[i, j] = guid.ToString().Substring(0, length);
                 }
@@ -1130,9 +1130,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<int?>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     if (first[i, j] != null && second[i, j] != null)
                         matrix[i, j] = first[i, j] + second[i, j];
@@ -1155,9 +1155,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<int?>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     if (first[i, j] != null && second[i, j] != null)
                         matrix[i, j] = first[i, j] - second[i, j];
@@ -1178,9 +1178,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static IMatrix<int?> MulOnNumber(this IMatrix<int?> matrix, int number)
         {
             var newMatrix = new Matrix<int?>(matrix.RowsCount, matrix.ColumnsCount);
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     if (newMatrix[i, j] != null)
                         newMatrix[i, j] = matrix[i, j] * number;
@@ -1218,7 +1218,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
                 else
                     return 0;
             }
-            int result = 0;
+            var result = 0;
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] ?? 0 *
@@ -1272,8 +1272,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static int DiagonalSum(this IMatrix<int?> matrix)
         {
             if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
-            int sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            var sum = 0;
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
                 if (matrix[i, i] != null)
                     sum += matrix[i, i].Value;
@@ -1288,10 +1288,10 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>Sum of all elements in matrix</returns>
         public static int Sum(this IMatrix<int?> matrix)
         {
-            int sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            var sum = 0;
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     if (matrix[i, j] != null)
                         sum += matrix[i, j].Value;
@@ -1308,10 +1308,10 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>Sum of all saddle points in matrix</returns>
         public static int SumSaddlePoints(this IMatrix<int?> matrix)
         {
-            int sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            var sum = 0;
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     if (matrix[i, j] != null)
                     {
@@ -1332,11 +1332,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         private static IMatrix<int?> InternalMulAtoB(this IMatrix<int?> matrix, IMatrix<int?> second)
         {
             var result = new Matrix<int?>(matrix.RowsCount, second.ColumnsCount);
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < second.ColumnsCount; j++)
+                for (var j = 0; j < second.ColumnsCount; j++)
                 {
-                    for (int k = 0; k < second.RowsCount; k++)
+                    for (var k = 0; k < second.RowsCount; k++)
                     {
                         if (matrix[i, k] != null && matrix[k, j] != null)
                             result[i, j] += matrix[i, k] * second[k, j];
@@ -1352,11 +1352,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         private static IMatrix<int?> InternalMulBtoA(this IMatrix<int?> matrix, IMatrix<int?> second)
         {
             var result = new Matrix<int?>(second.RowsCount, matrix.ColumnsCount);
-            for (int i = 0; i < second.RowsCount; i++)
+            for (var i = 0; i < second.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    for (int k = 0; k < matrix.RowsCount; k++)
+                    for (var k = 0; k < matrix.RowsCount; k++)
                     {
                         if (matrix[i, k] != null && matrix[k, j] != null)
                             result[i, j] += second[i, k] * matrix[k, j];
@@ -1380,7 +1380,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns></returns>
         public static bool IsMaxInColumn(this IMatrixBase<int?> matrix, int i, int j)
         {
-            for (int k = 0; k < matrix.RowsCount; k++)
+            for (var k = 0; k < matrix.RowsCount; k++)
             {
                 if (matrix[k, j] != null && matrix[i, j] != null)
                     if (matrix[k, j] > (matrix[i, j]))
@@ -1398,7 +1398,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns></returns>
         public static bool IsMinInRow(this IMatrixBase<int?> matrix, int i, int j)
         {
-            for (int k = 0; k < matrix.ElementsInRow(i); k++)
+            for (var k = 0; k < matrix.ElementsInRow(i); k++)
             {
                 if (matrix[i, k] != null && matrix[i, j] != null)
                     if (matrix[i, k] < (matrix[i, j]))
@@ -1414,9 +1414,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static void FillRandomly(this IMatrix<int?> matrix, int min = -50, int max = 50, bool includeNull = false)
         {
             var rnd = new Random();
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     if (i + j * i / j - i + j % 2 == 0 && includeNull)
                     {
@@ -1461,9 +1461,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<long?>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     if (first[i, j] != null && second[i, j] != null)
                         matrix[i, j] = first[i, j] + second[i, j];
@@ -1486,9 +1486,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<long?>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     if (first[i, j] != null && second[i, j] != null)
                         matrix[i, j] = first[i, j] - second[i, j];
@@ -1503,9 +1503,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static IMatrix<long?> MulOnNumber(this IMatrix<long?> first, long number)
         {
             var matrix = new Matrix<long?>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     if (first[i, j] != null)
                         matrix[i, j] = first[i, j] * number;
@@ -1595,7 +1595,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         {
             if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             long sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
                 if (matrix[i, i] != null)
                 {
@@ -1613,9 +1613,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static long Sum(this IMatrix<long?> matrix)
         {
             long sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     if (matrix[i, j] != null)
                     {
@@ -1635,9 +1635,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static long SumSaddlePoints(this IMatrix<long?> matrix)
         {
             long sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     if (matrix[i, j] != null)
                     {
@@ -1657,11 +1657,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         private static IMatrix<long?> InternalMulAtoB(this IMatrix<long?> matrix, IMatrix<long?> second)
         {
             var result = new Matrix<long?>(matrix.RowsCount, second.ColumnsCount);
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < second.ColumnsCount; j++)
+                for (var j = 0; j < second.ColumnsCount; j++)
                 {
-                    for (int k = 0; k < second.RowsCount; k++)
+                    for (var k = 0; k < second.RowsCount; k++)
                     {
                         if (matrix[i, k] == null && second[k, j] == null)
                             matrix[i, k] = null;
@@ -1677,11 +1677,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         private static IMatrix<long?> InternalMulBtoA(this IMatrix<long?> matrix, IMatrix<long?> second)
         {
             var result = new Matrix<long?>(second.RowsCount, matrix.ColumnsCount);
-            for (int i = 0; i < second.RowsCount; i++)
+            for (var i = 0; i < second.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    for (int k = 0; k < matrix.RowsCount; k++)
+                    for (var k = 0; k < matrix.RowsCount; k++)
                     {
                         if (second[i, k] != null && matrix[k, j] == null)
                             result[i, j] = null;
@@ -1707,7 +1707,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns></returns>
         public static bool IsMaxInColumn(this IMatrixBase<long?> matrix, int i, int j)
         {
-            for (int k = 0; k < matrix.RowsCount; k++)
+            for (var k = 0; k < matrix.RowsCount; k++)
             {
                 if (matrix[k, j] != null && matrix[i, j] != null)
                     if (matrix[k, j] > (matrix[i, j]))
@@ -1725,7 +1725,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns></returns>
         public static bool IsMinInRow(this IMatrixBase<long?> matrix, int i, int j)
         {
-            for (int k = 0; k < matrix.ElementsInRow(i); k++)
+            for (var k = 0; k < matrix.ElementsInRow(i); k++)
             {
                 if (matrix[i, k] != null && matrix[i, j] != null)
                     if (matrix[i, k] < (matrix[i, j]))
@@ -1741,9 +1741,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static void FillRandomly(this IMatrix<long?> matrix, long min = -50, long max = 50, bool includeNull = false)
         {
             var rnd = new Random();
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     if (i + j * i / j - i + j % 2 == 0 && includeNull)
                     {
@@ -1787,9 +1787,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<double?>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     if (first[i, j] != null && second[i, j] != null)
                         matrix[i, j] = first[i, j] + second[i, j];
@@ -1812,9 +1812,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<double?>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     if (first[i, j] != null && second[i, j] != null)
                         matrix[i, j] = first[i, j] - second[i, j];
@@ -1829,9 +1829,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static IMatrix<double?> MulOnNumber(this IMatrix<double?> first, double number)
         {
             var matrix = new Matrix<double?>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < first.ColumnsCount; j++)
                 {
                     if (matrix[i, j] != null)
                         matrix[i, j] = first[i, j] * number;
@@ -1921,7 +1921,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         {
             if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             double sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
                 if (matrix[i, i] != null)
                     sum += matrix[i, i].Value;
@@ -1937,9 +1937,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static double Sum(this IMatrix<double?> matrix)
         {
             double sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     if (matrix[i, j] != null)
                         sum += matrix[i, j].Value;
@@ -1957,9 +1957,9 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static double SumSaddlePoints(this IMatrix<double?> matrix)
         {
             double sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     if (matrix[i, j] != null)
                     {
@@ -1980,11 +1980,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         private static IMatrix<double?> InternalMulAtoB(this IMatrix<double?> matrix, IMatrix<double?> second)
         {
             var result = new Matrix<double?>(matrix.RowsCount, second.ColumnsCount);
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < second.ColumnsCount; j++)
+                for (var j = 0; j < second.ColumnsCount; j++)
                 {
-                    for (int k = 0; k < second.RowsCount; k++)
+                    for (var k = 0; k < second.RowsCount; k++)
                     {
                         if (matrix[i, k] != null && second[k, j] != null)
                             result[i, j] += matrix[i, k] * second[k, j];
@@ -2000,11 +2000,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         private static IMatrix<double?> InternalMulBtoA(this IMatrix<double?> matrix, IMatrix<double?> second)
         {
             var result = new Matrix<double?>(second.RowsCount, matrix.ColumnsCount);
-            for (int i = 0; i < second.RowsCount; i++)
+            for (var i = 0; i < second.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    for (int k = 0; k < matrix.RowsCount; k++)
+                    for (var k = 0; k < matrix.RowsCount; k++)
                     {
                         if (matrix[i, k] != null && second[k, j] != null)
                             result[i, j] += matrix[i, k] * second[k, j];
@@ -2030,7 +2030,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns></returns>
         public static bool IsMaxInColumn(this IMatrixBase<double?> matrix, int i, int j)
         {
-            for (int k = 0; k < matrix.RowsCount; k++)
+            for (var k = 0; k < matrix.RowsCount; k++)
             {
                 if (matrix[k, j] != null && matrix[i, j] != null)
                     if (matrix[k, j] > (matrix[i, j]))
@@ -2048,7 +2048,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns></returns>
         public static bool IsMinInRow(this IMatrixBase<double?> matrix, int i, int j)
         {
-            for (int k = 0; k < matrix.ElementsInRow(i); k++)
+            for (var k = 0; k < matrix.ElementsInRow(i); k++)
             {
                 if (matrix[i, k] != null && matrix[i, j] != null)
                     if (matrix[i, k] < (matrix[i, j]))
@@ -2064,11 +2064,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         public static void FillRandomly(this IMatrix<double?> matrix, double min = -50d, double max = 50d, bool includeNull = false)
         {
             var rnd = new Random();
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    double value = rnd.NextDouble(min, max);
+                    var value = rnd.NextDouble(min, max);
                     if (i + j * i / j - i + j % 2 == 0 && includeNull)
                     {
                         matrix[i, j] = null;

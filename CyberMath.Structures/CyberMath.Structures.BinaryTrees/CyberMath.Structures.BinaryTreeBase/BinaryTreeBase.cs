@@ -22,6 +22,9 @@ namespace CyberMath.Structures.BinaryTreeBase
 
         protected BinaryTreeBase(IEnumerable<T> values) => AddRange(values);
 
+        /// <summary>
+        /// Creates a new instance with 0 elements
+        /// </summary>
         protected BinaryTreeBase() { }
 
         public int Depth()
@@ -169,7 +172,7 @@ namespace CyberMath.Structures.BinaryTreeBase
         private IEnumerable<T> InternalPostorder(IBinaryTreeNode<T> node)
         {
             var list = new List<T>();
-            Stack<IBinaryTreeNode<T>> stack = new Stack<IBinaryTreeNode<T>>();
+            var stack = new Stack<IBinaryTreeNode<T>>();
             stack.Push(node);
             IBinaryTreeNode<T> prev = null;
             while (stack.Count > 0)

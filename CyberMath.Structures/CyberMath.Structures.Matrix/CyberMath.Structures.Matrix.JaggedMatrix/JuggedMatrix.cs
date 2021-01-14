@@ -41,7 +41,7 @@ namespace CyberMath.Structures.JaggedMatrix
 
         private void InitMatrix(params int[] elementsAtRow)
         {
-            for (int i = 0; i < RowsCount; i++)
+            for (var i = 0; i < RowsCount; i++)
                 _innerMatrix[i] = new T[elementsAtRow[i]];
         }
 
@@ -56,9 +56,9 @@ namespace CyberMath.Structures.JaggedMatrix
         public void ProcessFunctionOverData(Action<int, int> func)
         {
             if (ReferenceEquals(func, null)) return;
-            for (int i = 0; i < RowsCount; i++)
+            for (var i = 0; i < RowsCount; i++)
             {
-                for (int j = 0; j < ElementsInRow(i); j++)
+                for (var j = 0; j < ElementsInRow(i); j++)
                 {
                     func.Invoke(i, j);
                 }
@@ -71,19 +71,19 @@ namespace CyberMath.Structures.JaggedMatrix
 
         public IMatrixBase<T> CreateMatrixWithoutColumn(int columnIndex)
         {
-            int maxColumn = _innerMatrix.Max(x => x.Length);
+            var maxColumn = _innerMatrix.Max(x => x.Length);
             if (columnIndex < 0) throw new ArgumentException("Column index is < 0");
             if (columnIndex >= maxColumn) throw new ArgumentException("Column index is out of range in matrix");
-            JuggedMatrix<T> newMatrix = new JuggedMatrix<T>(RowsCount);
-            for (int i = 0; i < RowsCount; i++)
+            var newMatrix = new JuggedMatrix<T>(RowsCount);
+            for (var i = 0; i < RowsCount; i++)
             {
-                int currentColumn = 0;
-                int elementsInRow = ElementsInRow(i);
+                var currentColumn = 0;
+                var elementsInRow = ElementsInRow(i);
                 if (columnIndex < elementsInRow)
                     newMatrix._innerMatrix[i] = new T[elementsInRow - 1];
                 else
                     newMatrix._innerMatrix[i] = new T[elementsInRow];
-                for (int j = 0; j < elementsInRow; j++)
+                for (var j = 0; j < elementsInRow; j++)
                 {
                     if (j == columnIndex)
                         continue;
@@ -100,14 +100,14 @@ namespace CyberMath.Structures.JaggedMatrix
             if (rowIndex < 0) throw new ArgumentException("Row index is < 0");
             if (rowIndex >= RowsCount) throw new ArgumentException("Row index is out of range in matrix");
             var newMatrix = new JuggedMatrix<T>(RowsCount - 1);
-            int currentRow = 0;
-            for (int i = 0; i < RowsCount; i++)
+            var currentRow = 0;
+            for (var i = 0; i < RowsCount; i++)
             {
                 if (i != rowIndex)
                 {
-                    int elementsInRow = ElementsInRow(i);
+                    var elementsInRow = ElementsInRow(i);
                     newMatrix._innerMatrix[currentRow] = new T[elementsInRow];
-                    for (int j = 0; j < elementsInRow; j++)
+                    for (var j = 0; j < elementsInRow; j++)
                         newMatrix[currentRow, j] = this[i, j];
                     currentRow++;
                 }
@@ -148,8 +148,8 @@ namespace CyberMath.Structures.JaggedMatrix
 
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 0; i < RowsCount; i++)
-                for (int j = 0; j < ElementsInRow(i); j++)
+            for (var i = 0; i < RowsCount; i++)
+                for (var j = 0; j < ElementsInRow(i); j++)
                     yield return this[i, j];
         }
 
@@ -160,9 +160,9 @@ namespace CyberMath.Structures.JaggedMatrix
         public override string ToString()
         {
             var sb = new StringBuilder();
-            for (int i = 0; i < RowsCount; i++)
+            for (var i = 0; i < RowsCount; i++)
             {
-                for (int j = 0; j < ElementsInRow(i); j++)
+                for (var j = 0; j < ElementsInRow(i); j++)
                 {
                     sb.Append($"{this[i, j]} | ");
                 }

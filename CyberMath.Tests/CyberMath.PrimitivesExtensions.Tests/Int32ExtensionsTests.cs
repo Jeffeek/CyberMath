@@ -11,14 +11,14 @@ namespace CyberMath.PrimitivesExtensions.Tests
         [TestMethod]
         public void Int32_GetLength_test()
         {
-            for (int i = int.MinValue; i < 0; i /= 10)
+            for (var i = int.MinValue; i < 0; i /= 10)
             {
                 long expect = i.ToString().Length - 1;
                 long actual = i.GetLength();
                 Assert.IsTrue(expect == actual);
             }
 
-            for (int i = 1; i <= 1000000000; i *= 10)
+            for (var i = 1; i <= 1000000000; i *= 10)
             {
                 long expect = i.ToString().Length;
                 long actual = i.GetLength();
@@ -26,10 +26,10 @@ namespace CyberMath.PrimitivesExtensions.Tests
             }
 
 
-            int expectMaxValue = int.MaxValue.ToString().Length;
-            int actualMaxValue = int.MaxValue.GetLength();
-            int expectZero = 0.ToString().Length;
-            int actualZero = 0.GetLength();
+            var expectMaxValue = int.MaxValue.ToString().Length;
+            var actualMaxValue = int.MaxValue.GetLength();
+            var expectZero = 0.ToString().Length;
+            var actualZero = 0.GetLength();
 
             Assert.IsTrue(expectZero == actualZero);
             Assert.IsTrue(expectMaxValue == actualMaxValue);

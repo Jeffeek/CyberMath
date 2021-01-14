@@ -19,7 +19,7 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns></returns>
         public static IEnumerable<int> GetCountPerRow<T>(this IJuggedMatrix<T> matrix)
         {
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
                 yield return matrix.ElementsInRow(i);
         }
 
@@ -33,9 +33,9 @@ namespace CyberMath.Structures.MatrixExtensions
         public static IMatrix<T> ToMatrix<T>(this IJuggedMatrix<T> juggedMatrix)
         {
             var matrix = new Matrix<T>(juggedMatrix.RowsCount, juggedMatrix.GetCountPerRow().Max());
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     if (juggedMatrix.ElementsInRow(i) < matrix.ColumnsCount)
                         matrix[i, j] = juggedMatrix[i, j];
@@ -57,9 +57,9 @@ namespace CyberMath.Structures.MatrixExtensions
         public static IJuggedMatrix<T> ToJuggedMatrix<T>(this IMatrix<T> matrix)
         {
             var juggedMatrix = new JuggedMatrix<T>(matrix.RowsCount, Enumerable.Repeat(matrix.ColumnsCount, matrix.RowsCount).ToArray());
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < matrix.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
                     juggedMatrix[i, j] = matrix[i, j];
                 }

@@ -11,7 +11,7 @@ namespace CyberMath.Matrix.Tests
         [TestMethod]
         public void CreateIdentityMatrixTest_3()
         {
-            int n = 3;
+            var n = 3;
             var actual = ValueTypeMatrixExtension.CreateIdentityMatrix(n);
             var expected = new Matrix<int>(n, n)
             {

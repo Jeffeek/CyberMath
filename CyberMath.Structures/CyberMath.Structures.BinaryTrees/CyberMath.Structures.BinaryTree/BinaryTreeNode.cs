@@ -10,6 +10,10 @@ namespace CyberMath.Structures.BinaryTree
     public class BinaryTreeNode<T> : BinaryTreeNodeBase<T>
         where T : IComparable<T>, IComparable
     {
+        /// <summary>
+        /// Creates instance of <see cref="BinaryTreeNode{T}"/> with <paramref name="data"/>
+        /// </summary>
+        /// <param name="data">Data to initialize</param>
         public BinaryTreeNode(T data) : base(data) { }
 
         public override IBinaryTreeNode<T> Insert(T value)
@@ -47,9 +51,9 @@ namespace CyberMath.Structures.BinaryTree
                             if (node.Left != null)
                                 node = node.Left as BinaryTreeNode<T>;
                             else if (node.Right != null)
-                                node = node.Right as BinaryTreeNode<T>;
-                            else
-                                node = null;
+                                node     = node.Right as BinaryTreeNode<T>;
+                                else 
+                                    node = null;
                         }
 
                         break;

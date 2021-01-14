@@ -11,7 +11,7 @@ namespace CyberMath.Matrix.Tests
         [TestMethod]
         public void DiagonalSum_int()
         {
-            int n = 3;
+            var n = 3;
             var matrix = new Matrix<int>(n, n)
             {
                 [0, 0] = 50,
@@ -24,15 +24,15 @@ namespace CyberMath.Matrix.Tests
                 [2, 1] = 1,
                 [2, 2] = 1
             };
-            int expected = 56;
-            int actual = matrix.DiagonalSum();
+            var expected = 56;
+            var actual = matrix.DiagonalSum();
             Assert.IsTrue(actual == expected);
         }
 
         [TestMethod]
         public void Sum_int()
         {
-            int n = 3;
+            var n = 3;
             var matrix = new Matrix<int>(n, n)
             {
                 [0, 0] = 50,
@@ -45,15 +45,15 @@ namespace CyberMath.Matrix.Tests
                 [2, 1] = 1,
                 [2, 2] = 1
             };
-            int expected = 168;
-            int actual = matrix.Sum();
+            var expected = 168;
+            var actual = matrix.Sum();
             Assert.IsTrue(actual == expected);
         }
 
         [TestMethod]
         public void SumSaddlePoints_int()
         {
-            int n = 3;
+            var n = 3;
             var matrix = new Matrix<int>(n, n)
             {
                 [0, 0] = 50,
@@ -66,8 +66,8 @@ namespace CyberMath.Matrix.Tests
                 [2, 1] = 1,
                 [2, 2] = 1
             };
-            int expected = 150;
-            int actual = matrix.SumSaddlePoints();
+            var expected = 150;
+            var actual = matrix.SumSaddlePoints();
             Assert.IsTrue(actual == expected);
         }
     }

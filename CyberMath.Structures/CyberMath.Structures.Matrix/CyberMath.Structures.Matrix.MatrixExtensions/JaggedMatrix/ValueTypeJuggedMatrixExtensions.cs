@@ -20,15 +20,15 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<int> Add(this IJuggedMatrix<int> first, IJuggedMatrix<int> second)
         {
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<int>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = first[i, j] + second[i, j];
                 }
@@ -40,15 +40,15 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<int> Sub(this IJuggedMatrix<int> first, IJuggedMatrix<int> second)
         {
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<int>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = first[i, j] - second[i, j];
                 }
@@ -60,9 +60,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<int> MulOnNumber(this IJuggedMatrix<int> first, int number)
         {
             var juggedMatrix = new JuggedMatrix<int>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = first[i, j] * number;
                 }
@@ -92,18 +92,18 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static int DiagonalSum(this IJuggedMatrix<int> juggedMatrix)
         {
             if (!juggedMatrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
-            int sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            var sum = 0;
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
                 sum += juggedMatrix[i, i];
             return sum;
         }
 
         public static int Sum(this IJuggedMatrix<int> juggedMatrix)
         {
-            int sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            var sum = 0;
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     sum += juggedMatrix[i, j];
                 }
@@ -114,10 +114,10 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
 
         public static int SumSaddlePoints(this IJuggedMatrix<int> juggedMatrix)
         {
-            int sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            var sum = 0;
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     if (!juggedMatrix.IsMinInRow(i, j) || !juggedMatrix.IsMaxInColumn(i, j))
                         continue;
@@ -135,9 +135,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static void FillRandomly(this IJuggedMatrix<int> juggedMatrix, int min = -50, int max = 50)
         {
             var rnd = new Random();
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = rnd.Next(min, max + 1);
                 }
@@ -155,15 +155,15 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<long> Add(this IJuggedMatrix<long> first, IJuggedMatrix<long> second)
         {
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<long>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = first[i, j] + second[i, j];
                 }
@@ -175,15 +175,15 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<long> Sub(this IJuggedMatrix<long> first, IJuggedMatrix<long> second)
         {
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<long>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = first[i, j] - second[i, j];
                 }
@@ -195,9 +195,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<long> MulOnNumber(this IJuggedMatrix<long> first, long number)
         {
             var juggedMatrix = new JuggedMatrix<long>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = first[i, j] * number;
                 }
@@ -214,7 +214,7 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         {
             if (!juggedMatrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             long sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
                 sum += juggedMatrix[i, i];
             return sum;
         }
@@ -222,9 +222,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static long Sum(this IJuggedMatrix<long> juggedMatrix)
         {
             long sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     sum += juggedMatrix[i, j];
                 }
@@ -236,9 +236,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static long SumSaddlePoints(this IJuggedMatrix<long> juggedMatrix)
         {
             long sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     if (!juggedMatrix.IsMinInRow(i, j) || !juggedMatrix.IsMaxInColumn(i, j))
                         continue;
@@ -256,9 +256,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static void FillRandomly(this IJuggedMatrix<long> juggedMatrix, int min = -50, int max = 50)
         {
             var rnd = new Random();
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = rnd.Next(min, max + 1);
                 }
@@ -276,15 +276,15 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<double> Add(this IJuggedMatrix<double> first, IJuggedMatrix<double> second)
         {
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<double>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = first[i, j] + second[i, j];
                 }
@@ -296,15 +296,15 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<double> Sub(this IJuggedMatrix<double> first, IJuggedMatrix<double> second)
         {
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<double>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = first[i, j] - second[i, j];
                 }
@@ -316,9 +316,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<double> MulOnNumber(this IJuggedMatrix<double> first, double number)
         {
             var juggedMatrix = new JuggedMatrix<double>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = first[i, j] * number;
                 }
@@ -335,7 +335,7 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         {
             if (!juggedMatrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             double sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
                 sum += juggedMatrix[i, i];
             return sum;
         }
@@ -343,9 +343,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static double Sum(this IJuggedMatrix<double> juggedMatrix)
         {
             double sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     sum += juggedMatrix[i, j];
                 }
@@ -357,9 +357,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static double SumSaddlePoints(this IJuggedMatrix<double> juggedMatrix)
         {
             double sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     if (!juggedMatrix.IsMinInRow(i, j) || !juggedMatrix.IsMaxInColumn(i, j))
                         continue;
@@ -377,9 +377,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static void FillRandomly(this IJuggedMatrix<double> juggedMatrix, double min = -50, double max = 50)
         {
             var rnd = new Random();
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = rnd.NextDouble(min, max + 1);
                 }
@@ -397,15 +397,15 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<decimal> Add(this IJuggedMatrix<decimal> first, IJuggedMatrix<decimal> second)
         {
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<decimal>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = first[i, j] + second[i, j];
                 }
@@ -417,15 +417,15 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<decimal> Sub(this IJuggedMatrix<decimal> first, IJuggedMatrix<decimal> second)
         {
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<decimal>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = first[i, j] - second[i, j];
                 }
@@ -437,9 +437,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<decimal> MulOnNumber(this IJuggedMatrix<decimal> first, decimal number)
         {
             var juggedMatrix = new JuggedMatrix<decimal>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = first[i, j] * number;
                 }
@@ -456,7 +456,7 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         {
             if (!juggedMatrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             decimal sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
                 sum += juggedMatrix[i, i];
             return sum;
         }
@@ -464,9 +464,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static decimal Sum(this IJuggedMatrix<decimal> juggedMatrix)
         {
             decimal sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     sum += juggedMatrix[i, j];
                 }
@@ -478,9 +478,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static decimal SumSaddlePoints(this IJuggedMatrix<decimal> juggedMatrix)
         {
             decimal sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     if (!juggedMatrix.IsMinInRow(i, j) || !juggedMatrix.IsMaxInColumn(i, j))
                         continue;
@@ -498,9 +498,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static void FillRandomly(this IJuggedMatrix<decimal> juggedMatrix, decimal min = -50, decimal max = 50)
         {
             var rnd = new Random();
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = (decimal)rnd.NextDouble((double)min, (double)max + 1);
                 }
@@ -518,15 +518,15 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<string> Add(this IJuggedMatrix<string> first, IJuggedMatrix<string> second)
         {
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<string>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = first[i, j] + second[i, j];
                 }
@@ -538,15 +538,15 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<string> Sub(this IJuggedMatrix<string> first, IJuggedMatrix<string> second)
         {
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<string>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = string.Concat(first[i, j].Except(second[i, j]));
                 }
@@ -558,9 +558,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<string> MulOnNumber(this IJuggedMatrix<string> first, int number)
         {
             var juggedMatrix = new JuggedMatrix<string>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = first[i, j].Concat(number);
                 }
@@ -577,7 +577,7 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         {
             if (!juggedMatrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             var sb = new StringBuilder();
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
                 sb.Append(juggedMatrix[i, i]).Append(" ");
             return sb.ToString();
         }
@@ -585,9 +585,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static string Sum(this IJuggedMatrix<string> juggedMatrix)
         {
             var sb = new StringBuilder();
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     sb.Append(juggedMatrix[i, j]).Append(" ");
                 }
@@ -599,9 +599,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static string SumSaddlePoints(this IJuggedMatrix<string> juggedMatrix)
         {
             var sb = new StringBuilder();
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     if (!juggedMatrix.IsMinInRow(i, j) || !juggedMatrix.IsMaxInColumn(i, j))
                         continue;
@@ -627,15 +627,15 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<int?> Add(this IJuggedMatrix<int?> first, IJuggedMatrix<int?> second)
         {
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<int?>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     if (first[i, j] != null && second[i, j] != null)
                         juggedMatrix[i, j] = first[i, j].Value + second[i, j].Value;
@@ -648,15 +648,15 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<int?> Sub(this IJuggedMatrix<int?> first, IJuggedMatrix<int?> second)
         {
             if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
                     throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<int?>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     if (first[i, j] != null && second[i, j] != null)
                         juggedMatrix[i, j] = first[i, j].Value - second[i, j].Value;
@@ -669,9 +669,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static IJuggedMatrix<int?> MulOnNumber(this IJuggedMatrix<int?> first, int number)
         {
             var juggedMatrix = new JuggedMatrix<int?>(first.RowsCount, first.GetCountPerRow().ToArray());
-            for (int i = 0; i < first.RowsCount; i++)
+            for (var i = 0; i < first.RowsCount; i++)
             {
-                for (int j = 0; j < first.ElementsInRow(i); j++)
+                for (var j = 0; j < first.ElementsInRow(i); j++)
                 {
                     if (first[i, j] != null)
                         juggedMatrix[i, j] = first[i, j].Value * number;
@@ -704,8 +704,8 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static int DiagonalSum(this IJuggedMatrix<int?> juggedMatrix)
         {
             if (!juggedMatrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
-            int sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            var sum = 0;
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
                 if (juggedMatrix[i, i] != null)
                     sum += juggedMatrix[i, i].Value;
             return sum;
@@ -713,10 +713,10 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
 
         public static int Sum(this IJuggedMatrix<int?> juggedMatrix)
         {
-            int sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            var sum = 0;
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     if (juggedMatrix[i, j] != null)
                         sum += juggedMatrix[i, j].Value;
@@ -733,9 +733,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static void FillRandomly(this IJuggedMatrix<int?> juggedMatrix, int min = -50, int max = 50)
         {
             var rnd = new Random();
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     juggedMatrix[i, j] = rnd.Next(min, max + 1);
                 }
@@ -818,7 +818,7 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         {
             if (!JuggedMatrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             long sum = 0;
-            for (int i = 0; i < JuggedMatrix.RowsCount; i++)
+            for (var i = 0; i < JuggedMatrix.RowsCount; i++)
             {
                 if (JuggedMatrix[i, i] != null)
                 {
@@ -831,9 +831,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static long Sum(this JuggedMatrix<long?> juggedMatrix)
         {
             long sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     if (juggedMatrix[i, j] != null)
                     {
@@ -944,7 +944,7 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         {
             if (!juggedMatrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
             double sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
                 if (juggedMatrix[i, i] != null)
                     sum += juggedMatrix[i, i].Value;
@@ -955,9 +955,9 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static double Sum(this JuggedMatrix<double?> juggedMatrix)
         {
             double sum = 0;
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
                     if (juggedMatrix[i, j] != null)
                         sum += juggedMatrix[i, j].Value;
@@ -974,11 +974,11 @@ namespace CyberMath.Structures.MatrixExtensions.JaggedMatrix
         public static void FillRandomly(this JuggedMatrix<double?> juggedMatrix, double min = -50d, double max = 50d, bool includeNull = false)
         {
             var rnd = new Random();
-            for (int i = 0; i < juggedMatrix.RowsCount; i++)
+            for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
-                for (int j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+                for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
                 {
-                    double value = rnd.NextDouble(min, max);
+                    var value = rnd.NextDouble(min, max);
                     if (i + j * i / j - i + j % 2 == 0 && includeNull)
                     {
                         juggedMatrix[i, j] = null;

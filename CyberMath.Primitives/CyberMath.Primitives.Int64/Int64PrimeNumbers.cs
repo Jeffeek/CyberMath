@@ -39,8 +39,8 @@ namespace CyberMath.Primitives.Int64
             if (max < 0) throw new Exception("Max was less than zero");
             if (min > max) throw new Exception("Min was bigger than max");
             var rnd = new Random();
-            long number = rnd.NextLong(min, max);
-            int stackCounter = 0;
+            var number = rnd.NextLong(min, max);
+            var stackCounter = 0;
             while (!IsPrime(number))
             {
                 number = rnd.NextLong(min, max);

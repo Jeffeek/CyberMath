@@ -25,9 +25,9 @@ namespace CyberMath.Extensions
         /// <returns><see cref="long"/> value between <paramref name="min"/> and <paramref name="max"/></returns>
         public static long NextLong(this Random random, long min, long max)
         {
-            byte[] buf = new byte[8];
+            var buf = new byte[8];
             random.NextBytes(buf);
-            long longRand = BitConverter.ToInt64(buf, 0);
+            var longRand = BitConverter.ToInt64(buf, 0);
             return Math.Abs(longRand % (max - min)) + min;
         }
     }

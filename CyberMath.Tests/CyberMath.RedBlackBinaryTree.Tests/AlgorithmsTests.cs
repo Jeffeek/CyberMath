@@ -13,10 +13,10 @@ namespace CyberMath.RedBlackBinaryTree.Tests
         public void BinaryTreeMergeTest()
         {
             var firstTree = new RedBlackBinaryTree<int>();
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
                 firstTree.Add(i);
             var secondTree = new RedBlackBinaryTree<int>();
-            for (int i = 10; i < 20; i++)
+            for (var i = 10; i < 20; i++)
                 firstTree.Add(i);
             firstTree.MergeWith(secondTree);
             var checkArray = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
@@ -28,13 +28,13 @@ namespace CyberMath.RedBlackBinaryTree.Tests
         {
             var list = new List<int>();
             var firstTree = new RedBlackBinaryTree<int>();
-            for (int i = 0; i < 50; i++)
+            for (var i = 0; i < 50; i++)
             {
                 firstTree.Add(i);
                 list.Add(i);
             }
             var secondTree = new RedBlackBinaryTree<int>();
-            for (int i = 50; i < 100; i++)
+            for (var i = 50; i < 100; i++)
             {
                 firstTree.Add(i);
                 list.Add(i);
@@ -48,13 +48,13 @@ namespace CyberMath.RedBlackBinaryTree.Tests
         {
             var list = new List<int>();
             var firstTree = new RedBlackBinaryTree<int>();
-            for (int i = 0; i < 500; i++)
+            for (var i = 0; i < 500; i++)
             {
                 firstTree.Add(i);
                 list.Add(i);
             }
             var secondTree = new RedBlackBinaryTree<int>();
-            for (int i = 500; i < 1000; i++)
+            for (var i = 500; i < 1000; i++)
             {
                 firstTree.Add(i);
                 list.Add(i);
@@ -70,15 +70,15 @@ namespace CyberMath.RedBlackBinaryTree.Tests
             var rnd = new Random();
             var firstTree = new RedBlackBinaryTree<int>();
             var secondTree = new RedBlackBinaryTree<int>();
-            for (int i = 0; i < 500; i++)
+            for (var i = 0; i < 500; i++)
             {
-                int num = rnd.Next(-50, 50);
+                var num = rnd.Next(-50, 50);
                 firstTree.Add(num);
                 list.Add(num);
             }
-            for (int i = 500; i < 1000; i++)
+            for (var i = 500; i < 1000; i++)
             {
-                int num = rnd.Next(-50, 50);
+                var num = rnd.Next(-50, 50);
                 firstTree.Add(num);
                 list.Add(num);
             }

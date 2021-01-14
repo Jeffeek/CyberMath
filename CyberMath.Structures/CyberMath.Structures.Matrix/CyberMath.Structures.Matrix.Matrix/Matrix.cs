@@ -34,11 +34,11 @@ namespace CyberMath.Structures.Matrix
 
         public IMatrix<T> Transpose()
         {
-            Matrix<T> result = new Matrix<T>(ColumnsCount, RowsCount);
+            var result = new Matrix<T>(ColumnsCount, RowsCount);
 
-            for (int i = 0; i < RowsCount; i++)
+            for (var i = 0; i < RowsCount; i++)
             {
-                for (int j = 0; j < ColumnsCount; j++)
+                for (var j = 0; j < ColumnsCount; j++)
                 {
                     result[j, i] = _innerMatrix[i, j];
                 }
@@ -69,9 +69,9 @@ namespace CyberMath.Structures.Matrix
             if (ReferenceEquals(this, other)) return true;
             if (RowsCount != other.RowsCount) return false;
             if (ColumnsCount != other.ColumnsCount) return false;
-            for (int i = 0; i < RowsCount; i++)
+            for (var i = 0; i < RowsCount; i++)
             {
-                for (int j = 0; j < ColumnsCount; j++)
+                for (var j = 0; j < ColumnsCount; j++)
                 {
                     if (!this[i, j].Equals(other[i, j]))
                         return false;
@@ -109,9 +109,9 @@ namespace CyberMath.Structures.Matrix
         public override string ToString()
         {
             var sb = new StringBuilder();
-            for (int i = 0; i < RowsCount; i++)
+            for (var i = 0; i < RowsCount; i++)
             {
-                for (int j = 0; j < ColumnsCount; j++)
+                for (var j = 0; j < ColumnsCount; j++)
                 {
                     sb.Append($"{this[i, j]} | ");
                 }
@@ -156,8 +156,8 @@ namespace CyberMath.Structures.Matrix
 
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 0; i < RowsCount; i++)
-                for (int j = 0; j < ColumnsCount; j++)
+            for (var i = 0; i < RowsCount; i++)
+                for (var j = 0; j < ColumnsCount; j++)
                     yield return this[i, j];
         }
 

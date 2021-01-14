@@ -39,9 +39,9 @@ namespace CyberMath.Extensions
             if (ReferenceEquals(collection, null)) return;
             if (collection.Count < 2) return;
             var rnd = new Random();
-            for (int i = collection.Count - 1; i > 0; i--)
+            for (var i = collection.Count - 1; i > 0; i--)
             {
-                int randomIndex = rnd.Next(0, i + 1);
+                var randomIndex = rnd.Next(0, i + 1);
                 while (randomIndex == i)
                     randomIndex = rnd.Next(0, i + 1);
                 collection.Swap(i, randomIndex);
@@ -74,7 +74,7 @@ namespace CyberMath.Extensions
         public static IEnumerable<IEnumerable<T>> Permutations<T>(this IEnumerable<T> collection)
         {
             if (ReferenceEquals(collection, null)) return Enumerable.Empty<IEnumerable<T>>();
-            int length = collection.Count();
+            var length = collection.Count();
             if (length == 0) return Enumerable.Empty<IEnumerable<T>>();
             return Permutations(collection, length);
         }
@@ -98,7 +98,7 @@ namespace CyberMath.Extensions
         public static IEnumerable<IEnumerable<T>> PermutationsWithRepeat<T>(this IEnumerable<T> collection)
         {
             if (ReferenceEquals(collection, null)) return Enumerable.Empty<IEnumerable<T>>();
-            int length = collection.Count();
+            var length = collection.Count();
             if (length == 0) return Enumerable.Empty<IEnumerable<T>>();
             return PermutationsWithRepeat(collection, length);
         }
@@ -112,11 +112,11 @@ namespace CyberMath.Extensions
         public static T RandomItem<T>(this IEnumerable<T> collection)
         {
             if (ReferenceEquals(collection, null)) throw new ArgumentNullException(nameof(collection));
-            int length = collection.Count();
+            var length = collection.Count();
             if (length == 0) throw new ArgumentException(nameof(collection) + " was empty");
             if (length == 1) return collection.ElementAt(0);
             var rnd = new Random();
-            int randomIndex = rnd.Next(0, length);
+            var randomIndex = rnd.Next(0, length);
             return collection.ElementAt(randomIndex);
         }
     }

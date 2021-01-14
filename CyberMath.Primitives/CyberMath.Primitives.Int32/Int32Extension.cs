@@ -55,7 +55,7 @@ namespace CyberMath.Primitives.Int32
         /// <param name="b"></param>
         public static void Swap(ref this int a, ref int b)
         {
-            int temp = a;
+            var temp = a;
             a = b;
             b = temp;
         }
@@ -68,13 +68,13 @@ namespace CyberMath.Primitives.Int32
         public static bool IsPalindrome(this int number)
         {
             number = Math.Abs(number);
-            int div = 1;
+            var div = 1;
             while (number / div >= 10)
                 div *= 10;
             while (number != 0)
             {
-                int leading = number / div;
-                int trailing = number % 10;
+                var leading = number / div;
+                var trailing = number % 10;
                 if (leading != trailing)
                     return false;
                 number = number % div / 10;

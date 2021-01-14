@@ -12,7 +12,7 @@ namespace CyberMath.AVLBinaryTree.Tests
         public void BinaryTree_AddTest()
         {
             var tree = new AVLBinaryTree<int>();
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
                 tree.Add(i);
             Assert.IsTrue(tree.Count == 10);
             var array = new int[10];
@@ -24,7 +24,7 @@ namespace CyberMath.AVLBinaryTree.Tests
         public void BinaryTree_RemoveTest()
         {
             var tree = new AVLBinaryTree<int>();
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
                 tree.Add(i);
             tree.Remove(5);
             CollectionAssert.AreEqual(tree.Inorder().ToArray(), new[] { 0, 1, 2, 3, 4, 6, 7, 8, 9 });
@@ -37,8 +37,8 @@ namespace CyberMath.AVLBinaryTree.Tests
             var listOfNums = Enumerable.Range(0, 1000).Select(x => rnd.Next(-10_000, 10_000)).ToArray();
             var tree = new AVLBinaryTree<int>();
             tree.AddRange(listOfNums.ToArray());
-            int expected = listOfNums.Max();
-            int actual = tree.Max();
+            var expected = listOfNums.Max();
+            var actual = tree.Max();
             Assert.IsTrue(expected == actual);
         }
 
@@ -50,8 +50,8 @@ namespace CyberMath.AVLBinaryTree.Tests
             var tree = new AVLBinaryTree<int>();
             tree.AddRange(listOfNums.ToArray());
 
-            int expected = listOfNums.Min();
-            int actual = tree.Min();
+            var expected = listOfNums.Min();
+            var actual = tree.Min();
             Assert.IsTrue(expected == actual);
         }
     }

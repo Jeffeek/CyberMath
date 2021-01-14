@@ -18,7 +18,7 @@ namespace CyberMath.Structures.MatrixBase
         /// <returns></returns>
         public static bool IsMaxInColumn<T>(this IMatrixBase<T> matrix, int i, int j) where T : IComparable
         {
-            for (int k = 0; k < matrix.RowsCount; k++)
+            for (var k = 0; k < matrix.RowsCount; k++)
             {
                 if (matrix[k, j] != null && matrix[i, j] != null)
                     if (matrix[k, j].CompareTo(matrix[i, j]) == 1)
@@ -37,7 +37,7 @@ namespace CyberMath.Structures.MatrixBase
         /// <returns></returns>
         public static bool IsMinInRow<T>(this IMatrixBase<T> matrix, int i, int j) where T : IComparable
         {
-            for (int k = 0; k < matrix.ElementsInRow(i); k++)
+            for (var k = 0; k < matrix.ElementsInRow(i); k++)
             {
                 if (matrix[i, k] != null && matrix[i, j] != null)
                     if (matrix[i, k].CompareTo(matrix[i, j]) == -1)

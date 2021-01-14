@@ -11,7 +11,7 @@ namespace CyberMath.Matrix.Tests
         [TestMethod]
         public void DeterminantCalculateTest__int_3_positive()
         {
-            int n = 3;
+            var n = 3;
             var matrix = new Matrix<int>(n, n)
             {
                 [0, 0] = 234,
@@ -24,15 +24,15 @@ namespace CyberMath.Matrix.Tests
                 [2, 1] = 2,
                 [2, 2] = 2
             };
-            int actual = matrix.CalculateDeterminant();
-            int expected = 60882;
+            var actual = matrix.CalculateDeterminant();
+            var expected = 60882;
             Assert.IsTrue(actual == expected);
         }
 
         [TestMethod]
         public void DeterminantCalculateTest__int_exception()
         {
-            int n = 3;
+            var n = 3;
             var matrix = new Matrix<int>(n, 4)
             {
                 [0, 0] = 234,
@@ -54,7 +54,7 @@ namespace CyberMath.Matrix.Tests
         [TestMethod]
         public void InvertibleMatrixTest_int_positive()
         {
-            int n = 3;
+            var n = 3;
             var matrix = new Matrix<int>(n, n)
             {
                 [0, 0] = 5,
@@ -88,7 +88,7 @@ namespace CyberMath.Matrix.Tests
         [TestMethod]
         public void InvertibleMatrixTest_int_null()
         {
-            int n = 3;
+            var n = 3;
             var matrix = new Matrix<int>(4, n)
             {
                 [0, 0] = 234,

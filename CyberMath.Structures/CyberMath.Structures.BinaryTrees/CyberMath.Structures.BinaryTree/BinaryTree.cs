@@ -11,8 +11,16 @@ namespace CyberMath.Structures.BinaryTree
     public class BinaryTree<T> : BinaryTreeBase<T>
         where T : IComparable<T>, IComparable
     {
+        /// <summary>
+        /// Creates an instance of <see cref="BinaryTree{T}"/> and adds <paramref name="values"/>
+        /// </summary>
+        /// <param name="values">Values to add</param>
         public BinaryTree(params T[] values) : base(values) { }
 
+        /// <summary>
+        /// Creates an instance of <see cref="BinaryTree{T}"/> and adds <paramref name="values"/>
+        /// </summary>
+        /// <param name="values">Values to add</param>
         public BinaryTree(IEnumerable<T> values) : base(values) { }
 
         public override void Add(T item)

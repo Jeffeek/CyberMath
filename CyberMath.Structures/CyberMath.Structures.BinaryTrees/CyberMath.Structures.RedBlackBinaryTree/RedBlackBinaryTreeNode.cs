@@ -29,7 +29,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
         /// <returns>Uncle of <paramref name="node"/></returns>
         private RedBlackBinaryTreeNode<T> GetUncle(RedBlackBinaryTreeNode<T> node)
         {
-            RedBlackBinaryTreeNode<T> parent = node._parent;
+            var parent = node._parent;
             return GetSibling(parent);
         }
 
@@ -71,7 +71,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
             {
                 if (nodeX._parent == nodeX._parent._parent.Left as RedBlackBinaryTreeNode<T>)
                 {
-                    RedBlackBinaryTreeNode<T> nodeY = nodeX._parent._parent.Right as RedBlackBinaryTreeNode<T>;
+                    var nodeY = nodeX._parent._parent.Right as RedBlackBinaryTreeNode<T>;
                     if (nodeY != null && nodeY._color == BinaryTreeColor.Red)
                     {
                         nodeX._parent._color = BinaryTreeColor.Black;
@@ -131,7 +131,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
             {
                 if (nodeX == nodeX._parent.Left as RedBlackBinaryTreeNode<T>)
                 {
-                    RedBlackBinaryTreeNode<T> nodeW = nodeX._parent.Right as RedBlackBinaryTreeNode<T>;
+                    var nodeW = nodeX._parent.Right as RedBlackBinaryTreeNode<T>;
                     if (nodeW._color == BinaryTreeColor.Red)
                     {
                         nodeW._color = BinaryTreeColor.Black;
@@ -160,7 +160,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
                 }
                 else
                 {
-                    RedBlackBinaryTreeNode<T> W = nodeX._parent.Left as RedBlackBinaryTreeNode<T>;
+                    var W = nodeX._parent.Left as RedBlackBinaryTreeNode<T>;
                     if (W._color == BinaryTreeColor.Red)
                     {
                         W._color = BinaryTreeColor.Black;
@@ -203,7 +203,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
         {
             var newNode = new RedBlackBinaryTreeNode<T>(value);
             RedBlackBinaryTreeNode<T> nodeY = null;
-            RedBlackBinaryTreeNode<T> nodeX = root;
+            var nodeX = root;
             while (nodeX != null)
             {
                 nodeY = nodeX;
@@ -234,7 +234,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
 
         private RedBlackBinaryTreeNode<T> InternalRemove(RedBlackBinaryTreeNode<T> root, T value)
         {
-            RedBlackBinaryTreeNode<T> item = FindNode(root, value) as RedBlackBinaryTreeNode<T>;
+            var item = FindNode(root, value) as RedBlackBinaryTreeNode<T>;
             RedBlackBinaryTreeNode<T> nodeY;
 
             if (item.Left == null && item.Right == null)
@@ -297,7 +297,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
         /// <returns>Reference to <paramref name="root"/></returns>
         private RedBlackBinaryTreeNode<T> RotateLeft(RedBlackBinaryTreeNode<T> root, RedBlackBinaryTreeNode<T> node)
         {
-            RedBlackBinaryTreeNode<T> nodeY = node.Right as RedBlackBinaryTreeNode<T>;
+            var nodeY = node.Right as RedBlackBinaryTreeNode<T>;
             node.Right = nodeY.Left;
             if (nodeY.Left != null)
                 (nodeY.Left as RedBlackBinaryTreeNode<T>)._parent = node;
@@ -326,7 +326,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
         /// <returns>Reference to <paramref name="root"/></returns>
         private RedBlackBinaryTreeNode<T> RotateRight(RedBlackBinaryTreeNode<T> root, RedBlackBinaryTreeNode<T> node)
         {
-            RedBlackBinaryTreeNode<T> X = node.Left as RedBlackBinaryTreeNode<T>;
+            var X = node.Left as RedBlackBinaryTreeNode<T>;
             node.Left = X.Right;
             if (X.Right != null)
                 (X.Right as RedBlackBinaryTreeNode<T>)._parent = node;

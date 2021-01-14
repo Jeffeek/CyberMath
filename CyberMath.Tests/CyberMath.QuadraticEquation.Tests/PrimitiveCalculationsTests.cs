@@ -11,13 +11,13 @@ namespace CyberMath.QuadraticEquation.Tests
             int a = 5, b = -16, c = 12;
             var equation = new Structures.QuadraticEquation.QuadraticEquation(a, b, c);
             double expectedDeterminant = 16;
-            double actualDeterminant = equation.Determinant;
+            var actualDeterminant = equation.Determinant;
             Assert.AreEqual(expectedDeterminant, actualDeterminant);
-            double expectedFirstRoot = 2d;
-            double actualFirstRoot = equation.FirstRoot.Value;
+            var expectedFirstRoot = 2d;
+            var actualFirstRoot = equation.FirstRoot.Value;
             Assert.AreEqual(expectedFirstRoot, actualFirstRoot);
-            double expectedSecondRoot = 1.2d;
-            double actualSecondRoot = equation.SecondRoot.Value;
+            var expectedSecondRoot = 1.2d;
+            var actualSecondRoot = equation.SecondRoot.Value;
             Assert.AreEqual(expectedSecondRoot, actualSecondRoot);
         }
 
@@ -26,13 +26,13 @@ namespace CyberMath.QuadraticEquation.Tests
         {
             var equation = new Structures.QuadraticEquation.QuadraticEquation("5x^2 -16x+12=0");
             double expectedDeterminant = 16;
-            double actualDeterminant = equation.Determinant;
+            var actualDeterminant = equation.Determinant;
             Assert.AreEqual(expectedDeterminant, actualDeterminant);
-            double expectedFirstRoot = 2d;
-            double actualFirstRoot = equation.FirstRoot.Value;
+            var expectedFirstRoot = 2d;
+            var actualFirstRoot = equation.FirstRoot.Value;
             Assert.AreEqual(expectedFirstRoot, actualFirstRoot);
-            double expectedSecondRoot = 1.2d;
-            double actualSecondRoot = equation.SecondRoot.Value;
+            var expectedSecondRoot = 1.2d;
+            var actualSecondRoot = equation.SecondRoot.Value;
             Assert.AreEqual(expectedSecondRoot, actualSecondRoot);
         }
 
@@ -41,13 +41,13 @@ namespace CyberMath.QuadraticEquation.Tests
         {
             var equation = new Structures.QuadraticEquation.QuadraticEquation("5x^2 -16x  +12");
             double expectedDeterminant = 16;
-            double actualDeterminant = equation.Determinant;
+            var actualDeterminant = equation.Determinant;
             Assert.AreEqual(expectedDeterminant, actualDeterminant);
-            double expectedFirstRoot = 2d;
-            double actualFirstRoot = equation.FirstRoot.Value;
+            var expectedFirstRoot = 2d;
+            var actualFirstRoot = equation.FirstRoot.Value;
             Assert.AreEqual(expectedFirstRoot, actualFirstRoot);
-            double expectedSecondRoot = 1.2d;
-            double actualSecondRoot = equation.SecondRoot.Value;
+            var expectedSecondRoot = 1.2d;
+            var actualSecondRoot = equation.SecondRoot.Value;
             Assert.AreEqual(expectedSecondRoot, actualSecondRoot);
         }
     }

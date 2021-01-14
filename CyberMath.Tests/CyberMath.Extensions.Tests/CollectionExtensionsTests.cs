@@ -22,7 +22,7 @@ namespace CyberMath.Extensions.Tests
             var copied = new int[10000];
             collection.CopyTo(copied, 0);
             collection.Shuffle();
-            for (int i = 0; i < collection.Length; i++)
+            for (var i = 0; i < collection.Length; i++)
                 Assert.AreNotEqual(copied[i], collection[i]);
         }
     }

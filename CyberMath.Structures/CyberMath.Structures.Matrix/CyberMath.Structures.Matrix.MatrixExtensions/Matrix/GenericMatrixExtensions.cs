@@ -23,8 +23,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (matrix == null) throw new ArgumentException("Matrix is null!");
             if (selector == null) throw new ArgumentException("selector is null");
             if (!matrix.IsSquare) throw new ArgumentException("Diagonal sum can be calculated only for square matrix (ColumnsCount = RowsCount)");
-            int sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            var sum = 0;
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
                 sum += selector(matrix[i, i]);
             }
@@ -43,8 +43,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (matrix == null) throw new ArgumentException("Matrix is null!");
             if (selector == null) throw new ArgumentException("selector is null");
             if (!matrix.IsSquare) throw new ArgumentException("Diagonal sum can be calculated only for square matrix (ColumnsCount = RowsCount)");
-            int sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            var sum = 0;
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
                 if (matrix[i, i] != null)
                     sum += selector(matrix[i, i]).Value;
@@ -69,7 +69,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (selector == null) throw new ArgumentException("selector is null");
             if (!matrix.IsSquare) throw new ArgumentException("Diagonal sum can be calculated only for square matrix (ColumnsCount = RowsCount)");
             double sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
                 sum += selector(matrix[i, i]);
             }
@@ -89,7 +89,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (selector == null) throw new ArgumentException("selector is null");
             if (!matrix.IsSquare) throw new ArgumentException("Diagonal sum can be calculated only for square matrix (ColumnsCount = RowsCount)");
             double sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
                 if (matrix[i, i] != null)
                     sum += selector(matrix[i, i]).Value;
@@ -114,7 +114,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (selector == null) throw new ArgumentException("selector is null");
             if (!matrix.IsSquare) throw new ArgumentException("Diagonal sum can be calculated only for square matrix (ColumnsCount = RowsCount)");
             decimal sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
                 sum += selector(matrix[i, i]);
             }
@@ -134,7 +134,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (selector == null) throw new ArgumentException("selector is null");
             if (!matrix.IsSquare) throw new ArgumentException("Diagonal sum can be calculated only for square matrix (ColumnsCount = RowsCount)");
             decimal sum = 0;
-            for (int i = 0; i < matrix.RowsCount; i++)
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
                 if (matrix[i, i] != null)
                     sum += selector(matrix[i, i]).Value;

@@ -18,7 +18,7 @@ namespace CyberMath.Extensions
         {
             if (ReferenceEquals(input, null)) return false;
             if (input.Length == 1) return true;
-            for (int i = 0; i < input.Length / 2; i++)
+            for (var i = 0; i < input.Length / 2; i++)
             {
                 if (input[i] != input[input.Length - i - 1])
                     return false;
@@ -85,7 +85,7 @@ namespace CyberMath.Extensions
             count = Math.Abs(count);
             if (count == 1) return input;
             var sb = new StringBuilder();
-            for (int i = 0; i < count - 1; i++)
+            for (var i = 0; i < count - 1; i++)
             {
                 if (appendLine)
                     sb.Append(input).Append(Environment.NewLine);
@@ -111,9 +111,35 @@ namespace CyberMath.Extensions
             count = Math.Abs(count);
             if (count == 1) return input;
             var sb = new StringBuilder(input);
-            for (int i = 0; i < count - 1; i++)
+            for (var i = 0; i < count - 1; i++)
                 sb.Append(separator).Append(input);
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Returns <see cref="input"/> <seealso cref="string"/> converted to <see cref="Int32"/>
+        /// </summary>
+        /// <param name="input">Input string, which is number</param>
+        /// <returns><see cref="Int32"/> result number</returns>
+        public static int ToInt32(this string input)
+        {
+            if(ReferenceEquals(input, null)) throw new NullReferenceException(nameof(input));
+            if(int.TryParse(input, out var result))
+                return result;
+            throw new ArgumentException(nameof(input));
+        }
+
+        /// <summary>
+        /// Returns <see cref="input"/> <seealso cref="string"/> converted to <see cref="Int64"/>
+        /// </summary>
+        /// <param name="input">Input string, which is number</param>
+        /// <returns><see cref="Int64"/> result number</returns>
+        public static long ToInt64(this string input)
+        {
+            if (ReferenceEquals(input, null)) throw new NullReferenceException(nameof(input));
+            if (long.TryParse(input, out var result))
+                return result;
+            throw new ArgumentException(nameof(input));
         }
     }
 }

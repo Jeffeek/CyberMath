@@ -1,5 +1,6 @@
 ﻿using CyberMath.Structures.BinaryTreeBase;
 using System;
+using System.Collections.Generic;
 
 namespace CyberMath.Structures.AVLBinaryTree
 {
@@ -15,6 +16,10 @@ namespace CyberMath.Structures.AVLBinaryTree
         /// </summary>
         private int _height = 0;
 
+        /// <summary>
+        /// Creates instance of <see cref="AVLBinaryTreeNode{T}"/> with <paramref name="data"/>
+        /// </summary>
+        /// <param name="data">Data to initialize</param>
         public AVLBinaryTreeNode(T data) : base(data) { }
 
         public override IBinaryTreeNode<T> Insert(T value) => InternalInsert(this, value);
@@ -45,7 +50,7 @@ namespace CyberMath.Structures.AVLBinaryTree
         /// <summary>
         /// Removes a minimal node from <paramref name="subTree"/>
         /// </summary>
-        /// <param name="subTree"></param>
+        /// <param name="subTree"><see cref="AVLBinaryTreeNode{T}"/> subtree where will be deleted minimal node</param>
         /// <returns>If <see cref="IBinaryTreeNode{T}.Left"/> equals <see langword="null"/> returns reference to <see cref="IBinaryTreeNode{T}.Right"/>. Else balanced <paramref name="subTree"/> after removing</returns>
         private AVLBinaryTreeNode<T> RemoveMin(AVLBinaryTreeNode<T> subTree)
         {
@@ -55,6 +60,12 @@ namespace CyberMath.Structures.AVLBinaryTree
             return Balance(subTree);
         }
 
+        /// <summary>
+        /// Removes node with value <paramref name="data"/>
+        /// </summary>
+        /// <param name="node">SubTree where to find and remove</param>
+        /// <param name="data">Data to remove</param>
+        /// <returns>Reference to root</returns>
         private AVLBinaryTreeNode<T> InternalInsert(AVLBinaryTreeNode<T> node, T data)
         {
             if (ReferenceEquals(node, null)) return new AVLBinaryTreeNode<T>(data);
@@ -65,6 +76,11 @@ namespace CyberMath.Structures.AVLBinaryTree
             return Balance(node);
         }
 
+        /// <summary>
+        /// Returns <see cref="AVLBinaryTreeNode{T}._height"/> for <paramref name="node"/>
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns>Height of <paramref name="node"/></returns>
         private int GetHeight(AVLBinaryTreeNode<T> node) => node?._height ?? 0;
 
         /// <summary>
@@ -79,8 +95,8 @@ namespace CyberMath.Structures.AVLBinaryTree
         /// <param name="node">Node to fix</param>
         private void FixHeight(AVLBinaryTreeNode<T> node)
         {
-            int hl = GetHeight(node.Left as AVLBinaryTreeNode<T>);
-            int hr = GetHeight(node.Right as AVLBinaryTreeNode<T>);
+            var hl = GetHeight(node.Left as AVLBinaryTreeNode<T>);
+            var hr = GetHeight(node.Right as AVLBinaryTreeNode<T>);
             node._height = (hl > hr ? hl : hr) + 1;
         }
 

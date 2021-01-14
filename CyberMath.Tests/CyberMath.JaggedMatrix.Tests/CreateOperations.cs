@@ -26,9 +26,9 @@ namespace CyberMath.JaggedMatrix.Tests
                 [2, 1] = 12
             };
 
-            for (int i = 0; i < expected.RowsCount; i++)
+            for (var i = 0; i < expected.RowsCount; i++)
             {
-                for (int j = 0; j < expected.ElementsInRow(i); j++)
+                for (var j = 0; j < expected.ElementsInRow(i); j++)
                 {
                     Assert.IsTrue(actual[i, j] == expected[i, j]);
                 }
@@ -56,9 +56,9 @@ namespace CyberMath.JaggedMatrix.Tests
                 [2, 1] = 12
             };
 
-            for (int i = 0; i < expected.RowsCount; i++)
+            for (var i = 0; i < expected.RowsCount; i++)
             {
-                for (int j = 0; j < expected.ElementsInRow(i); j++)
+                for (var j = 0; j < expected.ElementsInRow(i); j++)
                 {
                     Assert.IsTrue(actual[i, j] == expected[i, j]);
                 }
@@ -87,9 +87,9 @@ namespace CyberMath.JaggedMatrix.Tests
                 [1, 2] = 12
             };
 
-            for (int i = 0; i < expected.RowsCount; i++)
+            for (var i = 0; i < expected.RowsCount; i++)
             {
-                for (int j = 0; j < expected.ElementsInRow(i); j++)
+                for (var j = 0; j < expected.ElementsInRow(i); j++)
                 {
                     Assert.IsTrue(actual[i, j] == expected[i, j]);
                 }

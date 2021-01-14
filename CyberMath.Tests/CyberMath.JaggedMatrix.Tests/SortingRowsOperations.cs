@@ -9,7 +9,7 @@ namespace CyberMath.JaggedMatrix.Tests
         [TestMethod]
         public void SortByRowsTest()
         {
-            int rowsCount = 3;
+            var rowsCount = 3;
             int[] columnArr = { 2, 3, 1 };
             var jugged = new JuggedMatrix<int>(rowsCount, columnArr)
             {
@@ -32,9 +32,9 @@ namespace CyberMath.JaggedMatrix.Tests
                 [2, 2] = 3
             };
 
-            for (int i = 0; i < actual.RowsCount; i++)
+            for (var i = 0; i < actual.RowsCount; i++)
             {
-                for (int j = 0; j < actual.ElementsInRow(i); j++)
+                for (var j = 0; j < actual.ElementsInRow(i); j++)
                 {
                     Assert.IsTrue(actual[i, j] == expected[i, j]);
                 }
@@ -44,7 +44,7 @@ namespace CyberMath.JaggedMatrix.Tests
         [TestMethod]
         public void SortByDescendingRowsTest()
         {
-            int rowsCount = 3;
+            var rowsCount = 3;
             int[] columnArr = { 2, 3, 1 };
             var jugged = new JuggedMatrix<int>(rowsCount, columnArr)
             {
@@ -67,9 +67,9 @@ namespace CyberMath.JaggedMatrix.Tests
                 [2, 0] = 5
             };
 
-            for (int i = 0; i < actual.RowsCount; i++)
+            for (var i = 0; i < actual.RowsCount; i++)
             {
-                for (int j = 0; j < actual.ElementsInRow(i); j++)
+                for (var j = 0; j < actual.ElementsInRow(i); j++)
                 {
                     Assert.IsTrue(actual[i, j] == expected[i, j]);
                 }
@@ -79,7 +79,7 @@ namespace CyberMath.JaggedMatrix.Tests
         [TestMethod]
         public void IsSquareTest()
         {
-            int rowsCount = 3;
+            var rowsCount = 3;
             int[] columnArr = { 3, 3, 3 };
             var jugged = new JuggedMatrix<int>(rowsCount, columnArr);
             Assert.IsTrue(jugged.IsSquare);

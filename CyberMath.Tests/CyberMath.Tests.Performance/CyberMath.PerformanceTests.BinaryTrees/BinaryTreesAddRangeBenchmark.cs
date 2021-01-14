@@ -36,7 +36,7 @@ namespace CyberMath.PerformanceTests.BinaryTrees
         {
             var array = new int[Count];
             var rnd = new Random();
-            for (int i = 0; i < Count; i++)
+            for (var i = 0; i < Count; i++)
                 array[i] = rnd.Next(-100, 100);
             return array;
         }
