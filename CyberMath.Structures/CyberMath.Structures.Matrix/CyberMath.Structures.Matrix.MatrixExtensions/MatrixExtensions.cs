@@ -28,7 +28,7 @@ namespace CyberMath.Structures.MatrixExtensions
         /// Creates a new instance of <see cref="IMatrix{T}"/> from <see cref="IJuggedMatrix{T}"/>
         /// </summary>
         /// <typeparam name="T">ANY</typeparam>
-        /// <param name="matrix">Initial matrix</param>
+        /// <param name="juggedMatrix">Initial matrix</param>
         /// <returns>A new instance of <see cref="IMatrix{T}"/></returns>
         public static IMatrix<T> ToMatrix<T>(this IJuggedMatrix<T> juggedMatrix)
         {

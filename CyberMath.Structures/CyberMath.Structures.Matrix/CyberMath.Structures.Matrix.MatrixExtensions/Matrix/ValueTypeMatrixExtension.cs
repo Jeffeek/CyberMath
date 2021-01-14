@@ -13,6 +13,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
     /// </summary>
     public static class ValueTypeMatrixExtension
     {
+        #region Not Nullable
+
         #region Int32
 
         #region Math
@@ -38,8 +40,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<int> Add(this IMatrix<int> first, IMatrix<int> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<int>(first.RowsCount, first.ColumnsCount);
             for (int i = 0; i < first.RowsCount; i++)
             {
@@ -60,8 +62,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>New <see cref="IMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<int> Sub(this IMatrix<int> first, IMatrix<int> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<int>(first.RowsCount, first.ColumnsCount);
             for (int i = 0; i < first.RowsCount; i++)
             {
@@ -312,8 +314,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<long> Add(this IMatrix<long> first, IMatrix<long> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<long>(first.RowsCount, first.ColumnsCount);
             for (int i = 0; i < first.RowsCount; i++)
             {
@@ -334,8 +336,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>New <see cref="IMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<long> Sub(this IMatrix<long> first, IMatrix<long> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<long>(first.RowsCount, first.ColumnsCount);
             for (int i = 0; i < first.RowsCount; i++)
             {
@@ -555,8 +557,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<double> Add(this IMatrix<double> first, IMatrix<double> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<double>(first.RowsCount, first.ColumnsCount);
             for (int i = 0; i < first.RowsCount; i++)
             {
@@ -577,8 +579,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>New <see cref="IMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<double> Sub(this IMatrix<double> first, IMatrix<double> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<double>(first.RowsCount, first.ColumnsCount);
             for (int i = 0; i < first.RowsCount; i++)
             {
@@ -786,8 +788,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         public static IMatrix<decimal> Add(this IMatrix<decimal> first, IMatrix<decimal> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<decimal>(first.RowsCount, first.ColumnsCount);
             for (int i = 0; i < first.RowsCount; i++)
             {
@@ -802,8 +804,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         public static IMatrix<decimal> Sub(this IMatrix<decimal> first, IMatrix<decimal> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<decimal>(first.RowsCount, first.ColumnsCount);
             for (int i = 0; i < first.RowsCount; i++)
             {
@@ -1004,8 +1006,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<string> Add(this IMatrix<string> first, IMatrix<string> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<string>(first.RowsCount, first.ColumnsCount);
             for (int i = 0; i < first.RowsCount; i++)
             {
@@ -1094,15 +1096,22 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #endregion
 
+#endregion
+
         #endregion
 
-        //TODO: summary
         #region Nullable
 
         #region Int32?
 
         #region Math
 
+        /// <summary>
+        /// Returns the multiplied <see cref="IMatrix{T}"/> <paramref name="first"/> by <see cref="IMatrix{T}"/> <paramref name="second"/>
+        /// </summary>
+        /// <param name="first">First matrix</param>
+        /// <param name="second">Second matrix</param>
+        /// <returns>New <see cref="IMatrix{T}"/> - the result of multiplying <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<int?> Multiplication(this IMatrix<int?> first, IMatrix<int?> second)
         {
             if (first.ColumnsCount == second.RowsCount) return first.InternalMulAtoB(second);
@@ -1110,10 +1119,16 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
+        /// <summary>
+        /// Returns the add <see cref="IMatrix{T}"/> <paramref name="first"/> and <see cref="IMatrix{T}"/> <paramref name="second"/>
+        /// </summary>
+        /// <param name="first">First matrix</param>
+        /// <param name="second">Second matrix</param>
+        /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<int?> Add(this IMatrix<int?> first, IMatrix<int?> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<int?>(first.RowsCount, first.ColumnsCount);
             for (int i = 0; i < first.RowsCount; i++)
             {
@@ -1129,10 +1144,16 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return matrix;
         }
 
+        /// <summary>
+        /// Returns the subtraction <see cref="IMatrix{T}"/> <paramref name="first"/> and <see cref="IMatrix{T}"/> <paramref name="second"/>
+        /// </summary>
+        /// <param name="first">First matrix</param>
+        /// <param name="second">Second matrix</param>
+        /// <returns>New <see cref="IMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<int?> Sub(this IMatrix<int?> first, IMatrix<int?> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<int?>(first.RowsCount, first.ColumnsCount);
             for (int i = 0; i < first.RowsCount; i++)
             {
@@ -1148,27 +1169,38 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return matrix;
         }
 
-        public static IMatrix<int?> MulOnNumber(this IMatrix<int?> first, int number)
+        /// <summary>
+        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="Int32"/> <paramref name="number"/>
+        /// </summary>
+        /// <param name="matrix">First</param>
+        /// <param name="number"></param>
+        /// <returns>New <see cref="IMatrix{T}"/> - the result multiplication of matrix <paramref name="matrix"/> on <paramref name="number"/></returns>
+        public static IMatrix<int?> MulOnNumber(this IMatrix<int?> matrix, int number)
         {
-            var matrix = new Matrix<int?>(first.RowsCount, first.ColumnsCount);
-            for (int i = 0; i < first.RowsCount; i++)
+            var newMatrix = new Matrix<int?>(matrix.RowsCount, matrix.ColumnsCount);
+            for (int i = 0; i < matrix.RowsCount; i++)
             {
-                for (int j = 0; j < first.ColumnsCount; j++)
+                for (int j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    if (matrix[i, j] != null)
-                        matrix[i, j] = first[i, j] * number;
+                    if (newMatrix[i, j] != null)
+                        newMatrix[i, j] = matrix[i, j] * number;
                     else
-                        matrix[i, j] = null;
+                        newMatrix[i, j] = null;
                 }
             }
 
-            return matrix;
+            return newMatrix;
         }
 
         #endregion
 
         #region Operations
 
+        /// <summary>
+        /// Calculates determinant for <seealso cref="Nullable{T}"/> <see cref="Int32"/> <see cref="IMatrix{T}"/>
+        /// </summary>
+        /// <param name="matrix">Initial matrix</param>
+        /// <returns>Determinant</returns>
         public static int CalculateDeterminant(this IMatrix<int?> matrix)
         {
             if (!matrix.IsSquare)
@@ -1195,6 +1227,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return result;
         }
 
+        /// <summary>
+        /// Creates inverted matrix from <paramref name="matrix"/>
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns>New inverted <see cref="IMatrix{T}"/></returns>
         public static IMatrix<double?> CreateInvertibleMatrix(this IMatrix<int?> matrix)
         {
             if (!matrix.IsSquare)
@@ -1211,7 +1248,14 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return result;
         }
 
-        private static double CalculateMinor(this IMatrix<int?> matrix, int i, int j)
+        /// <summary>
+        /// Calculates minor for <paramref name="matrix"/>
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        /// <returns>Minor</returns>
+        public static double CalculateMinor(this IMatrix<int?> matrix, int i, int j)
         {
             return ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<int?>)?.CreateMatrixWithoutRow(i) as IMatrix<int?>).CalculateDeterminant();
         }
@@ -1220,6 +1264,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #region Sum Operations
 
+        /// <summary>
+        /// Calculates sum of all numbers in main diagonal in <see cref="IMatrix{T}"/>
+        /// </summary>
+        /// <param name="matrix">Initial matrix</param>
+        /// <returns>Sum in main diagonal</returns>
         public static int DiagonalSum(this IMatrix<int?> matrix)
         {
             if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
@@ -1232,6 +1281,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return sum;
         }
 
+        /// <summary>
+        /// Calculates sum of all elements in matrix
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns>Sum of all elements in matrix</returns>
         public static int Sum(this IMatrix<int?> matrix)
         {
             int sum = 0;
@@ -1247,6 +1301,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return sum;
         }
 
+        /// <summary>
+        /// Calculates sum of all saddle points in matrix
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns>Sum of all saddle points in matrix</returns>
         public static int SumSaddlePoints(this IMatrix<int?> matrix)
         {
             int sum = 0;
@@ -1310,30 +1369,40 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #endregion
 
-        #region Find Ops
+        #region Saddling
 
-        public static bool IsMaxInColumn(this IMatrix<int?> matrix, int i, int j)
+        /// <summary>
+        /// Returns <see cref="bool"/> value if element at [<paramref name="i"/>, <paramref name="j"/>] is max in <see cref="IMatrixBase{IComparable}"/> matrix column at index <paramref name="j"/>
+        /// </summary>
+        /// <param name="matrix">Initial matrix</param>
+        /// <param name="i">Row index</param>
+        /// <param name="j">Column index</param>
+        /// <returns></returns>
+        public static bool IsMaxInColumn(this IMatrixBase<int?> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.RowsCount; k++)
             {
                 if (matrix[k, j] != null && matrix[i, j] != null)
-                {
-                    if (matrix[k, j] > matrix[i, j])
+                    if (matrix[k, j] > (matrix[i, j]))
                         return false;
-                }
             }
             return true;
         }
 
-        public static bool IsMinInRow(this IMatrix<int?> matrix, int i, int j)
+        /// <summary>
+        /// Returns <see cref="bool"/> value if element at [<paramref name="i"/>, <paramref name="j"/>] is min in <see cref="IMatrixBase{IComparable}"/> matrix row at index <paramref name="i"/>
+        /// </summary>
+        /// <param name="matrix">Initial matrix</param>
+        /// <param name="i">Row index</param>
+        /// <param name="j">Column index</param>
+        /// <returns></returns>
+        public static bool IsMinInRow(this IMatrixBase<int?> matrix, int i, int j)
         {
-            for (int k = 0; k < matrix.ColumnsCount; k++)
+            for (int k = 0; k < matrix.ElementsInRow(i); k++)
             {
                 if (matrix[i, k] != null && matrix[i, j] != null)
-                {
-                    if (matrix[i, k] < matrix[i, j])
+                    if (matrix[i, k] < (matrix[i, j]))
                         return false;
-                }
             }
             return true;
         }
@@ -1364,10 +1433,16 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #endregion
 
-        #region long?
+        #region Int64?
 
         #region Math
 
+        /// <summary>
+        /// Returns the multiplied <see cref="IMatrix{T}"/> <paramref name="first"/> by <see cref="IMatrix{T}"/> <paramref name="second"/>
+        /// </summary>
+        /// <param name="first">First matrix</param>
+        /// <param name="second">Second matrix</param>
+        /// <returns>New <see cref="IMatrix{T}"/> - the result of multiplying <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<long?> Multiplication(this IMatrix<long?> first, IMatrix<long?> second)
         {
             if (first.ColumnsCount == second.RowsCount) return first.InternalMulAtoB(second);
@@ -1375,10 +1450,16 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
+        /// <summary>
+        /// Returns the add <see cref="IMatrix{T}"/> <paramref name="first"/> and <see cref="IMatrix{T}"/> <paramref name="second"/>
+        /// </summary>
+        /// <param name="first">First matrix</param>
+        /// <param name="second">Second matrix</param>
+        /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<long?> Add(this IMatrix<long?> first, IMatrix<long?> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<long?>(first.RowsCount, first.ColumnsCount);
             for (int i = 0; i < first.RowsCount; i++)
             {
@@ -1394,10 +1475,16 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return matrix;
         }
 
+        /// <summary>
+        /// Returns the subtraction <see cref="IMatrix{T}"/> <paramref name="first"/> and <see cref="IMatrix{T}"/> <paramref name="second"/>
+        /// </summary>
+        /// <param name="first">First matrix</param>
+        /// <param name="second">Second matrix</param>
+        /// <returns>New <see cref="IMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<long?> Sub(this IMatrix<long?> first, IMatrix<long?> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<long?>(first.RowsCount, first.ColumnsCount);
             for (int i = 0; i < first.RowsCount; i++)
             {
@@ -1432,6 +1519,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #region Operations
 
+        /// <summary>
+        /// Calculates determinant for <seealso cref="Nullable{T}"/> <see cref="Int64"/> <see cref="IMatrix{T}"/>
+        /// </summary>
+        /// <param name="matrix">Initial matrix</param>
+        /// <returns>Determinant</returns>
         public static long CalculateDeterminant(this IMatrix<long?> matrix)
         {
             if (!matrix.IsSquare)
@@ -1458,6 +1550,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return result;
         }
 
+        /// <summary>
+        /// Creates inverted matrix from <paramref name="matrix"/>
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns>New inverted <see cref="IMatrix{T}"/></returns>
         public static IMatrix<double> CreateInvertibleMatrix(this IMatrix<long?> matrix)
         {
             if (!matrix.IsSquare)
@@ -1476,15 +1573,24 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return result;
         }
 
-        private static double CalculateMinor(this IMatrix<long?> matrix, int i, int j)
-        {
-            return ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<long?>)?.CreateMatrixWithoutRow(i) as IMatrix<long?>).CalculateDeterminant();
-        }
+        /// <summary>
+        /// Calculates minor for <paramref name="matrix"/>
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        /// <returns>Minor</returns>
+        public static double CalculateMinor(this IMatrix<long?> matrix, int i, int j) => ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<long?>)?.CreateMatrixWithoutRow(i) as IMatrix<long?>).CalculateDeterminant();
 
         #endregion
 
         #region Sum Operations
 
+        /// <summary>
+        /// Calculates sum of all numbers in main diagonal in <see cref="IMatrix{T}"/>
+        /// </summary>
+        /// <param name="matrix">Initial matrix</param>
+        /// <returns>Sum in main diagonal</returns>
         public static long DiagonalSum(this IMatrix<long?> matrix)
         {
             if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
@@ -1499,6 +1605,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return sum;
         }
 
+        /// <summary>
+        /// Calculates sum of all elements in matrix
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns>Sum of all elements in matrix</returns>
         public static long Sum(this IMatrix<long?> matrix)
         {
             long sum = 0;
@@ -1516,6 +1627,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return sum;
         }
 
+        /// <summary>
+        /// Calculates sum of all saddle points in matrix
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns>Sum of all saddle points in matrix</returns>
         public static long SumSaddlePoints(this IMatrix<long?> matrix)
         {
             long sum = 0;
@@ -1580,25 +1696,39 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #endregion
 
-        #region Find Ops
+        #region Saddling
 
-        public static bool IsMaxInColumn(this IMatrix<long?> matrix, int i, int j)
+        /// <summary>
+        /// Returns <see cref="bool"/> value if element at [<paramref name="i"/>, <paramref name="j"/>] is max in <see cref="IMatrixBase{IComparable}"/> matrix column at index <paramref name="j"/>
+        /// </summary>
+        /// <param name="matrix">Initial matrix</param>
+        /// <param name="i">Row index</param>
+        /// <param name="j">Column index</param>
+        /// <returns></returns>
+        public static bool IsMaxInColumn(this IMatrixBase<long?> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.RowsCount; k++)
             {
                 if (matrix[k, j] != null && matrix[i, j] != null)
-                    if (matrix[k, j] > matrix[i, j])
+                    if (matrix[k, j] > (matrix[i, j]))
                         return false;
             }
             return true;
         }
 
-        public static bool IsMinInRow(this IMatrix<long?> matrix, int i, int j)
+        /// <summary>
+        /// Returns <see cref="bool"/> value if element at [<paramref name="i"/>, <paramref name="j"/>] is min in <see cref="IMatrixBase{IComparable}"/> matrix row at index <paramref name="i"/>
+        /// </summary>
+        /// <param name="matrix">Initial matrix</param>
+        /// <param name="i">Row index</param>
+        /// <param name="j">Column index</param>
+        /// <returns></returns>
+        public static bool IsMinInRow(this IMatrixBase<long?> matrix, int i, int j)
         {
-            for (int k = 0; k < matrix.ColumnsCount; k++)
+            for (int k = 0; k < matrix.ElementsInRow(i); k++)
             {
-                if (matrix[k, j] != null && matrix[i, j] != null)
-                    if (matrix[k, j] < matrix[i, j])
+                if (matrix[i, k] != null && matrix[i, j] != null)
+                    if (matrix[i, k] < (matrix[i, j]))
                         return false;
             }
             return true;
@@ -1629,10 +1759,16 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #endregion
 
-        #region double?
+        #region Double?
 
         #region Math
 
+        /// <summary>
+        /// Returns the multiplied <see cref="IMatrix{T}"/> <paramref name="first"/> by <see cref="IMatrix{T}"/> <paramref name="second"/>
+        /// </summary>
+        /// <param name="first">First matrix</param>
+        /// <param name="second">Second matrix</param>
+        /// <returns>New <see cref="IMatrix{T}"/> - the result of multiplying <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<double?> Multiplication(this IMatrix<double?> first, IMatrix<double?> second)
         {
             if (first.ColumnsCount == second.RowsCount) return first.InternalMulAtoB(second);
@@ -1640,10 +1776,16 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
+        /// <summary>
+        /// Returns the add <see cref="IMatrix{T}"/> <paramref name="first"/> and <see cref="IMatrix{T}"/> <paramref name="second"/>
+        /// </summary>
+        /// <param name="first">First matrix</param>
+        /// <param name="second">Second matrix</param>
+        /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<double?> Add(this IMatrix<double?> first, IMatrix<double?> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to first. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<double?>(first.RowsCount, first.ColumnsCount);
             for (int i = 0; i < first.RowsCount; i++)
             {
@@ -1659,10 +1801,16 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return matrix;
         }
 
+        /// <summary>
+        /// Returns the subtraction <see cref="IMatrix{T}"/> <paramref name="first"/> and <see cref="IMatrix{T}"/> <paramref name="second"/>
+        /// </summary>
+        /// <param name="first">First matrix</param>
+        /// <param name="second">Second matrix</param>
+        /// <returns>New <see cref="IMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<double?> Sub(this IMatrix<double?> first, IMatrix<double?> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to first. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<double?>(first.RowsCount, first.ColumnsCount);
             for (int i = 0; i < first.RowsCount; i++)
             {
@@ -1699,6 +1847,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #region Operations
 
+        /// <summary>
+        /// Calculates determinant for <seealso cref="Nullable{T}"/> <see cref="Double"/> <see cref="IMatrix{T}"/>
+        /// </summary>
+        /// <param name="matrix">Initial matrix</param>
+        /// <returns>Determinant</returns>
         public static double CalculateDeterminant(this IMatrix<double?> matrix)
         {
             if (!matrix.IsSquare)
@@ -1724,6 +1877,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return result;
         }
 
+        /// <summary>
+        /// Creates inverted matrix from <paramref name="matrix"/>
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns>New inverted <see cref="IMatrix{T}"/></returns>
         public static IMatrix<double?> CreateInvertibleMatrix(this IMatrix<double?> matrix)
         {
             if (!matrix.IsSquare)
@@ -1741,15 +1899,24 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return result;
         }
 
-        private static double CalculateMinor(this IMatrix<double?> matrix, int i, int j)
-        {
-            return ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<double?>)?.CreateMatrixWithoutRow(i) as IMatrix<double?>).CalculateDeterminant();
-        }
+        /// <summary>
+        /// Calculates minor for <paramref name="matrix"/>
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        /// <returns>Minor</returns>
+        public static double CalculateMinor(this IMatrix<double?> matrix, int i, int j) => ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<double?>)?.CreateMatrixWithoutRow(i) as IMatrix<double?>).CalculateDeterminant();
 
         #endregion
 
         #region Sum Operations
 
+        /// <summary>
+        /// Calculates sum of all numbers in main diagonal in <see cref="IMatrix{T}"/>
+        /// </summary>
+        /// <param name="matrix">Initial matrix</param>
+        /// <returns>Sum in main diagonal</returns>
         public static double DiagonalSum(this IMatrix<double?> matrix)
         {
             if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
@@ -1762,6 +1929,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return sum;
         }
 
+        /// <summary>
+        /// Calculates sum of all elements in matrix
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns>Sum of all elements in matrix</returns>
         public static double Sum(this IMatrix<double?> matrix)
         {
             double sum = 0;
@@ -1777,6 +1949,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return sum;
         }
 
+        /// <summary>
+        /// Calculates sum of all saddle points in matrix
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns>Sum of all saddle points in matrix</returns>
         public static double SumSaddlePoints(this IMatrix<double?> matrix)
         {
             double sum = 0;
@@ -1798,7 +1975,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #endregion
 
-        #region Math
+        #region Internal Mul
 
         private static IMatrix<double?> InternalMulAtoB(this IMatrix<double?> matrix, IMatrix<double?> second)
         {
@@ -1842,25 +2019,39 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #endregion
 
-        #region Find Ops
+        #region Saddling
 
-        public static bool IsMaxInColumn(this IMatrix<double?> matrix, int i, int j)
+        /// <summary>
+        /// Returns <see cref="bool"/> value if element at [<paramref name="i"/>, <paramref name="j"/>] is max in <see cref="IMatrixBase{IComparable}"/> matrix column at index <paramref name="j"/>
+        /// </summary>
+        /// <param name="matrix">Initial matrix</param>
+        /// <param name="i">Row index</param>
+        /// <param name="j">Column index</param>
+        /// <returns></returns>
+        public static bool IsMaxInColumn(this IMatrixBase<double?> matrix, int i, int j)
         {
             for (int k = 0; k < matrix.RowsCount; k++)
             {
                 if (matrix[k, j] != null && matrix[i, j] != null)
-                    if (matrix[k, j] > matrix[i, j])
+                    if (matrix[k, j] > (matrix[i, j]))
                         return false;
             }
             return true;
         }
 
-        public static bool IsMinInRow(this IMatrix<double?> matrix, int i, int j)
+        /// <summary>
+        /// Returns <see cref="bool"/> value if element at [<paramref name="i"/>, <paramref name="j"/>] is min in <see cref="IMatrixBase{IComparable}"/> matrix row at index <paramref name="i"/>
+        /// </summary>
+        /// <param name="matrix">Initial matrix</param>
+        /// <param name="i">Row index</param>
+        /// <param name="j">Column index</param>
+        /// <returns></returns>
+        public static bool IsMinInRow(this IMatrixBase<double?> matrix, int i, int j)
         {
-            for (int k = 0; k < matrix.ColumnsCount; k++)
+            for (int k = 0; k < matrix.ElementsInRow(i); k++)
             {
                 if (matrix[i, k] != null && matrix[i, j] != null)
-                    if (matrix[i, k] < matrix[i, j])
+                    if (matrix[i, k] < (matrix[i, j]))
                         return false;
             }
             return true;

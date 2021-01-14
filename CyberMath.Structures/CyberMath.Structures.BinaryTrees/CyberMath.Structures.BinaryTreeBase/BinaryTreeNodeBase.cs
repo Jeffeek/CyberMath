@@ -11,10 +11,6 @@ namespace CyberMath.Structures.BinaryTreeBase
     public abstract class BinaryTreeNodeBase<T> : IBinaryTreeNode<T>
         where T : IComparable<T>, IComparable
     {
-        public override int GetHashCode() => EqualityComparer<T>.Default.GetHashCode(Data);
-        protected bool Equals(BinaryTreeNodeBase<T> other) => this == other;
-
-
         public IBinaryTreeNode<T> Left { get; protected set; }
         public IBinaryTreeNode<T> Right { get; protected set; }
         public T Data { get; protected set; }

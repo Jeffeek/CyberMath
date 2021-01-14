@@ -41,27 +41,27 @@
         </member>
         <member name="M:CyberMath.Structures.MatrixExtensions.Matrix.ValueTypeMatrixExtension.Multiplication(CyberMath.Structures.Matrix.IMatrix{System.Int32},CyberMath.Structures.Matrix.IMatrix{System.Int32})">
             <summary>
-            Returns the multiplied <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="first"/> by <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
+            Returns the multiplied <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="matrix"/> by <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
             </summary>
-            <param name="first">First matrix</param>
+            <param name="matrix">First matrix</param>
             <param name="second">Second matrix</param>
-            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result of multiplying <paramref name="first"/> and <paramref name="second"/></returns>
+            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result of multiplying <paramref name="matrix"/> and <paramref name="second"/></returns>
         </member>
         <member name="M:CyberMath.Structures.MatrixExtensions.Matrix.ValueTypeMatrixExtension.Add(CyberMath.Structures.Matrix.IMatrix{System.Int32},CyberMath.Structures.Matrix.IMatrix{System.Int32})">
             <summary>
-            Returns the add <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="first"/> and <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
+            Returns the add <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="matrix"/> and <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
             </summary>
-            <param name="first">First matrix</param>
+            <param name="matrix">First matrix</param>
             <param name="second">Second matrix</param>
-            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
+            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result sum of matrices <paramref name="matrix"/> and <paramref name="second"/></returns>
         </member>
         <member name="M:CyberMath.Structures.MatrixExtensions.Matrix.ValueTypeMatrixExtension.Sub(CyberMath.Structures.Matrix.IMatrix{System.Int32},CyberMath.Structures.Matrix.IMatrix{System.Int32})">
             <summary>
-            Returns the subtraction <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="first"/> and <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
+            Returns the subtraction <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="matrix"/> and <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
             </summary>
-            <param name="first">First matrix</param>
+            <param name="matrix">First matrix</param>
             <param name="second">Second matrix</param>
-            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
+            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result subtraction of matrices <paramref name="matrix"/> and <paramref name="second"/></returns>
         </member>
         <member name="M:CyberMath.Structures.MatrixExtensions.Matrix.ValueTypeMatrixExtension.MulOnNumber(CyberMath.Structures.Matrix.Matrix{System.Int32},System.Int32)">
             <summary>
@@ -136,27 +136,27 @@
         </member>
         <member name="M:CyberMath.Structures.MatrixExtensions.Matrix.ValueTypeMatrixExtension.Multiplication(CyberMath.Structures.Matrix.IMatrix{System.Int64},CyberMath.Structures.Matrix.IMatrix{System.Int64})">
             <summary>
-            Returns the multiplied <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="first"/> by <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
+            Returns the multiplied <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="matrix"/> by <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
             </summary>
-            <param name="first">First matrix</param>
+            <param name="matrix">First matrix</param>
             <param name="second">Second matrix</param>
-            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result of multiplying <paramref name="first"/> and <paramref name="second"/></returns>
+            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result of multiplying <paramref name="matrix"/> and <paramref name="second"/></returns>
         </member>
         <member name="M:CyberMath.Structures.MatrixExtensions.Matrix.ValueTypeMatrixExtension.Add(CyberMath.Structures.Matrix.IMatrix{System.Int64},CyberMath.Structures.Matrix.IMatrix{System.Int64})">
             <summary>
-            Returns the add <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="first"/> and <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
+            Returns the add <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="matrix"/> and <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
             </summary>
-            <param name="first">First matrix</param>
+            <param name="matrix">First matrix</param>
             <param name="second">Second matrix</param>
-            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
+            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result sum of matrices <paramref name="matrix"/> and <paramref name="second"/></returns>
         </member>
         <member name="M:CyberMath.Structures.MatrixExtensions.Matrix.ValueTypeMatrixExtension.Sub(CyberMath.Structures.Matrix.IMatrix{System.Int64},CyberMath.Structures.Matrix.IMatrix{System.Int64})">
             <summary>
-            Returns the subtraction <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="first"/> and <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
+            Returns the subtraction <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="matrix"/> and <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
             </summary>
-            <param name="first">First matrix</param>
+            <param name="matrix">First matrix</param>
             <param name="second">Second matrix</param>
-            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
+            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result subtraction of matrices <paramref name="matrix"/> and <paramref name="second"/></returns>
         </member>
         <member name="M:CyberMath.Structures.MatrixExtensions.Matrix.ValueTypeMatrixExtension.MulOnNumber(CyberMath.Structures.Matrix.IMatrix{System.Int64},System.Int64)">
             <summary>
@@ -213,27 +213,27 @@
         </member>
         <member name="M:CyberMath.Structures.MatrixExtensions.Matrix.ValueTypeMatrixExtension.Multiplication(CyberMath.Structures.Matrix.IMatrix{System.Double},CyberMath.Structures.Matrix.IMatrix{System.Double})">
             <summary>
-            Returns the multiplied <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="first"/> by <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
+            Returns the multiplied <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="matrix"/> by <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
             </summary>
-            <param name="first">First matrix</param>
+            <param name="matrix">First matrix</param>
             <param name="second">Second matrix</param>
-            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result of multiplying <paramref name="first"/> and <paramref name="second"/></returns>
+            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result of multiplying <paramref name="matrix"/> and <paramref name="second"/></returns>
         </member>
         <member name="M:CyberMath.Structures.MatrixExtensions.Matrix.ValueTypeMatrixExtension.Add(CyberMath.Structures.Matrix.IMatrix{System.Double},CyberMath.Structures.Matrix.IMatrix{System.Double})">
             <summary>
-            Returns the add <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="first"/> and <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
+            Returns the add <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="matrix"/> and <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
             </summary>
-            <param name="first">First matrix</param>
+            <param name="matrix">First matrix</param>
             <param name="second">Second matrix</param>
-            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
+            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result sum of matrices <paramref name="matrix"/> and <paramref name="second"/></returns>
         </member>
         <member name="M:CyberMath.Structures.MatrixExtensions.Matrix.ValueTypeMatrixExtension.Sub(CyberMath.Structures.Matrix.IMatrix{System.Double},CyberMath.Structures.Matrix.IMatrix{System.Double})">
             <summary>
-            Returns the subtraction <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="first"/> and <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
+            Returns the subtraction <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="matrix"/> and <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
             </summary>
-            <param name="first">First matrix</param>
+            <param name="matrix">First matrix</param>
             <param name="second">Second matrix</param>
-            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
+            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result subtraction of matrices <paramref name="matrix"/> and <paramref name="second"/></returns>
         </member>
         <member name="M:CyberMath.Structures.MatrixExtensions.Matrix.ValueTypeMatrixExtension.MulOnNumber(CyberMath.Structures.Matrix.IMatrix{System.Double},System.Double)">
             <summary>
@@ -335,11 +335,11 @@
         </member>
         <member name="M:CyberMath.Structures.MatrixExtensions.Matrix.ValueTypeMatrixExtension.Add(CyberMath.Structures.Matrix.IMatrix{System.String},CyberMath.Structures.Matrix.IMatrix{System.String})">
             <summary>
-            Returns the add <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="first"/> and <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
+            Returns the add <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="matrix"/> and <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> <paramref name="second"/>
             </summary>
-            <param name="first">First matrix</param>
+            <param name="matrix">First matrix</param>
             <param name="second">Second matrix</param>
-            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
+            <returns>New <see cref="T:CyberMath.Structures.Matrix.IMatrix`1"/> - the result sum of matrices <paramref name="matrix"/> and <paramref name="second"/></returns>
         </member>
         <member name="M:CyberMath.Structures.MatrixExtensions.Matrix.ValueTypeMatrixExtension.MulOnNumber(CyberMath.Structures.Matrix.IMatrix{System.String},System.Int32)">
             <summary>

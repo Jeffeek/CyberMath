@@ -57,7 +57,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Tests.Performance
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.PerformanceTests.BinaryTrees", "CyberMath.Tests\CyberMath.Tests.Performance\CyberMath.PerformanceTests.BinaryTrees\CyberMath.PerformanceTests.BinaryTrees.csproj", "{0EE32045-DC86-4D9F-B152-602EAEF50E1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.Extensions.Tests", "CyberMath.Tests\CyberMath.Extensions.Tests\CyberMath.Extensions.Tests.csproj", "{EE570311-283A-4816-9CCB-9F553C7F5509}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Extensions.Tests", "CyberMath.Tests\CyberMath.Extensions.Tests\CyberMath.Extensions.Tests.csproj", "{EE570311-283A-4816-9CCB-9F553C7F5509}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6BA248A2-DCF6-4BE8-9590-7658FF12523D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

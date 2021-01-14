@@ -3,15 +3,22 @@ using System;
 
 namespace CyberMath.Structures.MatrixExtensions.Matrix
 {
+    /// <summary>
+    /// Extension methods for <see cref="IMatrix{T}"/> sum for <see langword="Generic"/></summary>
     public static class GenericMatrixExtensions
     {
-        //TODO: summary
-
         #region DiagonalSum
 
         #region int
 
-        public static int DiagonalSum<TSource>(this Matrix<TSource> matrix, Func<TSource, int> selector)
+        /// <summary>
+        /// Calculate sum of diagonal elements. Only if <see cref="IMatrix{T}"/> is square
+        /// </summary>
+        /// <typeparam name="TSource">Generic type</typeparam>
+        /// <param name="matrix">Initial matrix</param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns>Main diagonal sum</returns>
+        public static int DiagonalSum<TSource>(this IMatrix<TSource> matrix, Func<TSource, int> selector)
         {
             if (matrix == null) throw new ArgumentException("Matrix is null!");
             if (selector == null) throw new ArgumentException("selector is null");
@@ -24,7 +31,14 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return sum;
         }
 
-        public static int DiagonalSum<TSource>(this Matrix<TSource> matrix, Func<TSource, int?> selector)
+        /// <summary>
+        /// Calculate sum of diagonal elements. Only if <see cref="IMatrix{T}"/> is square
+        /// </summary>
+        /// <typeparam name="TSource">Generic type</typeparam>
+        /// <param name="matrix">Initial matrix</param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns>Main diagonal sum</returns>
+        public static int DiagonalSum<TSource>(this IMatrix<TSource> matrix, Func<TSource, int?> selector)
         {
             if (matrix == null) throw new ArgumentException("Matrix is null!");
             if (selector == null) throw new ArgumentException("selector is null");
@@ -42,7 +56,14 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #region double
 
-        public static double DiagonalSum<TSource>(this Matrix<TSource> matrix, Func<TSource, double> selector)
+        /// <summary>
+        /// Calculate sum of diagonal elements. Only if <see cref="IMatrix{T}"/> is square
+        /// </summary>
+        /// <typeparam name="TSource">Generic type</typeparam>
+        /// <param name="matrix">Initial matrix</param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns>Main diagonal sum</returns>
+        public static double DiagonalSum<TSource>(this IMatrix<TSource> matrix, Func<TSource, double> selector)
         {
             if (matrix == null) throw new ArgumentException("Matrix is null!");
             if (selector == null) throw new ArgumentException("selector is null");
@@ -55,7 +76,14 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return sum;
         }
 
-        public static double DiagonalSum<TSource>(this Matrix<TSource> matrix, Func<TSource, double?> selector)
+        /// <summary>
+        /// Calculate sum of diagonal elements. Only if <see cref="IMatrix{T}"/> is square
+        /// </summary>
+        /// <typeparam name="TSource">Generic type</typeparam>
+        /// <param name="matrix">Initial matrix</param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns>Main diagonal sum</returns>
+        public static double DiagonalSum<TSource>(this IMatrix<TSource> matrix, Func<TSource, double?> selector)
         {
             if (matrix == null) throw new ArgumentException("Matrix is null!");
             if (selector == null) throw new ArgumentException("selector is null");
@@ -73,7 +101,14 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #region decimal
 
-        public static decimal DiagonalSum<TSource>(this Matrix<TSource> matrix, Func<TSource, decimal> selector)
+        /// <summary>
+        /// Calculate sum of diagonal elements. Only if <see cref="IMatrix{T}"/> is square
+        /// </summary>
+        /// <typeparam name="TSource">Generic type</typeparam>
+        /// <param name="matrix">Initial matrix</param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns>Main diagonal sum</returns>
+        public static decimal DiagonalSum<TSource>(this IMatrix<TSource> matrix, Func<TSource, decimal> selector)
         {
             if (matrix == null) throw new ArgumentException("Matrix is null!");
             if (selector == null) throw new ArgumentException("selector is null");
@@ -86,6 +121,13 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return sum;
         }
 
+        /// <summary>
+        /// Calculate sum of diagonal elements. Only if <see cref="IMatrix{T}"/> is square
+        /// </summary>
+        /// <typeparam name="TSource">Generic type</typeparam>
+        /// <param name="matrix">Initial matrix</param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns>Main diagonal sum</returns>
         public static decimal? DiagonalSum<TSource>(this Matrix<TSource> matrix, Func<TSource, decimal?> selector)
         {
             if (matrix == null) throw new ArgumentException("Matrix is null!");
