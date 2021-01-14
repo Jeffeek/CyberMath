@@ -9,7 +9,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 {
     /// <summary>
     /// Extension methods for ValueType for <see cref="IMatrix{T}"/>
-    /// Support types: <see cref="Int32"/>, <see cref="Int64"/>, <see cref="Double"/>, <see cref="Decimal"/>, <see cref="String"/> and <see cref="Nullable{T}"/>
+    /// Supported types: <see cref="Int32"/>, <see cref="Int64"/>, <see cref="Double"/>, <see cref="Decimal"/>, <see cref="String"/> and <see cref="Nullable{T}"/>
     /// </summary>
     public static class ValueTypeMatrixExtension
     {
@@ -779,6 +779,12 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #region Math
 
+        /// <summary>
+        /// Returns the multiplied <see cref="IMatrix{T}"/> <paramref name="first"/> by <see cref="IMatrix{T}"/> <paramref name="second"/>
+        /// </summary>
+        /// <param name="first">First matrix</param>
+        /// <param name="second">Second matrix</param>
+        /// <returns>New <see cref="IMatrix{T}"/> - the result of multiplying <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<decimal> Multiplication(this IMatrix<decimal> first, IMatrix<decimal> second)
         {
             if (first.ColumnsCount == second.RowsCount) return first.InternalMulAtoB(second);
@@ -786,6 +792,12 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
+        /// <summary>
+        /// Returns the add <see cref="IMatrix{T}"/> <paramref name="first"/> and <see cref="IMatrix{T}"/> <paramref name="second"/>
+        /// </summary>
+        /// <param name="first">First matrix</param>
+        /// <param name="second">Second matrix</param>
+        /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<decimal> Add(this IMatrix<decimal> first, IMatrix<decimal> second)
         {
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
@@ -802,6 +814,12 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return matrix;
         }
 
+        /// <summary>
+        /// Returns the subtraction <see cref="IMatrix{T}"/> <paramref name="first"/> and <see cref="IMatrix{T}"/> <paramref name="second"/>
+        /// </summary>
+        /// <param name="first">First matrix</param>
+        /// <param name="second">Second matrix</param>
+        /// <returns>New <see cref="IMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<decimal> Sub(this IMatrix<decimal> first, IMatrix<decimal> second)
         {
             if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
@@ -818,18 +836,24 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return matrix;
         }
 
-        public static IMatrix<decimal> MulOnNumber(this IMatrix<decimal> first, decimal number)
+        /// <summary>
+        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="Int32"/> <paramref name="number"/>
+        /// </summary>
+        /// <param name="matrix">First</param>
+        /// <param name="number"></param>
+        /// <returns>New <see cref="IMatrix{T}"/> - the result multiplication of matrix <paramref name="matrix"/> on <paramref name="number"/></returns>
+        public static IMatrix<decimal> MulOnNumber(this IMatrix<decimal> matrix, decimal number)
         {
-            var matrix = new Matrix<decimal>(first.RowsCount, first.ColumnsCount);
-            for (var i = 0; i < first.RowsCount; i++)
+            var newMatrix = new Matrix<decimal>(matrix.RowsCount, matrix.ColumnsCount);
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (var j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    matrix[i, j] = first[i, j] * number;
+                    newMatrix[i, j] = matrix[i, j] * number;
                 }
             }
 
-            return matrix;
+            return newMatrix;
         }
 
         #endregion
@@ -1058,8 +1082,12 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return sb.ToString();
         }
 
-        //TODO: resolve
-        private static string Sum(this IMatrix<string> matrix)
+        /// <summary>
+        /// Calculates sum of all string in <see cref="IMatrix{T}"/>
+        /// </summary>
+        /// <param name="matrix">Initial matrix</param>
+        /// <returns>Sum in main diagonal</returns>
+        public static string Sum(this IMatrix<string> matrix)
         {
             var sb = new StringBuilder();
             for (var i = 0; i < matrix.RowsCount; i++)
@@ -1069,8 +1097,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
                     sb.Append(matrix[i, j]).Append(' ');
                 }
             }
-
-            return sb.ToString();
+            
+            return sb.ToString().TrimEnd();
         }
 
         #endregion
@@ -1096,7 +1124,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #endregion
 
-#endregion
+        #endregion
 
         #endregion
 
@@ -1500,19 +1528,25 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return matrix;
         }
 
-        public static IMatrix<long?> MulOnNumber(this IMatrix<long?> first, long number)
+        /// <summary>
+        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="Int32"/> <paramref name="number"/>
+        /// </summary>
+        /// <param name="matrix">First</param>
+        /// <param name="number"></param>
+        /// <returns>New <see cref="IMatrix{T}"/> - the result multiplication of matrix <paramref name="matrix"/> on <paramref name="number"/></returns>
+        public static IMatrix<long?> MulOnNumber(this IMatrix<long?> matrix, long number)
         {
-            var matrix = new Matrix<long?>(first.RowsCount, first.ColumnsCount);
-            for (var i = 0; i < first.RowsCount; i++)
+            var newMatrix = new Matrix<long?>(matrix.RowsCount, matrix.ColumnsCount);
+            for (var i = 0; i < matrix.RowsCount; i++)
             {
-                for (var j = 0; j < first.ColumnsCount; j++)
+                for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    if (first[i, j] != null)
-                        matrix[i, j] = first[i, j] * number;
+                    if (matrix[i, j] != null)
+                        newMatrix[i, j] = matrix[i, j] * number;
                 }
             }
 
-            return matrix;
+            return newMatrix;
         }
 
         #endregion
@@ -1641,9 +1675,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
                 {
                     if (matrix[i, j] != null)
                     {
-                        if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j))
-                            continue;
-                        sum += matrix[i, j].Value;
+                        if (matrix[i, j] != null)
+                        {
+                            if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) continue;
+                            sum += matrix[i, j].Value;
+                        }
                     }
                 }
             }
@@ -1826,6 +1862,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return matrix;
         }
 
+        
         public static IMatrix<double?> MulOnNumber(this IMatrix<double?> first, double number)
         {
             var matrix = new Matrix<double?>(first.RowsCount, first.ColumnsCount);
