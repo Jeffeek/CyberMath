@@ -103,5 +103,19 @@ namespace CyberMath.Primitives.Int32
                         number < 100000000 ? 8 :
                             number < 1000000000 ? 9 : 10;
         }
+
+        /// <summary>
+        /// Converts <see cref="Int32"/> <paramref name="number"/> to binary(2) format
+        /// </summary>
+        /// <param name="number">number to convert</param>
+        /// <returns><see cref="string"/> representation of the binary form of a <paramref name="number"/></returns>
+        public static string ToBinary(this int number) => Convert.ToString(number, 2);
+
+        /// <summary>
+        /// Converts <see cref="Int32"/> <paramref name="number"/> to HEX(16) format
+        /// </summary>
+        /// <param name="number">number to convert</param>
+        /// <returns><see cref="string"/> representation of the HEX form of a <paramref name="number"/></returns>
+        public static string ToHex(this int number) => Convert.ToString(number, 16);
     }
 }

@@ -1085,13 +1085,12 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             }
             if (matrix.ColumnsCount == 2)
             {
-                if (matrix[0, 0] != null &&
-                    matrix[1, 1] != null &&
-                    matrix[0, 1] != null &&
-                    matrix[1, 0] != null)
+	            if (matrix[0, 0] != null &&
+	                matrix[1, 1] != null &&
+	                matrix[0, 1] != null &&
+	                matrix[1, 0] != null)
                     return matrix[0, 0].Value * matrix[1, 1].Value - matrix[0, 1].Value * matrix[1, 0].Value;
-                else
-                    return 0;
+	            return 0;
             }
             var result = 0;
             for (var j = 0; j < matrix.ColumnsCount; j++)
@@ -1130,75 +1129,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <param name="i"></param>
         /// <param name="j"></param>
         /// <returns>Minor</returns>
-        public static double CalculateMinor(this IMatrix<int?> matrix, int i, int j)
-        {
-            return ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<int?>)?.CreateMatrixWithoutRow(i) as IMatrix<int?>).CalculateDeterminant();
-        }
-
-        #endregion
-
-        #region Sum Operations
-
-        /// <summary>
-        /// Calculates sum of all numbers in main diagonal in <see cref="IMatrix{T}"/>
-        /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <returns>Sum in main diagonal</returns>
-        public static int DiagonalSum(this IMatrix<int?> matrix)
-        {
-            if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
-            var sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-            {
-                if (matrix[i, i] != null)
-                    sum += matrix[i, i].Value;
-            }
-            return sum;
-        }
-
-        /// <summary>
-        /// Calculates sum of all elements in matrix
-        /// </summary>
-        /// <param name="matrix"></param>
-        /// <returns>Sum of all elements in matrix</returns>
-        public static int Sum(this IMatrix<int?> matrix)
-        {
-            var sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    if (matrix[i, j] != null)
-                        sum += matrix[i, j].Value;
-                }
-            }
-
-            return sum;
-        }
-
-        /// <summary>
-        /// Calculates sum of all saddle points in matrix
-        /// </summary>
-        /// <param name="matrix"></param>
-        /// <returns>Sum of all saddle points in matrix</returns>
-        public static int SumSaddlePoints(this IMatrix<int?> matrix)
-        {
-            var sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    if (matrix[i, j] != null)
-                    {
-                        if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j))
-                            continue;
-                        sum += matrix[i, j].Value;
-                    }
-                }
-            }
-
-            return sum;
-        }
+        public static double CalculateMinor(this IMatrix<int?> matrix, int i, int j) => ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<int?>)?.CreateMatrixWithoutRow(i) as IMatrix<int?>).CalculateDeterminant();
 
         #endregion
 
@@ -1465,76 +1396,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #endregion
 
-        #region Sum Operations
-
-        /// <summary>
-        /// Calculates sum of all numbers in main diagonal in <see cref="IMatrix{T}"/>
-        /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <returns>Sum in main diagonal</returns>
-        public static long DiagonalSum(this IMatrix<long?> matrix)
-        {
-            if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
-            long sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-            {
-                if (matrix[i, i] != null)
-                {
-                    sum += matrix[i, i].Value;
-                }
-            }
-            return sum;
-        }
-
-        /// <summary>
-        /// Calculates sum of all elements in matrix
-        /// </summary>
-        /// <param name="matrix"></param>
-        /// <returns>Sum of all elements in matrix</returns>
-        public static long Sum(this IMatrix<long?> matrix)
-        {
-            long sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    if (matrix[i, j] != null)
-                    {
-                        sum += matrix[i, j].Value;
-                    }
-                }
-            }
-
-            return sum;
-        }
-
-        /// <summary>
-        /// Calculates sum of all saddle points in matrix
-        /// </summary>
-        /// <param name="matrix"></param>
-        /// <returns>Sum of all saddle points in matrix</returns>
-        public static long SumSaddlePoints(this IMatrix<long?> matrix)
-        {
-            long sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    if (matrix[i, j] != null)
-                    {
-                        if (matrix[i, j] != null)
-                        {
-                            if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) continue;
-                            sum += matrix[i, j].Value;
-                        }
-                    }
-                }
-            }
-            return sum;
-        }
-
-        #endregion
-
         #region Internal Mul
 
         private static IMatrix<long?> InternalMulAtoB(this IMatrix<long?> matrix, IMatrix<long?> second)
@@ -1791,71 +1652,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <param name="j"></param>
         /// <returns>Minor</returns>
         public static double CalculateMinor(this IMatrix<double?> matrix, int i, int j) => ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<double?>)?.CreateMatrixWithoutRow(i) as IMatrix<double?>).CalculateDeterminant();
-
-        #endregion
-
-        #region Sum Operations
-
-        /// <summary>
-        /// Calculates sum of all numbers in main diagonal in <see cref="IMatrix{T}"/>
-        /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <returns>Sum in main diagonal</returns>
-        public static double DiagonalSum(this IMatrix<double?> matrix)
-        {
-            if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
-            double sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-            {
-                if (matrix[i, i] != null)
-                    sum += matrix[i, i].Value;
-            }
-            return sum;
-        }
-
-        /// <summary>
-        /// Calculates sum of all elements in matrix
-        /// </summary>
-        /// <param name="matrix"></param>
-        /// <returns>Sum of all elements in matrix</returns>
-        public static double Sum(this IMatrix<double?> matrix)
-        {
-            double sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    if (matrix[i, j] != null)
-                        sum += matrix[i, j].Value;
-                }
-            }
-
-            return sum;
-        }
-
-        /// <summary>
-        /// Calculates sum of all saddle points in matrix
-        /// </summary>
-        /// <param name="matrix"></param>
-        /// <returns>Sum of all saddle points in matrix</returns>
-        public static double SumSaddlePoints(this IMatrix<double?> matrix)
-        {
-            double sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    if (matrix[i, j] != null)
-                    {
-                        if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j))
-                            continue;
-                        sum += matrix[i, j].Value;
-                    }
-                }
-            }
-
-            return sum;
-        }
 
         #endregion
 

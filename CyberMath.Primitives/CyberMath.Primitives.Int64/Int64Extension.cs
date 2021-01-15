@@ -111,5 +111,19 @@ namespace CyberMath.Primitives.Int64
                 number >= 1_00 ? 3 :
                 number < 10 ? 1 : 2;
         }
+
+        /// <summary>
+        /// Converts <see cref="Int64"/> <paramref name="number"/> to binary(2) format
+        /// </summary>
+        /// <param name="number">number to convert</param>
+        /// <returns><see cref="string"/> representation of the binary form of a <paramref name="number"/></returns>
+        public static string ToBinary(this long number) => Convert.ToString(number, 2);
+
+        /// <summary>
+        /// Converts <see cref="Int64"/> <paramref name="number"/> to HEX(16) format
+        /// </summary>
+        /// <param name="number">number to convert</param>
+        /// <returns><see cref="string"/> representation of the HEX form of a <paramref name="number"/></returns>
+        public static string ToHex(this long number) => Convert.ToString(number, 16);
     }
 }
