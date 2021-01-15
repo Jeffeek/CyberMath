@@ -1,6 +1,6 @@
 ﻿using CyberMath.Structures.BinaryTreeBase;
 using System;
-using System.Collections.Generic;
+using CyberMath.Structures.MatrixBase.Exceptions;
 
 namespace CyberMath.Structures.AVLBinaryTree
 {
@@ -14,7 +14,7 @@ namespace CyberMath.Structures.AVLBinaryTree
         /// <summary>
         /// Height of initial <see cref="AVLBinaryTreeNode{T}"/>
         /// </summary>
-        private int _height = 0;
+        private int _height;
 
         /// <summary>
         /// Creates instance of <see cref="AVLBinaryTreeNode{T}"/> with <paramref name="data"/>
@@ -36,14 +36,21 @@ namespace CyberMath.Structures.AVLBinaryTree
                 node.Right = InternalRemove(node.Right as AVLBinaryTreeNode<T>, value);
             else
             {
-                var leftNode = node.Left as AVLBinaryTreeNode<T>;
-                if (!(node.Right is AVLBinaryTreeNode<T> rightNode))
-                    return leftNode;
-                var min = rightNode.Min() as AVLBinaryTreeNode<T>;
-                min.Right = RemoveMin(rightNode);
-                min.Left = leftNode;
-                return Balance(min);
+	            var leftNode = node.Left as AVLBinaryTreeNode<T>;
+	            if(!(node.Right is AVLBinaryTreeNode<T> rightNode))
+		            return leftNode;
+
+	            var min = rightNode.Min() as AVLBinaryTreeNode<T>;
+	            if(min != null)
+	            {
+		            min.Right = RemoveMin(rightNode);
+		            min.Left = leftNode;
+		            return Balance(min);
+	            }
+
+	            throw new MatrixIncomparableOperationException(nameof(min) + "node was null, when it's impossible");
             }
+
             return Balance(node);
         }
 
@@ -107,12 +114,13 @@ namespace CyberMath.Structures.AVLBinaryTree
         /// <returns>Reference to the rotated node</returns>
         private AVLBinaryTreeNode<T> RotateRight(AVLBinaryTreeNode<T> node)
         {
-            var q = node.Left as AVLBinaryTreeNode<T>;
-            node.Left = q.Right;
-            q.Right = node;
+            var leftNode = node.Left as AVLBinaryTreeNode<T>;
+            if(leftNode == null) throw new MatrixIncomparableOperationException(nameof(leftNode));
+            node.Left = leftNode.Right;
+            leftNode.Right = node;
             FixHeight(node);
-            FixHeight(q);
-            return q;
+            FixHeight(leftNode);
+            return leftNode;
         }
 
         /// <summary>
@@ -123,6 +131,7 @@ namespace CyberMath.Structures.AVLBinaryTree
         private AVLBinaryTreeNode<T> RotateLeft(AVLBinaryTreeNode<T> node)
         {
             var rightNode = node.Right as AVLBinaryTreeNode<T>;
+            if(rightNode == null) throw new MatrixIncomparableOperationException(nameof(rightNode));
             node.Right = rightNode.Left;
             rightNode.Left = node;
             FixHeight(node);

@@ -17,7 +17,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
         /// <summary>
         /// Reference to the parent of the initial node
         /// </summary>
-        private RedBlackBinaryTreeNode<T> _parent = null;
+        private RedBlackBinaryTreeNode<T> _parent;
         public RedBlackBinaryTreeNode(T data) : base(data) { }
 
         #region Relatives
@@ -139,8 +139,8 @@ namespace CyberMath.Structures.RedBlackBinaryTree
                         root = RotateLeft(root, nodeX._parent);
                         nodeW = nodeX._parent.Right as RedBlackBinaryTreeNode<T>;
                     }
-                    if ((nodeW.Left as RedBlackBinaryTreeNode<T>)._color == BinaryTreeColor.Black &&
-                        (nodeW.Right as RedBlackBinaryTreeNode<T>)._color == BinaryTreeColor.Black)
+                    if ((nodeW?.Left as RedBlackBinaryTreeNode<T>)?._color == BinaryTreeColor.Black &&
+                        (nodeW.Right as RedBlackBinaryTreeNode<T>)?._color == BinaryTreeColor.Black)
                     {
                         nodeW._color = BinaryTreeColor.Red;
                         nodeX = nodeX._parent;

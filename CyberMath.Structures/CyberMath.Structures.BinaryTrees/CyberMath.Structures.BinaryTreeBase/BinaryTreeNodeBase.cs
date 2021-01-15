@@ -11,7 +11,23 @@ namespace CyberMath.Structures.BinaryTreeBase
     public abstract class BinaryTreeNodeBase<T> : IBinaryTreeNode<T>
         where T : IComparable<T>, IComparable
     {
-        public IBinaryTreeNode<T> Left { get; protected set; }
+	    #region Equality members
+
+	    protected bool Equals(BinaryTreeNodeBase<T> other) => this == other;
+
+	    /// <inheritdoc />
+	    public override int GetHashCode()
+	    {
+		    var start = 228 ^ 315 * 25;
+		    if(Left == null) start = start + 100 ^ 25;
+		    if (Right == null) start = start + 200 ^ 55;
+		    if(Data == null) start = start + 1000 * 5 ^ 300;
+		    return start;
+	    }
+
+	    #endregion
+
+	    public IBinaryTreeNode<T> Left { get; protected set; }
         public IBinaryTreeNode<T> Right { get; protected set; }
         public T Data { get; protected set; }
 

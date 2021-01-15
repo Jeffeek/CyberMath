@@ -58,10 +58,11 @@ namespace CyberMath.Extensions
         /// <returns>New <see cref="IEnumerable{T}"/> collection with permutations</returns>
         public static IEnumerable<IEnumerable<T>> Permutations<T>(this IEnumerable<T> list, int length)
         {
-            if (length == 1) return list.Select(t => new T[] { t });
-            return Permutations(list, length - 1)
-                .SelectMany(t => list.Where(e => !t.Contains(e)),
-                    (t1, t2) => t1.Concat(new T[] { t2 }));
+            if (length == 1) return list.Select(t => new[] { t });
+            var enumerable = list as T[] ?? list.ToArray();
+            return Permutations(enumerable, length - 1)
+                .SelectMany(t => enumerable.Where(e => !t.Contains(e)),
+                    (t1, t2) => t1.Concat(new[] { t2 }));
         }
 
         //TODO: unit-test
@@ -74,18 +75,20 @@ namespace CyberMath.Extensions
         public static IEnumerable<IEnumerable<T>> Permutations<T>(this IEnumerable<T> collection)
         {
             if (ReferenceEquals(collection, null)) return Enumerable.Empty<IEnumerable<T>>();
-            var length = collection.Count();
+            var enumerable = collection as T[] ?? collection.ToArray();
+            var length     = enumerable.Count();
             if (length == 0) return Enumerable.Empty<IEnumerable<T>>();
-            return Permutations(collection, length);
+            return Permutations(enumerable, length);
         }
 
         //TODO: unit-test
         public static IEnumerable<IEnumerable<T>> PermutationsWithRepeat<T>(IEnumerable<T> list, int length)
         {
-            if (length == 1) return list.Select(t => new T[] { t });
-            return PermutationsWithRepeat(list, length - 1)
-                .SelectMany(t => list,
-                    (t1, t2) => t1.Concat(new T[] { t2 }));
+            if (length == 1) return list.Select(t => new[] { t });
+            var enumerable = list as T[] ?? list.ToArray();
+            return PermutationsWithRepeat(enumerable, length - 1)
+                .SelectMany(t => enumerable,
+                    (t1, t2) => t1.Concat(new[] { t2 }));
         }
 
         //TODO: unit-test
@@ -98,9 +101,10 @@ namespace CyberMath.Extensions
         public static IEnumerable<IEnumerable<T>> PermutationsWithRepeat<T>(this IEnumerable<T> collection)
         {
             if (ReferenceEquals(collection, null)) return Enumerable.Empty<IEnumerable<T>>();
-            var length = collection.Count();
+            var enumerable = collection as T[] ?? collection.ToArray();
+            var length     = enumerable.Count();
             if (length == 0) return Enumerable.Empty<IEnumerable<T>>();
-            return PermutationsWithRepeat(collection, length);
+            return PermutationsWithRepeat(enumerable, length);
         }
 
         /// <summary>
@@ -112,12 +116,13 @@ namespace CyberMath.Extensions
         public static T RandomItem<T>(this IEnumerable<T> collection)
         {
             if (ReferenceEquals(collection, null)) throw new ArgumentNullException(nameof(collection));
-            var length = collection.Count();
+            var enumerable = collection as T[] ?? collection.ToArray();
+            var length     = enumerable.Count();
             if (length == 0) throw new ArgumentException(nameof(collection) + " was empty");
-            if (length == 1) return collection.ElementAt(0);
+            if (length == 1) return enumerable.ElementAt(0);
             var rnd = new Random();
             var randomIndex = rnd.Next(0, length);
-            return collection.ElementAt(randomIndex);
+            return enumerable.ElementAt(randomIndex);
         }
     }
 }

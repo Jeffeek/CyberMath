@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\CyberMath.Extensions\CyberMath.Extensions.csproj" />
+    <ProjectReference Include="..\..\CyberMath.Structures\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.MatrixBase\CyberMath.Structures.MatrixBase.csproj" />
     <ProjectReference Include="..\..\CyberMath.Structures\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.MatrixExtensions\CyberMath.Structures.MatrixExtensions.csproj" />
     <ProjectReference Include="..\..\CyberMath.Structures\CyberMath.Structures.Matrix\CyberMath.Structures.Matrix.Matrix\CyberMath.Structures.Matrix.csproj" />
   </ItemGroup>

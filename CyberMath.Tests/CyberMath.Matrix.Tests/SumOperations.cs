@@ -2,6 +2,7 @@
 using CyberMath.Structures.MatrixExtensions.Matrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using CyberMath.Structures.MatrixBase;
 
 namespace CyberMath.Matrix.Tests
 {

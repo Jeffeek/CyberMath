@@ -12,7 +12,7 @@ namespace CyberMath.Structures.BinaryTreeBase
     public abstract class BinaryTreeBase<T> : IBinaryTree<T>
            where T : IComparable, IComparable<T>
     {
-        private bool _disposed = false;
+        private bool _disposed;
 
         public IBinaryTreeNode<T> Root { get; protected set; }
         public int Count { get; protected set; }
@@ -179,30 +179,36 @@ namespace CyberMath.Structures.BinaryTreeBase
             {
                 var current = stack.Peek();
 
-                if (prev == null || prev.Left == current ||
-                    prev.Right == current)
+                if (prev == null || ReferenceEquals(prev.Left, current) ||
+                    ReferenceEquals(prev.Right, current))
                 {
                     if (current.Left != null)
-                        stack.Push(current.Left);
+                    {
+	                    stack.Push(current.Left);
+                    }
                     else if (current.Right != null)
-                        stack.Push(current.Right);
+                    {
+	                    stack.Push(current.Right);
+                    }
                     else
                     {
                         stack.Pop();
                         list.Add(current.Data);
                     }
                 }
-                else if (current.Left == prev)
+                else if (ReferenceEquals(current.Left, prev))
                 {
                     if (current.Right != null)
-                        stack.Push(current.Right);
+                    {
+	                    stack.Push(current.Right);
+                    }
                     else
                     {
                         stack.Pop();
                         list.Add(current.Data);
                     }
                 }
-                else if (current.Right == prev)
+                else if (ReferenceEquals(current.Right, prev))
                 {
                     stack.Pop();
                     list.Add(current.Data);

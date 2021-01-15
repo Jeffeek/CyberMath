@@ -20,6 +20,28 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         #region Math
 
         /// <summary>
+        /// Returns the add <see cref="IMatrix{T}"/> <paramref name="first"/> and <see cref="IMatrix{T}"/> <paramref name="second"/>
+        /// </summary>
+        /// <param name="first">First matrix</param>
+        /// <param name="second">Second matrix</param>
+        /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
+        public static IMatrix<int> Add(this IMatrix<int> first, IMatrix<int> second)
+        {
+	        if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+	        if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
+	        var matrix = new Matrix<int>(first.RowsCount, first.ColumnsCount);
+	        for (var i = 0; i < first.RowsCount; i++)
+	        {
+		        for (var j = 0; j < first.ColumnsCount; j++)
+		        {
+			        matrix[i, j] = first[i, j] + second[i, j];
+		        }
+	        }
+
+	        return matrix;
+        }
+
+        /// <summary>
         /// Returns the multiplied <see cref="IMatrix{T}"/> <paramref name="first"/> by <see cref="IMatrix{T}"/> <paramref name="second"/>
         /// </summary>
         /// <param name="first">First matrix</param>
@@ -30,28 +52,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             if (first.ColumnsCount == second.RowsCount) return first.InternalMulAtoB(second);
             if (second.ColumnsCount == first.RowsCount) return first.InternalMulBtoA(second);
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
-        }
-
-        /// <summary>
-        /// Returns the add <see cref="IMatrix{T}"/> <paramref name="first"/> and <see cref="IMatrix{T}"/> <paramref name="second"/>
-        /// </summary>
-        /// <param name="first">First matrix</param>
-        /// <param name="second">Second matrix</param>
-        /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
-        public static IMatrix<int> Add(this IMatrix<int> first, IMatrix<int> second)
-        {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
-            var matrix = new Matrix<int>(first.RowsCount, first.ColumnsCount);
-            for (var i = 0; i < first.RowsCount; i++)
-            {
-                for (var j = 0; j < first.ColumnsCount; j++)
-                {
-                    matrix[i, j] = first[i, j] + second[i, j];
-                }
-            }
-
-            return matrix;
         }
 
         /// <summary>
@@ -185,45 +185,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <param name="j"></param>
         /// <returns>Minor</returns>
         public static double CalculateMinor(this IMatrix<int> matrix, int i, int j) => ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<int>)?.CreateMatrixWithoutRow(i) as IMatrix<int>).CalculateDeterminant();
-
-        #endregion
-
-        #region Sum Operations
-
-        /// <summary>
-        /// Calculates sum of all numbers in main diagonal in <see cref="IMatrix{T}"/>
-        /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <returns>Sum in main diagonal</returns>
-        public static int DiagonalSum(this IMatrix<int> matrix)
-        {
-            if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
-            var sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-                sum += matrix[i, i];
-            return sum;
-        }
-
-        /// <summary>
-        /// Calculates sum of all saddle points in matrix
-        /// </summary>
-        /// <param name="matrix"></param>
-        /// <returns>Sum of all saddle points in matrix</returns>
-        public static int SumSaddlePoints(this IMatrix<int> matrix)
-        {
-            var sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j))
-                        continue;
-                    sum += matrix[i, j];
-                }
-            }
-
-            return sum;
-        }
 
         #endregion
 
@@ -432,44 +393,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #endregion
 
-        #region Sum Operations
-
-        /// <summary>
-        /// Calculates sum of all numbers in main diagonal in <see cref="IMatrix{T}"/>
-        /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <returns>Sum in main diagonal</returns>
-        public static long DiagonalSum(this IMatrix<long> matrix)
-        {
-            if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
-            long sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-                sum += matrix[i, i];
-            return sum;
-        }
-
-        /// <summary>
-        /// Calculates sum of all saddle points in matrix
-        /// </summary>
-        /// <param name="matrix"></param>
-        /// <returns>Sum of all saddle points in matrix</returns>
-        public static long SumSaddlePoints(this IMatrix<long> matrix)
-        {
-            long sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) continue;
-                    sum += matrix[i, j];
-                }
-            }
-
-            return sum;
-        }
-
-        #endregion
-
         #region Internal Mul
 
         private static IMatrix<long> InternalMulAtoB(this IMatrix<long> matrix, IMatrix<long> second)
@@ -675,44 +598,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #endregion
 
-        #region Sum Operations
-
-        /// <summary>
-        /// Calculates sum of all numbers in main diagonal in <see cref="IMatrix{T}"/>
-        /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <returns>Sum in main diagonal</returns>
-        public static double DiagonalSum(this IMatrix<double> matrix)
-        {
-            if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
-            double sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-                sum += matrix[i, i];
-            return sum;
-        }
-
-        /// <summary>
-        /// Calculates sum of all saddle points in matrix
-        /// </summary>
-        /// <param name="matrix"></param>
-        /// <returns>Sum of all saddle points in matrix</returns>
-        public static double SumSaddlePoints(this IMatrix<double> matrix)
-        {
-            double sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) continue;
-                    sum += matrix[i, j];
-                }
-            }
-
-            return sum;
-        }
-
-        #endregion
-
         #region Internal Mul
 
         private static IMatrix<double> InternalMulAtoB(this IMatrix<double> matrix, IMatrix<double> second)
@@ -915,44 +800,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <param name="j"></param>
         /// <returns>Minor</returns>
         public static decimal CalculateMinor(this IMatrix<decimal> matrix, int i, int j) => ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<decimal>)?.CreateMatrixWithoutRow(i) as IMatrix<decimal>).CalculateDeterminant();
-
-        #endregion
-
-        #region Sum Operations
-
-        /// <summary>
-        /// Calculates sum of all numbers in main diagonal in <see cref="IMatrix{T}"/>
-        /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <returns>Sum in main diagonal</returns>
-        public static decimal DiagonalSum(this IMatrix<decimal> matrix)
-        {
-            if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
-            decimal sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-                sum += matrix[i, i];
-            return sum;
-        }
-
-        /// <summary>
-        /// Calculates sum of all saddle points in matrix
-        /// </summary>
-        /// <param name="matrix"></param>
-        /// <returns>Sum of all saddle points in matrix</returns>
-        public static decimal SumSaddlePoints(this IMatrix<decimal> matrix)
-        {
-            decimal sum = 0;
-            for (var i = 0; i < matrix.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    if (!matrix.IsMinInRow(i, j) || !matrix.IsMaxInColumn(i, j)) continue;
-                    sum += matrix[i, j];
-                }
-            }
-
-            return sum;
-        }
 
         #endregion
 

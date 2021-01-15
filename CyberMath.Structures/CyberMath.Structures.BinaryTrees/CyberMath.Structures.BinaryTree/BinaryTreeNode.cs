@@ -43,7 +43,8 @@ namespace CyberMath.Structures.BinaryTree
                     {
                         if (node.Left != null && node.Right != null)
                         {
-                            node.Data = (node.Right as BinaryTreeBase<T>).Min();
+	                        //err
+                            node.Data  = node.Right.Min().Data;
                             node.Right = InternalRemove(node.Right as BinaryTreeNode<T>, node.Data);
                         }
                         else
@@ -52,8 +53,8 @@ namespace CyberMath.Structures.BinaryTree
                                 node = node.Left as BinaryTreeNode<T>;
                             else if (node.Right != null)
                                 node     = node.Right as BinaryTreeNode<T>;
-                                else 
-                                    node = null;
+                            else 
+	                            node = null;
                         }
 
                         break;

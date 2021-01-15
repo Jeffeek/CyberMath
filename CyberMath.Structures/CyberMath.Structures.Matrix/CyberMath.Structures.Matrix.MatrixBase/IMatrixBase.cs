@@ -44,7 +44,7 @@ namespace CyberMath.Structures.MatrixBase
         /// <summary>
         /// Creates a new <see cref="IMatrixBase{T}"/> matrix without row at <paramref name="rowIndex"/>
         /// </summary>
-        /// <param name="columnIndex">Column index to remove</param>
+        /// <param name="rowIndex">Column index to remove</param>
         /// <returns>A new <see cref="IMatrixBase{T}"/> matrix without row at <paramref name="rowIndex"/></returns>
         IMatrixBase<T> CreateMatrixWithoutRow(int rowIndex);
     }

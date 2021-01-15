@@ -54,7 +54,7 @@ namespace CyberMath.Extensions
 
         //TODO: unit-test
         /// <summary>
-        /// Creates a <see cref="Dictionary{TKey,TValue}"/> where <paramref name="TKey"/> is <see cref="Char"/> and <paramref name="TValue"/> is <see cref="Int32"/> (count of <paramref name="TKey"/> in input string)
+        /// Creates a <see cref="Dictionary{TKey,TValue}"/> where <see langword="TKey"/> is <see cref="Char"/> and <see langword="TValue"/> is <see cref="Int32"/> (count of <see langword="TKey"/> in input string)
         /// </summary>
         /// <param name="input"></param>
         /// <returns>New <see cref="Dictionary{TKey,TValue}"/> where Key is char in input string and Value is count of this char</returns>
