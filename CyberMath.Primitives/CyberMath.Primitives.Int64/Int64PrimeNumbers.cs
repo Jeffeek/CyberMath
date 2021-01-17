@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace CyberMath.Primitives.Int64
 {
     /// <summary>
-    /// Extension methods of prime numbers for <see cref="Int32"/>
+    /// Extension methods of prime numbers for <see cref="int"/>
     /// </summary>
     public static class Int64PrimeNumbers
     {

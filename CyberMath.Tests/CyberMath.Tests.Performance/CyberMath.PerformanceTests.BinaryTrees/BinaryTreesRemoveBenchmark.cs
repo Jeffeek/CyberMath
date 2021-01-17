@@ -10,21 +10,21 @@ namespace CyberMath.PerformanceTests.BinaryTrees
         [Benchmark]
         public void Remove_BinaryTree()
         {
-            var tree = new BinaryTree<int> { 1, 2 };
+            using var tree = new BinaryTree<int> { 1, 2 };
             tree.Remove(1);
         }
 
         [Benchmark]
         public void Remove_AVLTree()
         {
-            var tree = new AVLBinaryTree<int> { 1, 2 };
+            using var tree = new AVLBinaryTree<int> { 1, 2 };
             tree.Remove(1);
         }
 
         [Benchmark]
         public void Remove_RedBlackTree()
         {
-            var tree = new RedBlackBinaryTree<int> { 1, 2 };
+            using var tree = new RedBlackBinaryTree<int> { 1, 2 };
             tree.Remove(1);
         }
     }

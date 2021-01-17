@@ -23,7 +23,7 @@ namespace CyberMath.Structures.BinaryTreeBase
         /// <summary>
         /// Depth of <see cref="IBinaryTree{T}"/>
         /// </summary>
-        /// <returns><see cref="Int32"/> result of deepness in <see cref="IBinaryTree{T}"/></returns>
+        /// <returns><see cref="int"/> result of deepness in <see cref="IBinaryTree{T}"/></returns>
         int Depth();
         /// <summary>
         /// Returns an inorder traversal <see cref="IEnumerable{T}"/> collection

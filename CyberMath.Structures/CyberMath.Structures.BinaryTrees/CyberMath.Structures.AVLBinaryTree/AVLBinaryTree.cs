@@ -25,7 +25,7 @@ namespace CyberMath.Structures.AVLBinaryTree
                 Count = 1;
                 return;
             }
-            
+
             if (Contains(item)) return;
             Root = Root.Insert(item);
             Count++;

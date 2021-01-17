@@ -1,9 +1,9 @@
-﻿using CyberMath.Structures.Matrix;
+﻿using CyberMath.Structures.JaggedMatrix;
 using CyberMath.Structures.MatrixBase;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 
-namespace CyberMath.Matrix.Tests
+namespace CyberMath.JaggedMatrix.Tests
 {
     [TestClass]
     public class SumOperations
@@ -12,7 +12,7 @@ namespace CyberMath.Matrix.Tests
         public void DiagonalSum_int()
         {
             var n = 3;
-            var matrix = new Matrix<int>(n, n)
+            var matrix = new JuggedMatrix<int>(n, n, n, n)
             {
                 [0, 0] = 50,
                 [0, 1] = 0,
@@ -33,7 +33,7 @@ namespace CyberMath.Matrix.Tests
         public void SideDiagonalSum_int()
         {
             var n = 3;
-            var matrix = new Matrix<int>(n, n)
+            var matrix = new JuggedMatrix<int>(n, n, n, n)
             {
                 [0, 0] = 1,
                 [0, 1] = 2,
@@ -54,7 +54,7 @@ namespace CyberMath.Matrix.Tests
         public void Sum_int()
         {
             var n = 3;
-            var matrix = new Matrix<int>(n, n)
+            var matrix = new JuggedMatrix<int>(n, n, n, n)
             {
                 [0, 0] = 50,
                 [0, 1] = 50,
@@ -77,7 +77,7 @@ namespace CyberMath.Matrix.Tests
         public void SumSaddlePoints_int()
         {
             var n = 3;
-            var matrix = new Matrix<int>(n, n)
+            var matrix = new JuggedMatrix<int>(n, n, n, n)
             {
                 [0, 0] = 50,
                 [0, 1] = 50,

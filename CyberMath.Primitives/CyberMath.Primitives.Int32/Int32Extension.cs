@@ -13,7 +13,7 @@ namespace CyberMath.Primitives.Int32
         /// <param name="number">number to check</param>
         /// <returns><see langword="true"/> if number is odd; otherwise <see langword="false"/></returns>
         public static bool IsOdd(this int number) => number % 2 == 0;
-        
+
         /// <summary>
         /// Checks is number even
         /// </summary>

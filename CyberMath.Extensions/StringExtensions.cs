@@ -5,7 +5,7 @@ using System.Text;
 namespace CyberMath.Extensions
 {
     /// <summary>
-    /// Extension methods for <see cref="String"/>
+    /// Extension methods for <see cref="string"/>
     /// </summary>
     public static class StringExtensions
     {
@@ -13,7 +13,7 @@ namespace CyberMath.Extensions
         /// Checks <paramref name="input"/> for palindromicity
         /// </summary>
         /// <param name="input">Input string</param>
-        /// <returns><see cref="Boolean"/> true if <paramref name="input"/> is palindrome</returns>
+        /// <returns><see cref="bool"/> true if <paramref name="input"/> is palindrome</returns>
         public static bool IsPalindrome(this string input)
         {
             if (ReferenceEquals(input, null)) return false;
@@ -33,15 +33,15 @@ namespace CyberMath.Extensions
         /// </summary>
         /// <param name="inputOriginal">First string to check</param>
         /// <param name="testInput">Second string to check</param>
-        /// <returns><see cref="Boolean"/>: true if two string are anagrams of each other</returns>
+        /// <returns><see cref="bool"/>: true if two string are anagrams of each other</returns>
         public static bool IsAnagram(this string inputOriginal, string testInput)
         {
             if (ReferenceEquals(inputOriginal, null)) throw new ArgumentNullException(nameof(inputOriginal));
             if (ReferenceEquals(testInput, null)) throw new ArgumentNullException(nameof(testInput));
             if (inputOriginal.Length != testInput.Length) return false;
-            
-            var originalFrequency = CalculateFrequency(inputOriginal);
-            var testFrequency = CalculateFrequency(testInput);
+
+            var originalFrequency = WordsFrequency(inputOriginal);
+            var testFrequency = WordsFrequency(testInput);
 
             foreach (var key in originalFrequency.Keys)
             {
@@ -54,11 +54,11 @@ namespace CyberMath.Extensions
 
         //TODO: unit-test
         /// <summary>
-        /// Creates a <see cref="Dictionary{TKey,TValue}"/> where <see langword="TKey"/> is <see cref="Char"/> and <see langword="TValue"/> is <see cref="Int32"/> (count of <see langword="TKey"/> in input string)
+        /// Creates a <see cref="Dictionary{TKey,TValue}"/> where <see langword="TKey"/> is <see cref="char"/> and <see langword="TValue"/> is <see cref="int"/> (count of <see langword="TKey"/> in input string)
         /// </summary>
         /// <param name="input"></param>
         /// <returns>New <see cref="Dictionary{TKey,TValue}"/> where Key is char in input string and Value is count of this char</returns>
-        public static Dictionary<char, int> CalculateFrequency(this string input)
+        public static Dictionary<char, int> WordsFrequency(this string input)
         {
             if (ReferenceEquals(input, null)) throw new ArgumentNullException(nameof(input));
             var frequency = new Dictionary<char, int>();
@@ -117,23 +117,23 @@ namespace CyberMath.Extensions
         }
 
         /// <summary>
-        /// Returns <see cref="input"/> <seealso cref="string"/> converted to <see cref="Int32"/>
+        /// Returns <see cref="input"/> <seealso cref="string"/> converted to <see cref="int"/>
         /// </summary>
         /// <param name="input">Input string, which is number</param>
-        /// <returns><see cref="Int32"/> result number</returns>
+        /// <returns><see cref="int"/> result number</returns>
         public static int ToInt32(this string input)
         {
-            if(ReferenceEquals(input, null)) throw new NullReferenceException(nameof(input));
-            if(int.TryParse(input, out var result))
+            if (ReferenceEquals(input, null)) throw new NullReferenceException(nameof(input));
+            if (int.TryParse(input, out var result))
                 return result;
             throw new ArgumentException(nameof(input));
         }
 
         /// <summary>
-        /// Returns <see cref="input"/> <seealso cref="string"/> converted to <see cref="Int64"/>
+        /// Returns <see cref="input"/> <seealso cref="string"/> converted to <see cref="long"/>
         /// </summary>
         /// <param name="input">Input string, which is number</param>
-        /// <returns><see cref="Int64"/> result number</returns>
+        /// <returns><see cref="long"/> result number</returns>
         public static long ToInt64(this string input)
         {
             if (ReferenceEquals(input, null)) throw new NullReferenceException(nameof(input));

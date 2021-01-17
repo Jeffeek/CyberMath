@@ -1,5 +1,4 @@
 ﻿using CyberMath.Structures.Matrix;
-using CyberMath.Structures.MatrixExtensions.Matrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -12,7 +11,7 @@ namespace CyberMath.Matrix.Tests
         public void CreateIdentityMatrixTest_3()
         {
             var n = 3;
-            var actual = ValueTypeMatrixExtension.CreateIdentityMatrix(n);
+            var actual = Matrix<int>.CreateIdentityMatrix(n);
             var expected = new Matrix<int>(n, n)
             {
                 [0, 0] = 1,
@@ -25,7 +24,7 @@ namespace CyberMath.Matrix.Tests
                 [2, 1] = 0,
                 [2, 2] = 1
             };
-            Assert.AreEqual(actual, expected);
+            Assert.IsTrue(actual.Equals(expected));
         }
 
         [TestMethod]

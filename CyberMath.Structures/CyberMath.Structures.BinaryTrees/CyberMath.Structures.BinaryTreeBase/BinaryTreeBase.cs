@@ -184,11 +184,11 @@ namespace CyberMath.Structures.BinaryTreeBase
                 {
                     if (current.Left != null)
                     {
-	                    stack.Push(current.Left);
+                        stack.Push(current.Left);
                     }
                     else if (current.Right != null)
                     {
-	                    stack.Push(current.Right);
+                        stack.Push(current.Right);
                     }
                     else
                     {
@@ -200,7 +200,7 @@ namespace CyberMath.Structures.BinaryTreeBase
                 {
                     if (current.Right != null)
                     {
-	                    stack.Push(current.Right);
+                        stack.Push(current.Right);
                     }
                     else
                     {

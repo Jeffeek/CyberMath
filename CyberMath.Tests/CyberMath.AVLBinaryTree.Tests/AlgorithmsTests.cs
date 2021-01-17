@@ -93,9 +93,8 @@ namespace CyberMath.AVLBinaryTree.Tests
         {
             var tree = new AVLBinaryTree<int>();
             tree.AddRange(new[] { 1, 2, 3, 4, 5, 6, -50, -99 });
-            var expected = false;
             var actual = tree.Contains(-999);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(false, actual);
         }
 
         [TestMethod]
@@ -103,9 +102,8 @@ namespace CyberMath.AVLBinaryTree.Tests
         {
             var tree = new AVLBinaryTree<int>();
             tree.AddRange(new[] { 1, 2, 3, 4, 5, 6, -50, -99 });
-            var expected = true;
             var actual = tree.Contains(6);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(true, actual);
         }
     }
 }

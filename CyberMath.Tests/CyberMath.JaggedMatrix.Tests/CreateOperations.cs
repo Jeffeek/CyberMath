@@ -66,7 +66,7 @@ namespace CyberMath.JaggedMatrix.Tests
         }
 
         [TestMethod]
-        public void CreateJuggedMatrixWothoutRow_1_Test()
+        public void CreateJuggedMatrixWithoutRow_1_Test()
         {
             var jugged = new JuggedMatrix<int>(3, 2, 1, 3)
             {

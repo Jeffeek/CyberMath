@@ -1,8 +1,8 @@
-﻿using CyberMath.Structures.Matrix;
+﻿using CyberMath.Structures.JaggedMatrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 
-namespace CyberMath.Matrix.Tests
+namespace CyberMath.JaggedMatrix.Tests
 {
     [TestClass]
     public class AnimalSumOperations
@@ -11,14 +11,13 @@ namespace CyberMath.Matrix.Tests
         {
             public string Name { get; set; }
             public int Age { get; set; }
-
             public Animal(int age) => Age = age;
         }
 
         [TestMethod]
         public void SumAgeTest()
         {
-            var matrix = new Matrix<Animal>(3, 3)
+            var matrix = new JuggedMatrix<Animal>(3, new[] { 3, 3, 3 })
             {
                 [0, 0] = new Animal(5),
                 [0, 1] = new Animal(5),

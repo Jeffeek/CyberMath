@@ -4,10 +4,10 @@ using System.Collections.Generic;
 namespace CyberMath.Structures.MatrixBase
 {
     /// <summary>
-    /// Represent the base interface for matrixes
+    /// Represent the base interface for matrices
     /// </summary>
     /// <typeparam name="T">ANY</typeparam>
-    public interface IMatrixBase<T> : IEnumerable<T>
+    public interface IMatrixBase<T> : IEnumerable<IEnumerable<T>>
     {
         /// <summary>
         /// Count of rows in matrix

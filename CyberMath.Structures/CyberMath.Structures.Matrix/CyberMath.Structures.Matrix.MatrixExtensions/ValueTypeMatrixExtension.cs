@@ -1,15 +1,13 @@
 ﻿using CyberMath.Extensions;
 using CyberMath.Structures.Matrix;
 using CyberMath.Structures.MatrixBase.Exceptions;
-using CyberMath.Structures.MatrixBase;
 using System;
-using System.Text;
 
-namespace CyberMath.Structures.MatrixExtensions.Matrix
+namespace CyberMath.Structures.MatrixExtensions
 {
     /// <summary>
     /// Extension methods for ValueType for <see cref="IMatrix{T}"/>
-    /// Supported types: <see cref="Int32"/>, <see cref="Int64"/>, <see cref="Double"/>, <see cref="Decimal"/>, <see cref="String"/> and <see cref="Nullable{T}"/>
+    /// Supported types: <see cref="int"/>, <see cref="long"/>, <see cref="double"/>, <see cref="decimal"/>, <see cref="string"/> and <see cref="Nullable{T}"/>
     /// </summary>
     public static class ValueTypeMatrixExtension
     {
@@ -27,18 +25,18 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<int> Add(this IMatrix<int> first, IMatrix<int> second)
         {
-	        if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
-	        if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
-	        var matrix = new Matrix<int>(first.RowsCount, first.ColumnsCount);
-	        for (var i = 0; i < first.RowsCount; i++)
-	        {
-		        for (var j = 0; j < first.ColumnsCount; j++)
-		        {
-			        matrix[i, j] = first[i, j] + second[i, j];
-		        }
-	        }
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
+            var matrix = new Matrix<int>(first.RowsCount, first.ColumnsCount);
+            for (var i = 0; i < first.RowsCount; i++)
+            {
+                for (var j = 0; j < first.ColumnsCount; j++)
+                {
+                    matrix[i, j] = first[i, j] + second[i, j];
+                }
+            }
 
-	        return matrix;
+            return matrix;
         }
 
         /// <summary>
@@ -49,8 +47,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>New <see cref="IMatrix{T}"/> - the result of multiplying <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<int> Multiplication(this IMatrix<int> first, IMatrix<int> second)
         {
-            if (first.ColumnsCount == second.RowsCount) return first.InternalMulAtoB(second);
-            if (second.ColumnsCount == first.RowsCount) return first.InternalMulBtoA(second);
+            if (first.ColumnsCount == second.RowsCount) return first.InternalMul(second);
+            if (second.ColumnsCount == first.RowsCount) return second.InternalMul(first);
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
@@ -77,7 +75,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         }
 
         /// <summary>
-        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="Int32"/> <paramref name="number"/>
+        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="int"/> <paramref name="number"/>
         /// </summary>
         /// <param name="matrix">First</param>
         /// <param name="number"></param>
@@ -98,40 +96,10 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #endregion
 
-        #region Creation
-
-        /// <summary>
-        /// Creates new <see cref="IMatrix{T}"/> identity matrix.
-        /// <para></para>
-        /// <example>
-        /// n = 3
-        /// <para/>
-        /// matrix = <para/>
-        /// {<para/>
-        ///     {1,0,0},<para/>
-        ///     {0,1,0},<para/>
-        ///     {0,0,1}<para/>
-        /// }
-        /// </example>
-        /// </summary>
-        /// <param name="n">Count of rows and columns</param>
-        /// <returns>Identity <see cref="IMatrix{T}"/> matrix</returns>
-        public static IMatrix<int> CreateIdentityMatrix(int n)
-        {
-            var result = new Matrix<int>(n, n);
-            for (var i = 0; i < n; i++)
-            {
-                result[i, i] = 1;
-            }
-            return result;
-        }
-
-        #endregion
-
         #region Operations
 
         /// <summary>
-        /// Calculates determinant for <see cref="Int32"/> <see cref="IMatrix{T}"/>
+        /// Calculates determinant for <see cref="int"/> <see cref="IMatrix{T}"/>
         /// </summary>
         /// <param name="matrix">Initial matrix</param>
         /// <returns>Determinant</returns>
@@ -167,11 +135,12 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             var determinant = matrix.CalculateDeterminant();
 
             IMatrix<double> result = new Matrix<double>(matrix.RowsCount, matrix.ColumnsCount);
+            var resultMatrixRef = result;
             matrix.ProcessFunctionOverData((i, j) =>
-            {
-                result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
-                    matrix.CalculateMinor(i, j) / determinant, 2);
-            });
+                                           {
+	                                           resultMatrixRef[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
+	                                                                                             matrix.CalculateMinor(i, j) / determinant, 2);
+                                           });
 
             result = result.Transpose();
             return result;
@@ -190,7 +159,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #region Internal Mul
 
-        private static IMatrix<int> InternalMulAtoB(this IMatrix<int> matrix, IMatrix<int> b)
+        private static IMatrix<int> InternalMul(this IMatrix<int> matrix, IMatrix<int> b)
         {
             var result = new Matrix<int>(matrix.RowsCount, b.ColumnsCount);
             for (var i = 0; i < matrix.RowsCount; i++)
@@ -205,23 +174,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             }
 
             return result;
-        }
-
-        private static IMatrix<int> InternalMulBtoA(this IMatrix<int> matrix, IMatrix<int> b)
-        {
-            var result = new Matrix<int>(b.RowsCount, matrix.ColumnsCount);
-            for (var i = 0; i < b.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    for (var k = 0; k < matrix.RowsCount; k++)
-                    {
-                        result[i, j] += b[i, k] * matrix[k, j];
-                    }
-                }
-            }
-
-            return matrix;
         }
 
         #endregion
@@ -241,7 +193,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             {
                 for (var j = 0; j < matrix.ColumnsCount; j++)
                 {
-                    matrix[i, j] = rnd.Next(min, max + 1);
+                    matrix[i, j] = rnd.Next(min, max);
                 }
             }
         }
@@ -262,8 +214,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>New <see cref="IMatrix{T}"/> - the result of multiplying <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<long> Multiplication(this IMatrix<long> first, IMatrix<long> second)
         {
-            if (first.ColumnsCount == second.RowsCount) return first.InternalMulAtoB(second);
-            if (second.ColumnsCount == first.RowsCount) return first.InternalMulBtoA(second);
+            if (first.ColumnsCount == second.RowsCount) return first.InternalMul(second);
+            if (second.ColumnsCount == first.RowsCount) return second.InternalMul(first);
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
@@ -312,7 +264,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         }
 
         /// <summary>
-        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="Int32"/> <paramref name="number"/>
+        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="int"/> <paramref name="number"/>
         /// </summary>
         /// <param name="matrix">First</param>
         /// <param name="number"></param>
@@ -336,7 +288,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         #region Operations
 
         /// <summary>
-        /// Calculates determinant for <see cref="Int64"/> <see cref="IMatrix{T}"/>
+        /// Calculates determinant for <see cref="long"/> <see cref="IMatrix{T}"/>
         /// </summary>
         /// <param name="matrix">Initial matrix</param>
         /// <returns>Determinant</returns>
@@ -372,11 +324,12 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             var determinant = matrix.CalculateDeterminant();
 
             IMatrix<double> result = new Matrix<double>(matrix.RowsCount, matrix.ColumnsCount);
+            var resultMatrixRef = result;
             matrix.ProcessFunctionOverData((i, j) =>
-            {
-                result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
-                    matrix.CalculateMinor(i, j) / determinant, 2);
-            });
+                                           {
+	                                           resultMatrixRef[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
+	                                                                                             matrix.CalculateMinor(i, j) / determinant, 2);
+                                           });
 
             result = result.Transpose();
             return result;
@@ -395,7 +348,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #region Internal Mul
 
-        private static IMatrix<long> InternalMulAtoB(this IMatrix<long> matrix, IMatrix<long> second)
+        private static IMatrix<long> InternalMul(this IMatrix<long> matrix, IMatrix<long> second)
         {
             var result = new Matrix<long>(matrix.RowsCount, second.ColumnsCount);
             for (var i = 0; i < matrix.RowsCount; i++)
@@ -410,23 +363,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             }
 
             return result;
-        }
-
-        private static IMatrix<long> InternalMulBtoA(this IMatrix<long> matrix, IMatrix<long> second)
-        {
-            var result = new Matrix<long>(second.RowsCount, matrix.ColumnsCount);
-            for (var i = 0; i < second.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    for (var k = 0; k < matrix.RowsCount; k++)
-                    {
-                        result[i, j] += second[i, k] * matrix[k, j];
-                    }
-                }
-            }
-
-            return matrix;
         }
 
         #endregion
@@ -467,8 +403,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>New <see cref="IMatrix{T}"/> - the result of multiplying <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<double> Multiplication(this IMatrix<double> first, IMatrix<double> second)
         {
-            if (first.ColumnsCount == second.RowsCount) return first.InternalMulAtoB(second);
-            if (second.ColumnsCount == first.RowsCount) return first.InternalMulBtoA(second);
+            if (first.ColumnsCount == second.RowsCount) return first.InternalMul(second);
+            if (second.ColumnsCount == first.RowsCount) return second.InternalMul(first);
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
@@ -517,7 +453,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         }
 
         /// <summary>
-        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="Int32"/> <paramref name="number"/>
+        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="int"/> <paramref name="number"/>
         /// </summary>
         /// <param name="matrix">First</param>
         /// <param name="number"></param>
@@ -541,7 +477,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         #region Operations
 
         /// <summary>
-        /// Calculates determinant for <see cref="Int64"/> <see cref="IMatrix{T}"/>
+        /// Calculates determinant for <see cref="long"/> <see cref="IMatrix{T}"/>
         /// </summary>
         /// <param name="matrix">Initial matrix</param>
         /// <returns>Determinant</returns>
@@ -577,11 +513,12 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             var determinant = matrix.CalculateDeterminant();
 
             IMatrix<double> result = new Matrix<double>(matrix.RowsCount, matrix.ColumnsCount);
+            var resultMatrixRef = result;
             matrix.ProcessFunctionOverData((i, j) =>
-            {
-                result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
-                    matrix.CalculateMinor(i, j) / determinant, 2);
-            });
+                                           {
+	                                           resultMatrixRef[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
+	                                                                                             matrix.CalculateMinor(i, j) / determinant, 2);
+                                           });
 
             result = result.Transpose();
             return result;
@@ -600,7 +537,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #region Internal Mul
 
-        private static IMatrix<double> InternalMulAtoB(this IMatrix<double> matrix, IMatrix<double> second)
+        private static IMatrix<double> InternalMul(this IMatrix<double> matrix, IMatrix<double> second)
         {
             var result = new Matrix<double>(matrix.RowsCount, second.ColumnsCount);
             for (var i = 0; i < matrix.RowsCount; i++)
@@ -615,23 +552,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             }
 
             return result;
-        }
-
-        private static IMatrix<double> InternalMulBtoA(this IMatrix<double> matrix, IMatrix<double> second)
-        {
-            var result = new Matrix<double>(second.RowsCount, matrix.ColumnsCount);
-            for (var i = 0; i < second.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    for (var k = 0; k < matrix.RowsCount; k++)
-                    {
-                        result[i, j] += second[i, k] * matrix[k, j];
-                    }
-                }
-            }
-
-            return matrix;
         }
 
         #endregion
@@ -672,8 +592,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>New <see cref="IMatrix{T}"/> - the result of multiplying <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<decimal> Multiplication(this IMatrix<decimal> first, IMatrix<decimal> second)
         {
-            if (first.ColumnsCount == second.RowsCount) return first.InternalMulAtoB(second);
-            if (second.ColumnsCount == first.RowsCount) return first.InternalMulBtoA(second);
+            if (first.ColumnsCount == second.RowsCount) return first.InternalMul(second);
+            if (second.ColumnsCount == first.RowsCount) return second.InternalMul(first);
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
@@ -722,7 +642,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         }
 
         /// <summary>
-        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="Int32"/> <paramref name="number"/>
+        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="int"/> <paramref name="number"/>
         /// </summary>
         /// <param name="matrix">First</param>
         /// <param name="number"></param>
@@ -746,7 +666,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         #region Operations
 
         /// <summary>
-        /// Calculates determinant for <see cref="Int64"/> <see cref="IMatrix{T}"/>
+        /// Calculates determinant for <see cref="decimal"/> <see cref="IMatrix{T}"/>
         /// </summary>
         /// <param name="matrix">Initial matrix</param>
         /// <returns>Determinant</returns>
@@ -782,11 +702,12 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             var determinant = matrix.CalculateDeterminant();
 
             IMatrix<decimal> result = new Matrix<decimal>(matrix.RowsCount, matrix.ColumnsCount);
+            var resultMatrixRef = result;
             matrix.ProcessFunctionOverData((i, j) =>
-            {
-                result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
-                    matrix.CalculateMinor(i, j) / determinant, 4);
-            });
+                                           {
+	                                           resultMatrixRef[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
+	                                                                                             matrix.CalculateMinor(i, j) / determinant, 4);
+                                           });
 
             result = result.Transpose();
             return result;
@@ -805,7 +726,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #region Internal Mul
 
-        private static IMatrix<decimal> InternalMulAtoB(this IMatrix<decimal> matrix, IMatrix<decimal> second)
+        private static IMatrix<decimal> InternalMul(this IMatrix<decimal> matrix, IMatrix<decimal> second)
         {
             var result = new Matrix<decimal>(matrix.RowsCount, second.ColumnsCount);
             for (var i = 0; i < matrix.RowsCount; i++)
@@ -820,23 +741,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             }
 
             return result;
-        }
-
-        private static IMatrix<decimal> InternalMulBtoA(this IMatrix<decimal> matrix, IMatrix<decimal> second)
-        {
-            var result = new Matrix<decimal>(second.RowsCount, matrix.ColumnsCount);
-            for (var i = 0; i < second.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    for (var k = 0; k < matrix.RowsCount; k++)
-                    {
-                        result[i, j] += second[i, k] * matrix[k, j];
-                    }
-                }
-            }
-
-            return matrix;
         }
 
         #endregion
@@ -865,6 +769,10 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #endregion
 
+        #endregion
+
+        #region Nullable
+
         #region string
 
         #region Math
@@ -892,7 +800,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         }
 
         /// <summary>
-        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="Int32"/> <paramref name="number"/>
+        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="int"/> <paramref name="number"/>
         /// </summary>
         /// <param name="matrix">First</param>
         /// <param name="number"></param>
@@ -909,43 +817,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             }
 
             return newMatrix;
-        }
-
-        #endregion
-
-        #region Sum Operations
-
-        /// <summary>
-        /// Calculates sum of all string in main diagonal in <see cref="IMatrix{T}"/>
-        /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <returns>Sum in main diagonal</returns>
-        public static string DiagonalSum(this IMatrix<string> matrix)
-        {
-            if (!matrix.IsSquare) throw new MatrixIncomparableOperationException("Diagonal sum can be calculated only for square matrices");
-            var sb = new StringBuilder();
-            for (var i = 0; i < matrix.RowsCount; i++)
-                sb.Append(matrix[i, i]).Append(' ');
-            return sb.ToString();
-        }
-
-        /// <summary>
-        /// Calculates sum of all string in <see cref="IMatrix{T}"/>
-        /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <returns>Sum in main diagonal</returns>
-        public static string Sum(this IMatrix<string> matrix)
-        {
-            var sb = new StringBuilder();
-            for (var i = 0; i < matrix.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    sb.Append(matrix[i, j]).Append(' ');
-                }
-            }
-            
-            return sb.ToString().TrimEnd();
         }
 
         #endregion
@@ -973,10 +844,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #endregion
 
-        #endregion
-
-        #region Nullable
-
         #region Int32?
 
         #region Math
@@ -989,8 +856,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>New <see cref="IMatrix{T}"/> - the result of multiplying <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<int?> Multiplication(this IMatrix<int?> first, IMatrix<int?> second)
         {
-            if (first.ColumnsCount == second.RowsCount) return first.InternalMulAtoB(second);
-            if (second.ColumnsCount == first.RowsCount) return first.InternalMulBtoA(second);
+            if (first.ColumnsCount == second.RowsCount) return first.InternalMul(second);
+            if (second.ColumnsCount == first.RowsCount) return second.InternalMul(first);
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
@@ -1045,7 +912,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         }
 
         /// <summary>
-        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="Int32"/> <paramref name="number"/>
+        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="int"/> <paramref name="number"/>
         /// </summary>
         /// <param name="matrix">First</param>
         /// <param name="number"></param>
@@ -1059,8 +926,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
                 {
                     if (newMatrix[i, j] != null)
                         newMatrix[i, j] = matrix[i, j] * number;
-                    else
-                        newMatrix[i, j] = null;
                 }
             }
 
@@ -1072,7 +937,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         #region Operations
 
         /// <summary>
-        /// Calculates determinant for <seealso cref="Nullable{T}"/> <see cref="Int32"/> <see cref="IMatrix{T}"/>
+        /// Calculates determinant for <seealso cref="Nullable{T}"/> <see cref="int"/> <see cref="IMatrix{T}"/>
         /// </summary>
         /// <param name="matrix">Initial matrix</param>
         /// <returns>Determinant</returns>
@@ -1085,12 +950,12 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             }
             if (matrix.ColumnsCount == 2)
             {
-	            if (matrix[0, 0] != null &&
-	                matrix[1, 1] != null &&
-	                matrix[0, 1] != null &&
-	                matrix[1, 0] != null)
+                if (matrix[0, 0] != null &&
+                    matrix[1, 1] != null &&
+                    matrix[0, 1] != null &&
+                    matrix[1, 0] != null)
                     return matrix[0, 0].Value * matrix[1, 1].Value - matrix[0, 1].Value * matrix[1, 0].Value;
-	            return 0;
+                return 0;
             }
             var result = 0;
             for (var j = 0; j < matrix.ColumnsCount; j++)
@@ -1113,10 +978,11 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             var determinant = matrix.CalculateDeterminant();
 
             IMatrix<double?> result = new Matrix<double?>(matrix.RowsCount, matrix.ColumnsCount);
+            var resultMatrixRef = result;
             matrix.ProcessFunctionOverData((i, j) =>
-            {
-                result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 * matrix.CalculateMinor(i, j) / determinant, 2);
-            });
+                                           {
+	                                           resultMatrixRef[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 * matrix.CalculateMinor(i, j) / determinant, 2);
+                                           });
 
             result = result.Transpose();
             return result;
@@ -1135,7 +1001,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #region Internal Mul
 
-        private static IMatrix<int?> InternalMulAtoB(this IMatrix<int?> matrix, IMatrix<int?> second)
+        private static IMatrix<int?> InternalMul(this IMatrix<int?> matrix, IMatrix<int?> second)
         {
             var result = new Matrix<int?>(matrix.RowsCount, second.ColumnsCount);
             for (var i = 0; i < matrix.RowsCount; i++)
@@ -1153,64 +1019,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             }
 
             return result;
-        }
-
-        private static IMatrix<int?> InternalMulBtoA(this IMatrix<int?> matrix, IMatrix<int?> second)
-        {
-            var result = new Matrix<int?>(second.RowsCount, matrix.ColumnsCount);
-            for (var i = 0; i < second.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    for (var k = 0; k < matrix.RowsCount; k++)
-                    {
-                        if (matrix[i, k] != null && matrix[k, j] != null)
-                            result[i, j] += second[i, k] * matrix[k, j];
-                    }
-                }
-            }
-
-            return matrix;
-        }
-
-        #endregion
-
-        #region Saddling
-
-        /// <summary>
-        /// Returns <see cref="bool"/> value if element at [<paramref name="i"/>, <paramref name="j"/>] is max in <see cref="IMatrixBase{IComparable}"/> matrix column at index <paramref name="j"/>
-        /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <param name="i">Row index</param>
-        /// <param name="j">Column index</param>
-        /// <returns></returns>
-        public static bool IsMaxInColumn(this IMatrixBase<int?> matrix, int i, int j)
-        {
-            for (var k = 0; k < matrix.RowsCount; k++)
-            {
-                if (matrix[k, j] != null && matrix[i, j] != null)
-                    if (matrix[k, j] > (matrix[i, j]))
-                        return false;
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Returns <see cref="bool"/> value if element at [<paramref name="i"/>, <paramref name="j"/>] is min in <see cref="IMatrixBase{IComparable}"/> matrix row at index <paramref name="i"/>
-        /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <param name="i">Row index</param>
-        /// <param name="j">Column index</param>
-        /// <returns></returns>
-        public static bool IsMinInRow(this IMatrixBase<int?> matrix, int i, int j)
-        {
-            for (var k = 0; k < matrix.ElementsInRow(i); k++)
-            {
-                if (matrix[i, k] != null && matrix[i, j] != null)
-                    if (matrix[i, k] < (matrix[i, j]))
-                        return false;
-            }
-            return true;
         }
 
         #endregion
@@ -1251,8 +1059,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>New <see cref="IMatrix{T}"/> - the result of multiplying <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<long?> Multiplication(this IMatrix<long?> first, IMatrix<long?> second)
         {
-            if (first.ColumnsCount == second.RowsCount) return first.InternalMulAtoB(second);
-            if (second.ColumnsCount == first.RowsCount) return first.InternalMulBtoA(second);
+            if (first.ColumnsCount == second.RowsCount) return first.InternalMul(second);
+            if (second.ColumnsCount == first.RowsCount) return second.InternalMul(first);
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
@@ -1307,7 +1115,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         }
 
         /// <summary>
-        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="Int32"/> <paramref name="number"/>
+        /// Returns the multiplication <see cref="IMatrix{T}"/> <paramref name="matrix"/> on <see cref="int"/> <paramref name="number"/>
         /// </summary>
         /// <param name="matrix">First</param>
         /// <param name="number"></param>
@@ -1332,7 +1140,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         #region Operations
 
         /// <summary>
-        /// Calculates determinant for <seealso cref="Nullable{T}"/> <see cref="Int64"/> <see cref="IMatrix{T}"/>
+        /// Calculates determinant for <seealso cref="Nullable{T}"/> <see cref="long"/> <see cref="IMatrix{T}"/>
         /// </summary>
         /// <param name="matrix">Initial matrix</param>
         /// <returns>Determinant</returns>
@@ -1350,8 +1158,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
                     matrix[0, 1] != null &&
                     matrix[1, 0] != null)
                     return matrix[0, 0].Value * matrix[1, 1].Value - matrix[0, 1].Value * matrix[1, 0].Value;
-                else
-                    return 0;
+
+                return 0;
             }
             long result = 0;
             for (var j = 0; j < matrix.ColumnsCount; j++)
@@ -1375,11 +1183,12 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             var determinant = matrix.CalculateDeterminant();
 
             IMatrix<double> result = new Matrix<double>(matrix.RowsCount, matrix.ColumnsCount);
+            var resultMatrixRef = result;
             matrix.ProcessFunctionOverData((i, j) =>
-            {
-                result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
-                    matrix.CalculateMinor(i, j) / determinant, 2);
-            });
+                                           {
+	                                           resultMatrixRef[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
+	                                                                                             matrix.CalculateMinor(i, j) / determinant, 2);
+                                           });
 
             result = result.Transpose();
             return result;
@@ -1398,7 +1207,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #region Internal Mul
 
-        private static IMatrix<long?> InternalMulAtoB(this IMatrix<long?> matrix, IMatrix<long?> second)
+        private static IMatrix<long?> InternalMul(this IMatrix<long?> matrix, IMatrix<long?> second)
         {
             var result = new Matrix<long?>(matrix.RowsCount, second.ColumnsCount);
             for (var i = 0; i < matrix.RowsCount; i++)
@@ -1416,66 +1225,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             }
 
             return result;
-        }
-
-        private static IMatrix<long?> InternalMulBtoA(this IMatrix<long?> matrix, IMatrix<long?> second)
-        {
-            var result = new Matrix<long?>(second.RowsCount, matrix.ColumnsCount);
-            for (var i = 0; i < second.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    for (var k = 0; k < matrix.RowsCount; k++)
-                    {
-                        if (second[i, k] != null && matrix[k, j] == null)
-                            result[i, j] = null;
-                        else
-                            result[i, j] += second[i, k] * matrix[k, j];
-                    }
-                }
-            }
-
-            return matrix;
-        }
-
-        #endregion
-
-        #region Saddling
-
-        /// <summary>
-        /// Returns <see cref="bool"/> value if element at [<paramref name="i"/>, <paramref name="j"/>] is max in <see cref="IMatrixBase{IComparable}"/> matrix column at index <paramref name="j"/>
-        /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <param name="i">Row index</param>
-        /// <param name="j">Column index</param>
-        /// <returns></returns>
-        public static bool IsMaxInColumn(this IMatrixBase<long?> matrix, int i, int j)
-        {
-            for (var k = 0; k < matrix.RowsCount; k++)
-            {
-                if (matrix[k, j] != null && matrix[i, j] != null)
-                    if (matrix[k, j] > (matrix[i, j]))
-                        return false;
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Returns <see cref="bool"/> value if element at [<paramref name="i"/>, <paramref name="j"/>] is min in <see cref="IMatrixBase{IComparable}"/> matrix row at index <paramref name="i"/>
-        /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <param name="i">Row index</param>
-        /// <param name="j">Column index</param>
-        /// <returns></returns>
-        public static bool IsMinInRow(this IMatrixBase<long?> matrix, int i, int j)
-        {
-            for (var k = 0; k < matrix.ElementsInRow(i); k++)
-            {
-                if (matrix[i, k] != null && matrix[i, j] != null)
-                    if (matrix[i, k] < (matrix[i, j]))
-                        return false;
-            }
-            return true;
         }
 
         #endregion
@@ -1515,8 +1264,8 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         /// <returns>New <see cref="IMatrix{T}"/> - the result of multiplying <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<double?> Multiplication(this IMatrix<double?> first, IMatrix<double?> second)
         {
-            if (first.ColumnsCount == second.RowsCount) return first.InternalMulAtoB(second);
-            if (second.ColumnsCount == first.RowsCount) return first.InternalMulBtoA(second);
+            if (first.ColumnsCount == second.RowsCount) return first.InternalMul(second);
+            if (second.ColumnsCount == first.RowsCount) return second.InternalMul(first);
             throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
         }
 
@@ -1570,7 +1319,12 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             return matrix;
         }
 
-        
+        /// <summary>
+        /// <inheritdoc cref="MulOnNumber(CyberMath.Structures.Matrix.Matrix{int},int)"/>
+        /// </summary>
+        /// <param name="first"><inheritdoc cref="MulOnNumber(Matrix{int},int)"/></param>
+        /// <param name="number"><inheritdoc cref="MulOnNumber(Matrix{int},int)"/></param>
+        /// <returns><inheritdoc cref="MulOnNumber(Matrix{int},int)"/></returns>
         public static IMatrix<double?> MulOnNumber(this IMatrix<double?> first, double number)
         {
             var matrix = new Matrix<double?>(first.RowsCount, first.ColumnsCount);
@@ -1593,7 +1347,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
         #region Operations
 
         /// <summary>
-        /// Calculates determinant for <seealso cref="Nullable{T}"/> <see cref="Double"/> <see cref="IMatrix{T}"/>
+        /// Calculates determinant for <seealso cref="Nullable{T}"/> <see cref="double"/> <see cref="IMatrix{T}"/>
         /// </summary>
         /// <param name="matrix">Initial matrix</param>
         /// <returns>Determinant</returns>
@@ -1634,11 +1388,12 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             var determinant = matrix.CalculateDeterminant();
 
             IMatrix<double?> result = new Matrix<double?>(matrix.RowsCount, matrix.ColumnsCount);
+            var resultMatrixRef = result;
             matrix.ProcessFunctionOverData((i, j) =>
-            {
-                result[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
-                    matrix.CalculateMinor(i, j) / determinant, 2);
-            });
+                                           {
+	                                           resultMatrixRef[i, j] = Math.Round((i + j) % 2 == 1 ? -1 : 1 *
+	                                                                                             matrix.CalculateMinor(i, j) / determinant, 2);
+                                           });
 
             result = result.Transpose();
             return result;
@@ -1657,7 +1412,7 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
 
         #region Internal Mul
 
-        private static IMatrix<double?> InternalMulAtoB(this IMatrix<double?> matrix, IMatrix<double?> second)
+        private static IMatrix<double?> InternalMul(this IMatrix<double?> matrix, IMatrix<double?> second)
         {
             var result = new Matrix<double?>(matrix.RowsCount, second.ColumnsCount);
             for (var i = 0; i < matrix.RowsCount; i++)
@@ -1675,66 +1430,6 @@ namespace CyberMath.Structures.MatrixExtensions.Matrix
             }
 
             return result;
-        }
-
-        private static IMatrix<double?> InternalMulBtoA(this IMatrix<double?> matrix, IMatrix<double?> second)
-        {
-            var result = new Matrix<double?>(second.RowsCount, matrix.ColumnsCount);
-            for (var i = 0; i < second.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ColumnsCount; j++)
-                {
-                    for (var k = 0; k < matrix.RowsCount; k++)
-                    {
-                        if (matrix[i, k] != null && second[k, j] != null)
-                            result[i, j] += matrix[i, k] * second[k, j];
-                        else
-                            break;
-                    }
-                }
-            }
-
-            return matrix;
-        }
-
-        #endregion
-
-        #region Saddling
-
-        /// <summary>
-        /// Returns <see cref="bool"/> value if element at [<paramref name="i"/>, <paramref name="j"/>] is max in <see cref="IMatrixBase{IComparable}"/> matrix column at index <paramref name="j"/>
-        /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <param name="i">Row index</param>
-        /// <param name="j">Column index</param>
-        /// <returns></returns>
-        public static bool IsMaxInColumn(this IMatrixBase<double?> matrix, int i, int j)
-        {
-            for (var k = 0; k < matrix.RowsCount; k++)
-            {
-                if (matrix[k, j] != null && matrix[i, j] != null)
-                    if (matrix[k, j] > (matrix[i, j]))
-                        return false;
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Returns <see cref="bool"/> value if element at [<paramref name="i"/>, <paramref name="j"/>] is min in <see cref="IMatrixBase{IComparable}"/> matrix row at index <paramref name="i"/>
-        /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <param name="i">Row index</param>
-        /// <param name="j">Column index</param>
-        /// <returns></returns>
-        public static bool IsMinInRow(this IMatrixBase<double?> matrix, int i, int j)
-        {
-            for (var k = 0; k < matrix.ElementsInRow(i); k++)
-            {
-                if (matrix[i, k] != null && matrix[i, j] != null)
-                    if (matrix[i, k] < (matrix[i, j]))
-                        return false;
-            }
-            return true;
         }
 
         #endregion

@@ -76,7 +76,7 @@ namespace CyberMath.Extensions
         {
             if (ReferenceEquals(collection, null)) return Enumerable.Empty<IEnumerable<T>>();
             var enumerable = collection as T[] ?? collection.ToArray();
-            var length     = enumerable.Count();
+            var length = enumerable.Count();
             if (length == 0) return Enumerable.Empty<IEnumerable<T>>();
             return Permutations(enumerable, length);
         }
@@ -102,7 +102,7 @@ namespace CyberMath.Extensions
         {
             if (ReferenceEquals(collection, null)) return Enumerable.Empty<IEnumerable<T>>();
             var enumerable = collection as T[] ?? collection.ToArray();
-            var length     = enumerable.Count();
+            var length = enumerable.Count();
             if (length == 0) return Enumerable.Empty<IEnumerable<T>>();
             return PermutationsWithRepeat(enumerable, length);
         }
@@ -117,7 +117,7 @@ namespace CyberMath.Extensions
         {
             if (ReferenceEquals(collection, null)) throw new ArgumentNullException(nameof(collection));
             var enumerable = collection as T[] ?? collection.ToArray();
-            var length     = enumerable.Count();
+            var length = enumerable.Count();
             if (length == 0) throw new ArgumentException(nameof(collection) + " was empty");
             if (length == 1) return enumerable.ElementAt(0);
             var rnd = new Random();

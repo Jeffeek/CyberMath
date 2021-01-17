@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using CyberMath.Structures.JaggedMatrix;
+﻿using CyberMath.Structures.JaggedMatrix;
 using CyberMath.Structures.Matrix;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CyberMath.Structures.MatrixExtensions
@@ -17,7 +17,7 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <typeparam name="T"></typeparam>
         /// <param name="matrix"></param>
         /// <returns></returns>
-        public static IEnumerable<int> GetElementsCountOnEachRow<T>(this IJuggedMatrix<T> matrix)
+        public static IEnumerable<int> CountOnEachRow<T>(this IJuggedMatrix<T> matrix)
         {
             for (var i = 0; i < matrix.RowsCount; i++)
                 yield return matrix.ElementsInRow(i);
@@ -32,7 +32,7 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>A new instance of <see cref="IMatrix{T}"/></returns>
         public static IMatrix<T> ToMatrix<T>(this IJuggedMatrix<T> juggedMatrix)
         {
-            var matrix = new Matrix<T>(juggedMatrix.RowsCount, juggedMatrix.GetElementsCountOnEachRow().Max());
+            var matrix = new Matrix<T>(juggedMatrix.RowsCount, juggedMatrix.CountOnEachRow().Max());
             for (var i = 0; i < juggedMatrix.RowsCount; i++)
             {
                 for (var j = 0; j < matrix.ColumnsCount; j++)

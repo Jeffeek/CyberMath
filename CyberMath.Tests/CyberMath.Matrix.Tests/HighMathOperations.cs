@@ -1,5 +1,5 @@
 ﻿using CyberMath.Structures.Matrix;
-using CyberMath.Structures.MatrixExtensions.Matrix;
+using CyberMath.Structures.MatrixExtensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

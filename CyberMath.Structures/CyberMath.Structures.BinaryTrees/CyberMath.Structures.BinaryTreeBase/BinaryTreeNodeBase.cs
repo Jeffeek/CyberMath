@@ -11,23 +11,23 @@ namespace CyberMath.Structures.BinaryTreeBase
     public abstract class BinaryTreeNodeBase<T> : IBinaryTreeNode<T>
         where T : IComparable<T>, IComparable
     {
-	    #region Equality members
+        #region Equality members
 
-	    protected bool Equals(BinaryTreeNodeBase<T> other) => this == other;
+        protected bool Equals(BinaryTreeNodeBase<T> other) => this == other;
 
-	    /// <inheritdoc />
-	    public override int GetHashCode()
-	    {
-		    var start = 228 ^ 315 * 25;
-		    if(Left == null) start = start + 100 ^ 25;
-		    if (Right == null) start = start + 200 ^ 55;
-		    if(Data == null) start = start + 1000 * 5 ^ 300;
-		    return start;
-	    }
+        /// <inheritdoc />
+        public override int GetHashCode()
+        {
+            var start = 228 ^ 315 * 25;
+            if (Left == null) start = start + 100 ^ 25;
+            if (Right == null) start = start + 200 ^ 55;
+            if (Data == null) start = start + 1000 * 5 ^ 300;
+            return start;
+        }
 
-	    #endregion
+        #endregion
 
-	    public IBinaryTreeNode<T> Left { get; protected set; }
+        public IBinaryTreeNode<T> Left { get; protected set; }
         public IBinaryTreeNode<T> Right { get; protected set; }
         public T Data { get; protected set; }
 
@@ -163,8 +163,22 @@ namespace CyberMath.Structures.BinaryTreeBase
 
         public static bool operator <(BinaryTreeNodeBase<T> first, BinaryTreeNodeBase<T> second) => first.CompareTo(second) == -1;
 
-        public static bool operator ==(BinaryTreeNodeBase<T> first, BinaryTreeNodeBase<T> second) =>
-            first?.Equals(second) ?? ReferenceEquals(second, null);
+        public static bool operator ==(BinaryTreeNodeBase<T> first, BinaryTreeNodeBase<T> second)
+        {
+            if (ReferenceEquals(first, second)) return true;
+
+            if(ReferenceEquals(first, null)) return false;
+
+            if (ReferenceEquals(second, null)) return false;
+
+            if (ReferenceEquals(first.Data, null) && ReferenceEquals(second.Data, null)) return true;
+
+            if(ReferenceEquals(first.Data, null)) return false;
+
+            if (ReferenceEquals(second.Data, null)) return false;
+
+            return first.Data.CompareTo(second.Data) == 0;
+        }
 
         public static bool operator !=(BinaryTreeNodeBase<T> first, BinaryTreeNodeBase<T> second) => !(first == second);
 

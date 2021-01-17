@@ -1,6 +1,4 @@
-﻿using System;
-using BenchmarkDotNet.Running;
-using CyberMath.Extensions;
+﻿using BenchmarkDotNet.Running;
 
 namespace CyberMath.PerformanceTests.BinaryTrees
 {

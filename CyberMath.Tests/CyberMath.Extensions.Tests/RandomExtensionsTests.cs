@@ -14,9 +14,8 @@ namespace CyberMath.Extensions.Tests
             var min = -5000000000000000;
             var max = 5000000000000000;
             var values = Enumerable.Range(0, 100).Select(x => rnd.NextLong(min, max));
-            var expected = true;
             var actual = values.Any(x => x < int.MinValue || x > int.MaxValue);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(true, actual);
         }
     }
 }

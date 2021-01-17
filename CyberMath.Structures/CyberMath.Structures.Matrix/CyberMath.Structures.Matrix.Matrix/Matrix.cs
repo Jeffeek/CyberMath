@@ -10,7 +10,7 @@ namespace CyberMath.Structures.Matrix
     /// Implementation of <see cref="IMatrix{T}"/> with Math-functional methods
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Matrix<T> : IMatrix<T>
+    public class Matrix<T> : IMatrix<T>, IEquatable<Matrix<T>>
     {
         private readonly T[,] _innerMatrix;
         public int ColumnsCount { get; }
@@ -32,6 +32,10 @@ namespace CyberMath.Structures.Matrix
 
         #region Operations
 
+        /// <summary>
+        /// Returns a new transposed matrix of initial one
+        /// </summary>
+        /// <returns><see cref="IMatrix{T}"/> matrix</returns>
         public IMatrix<T> Transpose()
         {
             var result = new Matrix<T>(ColumnsCount, RowsCount);
@@ -150,17 +154,48 @@ namespace CyberMath.Structures.Matrix
             return result;
         }
 
+        /// <summary>
+        /// Creates new <see cref="IMatrix{T}"/> identity matrix.
+        /// <para></para>
+        /// <example>
+        /// n = 3
+        /// <para/>
+        /// matrix = <para/>
+        /// {<para/>
+        ///     {1,0,0},<para/>
+        ///     {0,1,0},<para/>
+        ///     {0,0,1}<para/>
+        /// }
+        /// </example>
+        /// </summary>
+        /// <param name="rowsAndColumnsCount">Count of rows and columns</param>
+        /// <returns>Identity <see cref="IMatrix{T}"/> matrix</returns>
+        public static IMatrix<int> CreateIdentityMatrix(int rowsAndColumnsCount)
+        {
+            var result = new Matrix<int>(rowsAndColumnsCount, rowsAndColumnsCount);
+            for (var i = 0; i < rowsAndColumnsCount; i++)
+                result[i, i] = 1;
+            return result;
+        }
+
         #endregion
 
         #region Enumeration
 
-        public IEnumerator<T> GetEnumerator()
+        /// <inheritdoc />
+        public IEnumerator<IEnumerable<T>> GetEnumerator()
         {
             for (var i = 0; i < RowsCount; i++)
-                for (var j = 0; j < ColumnsCount; j++)
-                    yield return this[i, j];
+                yield return RowEnumerator(i);
         }
 
+        private IEnumerable<T> RowEnumerator(int rowIndex)
+        {
+            for (var i = 0; i < ColumnsCount; i++)
+                yield return this[rowIndex, i];
+        }
+
+        /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         #endregion

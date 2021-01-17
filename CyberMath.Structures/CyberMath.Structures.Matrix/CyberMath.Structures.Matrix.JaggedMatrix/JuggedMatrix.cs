@@ -11,7 +11,7 @@ namespace CyberMath.Structures.JaggedMatrix
     /// Describes a Jugged Matrix. Implements <see cref="IJuggedMatrix{T}"/>
     /// </summary>
     /// <typeparam name="T">ANY</typeparam>
-    public class JuggedMatrix<T> : IJuggedMatrix<T>
+    public class JuggedMatrix<T> : IJuggedMatrix<T>, IEquatable<JuggedMatrix<T>>
     {
         private T[][] _innerMatrix;
         public int RowsCount { get; }
@@ -29,6 +29,17 @@ namespace CyberMath.Structures.JaggedMatrix
                 IsSquare = true;
         }
 
+        public JuggedMatrix(int rowsCount, IEnumerable<int> elementsAtRow)
+        {
+	        var elementsCount = elementsAtRow as int[] ?? elementsAtRow.ToArray();
+	        if (elementsCount.Length != rowsCount) throw new ArgumentException("Count of Elements in row should be the same length as RowsCount");
+            RowsCount = rowsCount;
+            _innerMatrix = new T[rowsCount][];
+            InitMatrix(elementsCount.ToArray());
+            if (elementsCount.All(x => x == RowsCount))
+                IsSquare = true;
+        }
+
         private JuggedMatrix(int rowsCount)
         {
             RowsCount = rowsCount;
@@ -39,7 +50,7 @@ namespace CyberMath.Structures.JaggedMatrix
 
         #region Matrix Init
 
-        private void InitMatrix(params int[] elementsAtRow)
+        private void InitMatrix(IReadOnlyList<int> elementsAtRow)
         {
             for (var i = 0; i < RowsCount; i++)
                 _innerMatrix[i] = new T[elementsAtRow[i]];
@@ -144,15 +155,46 @@ namespace CyberMath.Structures.JaggedMatrix
 
         #endregion
 
-        #region Enumeration
-
-        public IEnumerator<T> GetEnumerator()
+        /// <summary>
+        /// Creates new <see cref="IJuggedMatrix{T}"/> identity matrix.
+        /// <para></para>
+        /// <example>
+        /// n = 3
+        /// <para/>
+        /// matrix = <para/>
+        /// {<para/>
+        ///     {1,0,0},<para/>
+        ///     {0,1,0},<para/>
+        ///     {0,0,1}<para/>
+        /// }
+        /// </example>
+        /// </summary>
+        /// <param name="rowsAndColumnsCount">Count of rows and columns</param>
+        /// <returns>Identity <see cref="IJuggedMatrix{T}"/> matrix</returns>
+        public static IJuggedMatrix<int> CreateIdentityMatrix(int rowsAndColumnsCount)
         {
-            for (var i = 0; i < RowsCount; i++)
-                for (var j = 0; j < ElementsInRow(i); j++)
-                    yield return this[i, j];
+            var result = new JuggedMatrix<int>(rowsAndColumnsCount, Enumerable.Repeat(rowsAndColumnsCount, rowsAndColumnsCount));
+            for (var i = 0; i < rowsAndColumnsCount; i++)
+                result[i, i] = 1;
+            return result;
         }
 
+        #region Enumeration
+
+        /// <inheritdoc />
+        public IEnumerator<IEnumerable<T>> GetEnumerator()
+        {
+            for (var i = 0; i < RowsCount; i++)
+                yield return RowEnumerator(i);
+        }
+
+        private IEnumerable<T> RowEnumerator(int rowIndex)
+        {
+            for (var i = 0; i < ElementsInRow(rowIndex); i++)
+                yield return this[rowIndex, i];
+        }
+
+        /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         #endregion
@@ -170,5 +212,38 @@ namespace CyberMath.Structures.JaggedMatrix
             }
             return sb.ToString();
         }
+
+        #region Equality members
+
+        public bool Equals(JuggedMatrix<T> other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            if (RowsCount != other.RowsCount) return false;
+            for (var i = 0; i < RowsCount; i++)
+            {
+                for (var j = 0; j < ElementsInRow(i); j++)
+                {
+                    if (!this[i, j].Equals(other[i, j]))
+                        return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <inheritdoc />
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((JuggedMatrix<T>)obj);
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode() => HashCode.Combine(_innerMatrix, RowsCount, IsSquare);
+
+        #endregion
     }
 }

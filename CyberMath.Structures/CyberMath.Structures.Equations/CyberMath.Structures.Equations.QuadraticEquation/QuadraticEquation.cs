@@ -23,7 +23,7 @@ namespace CyberMath.Structures.QuadraticEquation
         /// Represent a third argument in <see cref="QuadraticEquation"/>
         /// </summary>
         public double C { get; }
-        
+
         /// <summary>
         /// Determinant of current <see cref="QuadraticEquation"/>
         /// </summary>

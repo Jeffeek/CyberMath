@@ -59,7 +59,7 @@ namespace CyberMath.Primitives.Int64
             a = b;
             b = temp;
         }
-        
+
         /// <summary>
         /// Checks <see cref="Int64"/> for palindromicity
         /// </summary>

@@ -14,11 +14,18 @@ namespace CyberMath.QuadraticEquation.Tests
             var actualDeterminant = equation.Determinant;
             Assert.AreEqual(expectedDeterminant, actualDeterminant);
             var expectedFirstRoot = 2d;
-            var actualFirstRoot = equation.FirstRoot.Value;
-            Assert.AreEqual(expectedFirstRoot, actualFirstRoot);
+            if (equation.FirstRoot != null)
+            {
+                var actualFirstRoot = equation.FirstRoot.Value;
+                Assert.AreEqual(expectedFirstRoot, actualFirstRoot);
+            }
+
             var expectedSecondRoot = 1.2d;
-            var actualSecondRoot = equation.SecondRoot.Value;
-            Assert.AreEqual(expectedSecondRoot, actualSecondRoot);
+            if (equation.SecondRoot != null)
+            {
+                var actualSecondRoot = equation.SecondRoot.Value;
+                Assert.AreEqual(expectedSecondRoot, actualSecondRoot);
+            }
         }
 
         [TestMethod]
@@ -29,11 +36,18 @@ namespace CyberMath.QuadraticEquation.Tests
             var actualDeterminant = equation.Determinant;
             Assert.AreEqual(expectedDeterminant, actualDeterminant);
             var expectedFirstRoot = 2d;
-            var actualFirstRoot = equation.FirstRoot.Value;
-            Assert.AreEqual(expectedFirstRoot, actualFirstRoot);
+            if (equation.FirstRoot != null)
+            {
+                var actualFirstRoot = equation.FirstRoot.Value;
+                Assert.AreEqual(expectedFirstRoot, actualFirstRoot);
+            }
+
             var expectedSecondRoot = 1.2d;
-            var actualSecondRoot = equation.SecondRoot.Value;
-            Assert.AreEqual(expectedSecondRoot, actualSecondRoot);
+            if (equation.SecondRoot != null)
+            {
+                var actualSecondRoot = equation.SecondRoot.Value;
+                Assert.AreEqual(expectedSecondRoot, actualSecondRoot);
+            }
         }
 
         [TestMethod]
@@ -44,11 +58,18 @@ namespace CyberMath.QuadraticEquation.Tests
             var actualDeterminant = equation.Determinant;
             Assert.AreEqual(expectedDeterminant, actualDeterminant);
             var expectedFirstRoot = 2d;
-            var actualFirstRoot = equation.FirstRoot.Value;
-            Assert.AreEqual(expectedFirstRoot, actualFirstRoot);
+            if (equation.FirstRoot != null)
+            {
+                var actualFirstRoot = equation.FirstRoot.Value;
+                Assert.AreEqual(expectedFirstRoot, actualFirstRoot);
+            }
+
             var expectedSecondRoot = 1.2d;
-            var actualSecondRoot = equation.SecondRoot.Value;
-            Assert.AreEqual(expectedSecondRoot, actualSecondRoot);
+            if (equation.SecondRoot != null)
+            {
+                var actualSecondRoot = equation.SecondRoot.Value;
+                Assert.AreEqual(expectedSecondRoot, actualSecondRoot);
+            }
         }
     }
 }
