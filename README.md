@@ -10,24 +10,78 @@
   - [x] AVL
   - [x] Красно-черное
   
+  - Интерфейс общий
+    - IBinaryTree : ICollection, IDisposable where T : IComparable&lt;T&gt;, IComparable
+  
 - Методы расширения
   - Методы раcширения индексированных коллекций
     - [x] Swap
     - [x] Shuffle
-    - [x] GetRandomItem
+    - [x] RandomItem
+    - [x] Permutations
+    - [x] PermutationsWithRepeat
   - Методы расширений строк
     - [x] Concat
     - [x] IsPalindrome
+    - [x] IsAnagram
+    - [x] WordsFrequency
+    - [x] ToInt32
+    - [x] ToInt64
   - Методы расширений для рандома
     - [x] NextDouble
     - [x] NextLong
   - Методы расширения для Int32
     - [x] PrimeNumbers
     - [x] IsPalindrome
+    - [x] IsOdd
+    - [x] IsEven
+    - [x] GCD
+    - [x] LCM
+    - [x] Swap
+    - [x] GetLength
+    - [x] ToBinary
+    - [x] ToHex
+      - Методы расширения для простых чисел Int32
+        - [x] IsPrime
+        - [x] GenerateRandomPrimeNumber -> Int32
+        - [x] GeneratePrimeNumbers -> IEnumerable&lt;Int32&gt;,
   - Методы расширения для Int64
     - [x] PrimeNumbers
     - [x] IsPalindrome
-  
+    - [x] IsOdd
+    - [x] IsEven
+    - [x] GCD
+    - [x] LCM
+    - [x] Swap
+    - [x] GetLength
+    - [x] ToBinary
+    - [x] ToHex
+      - Методы расширения для простых чисел Int64
+        - [x] IsPrime
+        - [x] GenerateRandomPrimeNumber -> Int64
+        - [x] GeneratePrimeNumbers -> IEnumerable&lt;Int64&gt;,
+  - Методы расширения для всех матриц
+    - [x] IsMaxInColumn
+    - [x] IsMinInRow
+    - [x] DiagonalSum
+    - [x] SideDiagonalSum
+    - [x] SumSaddlePoints
+      - Методы расширения для примитивов
+        - [x] Add
+        - [x] Sub
+        - [x] MulOnNumber
+        - [x] FillRandomly
+  - Методы расширения для зубчатых матриц
+    - [x] CountOnEachRow
+    - [x] ToMatrix
+  - Методы расширения для ванильных матриц
+    - [x] CountOnEachRow
+    - [x] ToJuggedMatrix
+      - Методы расширения для примитивов
+        - [x] Multiplication
+        - [x] CalculateDeterminant
+        - [x] CreateInvertibleMatrix
+        - [x] CalculateMinor
 - Уравнения
   - [x] Квадратное
   - [ ] Кубическое
