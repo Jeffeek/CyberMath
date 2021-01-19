@@ -1,5 +1,7 @@
 ﻿using CyberMath.Structures.BinaryTreeBase;
 using System;
+// ReSharper disable ConditionIsAlwaysTrueOrFalse
+// ReSharper disable PossibleNullReferenceException
 
 namespace CyberMath.Structures.RedBlackBinaryTree
 {
@@ -329,7 +331,7 @@ namespace CyberMath.Structures.RedBlackBinaryTree
             var X = node.Left as RedBlackBinaryTreeNode<T>;
             node.Left = X.Right;
             if (X.Right != null)
-                (X.Right as RedBlackBinaryTreeNode<T>)._parent = node;
+	            (X.Right as RedBlackBinaryTreeNode<T>)._parent = node;
             if (X != null)
                 X._parent = node._parent;
             if (node._parent == null)

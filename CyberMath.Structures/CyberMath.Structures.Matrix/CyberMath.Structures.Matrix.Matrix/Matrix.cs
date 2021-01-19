@@ -12,6 +12,9 @@ namespace CyberMath.Structures.Matrix
     /// <typeparam name="T"></typeparam>
     public class Matrix<T> : IMatrix<T>, IEquatable<Matrix<T>>
     {
+        /// <summary>
+        /// Internal matrix needed to implement the class <see cref="Matrix{T}"/>
+        /// </summary>
         private readonly T[,] _innerMatrix;
         public int ColumnsCount { get; }
         public int RowsCount { get; }
@@ -23,11 +26,31 @@ namespace CyberMath.Structures.Matrix
             set => _innerMatrix[row, column] = value;
         }
 
+        /// <summary>
+        /// Initializes a new matrix object with count of rows = <paramref name="rowsCount"/>
+        /// and count of columns = <paramref name="columnsCount"/>
+        /// </summary>
+        /// <param name="rowsCount">Count of rows in matrix</param>
+        /// <param name="columnsCount">Count of columns in matrix</param>
         public Matrix(int rowsCount, int columnsCount)
         {
-            ColumnsCount = columnsCount;
+	        if (rowsCount <= 0) throw new ArgumentException(nameof(rowsCount));
+	        if (columnsCount <= 0) throw new ArgumentException(nameof(columnsCount));
+	        ColumnsCount = columnsCount;
             RowsCount = rowsCount;
             _innerMatrix = new T[rowsCount, columnsCount];
+        }
+
+        /// <summary>
+        /// Initializes a new matrix object with the help of <paramref name="matrix"/>
+        /// </summary>
+        /// <param name="matrix">Matrix for init initial <see cref="Matrix{T}"/></param>
+        public Matrix(T[,] matrix)
+        {
+	        if (matrix == null) throw new ArgumentNullException(nameof(matrix));
+	        ColumnsCount = matrix.GetLength(1);
+	        RowsCount = matrix.GetLength(0);
+	        _innerMatrix = matrix;
         }
 
         #region Operations
@@ -97,7 +120,7 @@ namespace CyberMath.Structures.Matrix
         {
             unchecked
             {
-                var hashCode = (_innerMatrix != null ? _innerMatrix.GetHashCode() : 0);
+                var hashCode = _innerMatrix != null ? _innerMatrix.GetHashCode() : 0;
                 hashCode = (hashCode * 397) ^ ColumnsCount;
                 hashCode = (hashCode * 397) ^ RowsCount;
                 return hashCode;
@@ -132,11 +155,8 @@ namespace CyberMath.Structures.Matrix
 
         public IMatrixBase<T> CreateMatrixWithoutColumn(int columnIndex)
         {
-            if (columnIndex < 0 || columnIndex >= ColumnsCount)
-            {
-                throw new ArgumentException("invalid column index");
-            }
-            var result = new Matrix<T>(RowsCount, ColumnsCount - 1);
+            if (columnIndex < 0 || columnIndex >= ColumnsCount) throw new ArgumentException("invalid column index");
+	        var result = new Matrix<T>(RowsCount, ColumnsCount - 1);
             result.ProcessFunctionOverData((i, j) =>
                 result[i, j] = j < columnIndex ? this[i, j] : this[i, j + 1]);
             return result;
@@ -144,10 +164,7 @@ namespace CyberMath.Structures.Matrix
 
         public IMatrixBase<T> CreateMatrixWithoutRow(int rowIndex)
         {
-            if (rowIndex < 0 || rowIndex >= RowsCount)
-            {
-                throw new ArgumentException("invalid row index");
-            }
+            if (rowIndex < 0 || rowIndex >= RowsCount) throw new ArgumentException("invalid row index");
             var result = new Matrix<T>(RowsCount - 1, ColumnsCount);
             result.ProcessFunctionOverData((i, j) =>
                 result[i, j] = i < rowIndex ? this[i, j] : this[i + 1, j]);
@@ -189,6 +206,11 @@ namespace CyberMath.Structures.Matrix
                 yield return RowEnumerator(i);
         }
 
+        /// <summary>
+        /// Enumerates all elements in a row
+        /// </summary>
+        /// <param name="rowIndex">Row to enumerate</param>
+        /// <returns><see cref="IEnumerable{T}"/> elements in a <see cref="Matrix{T}"/> in <paramref name="rowIndex"/></returns>
         private IEnumerable<T> RowEnumerator(int rowIndex)
         {
             for (var i = 0; i < ColumnsCount; i++)

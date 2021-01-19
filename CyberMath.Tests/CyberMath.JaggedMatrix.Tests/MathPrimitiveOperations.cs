@@ -86,7 +86,7 @@ namespace CyberMath.JaggedMatrix.Tests
                 [2, 2] = 2
             };
 
-            Assert.ThrowsException<MatrixIncomparableOperationException>(() => matrix1.Add(matrix2));
+            Assert.ThrowsException<MatrixInvalidOperationException>(() => matrix1.Add(matrix2));
         }
 
         [TestMethod]
@@ -121,7 +121,7 @@ namespace CyberMath.JaggedMatrix.Tests
                 [2, 2] = 2
             };
 
-            Assert.ThrowsException<MatrixIncomparableOperationException>(() => matrix1.Add(matrix2));
+            Assert.ThrowsException<MatrixInvalidOperationException>(() => matrix1.Add(matrix2));
         }
 
         [TestMethod]
@@ -236,7 +236,7 @@ namespace CyberMath.JaggedMatrix.Tests
                 [2, 2] = 2
             };
 
-            Assert.ThrowsException<MatrixIncomparableOperationException>(() => matrix1.Sub(matrix2));
+            Assert.ThrowsException<MatrixInvalidOperationException>(() => matrix1.Sub(matrix2));
         }
 
         [TestMethod]
@@ -271,7 +271,7 @@ namespace CyberMath.JaggedMatrix.Tests
                 [2, 2] = 2
             };
 
-            Assert.ThrowsException<MatrixIncomparableOperationException>(() => matrix1.Sub(matrix2));
+            Assert.ThrowsException<MatrixInvalidOperationException>(() => matrix1.Sub(matrix2));
         }
     }
 }

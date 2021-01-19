@@ -25,8 +25,8 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<int> Add(this IMatrix<int> first, IMatrix<int> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixInvalidOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<int>(first.RowsCount, first.ColumnsCount);
             for (var i = 0; i < first.RowsCount; i++)
             {
@@ -49,7 +49,7 @@ namespace CyberMath.Structures.MatrixExtensions
         {
             if (first.ColumnsCount == second.RowsCount) return first.InternalMul(second);
             if (second.ColumnsCount == first.RowsCount) return second.InternalMul(first);
-            throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
+            throw new MatrixInvalidOperationException("Multiplication of this matrices is not possible");
         }
 
         /// <summary>
@@ -60,8 +60,8 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<int> Sub(this IMatrix<int> first, IMatrix<int> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixInvalidOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<int>(first.RowsCount, first.ColumnsCount);
             for (var i = 0; i < first.RowsCount; i++)
             {
@@ -216,7 +216,7 @@ namespace CyberMath.Structures.MatrixExtensions
         {
             if (first.ColumnsCount == second.RowsCount) return first.InternalMul(second);
             if (second.ColumnsCount == first.RowsCount) return second.InternalMul(first);
-            throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
+            throw new MatrixInvalidOperationException("Multiplication of this matrices is not possible");
         }
 
         /// <summary>
@@ -227,8 +227,8 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<long> Add(this IMatrix<long> first, IMatrix<long> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixInvalidOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<long>(first.RowsCount, first.ColumnsCount);
             for (var i = 0; i < first.RowsCount; i++)
             {
@@ -249,8 +249,8 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<long> Sub(this IMatrix<long> first, IMatrix<long> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixInvalidOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<long>(first.RowsCount, first.ColumnsCount);
             for (var i = 0; i < first.RowsCount; i++)
             {
@@ -405,7 +405,7 @@ namespace CyberMath.Structures.MatrixExtensions
         {
             if (first.ColumnsCount == second.RowsCount) return first.InternalMul(second);
             if (second.ColumnsCount == first.RowsCount) return second.InternalMul(first);
-            throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
+            throw new MatrixInvalidOperationException("Multiplication of this matrices is not possible");
         }
 
         /// <summary>
@@ -416,8 +416,8 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<double> Add(this IMatrix<double> first, IMatrix<double> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixInvalidOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<double>(first.RowsCount, first.ColumnsCount);
             for (var i = 0; i < first.RowsCount; i++)
             {
@@ -438,8 +438,8 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<double> Sub(this IMatrix<double> first, IMatrix<double> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixInvalidOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<double>(first.RowsCount, first.ColumnsCount);
             for (var i = 0; i < first.RowsCount; i++)
             {
@@ -594,7 +594,7 @@ namespace CyberMath.Structures.MatrixExtensions
         {
             if (first.ColumnsCount == second.RowsCount) return first.InternalMul(second);
             if (second.ColumnsCount == first.RowsCount) return second.InternalMul(first);
-            throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
+            throw new MatrixInvalidOperationException("Multiplication of this matrices is not possible");
         }
 
         /// <summary>
@@ -605,8 +605,8 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<decimal> Add(this IMatrix<decimal> first, IMatrix<decimal> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixInvalidOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<decimal>(first.RowsCount, first.ColumnsCount);
             for (var i = 0; i < first.RowsCount; i++)
             {
@@ -627,8 +627,8 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<decimal> Sub(this IMatrix<decimal> first, IMatrix<decimal> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixInvalidOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<decimal>(first.RowsCount, first.ColumnsCount);
             for (var i = 0; i < first.RowsCount; i++)
             {
@@ -785,8 +785,8 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<string> Add(this IMatrix<string> first, IMatrix<string> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixInvalidOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<string>(first.RowsCount, first.ColumnsCount);
             for (var i = 0; i < first.RowsCount; i++)
             {
@@ -858,7 +858,7 @@ namespace CyberMath.Structures.MatrixExtensions
         {
             if (first.ColumnsCount == second.RowsCount) return first.InternalMul(second);
             if (second.ColumnsCount == first.RowsCount) return second.InternalMul(first);
-            throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
+            throw new MatrixInvalidOperationException("Multiplication of this matrices is not possible");
         }
 
         /// <summary>
@@ -869,8 +869,8 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<int?> Add(this IMatrix<int?> first, IMatrix<int?> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixInvalidOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<int?>(first.RowsCount, first.ColumnsCount);
             for (var i = 0; i < first.RowsCount; i++)
             {
@@ -894,8 +894,8 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<int?> Sub(this IMatrix<int?> first, IMatrix<int?> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixInvalidOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<int?>(first.RowsCount, first.ColumnsCount);
             for (var i = 0; i < first.RowsCount; i++)
             {
@@ -1061,7 +1061,7 @@ namespace CyberMath.Structures.MatrixExtensions
         {
             if (first.ColumnsCount == second.RowsCount) return first.InternalMul(second);
             if (second.ColumnsCount == first.RowsCount) return second.InternalMul(first);
-            throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
+            throw new MatrixInvalidOperationException("Multiplication of this matrices is not possible");
         }
 
         /// <summary>
@@ -1072,8 +1072,8 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<long?> Add(this IMatrix<long?> first, IMatrix<long?> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixInvalidOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<long?>(first.RowsCount, first.ColumnsCount);
             for (var i = 0; i < first.RowsCount; i++)
             {
@@ -1097,8 +1097,8 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<long?> Sub(this IMatrix<long?> first, IMatrix<long?> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixInvalidOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<long?>(first.RowsCount, first.ColumnsCount);
             for (var i = 0; i < first.RowsCount; i++)
             {
@@ -1266,7 +1266,7 @@ namespace CyberMath.Structures.MatrixExtensions
         {
             if (first.ColumnsCount == second.RowsCount) return first.InternalMul(second);
             if (second.ColumnsCount == first.RowsCount) return second.InternalMul(first);
-            throw new MatrixIncomparableOperationException("Multiplication of this matrices is not possible");
+            throw new MatrixInvalidOperationException("Multiplication of this matrices is not possible");
         }
 
         /// <summary>
@@ -1277,8 +1277,8 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<double?> Add(this IMatrix<double?> first, IMatrix<double?> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second matrix to matrix. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixInvalidOperationException("Can't add second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't add second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<double?>(first.RowsCount, first.ColumnsCount);
             for (var i = 0; i < first.RowsCount; i++)
             {
@@ -1302,8 +1302,8 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IMatrix<double?> Sub(this IMatrix<double?> first, IMatrix<double?> second)
         {
-            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
+            if (first.ColumnsCount != second.ColumnsCount) throw new MatrixInvalidOperationException("Can't sub second matrix to matrix. Count of columns should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't sub second matrix to matrix. Count of rows should be the same");
             var matrix = new Matrix<double?>(first.RowsCount, first.ColumnsCount);
             for (var i = 0; i < first.RowsCount; i++)
             {

@@ -26,11 +26,11 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IJuggedMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IJuggedMatrix<int> Add(this IJuggedMatrix<int> first, IJuggedMatrix<int> second)
         {
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
             for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
-                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+                    throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<int>(first.RowsCount, first.CountOnEachRow().ToArray());
             for (var i = 0; i < first.RowsCount; i++)
@@ -52,11 +52,11 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IJuggedMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IJuggedMatrix<int> Sub(this IJuggedMatrix<int> first, IJuggedMatrix<int> second)
         {
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
             for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
-                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+                    throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<int>(first.RowsCount, first.CountOnEachRow().ToArray());
             for (var i = 0; i < first.RowsCount; i++)
@@ -128,11 +128,11 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IJuggedMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IJuggedMatrix<long> Add(this IJuggedMatrix<long> first, IJuggedMatrix<long> second)
         {
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
             for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
-                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+                    throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<long>(first.RowsCount, first.CountOnEachRow().ToArray());
             for (var i = 0; i < first.RowsCount; i++)
@@ -154,11 +154,11 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IJuggedMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IJuggedMatrix<long> Sub(this IJuggedMatrix<long> first, IJuggedMatrix<long> second)
         {
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
             for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
-                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+                    throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<long>(first.RowsCount, first.CountOnEachRow().ToArray());
             for (var i = 0; i < first.RowsCount; i++)
@@ -230,11 +230,11 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IJuggedMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IJuggedMatrix<double> Add(this IJuggedMatrix<double> first, IJuggedMatrix<double> second)
         {
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
             for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
-                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+                    throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<double>(first.RowsCount, first.CountOnEachRow().ToArray());
             for (var i = 0; i < first.RowsCount; i++)
@@ -256,11 +256,11 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IJuggedMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IJuggedMatrix<double> Sub(this IJuggedMatrix<double> first, IJuggedMatrix<double> second)
         {
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
             for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
-                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+                    throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<double>(first.RowsCount, first.CountOnEachRow().ToArray());
             for (var i = 0; i < first.RowsCount; i++)
@@ -332,11 +332,11 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IJuggedMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IJuggedMatrix<decimal> Add(this IJuggedMatrix<decimal> first, IJuggedMatrix<decimal> second)
         {
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
             for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
-                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+                    throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<decimal>(first.RowsCount, first.CountOnEachRow().ToArray());
             for (var i = 0; i < first.RowsCount; i++)
@@ -358,11 +358,11 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IJuggedMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IJuggedMatrix<decimal> Sub(this IJuggedMatrix<decimal> first, IJuggedMatrix<decimal> second)
         {
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
             for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
-                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+                    throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<decimal>(first.RowsCount, first.CountOnEachRow().ToArray());
             for (var i = 0; i < first.RowsCount; i++)
@@ -438,11 +438,11 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IJuggedMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IJuggedMatrix<string> Add(this IJuggedMatrix<string> first, IJuggedMatrix<string> second)
         {
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
             for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
-                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+                    throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<string>(first.RowsCount, first.CountOnEachRow().ToArray());
             for (var i = 0; i < first.RowsCount; i++)
@@ -464,11 +464,11 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IJuggedMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IJuggedMatrix<string> Sub(this IJuggedMatrix<string> first, IJuggedMatrix<string> second)
         {
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
             for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
-                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+                    throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<string>(first.RowsCount, first.CountOnEachRow().ToArray());
             for (var i = 0; i < first.RowsCount; i++)
@@ -518,11 +518,11 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IJuggedMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IJuggedMatrix<int?> Add(this IJuggedMatrix<int?> first, IJuggedMatrix<int?> second)
         {
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
             for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
-                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+                    throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<int?>(first.RowsCount, first.CountOnEachRow().ToArray());
             for (var i = 0; i < first.RowsCount; i++)
@@ -545,11 +545,11 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IJuggedMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IJuggedMatrix<int?> Sub(this IJuggedMatrix<int?> first, IJuggedMatrix<int?> second)
         {
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
             for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
-                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+                    throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<int?>(first.RowsCount, first.CountOnEachRow().ToArray());
             for (var i = 0; i < first.RowsCount; i++)
@@ -583,39 +583,6 @@ namespace CyberMath.Structures.MatrixExtensions
             }
 
             return newJuggedMatrix;
-        }
-
-        #endregion
-
-        #region Creation
-
-        /// <summary>
-        /// Creates new <see cref="IJuggedMatrix{T}"/> identity matrix.
-        /// <para></para>
-        /// <example>
-        /// n = 3
-        /// <para/>
-        /// matrix = <para/>
-        /// {<para/>
-        ///     {1,null,0},<para/>
-        ///     {null,1,null},<para/>
-        ///     {0,null,1}<para/>
-        /// }
-        /// </example>
-        /// </summary>
-        /// <param name="n">Count of rows and columns</param>
-        /// <param name="includeNull">Show <see langword="bool"/> value if matrix can have <see cref="Nullable{T}"/> value</param>
-        /// <returns>Identity <see cref="IJuggedMatrix{T}"/> matrix</returns>
-        public static IJuggedMatrix<int?> CreateIdentityMatrix(int n, bool includeNull = false)
-        {
-            var result = new JuggedMatrix<int?>(n, Enumerable.Repeat(n, n).ToArray());
-            for (var i = 0; i < n; i++)
-            {
-                result[i, i] = 1;
-                if (includeNull && i % 2 == 0)
-                    result[i, i] = null;
-            }
-            return result;
         }
 
         #endregion
@@ -657,11 +624,11 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IJuggedMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IJuggedMatrix<long?> Add(this IJuggedMatrix<long?> first, IJuggedMatrix<long?> second)
         {
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
             for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
-                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+                    throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<long?>(first.RowsCount, first.CountOnEachRow().ToArray());
             for (var i = 0; i < first.RowsCount; i++)
@@ -684,11 +651,11 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IJuggedMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IJuggedMatrix<long?> Sub(this IJuggedMatrix<long?> first, IJuggedMatrix<long?> second)
         {
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
             for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
-                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+                    throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<long?>(first.RowsCount, first.CountOnEachRow().ToArray());
             for (var i = 0; i < first.RowsCount; i++)
@@ -763,11 +730,11 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IJuggedMatrix{T}"/> - the result sum of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IJuggedMatrix<double?> Add(this IJuggedMatrix<double?> first, IJuggedMatrix<double?> second)
         {
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of rows should be the same");
             for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
-                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+                    throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<double?>(first.RowsCount, first.CountOnEachRow().ToArray());
             for (var i = 0; i < first.RowsCount; i++)
@@ -790,11 +757,11 @@ namespace CyberMath.Structures.MatrixExtensions
         /// <returns>New <see cref="IJuggedMatrix{T}"/> - the result subtraction of matrices <paramref name="first"/> and <paramref name="second"/></returns>
         public static IJuggedMatrix<double?> Sub(this IJuggedMatrix<double?> first, IJuggedMatrix<double?> second)
         {
-            if (first.RowsCount != second.RowsCount) throw new MatrixIncomparableOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
+            if (first.RowsCount != second.RowsCount) throw new MatrixInvalidOperationException("Can't sub second JuggedMatrix to first. Count of rows should be the same");
             for (var i = 0; i < first.RowsCount; i++)
             {
                 if (first.ElementsInRow(i) != second.ElementsInRow(i))
-                    throw new MatrixIncomparableOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
+                    throw new MatrixInvalidOperationException("Can't add second JuggedMatrix to first. Count of columns should be the same");
             }
             var juggedMatrix = new JuggedMatrix<double?>(first.RowsCount, first.CountOnEachRow().ToArray());
             for (var i = 0; i < first.RowsCount; i++)
