@@ -1,14 +1,14 @@
 ﻿using BenchmarkDotNet.Attributes;
-using CyberMath.Structures.AVLBinaryTree;
-using CyberMath.Structures.BinaryTree;
-using CyberMath.Structures.RedBlackBinaryTree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using СyberMath.Structures.BinaryTrees.AVLBinaryTree;
+using СyberMath.Structures.BinaryTrees.BinaryTree;
+using СyberMath.Structures.BinaryTrees.RedBlackBinaryTree;
 
 namespace CyberMath.PerformanceTests.BinaryTrees
 {
-    public class BinaryTreesOrdersBenchmark
+    public sealed class BinaryTreesOrdersBenchmark
     {
         private static readonly Random rnd = new Random();
         private static readonly IEnumerable<int> _argument = Enumerable.Range(0, 1_000_000).Select(x => rnd.Next()).ToArray();

@@ -1,11 +1,11 @@
 ﻿using BenchmarkDotNet.Attributes;
-using CyberMath.Structures.AVLBinaryTree;
-using CyberMath.Structures.BinaryTree;
-using CyberMath.Structures.RedBlackBinaryTree;
+using СyberMath.Structures.BinaryTrees.AVLBinaryTree;
+using СyberMath.Structures.BinaryTrees.BinaryTree;
+using СyberMath.Structures.BinaryTrees.RedBlackBinaryTree;
 
 namespace CyberMath.PerformanceTests.BinaryTrees
 {
-    public class BinaryTreesRemoveBenchmark
+    public sealed class BinaryTreesRemoveBenchmark
     {
         [Benchmark]
         public void Remove_BinaryTree()

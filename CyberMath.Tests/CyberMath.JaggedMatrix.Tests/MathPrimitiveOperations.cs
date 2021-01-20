@@ -1,7 +1,7 @@
-using CyberMath.Structures.JaggedMatrix;
-using CyberMath.Structures.MatrixBase.Exceptions;
-using CyberMath.Structures.MatrixExtensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ÑyberMath.Structures.Matrices.Base.Exceptions;
+using ÑyberMath.Structures.Matrices.Extensions;
+using ÑyberMath.Structures.Matrices.JaggedMatrix;
 
 namespace CyberMath.JaggedMatrix.Tests
 {

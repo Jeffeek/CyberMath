@@ -1,6 +1,6 @@
-﻿using CyberMath.Primitives.Int32;
-using CyberMath.Primitives.Int64;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using СyberMath.Extensions.Int32;
+using СyberMath.Extensions.Int64;
 
 namespace CyberMath.PrimitivesExtensions.Tests
 {

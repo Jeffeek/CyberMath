@@ -14,9 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CyberMath.Extensions\CyberMath.Extensions.csproj" />
-    <ProjectReference Include="..\..\CyberMath.Structures\CyberMath.Structures.BinaryTrees\CyberMath.Structures.AVLBinaryTree\CyberMath.Structures.AVLBinaryTree.csproj" />
-    <ProjectReference Include="..\..\CyberMath.Extensions\CyberMath.Extensions.csproj" />
+    <ProjectReference Include="..\..\src\СyberMath\СyberMath.csproj" />
   </ItemGroup>
 
 </Project>

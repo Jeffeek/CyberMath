@@ -1,8 +1,8 @@
-﻿using CyberMath.Structures.RedBlackBinaryTree;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using СyberMath.Structures.BinaryTrees.RedBlackBinaryTree;
 
 namespace CyberMath.RedBlackBinaryTree.Tests
 {

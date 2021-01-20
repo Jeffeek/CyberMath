@@ -1,12 +1,12 @@
 ﻿using BenchmarkDotNet.Attributes;
-using CyberMath.Structures.AVLBinaryTree;
-using CyberMath.Structures.BinaryTree;
-using CyberMath.Structures.RedBlackBinaryTree;
 using System;
+using СyberMath.Structures.BinaryTrees.AVLBinaryTree;
+using СyberMath.Structures.BinaryTrees.BinaryTree;
+using СyberMath.Structures.BinaryTrees.RedBlackBinaryTree;
 
 namespace CyberMath.PerformanceTests.BinaryTrees
 {
-    public class BinaryTreesAddRangeBenchmark
+    public sealed class BinaryTreesAddRangeBenchmark
     {
         [Params(1000, 100_000, 1_000_000)]
         public int Count;

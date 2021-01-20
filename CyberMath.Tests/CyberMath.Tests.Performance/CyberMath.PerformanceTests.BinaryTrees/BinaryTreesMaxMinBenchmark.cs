@@ -1,12 +1,12 @@
 ﻿using BenchmarkDotNet.Attributes;
-using CyberMath.Structures.BinaryTree;
-using CyberMath.Structures.BinaryTreeBase;
 using System;
 using System.Linq;
+using СyberMath.Structures.BinaryTrees.BinaryTree;
+using СyberMath.Structures.BinaryTrees.BinaryTreeBase;
 
 namespace CyberMath.PerformanceTests.BinaryTrees
 {
-    public class BinaryTreesMaxMinBenchmark
+    public sealed class BinaryTreesMaxMinBenchmark
     {
         private static readonly Random rnd = new Random();
         public static int[] Elements = Enumerable.Range(0, 10_000).Select(x => rnd.Next(-10_000_000, 10_000_000)).ToArray();

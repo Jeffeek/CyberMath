@@ -11,12 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\CyberMath.Extensions\CyberMath.Extensions.csproj" />
-    <ProjectReference Include="..\..\..\CyberMath.Primitives\CyberMath.Primitives.Int32\CyberMath.Primitives.Int32.csproj" />
-    <ProjectReference Include="..\..\..\CyberMath.Primitives\CyberMath.Primitives.Int64\CyberMath.Primitives.Int64.csproj" />
-    <ProjectReference Include="..\..\..\CyberMath.Structures\CyberMath.Structures.BinaryTrees\CyberMath.Structures.AVLBinaryTree\CyberMath.Structures.AVLBinaryTree.csproj" />
-    <ProjectReference Include="..\..\..\CyberMath.Structures\CyberMath.Structures.BinaryTrees\CyberMath.Structures.BinaryTree\CyberMath.Structures.BinaryTree.csproj" />
-    <ProjectReference Include="..\..\..\CyberMath.Structures\CyberMath.Structures.BinaryTrees\CyberMath.Structures.RedBlackBinaryTree\CyberMath.Structures.RedBlackBinaryTree.csproj" />
+    <ProjectReference Include="..\..\..\src\СyberMath\СyberMath.csproj" />
   </ItemGroup>
 
 </Project>

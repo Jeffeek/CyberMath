@@ -24,8 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CyberMath.Primitives\CyberMath.Primitives.Int32\CyberMath.Primitives.Int32.csproj" />
-    <ProjectReference Include="..\..\CyberMath.Primitives\CyberMath.Primitives.Int64\CyberMath.Primitives.Int64.csproj" />
+    <ProjectReference Include="..\..\src\СyberMath\СyberMath.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,8 @@
 ﻿using BenchmarkDotNet.Attributes;
-using CyberMath.Structures.AVLBinaryTree;
-using CyberMath.Structures.BinaryTree;
-using CyberMath.Structures.BinaryTreeBase;
-using CyberMath.Structures.RedBlackBinaryTree;
+using СyberMath.Structures.BinaryTrees.AVLBinaryTree;
+using СyberMath.Structures.BinaryTrees.BinaryTree;
+using СyberMath.Structures.BinaryTrees.BinaryTreeBase;
+using СyberMath.Structures.BinaryTrees.RedBlackBinaryTree;
 
 namespace CyberMath.PerformanceTests.BinaryTrees
 {
