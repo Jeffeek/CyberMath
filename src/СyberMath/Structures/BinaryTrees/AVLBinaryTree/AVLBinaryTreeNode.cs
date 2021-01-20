@@ -22,8 +22,10 @@ namespace СyberMath.Structures.BinaryTrees.AVLBinaryTree
         /// <param name="data">Data to initialize</param>
         public AVLBinaryTreeNode(T data) : base(data) { }
 
+        /// <inheritdoc />
         public override IBinaryTreeNode<T> Insert(T value) => InternalInsert(this, value);
 
+        /// <inheritdoc />
         public override IBinaryTreeNode<T> Remove(T value) => InternalRemove(this, value);
 
         private AVLBinaryTreeNode<T> InternalRemove(AVLBinaryTreeNode<T> node, T value)

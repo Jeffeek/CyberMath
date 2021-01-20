@@ -60,5 +60,9 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTreeBase
         /// </summary>
         /// <param name="binaryTree"></param>
         void MergeWith(IBinaryTree<T> binaryTree);
+        /// <summary>
+        /// Traversal strategy for <see langword="foreach"/> statement
+        /// </summary>
+        public TraversalOrderType TraversalOrderType { get; set; }
     }
 }

@@ -16,10 +16,22 @@ namespace СyberMath.Structures.Matrices.Matrix
         /// Internal matrix needed to implement the class <see cref="Matrix{T}"/>
         /// </summary>
         private readonly T[,] _innerMatrix;
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         public int ColumnsCount { get; }
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         public int RowsCount { get; }
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         public bool IsSquare => RowsCount == ColumnsCount;
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         public T this[int row, int column]
         {
             get => _innerMatrix[row, column];
@@ -153,6 +165,9 @@ namespace СyberMath.Structures.Matrices.Matrix
 
         #region Creation
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         public IMatrixBase<T> CreateMatrixWithoutColumn(int columnIndex)
         {
             if (columnIndex < 0 || columnIndex >= ColumnsCount) throw new ArgumentException("invalid column index");
@@ -162,6 +177,9 @@ namespace СyberMath.Structures.Matrices.Matrix
             return result;
         }
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         public IMatrixBase<T> CreateMatrixWithoutRow(int rowIndex)
         {
             if (rowIndex < 0 || rowIndex >= RowsCount) throw new ArgumentException("invalid row index");
@@ -193,6 +211,25 @@ namespace СyberMath.Structures.Matrices.Matrix
             for (var i = 0; i < rowsAndColumnsCount; i++)
                 result[i, i] = 1;
             return result;
+        }
+
+        /// <summary>
+        /// Creates a vanilla matrix <see>
+        ///     <cref>T</cref>
+        /// </see>
+        /// [,]
+        /// </summary>
+        /// <returns>Vanilla matrix which represents initial matrix</returns>
+        public T[,] CreateVanilla()
+        {
+	        var matrix = new T[RowsCount, ColumnsCount];
+            for (var i = 0; i < RowsCount; i++)
+            {
+	            for (var j = 0; j < ColumnsCount; j++)
+		            matrix[i, j] = this[i, j];
+            }
+
+            return matrix;
         }
 
         #endregion

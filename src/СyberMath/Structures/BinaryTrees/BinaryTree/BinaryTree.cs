@@ -11,6 +11,9 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTree
     public class BinaryTree<T> : BinaryTreeBase<T>
         where T : IComparable<T>, IComparable
     {
+	    /// <inheritdoc />
+	    public BinaryTree() : base() { }
+
         /// <summary>
         /// Creates an instance of <see cref="BinaryTree{T}"/> and adds <paramref name="values"/>
         /// </summary>
@@ -23,6 +26,7 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTree
         /// <param name="values">Values to add</param>
         public BinaryTree(IEnumerable<T> values) : base(values) { }
 
+        /// <inheritdoc />
         public override void Add(T item)
         {
             if (Root == null)

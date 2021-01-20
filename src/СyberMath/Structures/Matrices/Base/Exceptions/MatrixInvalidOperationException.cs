@@ -7,10 +7,13 @@ namespace СyberMath.Structures.Matrices.Base.Exceptions
     /// </summary>
     public class MatrixInvalidOperationException : Exception
     {
+	    /// <inheritdoc />
 	    public override string Message { get; } = "Impossible operation for this matrix";
 
-        public MatrixInvalidOperationException(string message) => Message = message;
+	    /// <inheritdoc />
+	    public MatrixInvalidOperationException(string message) => Message = message;
 
-        public MatrixInvalidOperationException() { }
+	    /// <inheritdoc />
+	    public MatrixInvalidOperationException() { }
     }
 }

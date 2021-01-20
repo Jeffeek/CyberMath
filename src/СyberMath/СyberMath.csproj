@@ -1,20 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Authors>Jeffeek</Authors>
-    <Description>A library with data structures and useful extension methods.
-Support: .NET Core 3.1</Description>
+    <Description>A library with data structures and useful extension methods.Support: .NET Core 3.1</Description>
     <Copyright>Free</Copyright>
     <PackageProjectUrl>https://github.com/Jeffeek/CyberMath</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Jeffeek/CyberMath</RepositoryUrl>
-    <PackageTags>math, matrix, structures, binary-search-tree, binary-tree, extension-methods</PackageTags>
+    <PackageTags>math, matrix, structures, binary-search-tree, binary-tree, extension-methods, cyber, CyberMath</PackageTags>
     <PackageReleaseNotes>Alpha. Support Core 3.1</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageIcon>cyberMath.png</PackageIcon>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\Users\misha\Documents\GitHub\CyberMath\src\СyberMath\СyberMath.xml</DocumentationFile>
-  </PropertyGroup>
-
+  <ItemGroup>
+    <None Include="..\..\cyberMath.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 </Project>

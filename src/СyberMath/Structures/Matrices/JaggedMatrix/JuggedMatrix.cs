@@ -14,11 +14,24 @@ namespace СyberMath.Structures.Matrices.JaggedMatrix
     public class JuggedMatrix<T> : IJuggedMatrix<T>, IEquatable<JuggedMatrix<T>>
     {
         private T[][] _innerMatrix;
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         public int RowsCount { get; }
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         public bool IsSquare { get; }
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new matrix object with count of rows = <paramref name="rowsCount"/>
+        /// and count of columns on each row => <paramref name="elementsAtRow"/>
+        /// </summary>
+        /// <param name="rowsCount"></param>
+        /// <param name="elementsAtRow"></param>
+        /// <exception cref="ArgumentException"></exception>
         public JuggedMatrix(int rowsCount, params int[] elementsAtRow)
         {
             if (elementsAtRow.Length != rowsCount) throw new ArgumentException("Count of Elements in row should be the same length as RowsCount");
@@ -29,6 +42,14 @@ namespace СyberMath.Structures.Matrices.JaggedMatrix
                 IsSquare = true;
         }
 
+
+        /// <summary>
+        /// Initializes a new matrix object with count of rows = <paramref name="rowsCount"/>
+        /// and count of columns on each row => <paramref name="elementsAtRow"/>
+        /// </summary>
+        /// <param name="rowsCount"></param>
+        /// <param name="elementsAtRow"></param>
+        /// <exception cref="ArgumentException"></exception>
         public JuggedMatrix(int rowsCount, IEnumerable<int> elementsAtRow)
         {
 	        var elementsCount = elementsAtRow as int[] ?? elementsAtRow.ToArray();
@@ -58,12 +79,18 @@ namespace СyberMath.Structures.Matrices.JaggedMatrix
 
         #endregion
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         public T this[int row, int column]
         {
             get => _innerMatrix[row][column];
             set => _innerMatrix[row][column] = value;
         }
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         public void ProcessFunctionOverData(Action<int, int> func)
         {
             if (ReferenceEquals(func, null)) return;
@@ -76,10 +103,16 @@ namespace СyberMath.Structures.Matrices.JaggedMatrix
             }
         }
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         public int ElementsInRow(int rowIndex) => _innerMatrix[rowIndex].Length;
 
         #region Matrix Creation 
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         public IMatrixBase<T> CreateMatrixWithoutColumn(int columnIndex)
         {
             var maxColumn = _innerMatrix.Max(x => x.Length);
@@ -106,6 +139,9 @@ namespace СyberMath.Structures.Matrices.JaggedMatrix
             return newMatrix;
         }
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         public IMatrixBase<T> CreateMatrixWithoutRow(int rowIndex)
         {
             if (rowIndex < 0) throw new ArgumentException("Row index is < 0");
@@ -127,10 +163,31 @@ namespace СyberMath.Structures.Matrices.JaggedMatrix
             return newMatrix;
         }
 
+        /// <summary>
+        /// Creates a vanilla array of arrays <see>
+        ///     <cref>T</cref>
+        /// </see>
+        /// [][]
+        /// </summary>
+        /// <returns>Vanilla array of arrays which represents initial matrix</returns>
+        public T[][] CreateVanilla()
+        {
+	        var matrix = new T[RowsCount][];
+	        for (var i = 0; i < RowsCount; i++)
+	        {
+		        matrix[i] = new T[ElementsInRow(i)];
+		        for (var j = 0; j < ElementsInRow(i); j++)
+			        matrix[i][j] = this[i, j];
+	        }
+
+	        return matrix;
+        }
+
         #endregion
 
         #region Row Sorting
 
+        /// <inheritdoc />
         public IJuggedMatrix<T> SortRows()
         {
             var orderedMatrix = _innerMatrix.OrderBy(x => x.Length).ToArray();
@@ -142,6 +199,7 @@ namespace СyberMath.Structures.Matrices.JaggedMatrix
             return matrix;
         }
 
+        /// <inheritdoc />
         public IJuggedMatrix<T> SortRowsByDescending()
         {
             var orderedMatrix = _innerMatrix.OrderByDescending(x => x.Length).ToArray();
@@ -199,6 +257,7 @@ namespace СyberMath.Structures.Matrices.JaggedMatrix
 
         #endregion
 
+        /// <inheritdoc />
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -215,6 +274,7 @@ namespace СyberMath.Structures.Matrices.JaggedMatrix
 
         #region Equality members
 
+        /// <inheritdoc />
         public bool Equals(JuggedMatrix<T> other)
         {
             if (ReferenceEquals(null, other)) return false;

@@ -11,13 +11,23 @@ namespace СyberMath.Structures.BinaryTrees.AVLBinaryTree
     public class AVLBinaryTree<T> : BinaryTreeBase<T>
     where T : IComparable, IComparable<T>
     {
-        public AVLBinaryTree() { }
+	    /// <inheritdoc />
+	    public AVLBinaryTree() : base() { }
 
+        /// <summary>
+        /// Creates an instance of <see cref="AVLBinaryTree{T}"/> and adds <paramref name="values"/>
+        /// </summary>
+        /// <param name="values">Values to add</param>
         public AVLBinaryTree(params T[] values) : base(values) { }
 
+        /// <summary>
+        /// Creates an instance of <see cref="AVLBinaryTree{T}"/> and adds <paramref name="values"/>
+        /// </summary>
+        /// <param name="values">Values to add</param>
         public AVLBinaryTree(IEnumerable<T> values) : base(values) { }
 
-        public override void Add(T item)
+	    /// <inheritdoc />
+	    public override void Add(T item)
         {
             if (ReferenceEquals(Root, null))
             {

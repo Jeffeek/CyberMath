@@ -11,13 +11,17 @@ namespace СyberMath.Structures.BinaryTrees.RedBlackBinaryTree
     public class RedBlackBinaryTree<T> : BinaryTreeBase<T>
     where T : IComparable, IComparable<T>
     {
-        public RedBlackBinaryTree() { }
+	    /// <inheritdoc />
+	    public RedBlackBinaryTree() : base() { }
 
-        public RedBlackBinaryTree(params T[] values) : base(values) { }
+	    /// <inheritdoc />
+	    public RedBlackBinaryTree(params T[] values) : base(values) { }
 
-        public RedBlackBinaryTree(IEnumerable<T> values) : base(values) { }
+	    /// <inheritdoc />
+	    public RedBlackBinaryTree(IEnumerable<T> values) : base(values) { }
 
-        public override void Add(T item)
+	    /// <inheritdoc />
+	    public override void Add(T item)
         {
             if (ReferenceEquals(Root, null))
             {
