@@ -5,8 +5,17 @@
     /// </summary>
     public enum TraversalOrderType
     {
+        /// <summary>
+        /// Preorder way in <see cref="IBinaryTree{T}"/>
+        /// </summary>
         Preorder,
+        /// <summary>
+        /// Inorder way in <see cref="IBinaryTree{T}"/>
+        /// </summary>
         Inorder,
+        /// <summary>
+        /// Postorder way in <see cref="IBinaryTree{T}"/>
+        /// </summary>
         Postorder
     }
 }

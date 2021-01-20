@@ -16,6 +16,7 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTree
         /// <param name="data">Data to initialize</param>
         public BinaryTreeNode(T data) : base(data) { }
 
+        /// <inheritdoc />
         public override IBinaryTreeNode<T> Insert(T value)
         {
             var node = new BinaryTreeNode<T>(value);
@@ -26,6 +27,7 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTree
             return this;
         }
 
+        /// <inheritdoc />
         public override IBinaryTreeNode<T> Remove(T value) => InternalRemove(this, value);
 
         private IBinaryTreeNode<T> InternalRemove(BinaryTreeNode<T> node, T value)

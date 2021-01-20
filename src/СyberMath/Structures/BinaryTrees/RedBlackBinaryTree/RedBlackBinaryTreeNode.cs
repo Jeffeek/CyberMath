@@ -21,6 +21,8 @@ namespace СyberMath.Structures.BinaryTrees.RedBlackBinaryTree
         /// Reference to the parent of the initial node
         /// </summary>
         private RedBlackBinaryTreeNode<T> _parent;
+
+        /// <inheritdoc />
         public RedBlackBinaryTreeNode(T data) : base(data) { }
 
         #region Relatives
@@ -200,6 +202,7 @@ namespace СyberMath.Structures.BinaryTrees.RedBlackBinaryTree
 
         #region Insert
 
+        /// <inheritdoc />
         public override IBinaryTreeNode<T> Insert(T value) => InternalInsert(this, value);
 
         private RedBlackBinaryTreeNode<T> InternalInsert(RedBlackBinaryTreeNode<T> root, T value)
@@ -233,6 +236,7 @@ namespace СyberMath.Structures.BinaryTrees.RedBlackBinaryTree
 
         #region Remove
 
+        /// <inheritdoc />
         public override IBinaryTreeNode<T> Remove(T value) => InternalRemove(this, value);
 
         private RedBlackBinaryTreeNode<T> InternalRemove(RedBlackBinaryTreeNode<T> root, T value)

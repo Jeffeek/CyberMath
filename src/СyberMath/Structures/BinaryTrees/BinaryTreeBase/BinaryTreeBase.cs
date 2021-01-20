@@ -14,12 +14,25 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTreeBase
     {
         private bool _disposed;
 
+        /// <inheritdoc />
         public IBinaryTreeNode<T> Root { get; protected set; }
+
+        /// <inheritdoc />
         public int Count { get; protected set; }
+
+        /// <inheritdoc />
         public bool IsEmpty => Count == 0;
+
+        /// <inheritdoc />
         public bool IsReadOnly => false;
+
+        /// <inheritdoc />
         public TraversalOrderType TraversalOrderType { get; set; }
 
+        /// <summary>
+        /// Creates an instance and adds <paramref name="values"/> to the tree
+        /// </summary>
+        /// <param name="values">values to add</param>
         protected BinaryTreeBase(IEnumerable<T> values) => AddRange(values);
 
         /// <summary>
@@ -27,6 +40,7 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTreeBase
         /// </summary>
         protected BinaryTreeBase() { }
 
+        /// <inheritdoc />
         public int Depth()
         {
             if (IsEmpty) return -1;
@@ -35,8 +49,10 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTreeBase
 
         #region ICollection
 
+        /// <inheritdoc />
         public abstract void Add(T item);
 
+        /// <inheritdoc />
         public bool Remove(T item)
         {
             if (ReferenceEquals(Root, null)) return false;
@@ -46,12 +62,14 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTreeBase
             return true;
         }
 
+        /// <inheritdoc />
         public void Clear()
         {
             Root = null;
             Count = 0;
         }
 
+        /// <inheritdoc />
         public void CopyTo(T[] array, int arrayIndex)
         {
             if (arrayIndex < 0 || arrayIndex >= array.Length) return;
@@ -68,6 +86,7 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTreeBase
 
         #region Add and Merge
 
+        /// <inheritdoc />
         public void AddRange(IEnumerable<T> values)
         {
             if (ReferenceEquals(values, null)) throw new ArgumentNullException(nameof(values));
@@ -75,6 +94,7 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTreeBase
                 Add(value);
         }
 
+        /// <inheritdoc />
         public void MergeWith(IBinaryTree<T> binaryTree)
         {
             if (binaryTree == null) throw new Exception($"{nameof(binaryTree)} was null");
@@ -86,6 +106,7 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTreeBase
 
         #region Enumeration
 
+        /// <inheritdoc />
         public IEnumerator<T> GetEnumerator()
         {
             return TraversalOrderType switch
@@ -103,8 +124,15 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTreeBase
 
         #region Contains
 
+        /// <inheritdoc />
         public bool Contains(T item) => InternalContains(Root, item);
 
+        /// <summary>
+        /// Internal method for searching a <paramref name="data"/> in subtree <paramref name="node"/>
+        /// </summary>
+        /// <param name="node">Subtree where to search</param>
+        /// <param name="data">A value to search</param>
+        /// <returns><see langword="true"/> if <paramref name="data"/> exists in subtree</returns>
         protected bool InternalContains(IBinaryTreeNode<T> node, T data)
         {
             while (true)
@@ -128,6 +156,7 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTreeBase
 
         #region Orders
 
+        /// <inheritdoc />
         public IEnumerable<T> Inorder() => ReferenceEquals(Root, null) ? Enumerable.Empty<T>() : InternalInorder(Root);
 
         private IEnumerable<T> InternalInorder(IBinaryTreeNode<T> node)
@@ -148,6 +177,7 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTreeBase
             return list;
         }
 
+        /// <inheritdoc />
         public IEnumerable<T> Preorder() => ReferenceEquals(Root, null) ? Enumerable.Empty<T>() : InternalPreorder(Root);
 
         private IEnumerable<T> InternalPreorder(IBinaryTreeNode<T> node)
@@ -167,6 +197,7 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTreeBase
             return list;
         }
 
+        /// <inheritdoc />
         public IEnumerable<T> Postorder() => ReferenceEquals(Root, null) ? Enumerable.Empty<T>() : InternalPostorder(Root);
 
         private IEnumerable<T> InternalPostorder(IBinaryTreeNode<T> node)
@@ -223,12 +254,14 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTreeBase
 
         #region MinMax
 
+        /// <inheritdoc />
         public T Max()
         {
             if (Root == null) throw new NullReferenceException("Tree is empty");
             return Root.Max().Data;
         }
 
+        /// <inheritdoc />
         public T Min()
         {
             if (Root == null) throw new NullReferenceException("Tree is empty");
@@ -239,6 +272,7 @@ namespace СyberMath.Structures.BinaryTrees.BinaryTreeBase
 
         #region Dispose
 
+        /// <inheritdoc />
         public void Dispose()
         {
             if (_disposed) return;
