@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using СyberMath.Structures.Matrices.JaggedMatrix;
+﻿using CyberMath.Structures.Matrices.JaggedMatrix;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CyberMath.JaggedMatrix.Tests
 {

@@ -1,8 +1,8 @@
 ﻿using BenchmarkDotNet.Attributes;
 using System;
 using System.Linq;
-using СyberMath.Structures.BinaryTrees.BinaryTree;
-using СyberMath.Structures.BinaryTrees.BinaryTreeBase;
+using CyberMath.Structures.BinaryTrees.BinaryTree;
+using CyberMath.Structures.BinaryTrees.BinaryTreeBase;
 
 namespace CyberMath.PerformanceTests.BinaryTrees
 {

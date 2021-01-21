@@ -1,14 +1,14 @@
 ﻿using BenchmarkDotNet.Attributes;
-using СyberMath.Structures.BinaryTrees.AVLBinaryTree;
-using СyberMath.Structures.BinaryTrees.BinaryTree;
-using СyberMath.Structures.BinaryTrees.BinaryTreeBase;
-using СyberMath.Structures.BinaryTrees.RedBlackBinaryTree;
+using CyberMath.Structures.BinaryTrees.AVLBinaryTree;
+using CyberMath.Structures.BinaryTrees.BinaryTree;
+using CyberMath.Structures.BinaryTrees.BinaryTreeBase;
+using CyberMath.Structures.BinaryTrees.RedBlackBinaryTree;
 
 namespace CyberMath.PerformanceTests.BinaryTrees
 {
     public class BinaryTreesAddBenchmark
     {
-        public int[] AddItem = { 1, 2 };
+        public readonly int[] AddItem = { 1, 2 };
         public IBinaryTree<int> Tree;
 
         [Benchmark]
