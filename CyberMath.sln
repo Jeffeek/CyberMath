@@ -32,7 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FF05A7BD-61C1-44D1-A6F1-C00C446CC54F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "СyberMath", "src\СyberMath\СyberMath.csproj", "{29E0CEC4-182C-4CB9-87E6-6643DB00C288}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath", "src\CyberMath\CyberMath.csproj", "{29E0CEC4-182C-4CB9-87E6-6643DB00C288}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

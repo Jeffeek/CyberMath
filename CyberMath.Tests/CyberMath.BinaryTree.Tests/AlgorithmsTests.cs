@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using CyberMath.Structures.BinaryTrees.BinaryTree;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using СyberMath.Structures.BinaryTrees.BinaryTree;
 
 namespace CyberMath.BinaryTree.Tests
 {
