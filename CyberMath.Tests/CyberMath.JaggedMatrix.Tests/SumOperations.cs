@@ -1,7 +1,7 @@
 ﻿using System.Linq;
+using CyberMath.Structures.Matrices.Base;
+using CyberMath.Structures.Matrices.JaggedMatrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using СyberMath.Structures.Matrices.Base;
-using СyberMath.Structures.Matrices.JaggedMatrix;
 
 namespace CyberMath.JaggedMatrix.Tests
 {

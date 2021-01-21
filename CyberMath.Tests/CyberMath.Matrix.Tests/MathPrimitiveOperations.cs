@@ -1,7 +1,7 @@
+using CyberMath.Structures.Matrices.Base.Exceptions;
+using CyberMath.Structures.Matrices.Extensions;
+using CyberMath.Structures.Matrices.Matrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ÑyberMath.Structures.Matrices.Base.Exceptions;
-using ÑyberMath.Structures.Matrices.Extensions;
-using ÑyberMath.Structures.Matrices.Matrix;
 
 namespace CyberMath.Matrix.Tests
 {

@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\СyberMath\СyberMath.csproj" />
+    <ProjectReference Include="..\..\..\src\CyberMath\CyberMath.csproj" />
   </ItemGroup>
 
 </Project>

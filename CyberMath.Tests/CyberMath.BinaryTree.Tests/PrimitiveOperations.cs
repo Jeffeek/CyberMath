@@ -1,7 +1,7 @@
+using CyberMath.Structures.BinaryTrees.BinaryTree;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
-using ÑyberMath.Structures.BinaryTrees.BinaryTree;
 
 namespace CyberMath.BinaryTree.Tests
 {
