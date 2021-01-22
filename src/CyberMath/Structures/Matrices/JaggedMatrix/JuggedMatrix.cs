@@ -14,13 +14,9 @@ namespace CyberMath.Structures.Matrices.JaggedMatrix
     public class JuggedMatrix<T> : IJuggedMatrix<T>, IEquatable<JuggedMatrix<T>>
     {
         private T[][] _innerMatrix;
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public int RowsCount { get; }
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public bool IsSquare { get; }
 
         #region Constructors
@@ -79,18 +75,14 @@ namespace CyberMath.Structures.Matrices.JaggedMatrix
 
         #endregion
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public T this[int row, int column]
         {
             get => _innerMatrix[row][column];
             set => _innerMatrix[row][column] = value;
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public void ProcessFunctionOverData(Action<int, int> func)
         {
             if (ReferenceEquals(func, null)) return;
@@ -103,9 +95,7 @@ namespace CyberMath.Structures.Matrices.JaggedMatrix
             }
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public int ElementsInRow(int rowIndex) => _innerMatrix[rowIndex].Length;
 
         #region Matrix Creation 
@@ -254,6 +244,19 @@ namespace CyberMath.Structures.Matrices.JaggedMatrix
 
         /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        private IEnumerable<T> ColumnEnumerator(int columnIndex)
+        {
+	        for (var i = 0; i < RowsCount; i++)
+		        yield return this[i, columnIndex];
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<IEnumerable<T>> GetColumnsEnumerable()
+        {
+	        for (var i = 0; i < ElementsInRow(i); i++)
+		        yield return ColumnEnumerator(i);
+        }
 
         #endregion
 
