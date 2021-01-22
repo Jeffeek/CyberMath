@@ -32,7 +32,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FF05A7BD-61C1-44D1-A6F1-C00C446CC54F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath", "src\CyberMath\CyberMath.csproj", "{29E0CEC4-182C-4CB9-87E6-6643DB00C288}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath", "src\CyberMath\CyberMath.csproj", "{29E0CEC4-182C-4CB9-87E6-6643DB00C288}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.Helpers.Tests", "CyberMath.Tests\CyberMath.Helpers.Tests\CyberMath.Helpers.Tests.csproj", "{1D7C1931-909C-411B-87A1-1C7630E2E7FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +82,10 @@ Global
 		{29E0CEC4-182C-4CB9-87E6-6643DB00C288}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29E0CEC4-182C-4CB9-87E6-6643DB00C288}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29E0CEC4-182C-4CB9-87E6-6643DB00C288}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D7C1931-909C-411B-87A1-1C7630E2E7FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D7C1931-909C-411B-87A1-1C7630E2E7FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D7C1931-909C-411B-87A1-1C7630E2E7FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D7C1931-909C-411B-87A1-1C7630E2E7FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +102,7 @@ Global
 		{0EE32045-DC86-4D9F-B152-602EAEF50E1E} = {E2BBB33F-3CE9-4EEF-8533-A80B361C66FA}
 		{EE570311-283A-4816-9CCB-9F553C7F5509} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
 		{29E0CEC4-182C-4CB9-87E6-6643DB00C288} = {FF05A7BD-61C1-44D1-A6F1-C00C446CC54F}
+		{1D7C1931-909C-411B-87A1-1C7630E2E7FE} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7E269A4-25A3-44C8-B284-55DF80EEAA03}
