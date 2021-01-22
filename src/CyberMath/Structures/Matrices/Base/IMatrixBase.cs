@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace CyberMath.Structures.Matrices.Base
@@ -47,5 +48,10 @@ namespace CyberMath.Structures.Matrices.Base
         /// <param name="rowIndex">Column index to remove</param>
         /// <returns>A new <see cref="IMatrixBase{T}"/> matrix without row at <paramref name="rowIndex"/></returns>
         IMatrixBase<T> CreateMatrixWithoutRow(int rowIndex);
+        /// <summary>
+        /// Returns enumerable, which is 'walks' on the column neither default <see cref="IEnumerator"/>
+        /// </summary>
+        /// <returns><see cref="IEnumerable"/> of <see cref="IEnumerable{T}"/> - columns of matrix</returns>
+        IEnumerable<IEnumerable<T>> GetColumnsEnumerable();
     }
 }

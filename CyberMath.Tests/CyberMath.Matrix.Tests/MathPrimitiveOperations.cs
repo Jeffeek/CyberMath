@@ -1,3 +1,4 @@
+using System.Linq;
 using CyberMath.Structures.Matrices.Base.Exceptions;
 using CyberMath.Structures.Matrices.Extensions;
 using CyberMath.Structures.Matrices.Matrix;
@@ -59,32 +60,24 @@ namespace CyberMath.Matrix.Tests
         {
             var matrix1 = new Matrix<int>(3, 4)
             {
-                [0, 0] = 6,
-                [0, 1] = 3,
-                [0, 2] = 5,
-                [0, 3] = -1,
-                [1, 0] = 4,
-                [1, 1] = 34,
-                [1, 2] = 6,
-                [1, 3] = -1,
-                [2, 0] = 34,
-                [2, 1] = 0,
-                [2, 2] = 2,
-                [2, 3] = -1
+                [0, 0] = 6, [0, 1] = 3, [0, 2] = 5, [0, 3] = -1, 
+                [1, 0] = 4, [1, 1] = 34, [1, 2] = 6, [1, 3] = -1,
+                [2, 0] = 34, [2, 1] = 0, [2, 2] = 2, [2, 3] = -1
             };
 
+
             var matrix2 = new Matrix<int>(3, 3)
-            {
-                [0, 0] = 234,
-                [0, 1] = 2,
-                [0, 2] = 1,
-                [1, 0] = 3,
-                [1, 1] = 42,
-                [1, 2] = -90,
-                [2, 0] = 4,
-                [2, 1] = 2,
-                [2, 2] = 2
-            };
+                          {
+	                          [0, 0] = 234,
+	                          [0, 1] = 2,
+	                          [0, 2] = 1,
+	                          [1, 0] = 3,
+	                          [1, 1] = 42,
+	                          [1, 2] = -90,
+	                          [2, 0] = 4,
+	                          [2, 1] = 2,
+	                          [2, 2] = 2
+                          };
 
             Assert.ThrowsException<MatrixInvalidOperationException>(() => matrix1.Add(matrix2));
         }

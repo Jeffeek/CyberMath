@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CyberMath.Structures.Matrices.JaggedMatrix;
 using CyberMath.Structures.Matrices.Matrix;
@@ -66,6 +67,51 @@ namespace CyberMath.Structures.Matrices.Extensions
             }
 
             return juggedMatrix;
+        }
+
+        //TODO: unit-test
+        /// <summary>
+        /// Converts a vanilla .NET matrix <see langword="T"/>[,] to <see cref="IMatrix{T}"/>
+        /// </summary>
+        /// <typeparam name="T">ANY</typeparam>
+        /// <param name="matrix">Initial matrix to convert</param>
+        /// <returns><see cref="IMatrix{T}"/>, made on base <paramref name="matrix"/></returns>
+        public static IMatrix<T> ToMatrix<T>(this T[,] matrix)
+        {
+	        if(matrix == null) throw new ArgumentNullException(nameof(matrix));
+	        var newMatrix = new Matrix<T>(matrix.GetLength(0), matrix.GetLength(1));
+	        for (var i = 0; i < newMatrix.RowsCount; i++)
+	        {
+		        for (var j = 0; j < newMatrix.ColumnsCount; j++)
+		        {
+			        newMatrix[i, j] = matrix[i, j];
+		        }
+	        }
+
+	        return newMatrix;
+        }
+
+        //TODO: unit-test
+        /// <summary>
+        /// Converts a vanilla .NET matrix <see langword="T"/>[][] to <see cref="IJuggedMatrix{T}"/>
+        /// </summary>
+        /// <typeparam name="T">ANY</typeparam>
+        /// <param name="matrix">Initial matrix to convert</param>
+        /// <returns><see cref="IJuggedMatrix{T}"/>, made on base <paramref name="matrix"/></returns>
+        public static IJuggedMatrix<T> ToJuggedMatrix<T>(this T[][] matrix)
+        {
+	        if (matrix == null) throw new ArgumentNullException(nameof(matrix));
+	        if (matrix.Any(x => x == null)) throw new NullReferenceException(nameof(matrix) + " one or more rows are null");
+	        var newJuggedMatrix = new JuggedMatrix<T>(matrix.Length, matrix.Select(row => row.Length));
+	        for (var i = 0; i < matrix.Length; i++)
+	        {
+		        for (var j = 0; j < newJuggedMatrix.ElementsInRow(i); j++)
+		        {
+			        newJuggedMatrix[i, j] = matrix[i][j];
+		        }
+	        }
+
+	        return newJuggedMatrix;
         }
     }
 }

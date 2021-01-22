@@ -2,8 +2,9 @@
 
 namespace CyberMath.Structures.Matrices.Matrix
 {
+
     /// <summary>
-    /// Interface for vanilla Matrix. Implements <see cref="IMatrixBase{T}"/>
+    /// Interface for vanilla Matrix. Implements <see cref="T:CyberMath.Structures.Matrices.Base.IMatrixBase`1" />
     /// </summary>
     /// <typeparam name="T">ANY</typeparam>
     public interface IMatrix<T> : IMatrixBase<T>

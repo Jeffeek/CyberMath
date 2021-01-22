@@ -6,32 +6,24 @@ using CyberMath.Structures.Matrices.Base;
 
 namespace CyberMath.Structures.Matrices.Matrix
 {
-    /// <summary>
-    /// Implementation of <see cref="IMatrix{T}"/> with Math-functional methods
+	/// <summary>
+    /// Implementation of <see cref="T:CyberMath.Structures.Matrices.Matrix.IMatrix`1" /> with Math-functional methods
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T" />
     public sealed class Matrix<T> : IMatrix<T>, IEquatable<Matrix<T>>
     {
         /// <summary>
         /// Internal matrix needed to implement the class <see cref="Matrix{T}"/>
         /// </summary>
         private readonly T[,] _innerMatrix;
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public int ColumnsCount { get; }
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public int RowsCount { get; }
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public bool IsSquare => RowsCount == ColumnsCount;
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public T this[int row, int column]
         {
             get => _innerMatrix[row, column];
@@ -257,6 +249,18 @@ namespace CyberMath.Structures.Matrices.Matrix
         /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
+        private IEnumerable<T> ColumnEnumerator(int columnIndex)
+        {
+	        for (var i = 0; i < RowsCount; i++)
+		        yield return this[i, columnIndex];
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<IEnumerable<T>> GetColumnsEnumerable()
+        {
+	        for (var i = 0; i < ColumnsCount; i++)
+		        yield return ColumnEnumerator(i);
+        }
         #endregion
     }
 }
