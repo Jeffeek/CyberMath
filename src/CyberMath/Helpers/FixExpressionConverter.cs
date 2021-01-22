@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace CyberMath.Helpers
 {
-	//TODO: unit-test
 	/// <summary>
 	/// Class for converting xFix <see langword="expression"/> into yFix: <br/>
 	/// <example>
@@ -19,6 +18,7 @@ namespace CyberMath.Helpers
 	public static class FixExpressionConverter
     {
 	    private static readonly char[] _operators = { '*', '-', '+', '/', '^' };
+
 	    private static int GetOperatorPriority(char charOperator)
 	    {
 		    switch (charOperator)
@@ -45,6 +45,7 @@ namespace CyberMath.Helpers
 				    return 0;
 		    }
 	    }
+
 	    private static bool InfixValidity(string expToValidate)
 	    {
 		    var bracesBalance = 0;
@@ -176,8 +177,7 @@ namespace CyberMath.Helpers
 			if (expression == null) throw new ArgumentNullException(nameof(expression));
 			if (!InfixValidity(expression)) throw new ArgumentException(nameof(expression));
 			string reversedInfixExpression = "",
-			       prefixExpression = "",
-			       reversedPrefixExpression = "";
+			       prefixExpression = "";
 
 			for (var i = expression.Length; i > 0; i--)
 			{
@@ -189,7 +189,7 @@ namespace CyberMath.Helpers
 				                           };
 			}
 
-			reversedPrefixExpression = InfixToPostfix(reversedInfixExpression);
+			var reversedPrefixExpression = InfixToPostfix(reversedInfixExpression);
 
 			for (var i = reversedPrefixExpression.Length; i > 0; i--)
 				prefixExpression += reversedPrefixExpression[i - 1];

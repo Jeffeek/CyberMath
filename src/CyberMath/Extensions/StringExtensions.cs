@@ -34,7 +34,7 @@ namespace CyberMath.Extensions
         /// <param name="inputOriginal">First string to check</param>
         /// <param name="testInput">Second string to check</param>
         /// <returns><see cref="bool"/>: true if two string are anagrams of each other</returns>
-        public static bool IsAnagram(this string inputOriginal, string testInput)
+        public static bool IsAnagramOf(this string inputOriginal, string testInput)
         {
             if (ReferenceEquals(inputOriginal, null)) throw new ArgumentNullException(nameof(inputOriginal));
             if (ReferenceEquals(testInput, null)) throw new ArgumentNullException(nameof(testInput));
@@ -52,7 +52,6 @@ namespace CyberMath.Extensions
             return true;
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Creates a <see cref="Dictionary{TKey,TValue}"/> where <see langword="TKey"/> is <see cref="char"/> and <see langword="TValue"/> is <see cref="int"/> (count of <see langword="TKey"/> in input string)
         /// </summary>
@@ -116,11 +115,13 @@ namespace CyberMath.Extensions
             return sb.ToString();
         }
 
+        //TODO: unit-test
         /// <summary>
         /// Returns <paramref name="input"/> <seealso cref="string"/> converted to <see cref="int"/>
         /// </summary>
         /// <param name="input">Input string, which is number</param>
         /// <returns><see cref="int"/> result number</returns>
+        /// <exception cref="ArgumentException">When <paramref name="input"/> represents not <see cref="Int32"/></exception>
         public static int ToInt32(this string input)
         {
             if (ReferenceEquals(input, null)) throw new NullReferenceException(nameof(input));
@@ -129,11 +130,13 @@ namespace CyberMath.Extensions
             throw new ArgumentException(nameof(input));
         }
 
+        //TODO: unit-test
         /// <summary>
         /// Returns <paramref name="input"/> <seealso cref="string"/> converted to <see cref="long"/>
         /// </summary>
         /// <param name="input">Input string, which is number</param>
         /// <returns><see cref="long"/> result number</returns>
+        /// <exception cref="ArgumentException">When <paramref name="input"/> represents not <see cref="Int64"/></exception>
         public static long ToInt64(this string input)
         {
             if (ReferenceEquals(input, null)) throw new NullReferenceException(nameof(input));

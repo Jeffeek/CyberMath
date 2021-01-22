@@ -24,7 +24,6 @@ namespace CyberMath.Structures.Matrices.Extensions
                 yield return matrix.ElementsInRow(i);
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Creates a new instance of <see cref="IMatrix{T}"/> from <see cref="IJuggedMatrix{T}"/>
         /// </summary>
@@ -69,7 +68,6 @@ namespace CyberMath.Structures.Matrices.Extensions
             return juggedMatrix;
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Converts a vanilla .NET matrix <see langword="T"/>[,] to <see cref="IMatrix{T}"/>
         /// </summary>
@@ -91,7 +89,6 @@ namespace CyberMath.Structures.Matrices.Extensions
 	        return newMatrix;
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Converts a vanilla .NET matrix <see langword="T"/>[][] to <see cref="IJuggedMatrix{T}"/>
         /// </summary>

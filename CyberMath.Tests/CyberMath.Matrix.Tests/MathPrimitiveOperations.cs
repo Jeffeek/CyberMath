@@ -1,4 +1,3 @@
-using System.Linq;
 using CyberMath.Structures.Matrices.Base.Exceptions;
 using CyberMath.Structures.Matrices.Extensions;
 using CyberMath.Structures.Matrices.Matrix;

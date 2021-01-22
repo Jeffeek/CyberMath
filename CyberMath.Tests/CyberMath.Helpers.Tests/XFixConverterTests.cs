@@ -6,7 +6,7 @@ namespace CyberMath.Helpers.Tests
     public class XFixConverterTests
     {
         [TestMethod]
-        public void InfixToPostFixTest()
+        public void InfixToPostfixTest()
         {
 	        var infixes = new[]
 	                      {
@@ -47,7 +47,7 @@ namespace CyberMath.Helpers.Tests
         }
 
         [TestMethod]
-        public void InfixToPreFixTest()
+        public void InfixToPrefixTest()
         {
 	        var infixes = new[]
 	                      {
@@ -88,20 +88,20 @@ namespace CyberMath.Helpers.Tests
         }
 
         [TestMethod]
-        public void PostfixToInFixTest()
+        public void PostfixToInfixTest()
         {
 	        var infixes = new[]
 	                      {
-		                      "a+b*(c^d-e)^(f+g*h)-i",
-		                      "(((a*b)+(c/d))-e)",
-		                      "A+B-C",
-		                      "A+B*C",
-		                      "(A+B)/(C-D)",
-		                      "((A+B)*(C-D)+E)/(F+G)",
-		                      "A+B*C/D-E",
-		                      "(A+B*(C-D))/E",
-		                      "A*(B+C)",
-		                      "(X*Y+Z)"
+							  "((a+(b*(((c^d)-e)^(f+(g*h)))))-i)",
+							  "(((a*b)+(c/d))-e)",
+							  "((A+B)-C)",
+							  "(A+(B*C))",
+							  "((A+B)/(C-D))",
+							  "((((A+B)*(C-D))+E)/(F+G))",
+							  "((A+((B*C)/D))-E)",
+							  "((A+(B*(C-D)))/E)",
+							  "(A*(B+C))",
+							  "((X*Y)+Z)"
 	                      };
 
 	        var postfixes = new[]
@@ -123,24 +123,24 @@ namespace CyberMath.Helpers.Tests
 	        {
 		        var expected = infixes[i];
 		        var actual = FixExpressionConverter.PostfixToInfix(postfixes[i]);
-		        //Assert.IsTrue(actual == expected);
+		        Assert.IsTrue(actual == expected);
 	        }
         }
 
         [TestMethod]
-        public void PrefixToInFixTest()
+        public void PrefixToInfixTest()
         {
 	        var infixes = new[]
 	                      {
-		                      "(((a*b)+(c/d))-e)",
-		                      "A+B-C",
-		                      "A+B*C",
-		                      "(A+B)/(C-D)",
-		                      "((A+B)*(C-D)+E)/(F+G)",
-		                      "A+B*C/D-E",
-		                      "(A+B*(C-D))/E",
-		                      "A*(B+C)",
-		                      "(X*Y+Z)"
+							  "(((a*b)+(c/d))-e)",
+							  "(A+(B-C))",
+							  "(A+(B*C))",
+							  "((A+B)/(C-D))",
+							  "((((A+B)*(C-D))+E)/(F+G))",
+							  "(A+((B*(C/D))-E))",
+							  "((A+(B*(C-D)))/E)",
+							  "(A*(B+C))",
+							  "((X*Y)+Z)"
 	                      };
 
 			var prefixes = new[]
@@ -161,8 +161,82 @@ namespace CyberMath.Helpers.Tests
 	        {
 		        var expected = infixes[i];
 		        var actual = FixExpressionConverter.PrefixToInfix(prefixes[i]);
-		        //Assert.IsTrue(actual == expected);
+		        Assert.IsTrue(actual == expected);
 	        }
         }
+
+        [TestMethod]
+        public void PrefixToPostfixTest()
+        {
+	        var prefixes = new[]
+	                       {
+		                       "-+*ab/cde",
+		                       "+A-BC",
+		                       "+A*BC",
+		                       "/+AB-CD",
+		                       "/+*+AB-CDE+FG",
+		                       "+A-*B/CDE",
+		                       "/+A*B-CDE",
+		                       "*A+BC",
+		                       "+*XYZ"
+	                       };
+
+	        var postfixes = new[]
+	                       {
+							   "ab*cd/+e-",
+							   "ABC-+",
+							   "ABC*+",
+							   "AB+CD-/",
+							   "AB+CD-*E+FG+/",
+							   "ABCD/*E-+",
+							   "ABCD-*+E/",
+							   "ABC+*",
+							   "XY*Z+"
+	                       };
+
+	        for (var i = 0; i < prefixes.Length; i++)
+	        {
+		        var expected = postfixes[i];
+		        var actual = FixExpressionConverter.PrefixToPostfix(prefixes[i]);
+		        Assert.IsTrue(actual == expected);
+	        }
+        }
+
+        [TestMethod]
+        public void PostfixToPrefixTest()
+        {
+	        var prefixes = new[]
+	                       {
+		                       "-+*ab/cde",
+		                       "+A-BC",
+		                       "+A*BC",
+		                       "/+AB-CD",
+		                       "/+*+AB-CDE+FG",
+		                       "+A-*B/CDE",
+		                       "/+A*B-CDE",
+		                       "*A+BC",
+		                       "+*XYZ"
+	                       };
+
+	        var postfixes = new[]
+	                        {
+		                        "ab*cd/+e-",
+		                        "ABC-+",
+		                        "ABC*+",
+		                        "AB+CD-/",
+		                        "AB+CD-*E+FG+/",
+		                        "ABCD/*E-+",
+		                        "ABCD-*+E/",
+		                        "ABC+*",
+		                        "XY*Z+"
+	                        };
+
+	        for (var i = 0; i < prefixes.Length; i++)
+	        {
+		        var expected = prefixes[i];
+		        var actual = FixExpressionConverter.PostfixToPrefix(postfixes[i]);
+		        Assert.IsTrue(actual == expected);
+	        }
+		}
 	}
 }
