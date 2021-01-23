@@ -7,7 +7,7 @@ namespace CyberMath.Extensions
     /// </summary>
     public static class RandomExtensions
     {
-        /// <summary>
+	    /// <summary>
         /// Generates a <see cref="double"/> number between <paramref name="min"/> and <paramref name="max"/>
         /// </summary>
         /// <param name="random">Random instance</param>

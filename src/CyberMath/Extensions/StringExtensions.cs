@@ -144,5 +144,41 @@ namespace CyberMath.Extensions
                 return result;
             throw new ArgumentException(nameof(input));
         }
+
+        /// <summary>
+        /// Converts <paramref name="input"/> string to alternating case
+        /// <br/>
+        /// <c><example>
+        /// <paramref name="input"/> = kEk<br/>
+        /// output = KeK
+        /// </example></c>
+        /// </summary>
+        /// <param name="input">Input string to convert</param>
+        /// <returns>New alternating string of <paramref name="input"/></returns>
+        public static string ToAlternatingCase(this string input)
+        {
+	        if (ReferenceEquals(input, null)) throw new ArgumentNullException(nameof(input));
+	        var length = input.Length;
+	        var output = new char[length];
+	        int i = 0, j = length - 1;
+	        while (i <= j)
+	        {
+		        output[i] = ShiftCase(input[i++]);
+		        output[j] = ShiftCase(input[j--]);
+	        }
+
+	        return String.Concat(output);
+        }
+
+        private static char ShiftCase(char c)
+        {
+	        var i = (int)(c);
+	        if (i < 65 || i > 122)
+		        return c;
+	        if (i < 97 && i > 90)
+		        return c;
+
+	        return (char)(i > 90 ? (c & ~0x20) : (c | 0x20));
+        }
     }
 }
