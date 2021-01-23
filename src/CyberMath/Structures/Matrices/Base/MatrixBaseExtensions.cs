@@ -168,7 +168,7 @@ namespace CyberMath.Structures.Matrices.Base
         #region Main diagonal
 
         /// <summary>
-        /// Calculates sum of all numbers in main diagonal in <see cref="IMatrixBase{T}"/>
+        /// <c>ONLY FOR SQUARE</c><br/>Calculates sum of all items in main diagonal in <see cref="IMatrixBase{T}"/>
         /// </summary>
         /// <param name="matrix">Initial matrix</param>
         /// <returns>Sum in main diagonal</returns>
@@ -184,7 +184,7 @@ namespace CyberMath.Structures.Matrices.Base
         /// <summary>
         /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
         /// </summary>
-        /// <param name="matrix"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></param>
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
         /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
         public static long DiagonalSum(this IMatrixBase<long> matrix)
         {
@@ -198,7 +198,7 @@ namespace CyberMath.Structures.Matrices.Base
         /// <summary>
         /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
         /// </summary>
-        /// <param name="matrix"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></param>
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
         /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
         public static double DiagonalSum(this IMatrixBase<double> matrix)
         {
@@ -212,7 +212,7 @@ namespace CyberMath.Structures.Matrices.Base
         /// <summary>
         /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
         /// </summary>
-        /// <param name="matrix"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></param>
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
         /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
         public static decimal DiagonalSum(this IMatrixBase<decimal> matrix)
         {
@@ -226,7 +226,7 @@ namespace CyberMath.Structures.Matrices.Base
         /// <summary>
         /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
         /// </summary>
-        /// <param name="matrix"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></param>
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
         /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
         public static int DiagonalSum(this IMatrixBase<short> matrix)
         {
@@ -242,10 +242,10 @@ namespace CyberMath.Structures.Matrices.Base
         #region Side diagonal
 
         /// <summary>
-        /// Calculates sum of all numbers of side diagonal in <see cref="IMatrixBase{T}"/>
+        /// Calculates sum of all items of side diagonal in <see cref="IMatrixBase{T}"/>
         /// </summary>
         /// <param name="matrix">Initial matrix</param>
-        /// <returns>Sum in main diagonal</returns>
+        /// <returns>Sum on side diagonal</returns>
         public static int SideDiagonalSum(this IMatrixBase<int> matrix)
         {
             if (!matrix.IsSquare) throw new MatrixInvalidOperationException("Diagonal sum can be calculated only for square matrices");
@@ -259,7 +259,7 @@ namespace CyberMath.Structures.Matrices.Base
         /// <inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/>
         /// </summary>
         /// <param name="matrix"><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></param>
-        /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
+        /// <returns><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></returns>
         public static long SideDiagonalSum(this IMatrixBase<long> matrix)
         {
             if (!matrix.IsSquare) throw new MatrixInvalidOperationException("Diagonal sum can be calculated only for square matrices");
@@ -284,10 +284,10 @@ namespace CyberMath.Structures.Matrices.Base
         }
 
         /// <summary>
-        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
+        /// <inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/>
         /// </summary>
-        /// <param name="matrix"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></param>
-        /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
+        /// <param name="matrix"><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></param>
+        /// <returns><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></returns>
         public static decimal SideDiagonalSum(this IMatrixBase<decimal> matrix)
         {
             if (!matrix.IsSquare) throw new MatrixInvalidOperationException("Diagonal sum can be calculated only for square matrices");
@@ -298,10 +298,10 @@ namespace CyberMath.Structures.Matrices.Base
         }
 
         /// <summary>
-        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
+        /// <inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/>
         /// </summary>
-        /// <param name="matrix"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></param>
-        /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
+        /// <param name="matrix"><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></param>
+        /// <returns><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></returns>
         public static int SideDiagonalSum(this IMatrixBase<short> matrix)
         {
             if (!matrix.IsSquare) throw new MatrixInvalidOperationException("Diagonal sum can be calculated only for square matrices");
@@ -310,6 +310,7 @@ namespace CyberMath.Structures.Matrices.Base
                 sum += matrix[i, j];
             return sum;
         }
+
 
         #endregion
 
@@ -424,10 +425,10 @@ namespace CyberMath.Structures.Matrices.Base
         #region Main diagonal
 
         /// <summary>
-        /// Calculates sum of all numbers in main diagonal in <see cref="IMatrixBase{T}"/>
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
         /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <returns>Sum in main diagonal</returns>
+        /// <param name="matrix"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></param>
+        /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
         public static int DiagonalSum(this IMatrixBase<int?> matrix)
         {
             if (!matrix.IsSquare) throw new MatrixInvalidOperationException("Diagonal sum can be calculated only for square matrices");
@@ -510,10 +511,10 @@ namespace CyberMath.Structures.Matrices.Base
         }
 
         /// <summary>
-        /// Calculates sum of all string in main diagonal in <see cref="IMatrixBase{T}"/>
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
         /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <returns>Sum in main diagonal</returns>
+        /// <param name="matrix"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></param>
+        /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
         public static string DiagonalSum(this IMatrixBase<string> matrix)
         {
             if (!matrix.IsSquare) throw new MatrixInvalidOperationException("Diagonal sum can be calculated only for square matrices");
@@ -617,38 +618,21 @@ namespace CyberMath.Structures.Matrices.Base
 
         #endregion
 
-        /// <summary>
-        /// Calculates sum of all string in <see cref="IMatrixBase{T}"/>
-        /// </summary>
-        /// <param name="matrix">Initial matrix</param>
-        /// <returns>Sum in main diagonal</returns>
-        public static string Sum(this IMatrixBase<string> matrix)
-        {
-            var sb = new StringBuilder();
-            for (var i = 0; i < matrix.RowsCount; i++)
-            {
-                for (var j = 0; j < matrix.ElementsInRow(i); j++)
-                {
-                    sb.Append(matrix[i, j]).Append(' ');
-                }
-            }
-
-            return sb.ToString().TrimEnd();
-        }
-
         #endregion
 
         #region Generic
 
-        #region int
+        #region Main diagonal
+
+        #region Int32
 
         /// <summary>
-        /// Calculate sum of diagonal elements. Only if <see cref="IMatrixBase{T}"/> is square
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
         /// </summary>
-        /// <typeparam name="TSource">Generic type</typeparam>
-        /// <param name="matrix">Initial matrix</param>
+        /// <typeparam name="TSource"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></typeparam>
+        /// <param name="matrix"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></param>
         /// <param name="selector">Selector for sum</param>
-        /// <returns>Main diagonal sum</returns>
+        /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
         public static int DiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, int> selector)
         {
             if (matrix == null) throw new ArgumentException("Matrix is null!");
@@ -663,12 +647,11 @@ namespace CyberMath.Structures.Matrices.Base
         }
 
         /// <summary>
-        /// Calculate sum of diagonal elements. Only if <see cref="IMatrixBase{T}"/> is square
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
         /// </summary>
-        /// <typeparam name="TSource">Generic type</typeparam>
-        /// <param name="matrix">Initial matrix</param>
-        /// <param name="selector">Selector for sum</param>
-        /// <returns>Main diagonal sum</returns>
+        /// <typeparam name="TSource"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></typeparam>
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
+        /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
         public static int DiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, int?> selector)
         {
             if (matrix == null) throw new ArgumentException("Matrix is null!");
@@ -687,21 +670,21 @@ namespace CyberMath.Structures.Matrices.Base
 
         #endregion
 
-        #region double
+        #region Int64
 
         /// <summary>
-        /// Calculate sum of diagonal elements. Only if <see cref="IMatrixBase{T}"/> is square
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
         /// </summary>
-        /// <typeparam name="TSource">Generic type</typeparam>
-        /// <param name="matrix">Initial matrix</param>
+        /// <typeparam name="TSource"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></typeparam>
+        /// <param name="matrix"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></param>
         /// <param name="selector">Selector for sum</param>
-        /// <returns>Main diagonal sum</returns>
-        public static double DiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, double> selector)
+        /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
+        public static long DiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, long> selector)
         {
             if (matrix == null) throw new ArgumentException("Matrix is null!");
             if (selector == null) throw new ArgumentException("selector is null");
             if (!matrix.IsSquare) throw new ArgumentException("Diagonal sum can be calculated only for square matrix (ColumnsCount = RowsCount)");
-            double sum = 0;
+            var sum = 0L;
             for (var i = 0; i < matrix.RowsCount; i++)
             {
                 sum += selector(matrix[i, i]);
@@ -710,39 +693,84 @@ namespace CyberMath.Structures.Matrices.Base
         }
 
         /// <summary>
-        /// Calculate sum of diagonal elements. Only if <see cref="IMatrixBase{T}"/> is square
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
         /// </summary>
-        /// <typeparam name="TSource">Generic type</typeparam>
-        /// <param name="matrix">Initial matrix</param>
-        /// <param name="selector">Selector for sum</param>
-        /// <returns>Main diagonal sum</returns>
-        public static double DiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, double?> selector)
+        /// <typeparam name="TSource"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></typeparam>
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
+        /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
+        public static long DiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, long?> selector)
         {
             if (matrix == null) throw new ArgumentException("Matrix is null!");
             if (selector == null) throw new ArgumentException("selector is null");
             if (!matrix.IsSquare) throw new ArgumentException("Diagonal sum can be calculated only for square matrix (ColumnsCount = RowsCount)");
-            double sum = 0;
+            var sum = 0L;
             for (var i = 0; i < matrix.RowsCount; i++)
             {
-	            if (matrix[i, i] == null) continue;
-	            var value = selector(matrix[i, i]);
-	            if (value.HasValue)
-		            sum += value.Value;
+                if (matrix[i, i] == null) continue;
+                var value = selector(matrix[i, i]);
+                if (value.HasValue)
+                    sum += value.Value;
             }
             return sum;
         }
 
         #endregion
 
-        #region decimal
+        #region Double
 
         /// <summary>
-        /// Calculate sum of diagonal elements. Only if <see cref="IMatrixBase{T}"/> is square
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
         /// </summary>
-        /// <typeparam name="TSource">Generic type</typeparam>
-        /// <param name="matrix">Initial matrix</param>
+        /// <typeparam name="TSource"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></typeparam>
+        /// <param name="matrix"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></param>
         /// <param name="selector">Selector for sum</param>
-        /// <returns>Main diagonal sum</returns>
+        /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
+        public static double DiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, double> selector)
+        {
+            if (matrix == null) throw new ArgumentException("Matrix is null!");
+            if (selector == null) throw new ArgumentException("selector is null");
+            if (!matrix.IsSquare) throw new ArgumentException("Diagonal sum can be calculated only for square matrix (ColumnsCount = RowsCount)");
+            var sum = 0.0D;
+            for (var i = 0; i < matrix.RowsCount; i++)
+            {
+                sum += selector(matrix[i, i]);
+            }
+            return sum;
+        }
+
+        /// <summary>
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
+        /// </summary>
+        /// <typeparam name="TSource"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></typeparam>
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
+        /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
+        public static double DiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, double?> selector)
+        {
+            if (matrix == null) throw new ArgumentException("Matrix is null!");
+            if (selector == null) throw new ArgumentException("selector is null");
+            if (!matrix.IsSquare) throw new ArgumentException("Diagonal sum can be calculated only for square matrix (ColumnsCount = RowsCount)");
+            var sum = 0.0D;
+            for (var i = 0; i < matrix.RowsCount; i++)
+            {
+                if (matrix[i, i] == null) continue;
+                var value = selector(matrix[i, i]);
+                if (value.HasValue)
+                    sum += value.Value;
+            }
+            return sum;
+        }
+
+        #endregion
+
+        #region Decimal
+
+        /// <summary>
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
+        /// </summary>
+        /// <typeparam name="TSource"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></typeparam>
+        /// <param name="matrix"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
         public static decimal DiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, decimal> selector)
         {
             if (matrix == null) throw new ArgumentException("Matrix is null!");
@@ -757,12 +785,12 @@ namespace CyberMath.Structures.Matrices.Base
         }
 
         /// <summary>
-        /// Calculate sum of diagonal elements. Only if <see cref="IMatrixBase{T}"/> is square
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
         /// </summary>
-        /// <typeparam name="TSource">Generic type</typeparam>
-        /// <param name="matrix">Initial matrix</param>
+        /// <typeparam name="TSource"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></typeparam>
+        /// <param name="matrix"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></param>
         /// <param name="selector">Selector for sum</param>
-        /// <returns>Main diagonal sum</returns>
+        /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
         public static decimal? DiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, decimal?> selector)
         {
             if (matrix == null) throw new ArgumentException("Matrix is null!");
@@ -778,6 +806,259 @@ namespace CyberMath.Structures.Matrices.Base
             }
             return sum;
         }
+
+        #endregion
+
+        #region Short
+
+        /// <summary>
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
+        /// </summary>
+        /// <typeparam name="TSource"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></typeparam>
+        /// <param name="matrix"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
+        public static int DiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, short> selector)
+        {
+            if (matrix == null) throw new ArgumentException("Matrix is null!");
+            if (selector == null) throw new ArgumentException("selector is null");
+            if (!matrix.IsSquare) throw new ArgumentException("Diagonal sum can be calculated only for square matrix (ColumnsCount = RowsCount)");
+            var sum = 0;
+            for (var i = 0; i < matrix.RowsCount; i++)
+            {
+                sum += selector(matrix[i, i]);
+            }
+            return sum;
+        }
+
+        /// <summary>
+        /// <inheritdoc cref="DiagonalSum(IMatrixBase{int})"/>
+        /// </summary>
+        /// <typeparam name="TSource"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></typeparam>
+        /// <param name="matrix"><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns><inheritdoc cref="DiagonalSum(IMatrixBase{int})"/></returns>
+        public static int DiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, short?> selector)
+        {
+            if (matrix == null) throw new ArgumentException("Matrix is null!");
+            if (selector == null) throw new ArgumentException("selector is null");
+            if (!matrix.IsSquare) throw new ArgumentException("Diagonal sum can be calculated only for square matrix (ColumnsCount = RowsCount)");
+            var sum = 0;
+            for (var i = 0; i < matrix.RowsCount; i++)
+            {
+                if (matrix[i, i] == null) continue;
+                var value = selector(matrix[i, i]);
+                if (value.HasValue)
+                    sum += value.Value;
+            }
+            return sum;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Side diagonal
+
+        #region Int32
+
+        /// <summary>
+        /// <inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/>
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="matrix"><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></returns>
+        public static int SideDiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, int> selector)
+        {
+	        if (!matrix.IsSquare) throw new MatrixInvalidOperationException("Diagonal sum can be calculated only for square matrices");
+	        var sum = 0;
+	        for (int i = 0, j = matrix.RowsCount - 1; i < matrix.RowsCount; i++, j--)
+		        sum += selector(matrix[i, j]);
+	        return sum;
+        }
+
+        /// <summary>
+        /// <inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/>
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="matrix"><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></returns>
+        public static int SideDiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, int?> selector)
+        {
+	        if (!matrix.IsSquare) throw new MatrixInvalidOperationException("Diagonal sum can be calculated only for square matrices");
+	        var sum = 0;
+	        for (int i = 0, j = matrix.RowsCount - 1; i < matrix.RowsCount; i++, j--)
+            {
+	            var value = selector(matrix[i, j]);
+	            if (value.HasValue)
+		            sum += value.Value;
+            }
+	        return sum;
+        }
+
+        #endregion
+
+        #region Int64
+
+        /// <summary>
+        /// <inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/>
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="matrix"><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></returns>
+        public static long SideDiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, long> selector)
+        {
+	        if (!matrix.IsSquare) throw new MatrixInvalidOperationException("Diagonal sum can be calculated only for square matrices");
+	        var sum = 0L;
+	        for (int i = 0, j = matrix.RowsCount - 1; i < matrix.RowsCount; i++, j--)
+		        sum += selector(matrix[i, j]);
+	        return sum;
+        }
+
+        /// <summary>
+        /// <inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/>
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="matrix"><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></returns>
+        public static long SideDiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, long?> selector)
+        {
+	        if (!matrix.IsSquare) throw new MatrixInvalidOperationException("Diagonal sum can be calculated only for square matrices");
+	        var sum = 0L;
+	        for (int i = 0, j = matrix.RowsCount - 1; i < matrix.RowsCount; i++, j--)
+	        {
+		        var value = selector(matrix[i, j]);
+		        if (value.HasValue)
+			        sum += value.Value;
+	        }
+	        return sum;
+        }
+
+        #endregion
+
+        #region Double
+
+        /// <summary>
+        /// <inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/>
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="matrix"><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></returns>
+        public static double SideDiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, double> selector)
+        {
+	        if (!matrix.IsSquare) throw new MatrixInvalidOperationException("Diagonal sum can be calculated only for square matrices");
+	        var sum = 0D;
+	        for (int i = 0, j = matrix.RowsCount - 1; i < matrix.RowsCount; i++, j--)
+		        sum += selector(matrix[i, j]);
+	        return sum;
+        }
+
+        /// <summary>
+        /// <inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/>
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="matrix"><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></returns>
+        public static double SideDiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, double?> selector)
+        {
+	        if (!matrix.IsSquare) throw new MatrixInvalidOperationException("Diagonal sum can be calculated only for square matrices");
+	        var sum = 0D;
+	        for (int i = 0, j = matrix.RowsCount - 1; i < matrix.RowsCount; i++, j--)
+	        {
+		        var value = selector(matrix[i, j]);
+		        if (value.HasValue)
+			        sum += value.Value;
+	        }
+	        return sum;
+        }
+
+        #endregion
+
+        #region Decimal
+
+        /// <summary>
+        /// <inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/>
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="matrix"><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></returns>
+        public static decimal SideDiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, decimal> selector)
+        {
+	        if (!matrix.IsSquare) throw new MatrixInvalidOperationException("Diagonal sum can be calculated only for square matrices");
+	        var sum = 0M;
+	        for (int i = 0, j = matrix.RowsCount - 1; i < matrix.RowsCount; i++, j--)
+		        sum += selector(matrix[i, j]);
+	        return sum;
+        }
+
+        /// <summary>
+        /// <inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/>
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="matrix"><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></returns>
+        public static decimal SideDiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, decimal?> selector)
+        {
+	        if (!matrix.IsSquare) throw new MatrixInvalidOperationException("Diagonal sum can be calculated only for square matrices");
+	        var sum = 0M;
+	        for (int i = 0, j = matrix.RowsCount - 1; i < matrix.RowsCount; i++, j--)
+	        {
+		        var value = selector(matrix[i, j]);
+		        if (value.HasValue)
+			        sum += value.Value;
+	        }
+	        return sum;
+        }
+
+        #endregion
+
+        #region Short
+
+        /// <summary>
+        /// <inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/>
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="matrix"><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></returns>
+        public static int SideDiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, short> selector)
+        {
+	        if (!matrix.IsSquare) throw new MatrixInvalidOperationException("Diagonal sum can be calculated only for square matrices");
+	        var sum = 0;
+	        for (int i = 0, j = matrix.RowsCount - 1; i < matrix.RowsCount; i++, j--)
+		        sum += selector(matrix[i, j]);
+	        return sum;
+        }
+
+        /// <summary>
+        /// <inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/>
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="matrix"><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></param>
+        /// <param name="selector">Selector for sum</param>
+        /// <returns><inheritdoc cref="SideDiagonalSum(IMatrixBase{int})"/></returns>
+        public static int SideDiagonalSum<TSource>(this IMatrixBase<TSource> matrix, Func<TSource, short?> selector)
+        {
+	        if (!matrix.IsSquare) throw new MatrixInvalidOperationException("Diagonal sum can be calculated only for square matrices");
+	        var sum = 0;
+	        for (int i = 0, j = matrix.RowsCount - 1; i < matrix.RowsCount; i++, j--)
+	        {
+		        var value = selector(matrix[i, j]);
+		        if (value.HasValue)
+			        sum += value.Value;
+	        }
+	        return sum;
+        }
+
+        #endregion
 
         #endregion
 
