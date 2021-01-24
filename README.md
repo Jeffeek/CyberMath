@@ -61,7 +61,7 @@
     - GetLength -> int *(Calculates the length of number)*
     - ToBinary -> string *(Converts number to binary(2) format)*
     - ToHex -> string *(Converts number to HEX(16) format)*
-  <hr>
+    <hr>
 
     - Extension methods for **Prime Numbers**
       - IsPrime -> bool *(Checks number for primality)*
@@ -86,7 +86,7 @@
 
   - Extension methods for **JuggedMatrix&lt;T&gt;** 
     - CountOnEachRow -> IEnumerable&lt;int&gt; *()*
-    - ToMatrix -> -> IMatrix&lt;T&gt; *(Creates a new instance of IMatrix from IJuggedMatrix)*
+    - ToMatrix -> IMatrix&lt;T&gt; *(Creates a new instance of IMatrix from IJuggedMatrix)*
     - [NextV] CreateVanilla -> T[][] *()*
   <hr>
 
