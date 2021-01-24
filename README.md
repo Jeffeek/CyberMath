@@ -2,7 +2,7 @@
 <h2>A little library with useful data structures and extension methods.</h2>
 <hr>
 <h2 align="center">Some stats</h2>
-<hr>
+
 <p align="center">
 <img src="https://img.shields.io/nuget/v/CyberMath?style=for-the-badge">
 <img src="https://img.shields.io/github/last-commit/Jeffeek/CyberMath?style=for-the-badge">
