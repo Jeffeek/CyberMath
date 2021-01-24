@@ -1,6 +1,6 @@
 <h1>CyberMath</h1>
 <h2>A little library with useful data structures and extension methods.</h2>
-<hr>
+
 <h2 align="center">Some stats</h2>
 
 <p align="center">
