@@ -37,7 +37,7 @@
     - PermutationsWithRepeat -> IEnumerable&lt;IEnumerable&lt;T&gt;&gt *(Returns a new collections with all permutations of elements with repeating elements)*
   <hr>
 
-  - Extension methods of **strings**
+  - Extension methods for **strings**
     - Concat -> string
     - IsPalindrome -> bool *(Checks string for palindromicity)*
     - IsAnagramOf -> bool *(Checks two string for anagramism)*
@@ -67,7 +67,7 @@
       - IsPrime -> bool *(Checks number for primality)*
       - GenerateRandomPrimeNumber -> Int32/Int64 *(Generating one random prime number)*
       - GeneratePrimeNumbers -> IEnumerable&lt;Int32/Int64&gt; *(Generates IEnumerable collection of prime numbers which are less than max)*
-    <hr>
+  <hr>
 
   - Extension methods for all **IMatrixBase&lt;T&gt;** 
     - IsMaxInColumn -> bool *(Returns bool value if element at [i, j] is max in IMatrixBase&lt;IComparable&gt; matrix column at index j)*
