@@ -11,7 +11,7 @@ namespace CyberMath.Structures.Matrices.Base
     /// </summary>
     public static class MatrixBaseExtensions
     {
-        #region Saddling
+	    #region Saddling
 
         /// <summary>
         /// Returns <see cref="bool"/> value if element at [<paramref name="i"/>, <paramref name="j"/>] is max in <see cref="IMatrixBase{IComparable}"/> matrix column at index <paramref name="j"/>

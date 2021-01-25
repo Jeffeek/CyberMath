@@ -1,6 +1,7 @@
 ﻿using CyberMath.Structures.Matrices.Matrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using CyberMath.Structures.Matrices.Extensions;
 
 namespace CyberMath.Matrix.Tests
 {

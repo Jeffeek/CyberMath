@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CyberMath.Structures.Matrices.Base;
 
 namespace CyberMath.Structures.Matrices.JaggedMatrix
 {
@@ -13,11 +12,11 @@ namespace CyberMath.Structures.Matrices.JaggedMatrix
     /// <typeparam name="T">ANY</typeparam>
     public class JuggedMatrix<T> : IJuggedMatrix<T>, IEquatable<JuggedMatrix<T>>
     {
-        private T[][] _innerMatrix;
+        private protected T[][] _innerMatrix;
         /// <inheritdoc/>
-        public int RowsCount { get; }
+        public int RowsCount { get; protected set; }
         /// <inheritdoc/>
-        public bool IsSquare { get; }
+        public bool IsSquare { get; protected set; }
 
         #region Constructors
 
@@ -57,7 +56,14 @@ namespace CyberMath.Structures.Matrices.JaggedMatrix
                 IsSquare = true;
         }
 
-        private JuggedMatrix(int rowsCount)
+        public JuggedMatrix(T[][] matrix)
+        {
+            if (matrix == null) throw new ArgumentNullException(nameof(matrix));
+            RowsCount = matrix.Length;
+            _innerMatrix = matrix;
+        }
+
+        protected JuggedMatrix(int rowsCount)
         {
             RowsCount = rowsCount;
             _innerMatrix = new T[RowsCount][];
@@ -98,60 +104,7 @@ namespace CyberMath.Structures.Matrices.JaggedMatrix
         /// <inheritdoc/>
         public int ElementsInRow(int rowIndex) => _innerMatrix[rowIndex].Length;
 
-        #region Matrix Creation 
-
-        /// <summary>
-        /// <inheritdoc/>
-        /// </summary>
-        public IMatrixBase<T> CreateMatrixWithoutColumn(int columnIndex)
-        {
-            var maxColumn = _innerMatrix.Max(x => x.Length);
-            if (columnIndex < 0) throw new ArgumentException("Column index is < 0");
-            if (columnIndex >= maxColumn) throw new ArgumentException("Column index is out of range in matrix");
-            var newMatrix = new JuggedMatrix<T>(RowsCount);
-            for (var i = 0; i < RowsCount; i++)
-            {
-                var currentColumn = 0;
-                var elementsInRow = ElementsInRow(i);
-                if (columnIndex < elementsInRow)
-                    newMatrix._innerMatrix[i] = new T[elementsInRow - 1];
-                else
-                    newMatrix._innerMatrix[i] = new T[elementsInRow];
-                for (var j = 0; j < elementsInRow; j++)
-                {
-                    if (j == columnIndex)
-                        continue;
-                    newMatrix[i, currentColumn] = this[i, j];
-                    currentColumn++;
-                }
-            }
-
-            return newMatrix;
-        }
-
-        /// <summary>
-        /// <inheritdoc/>
-        /// </summary>
-        public IMatrixBase<T> CreateMatrixWithoutRow(int rowIndex)
-        {
-            if (rowIndex < 0) throw new ArgumentException("Row index is < 0");
-            if (rowIndex >= RowsCount) throw new ArgumentException("Row index is out of range in matrix");
-            var newMatrix = new JuggedMatrix<T>(RowsCount - 1);
-            var currentRow = 0;
-            for (var i = 0; i < RowsCount; i++)
-            {
-                if (i != rowIndex)
-                {
-                    var elementsInRow = ElementsInRow(i);
-                    newMatrix._innerMatrix[currentRow] = new T[elementsInRow];
-                    for (var j = 0; j < elementsInRow; j++)
-                        newMatrix[currentRow, j] = this[i, j];
-                    currentRow++;
-                }
-            }
-
-            return newMatrix;
-        }
+        #region Matrix Creation
 
         /// <summary>
         /// Creates a vanilla array of arrays <see>
