@@ -1,4 +1,5 @@
 <h1>CyberMath</h1>
+<img src="https://img.shields.io/github/workflow/status/Jeffeek/CyberMath/.NET?style=for-the-badge">
 <h2>A little library with useful data structures and extension methods.</h2>
 
 <h2 align="center">Some stats</h2>
@@ -30,7 +31,7 @@
 
 - **Helpers**
   - FixExpressionConverter **(Class for converting xFix expression into yFix)**
-    - Infix -> Postfix => "A+B\*C/(E-F) -> ABC\*EF-/+<br/>
+    - Infix -> Postfix => A+B\*C/(E-F) -> ABC\*EF-/+<br/>
     - Infix -> Prefix => A+B\*C/(E-F) -> +A\*B/C-EF<br/>
     - Postfix -> Infix => ABC\*EF-/+ -> (A+((B\*C)/(E-F)))<br/>
     - Postfix -> Prefix => ABC/-AK/L-\* -> \*-A/BC-/AKL<br/>
@@ -45,7 +46,7 @@
   - Extension methods for **collections**
     - Swap -> void *(Swaps items in indexed collections)*
     - Shuffle -> void *(Shuffles the items in an indexed collection)*
-    - RandomItem -> &lt;T&gt; *(Gets a random item from collection)*
+    - RandomItem -> T *(Gets a random item from collection)*
     - Permutations -> IEnumerable&lt;IEnumerable&lt;T&gt;&gt; *(Returns a new collections with all permutations of elements with repeating elements)*
     - PermutationsWithRepeat -> IEnumerable&lt;IEnumerable&lt;T&gt;&gt *(Returns a new collections with all permutations of elements with repeating elements)*
   <hr>
