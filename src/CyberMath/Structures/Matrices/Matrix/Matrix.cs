@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using CyberMath.Helpers;
 
 namespace CyberMath.Structures.Matrices.Matrix
 {
@@ -173,6 +174,49 @@ namespace CyberMath.Structures.Matrices.Matrix
         #region Creation
 
         /// <summary>
+        /// Returns a new cloned object of initial matrix.
+        /// <remarks>
+        /// Works only with primitives and [Serializable] types
+        /// </remarks>
+        /// </summary>
+        /// <returns>New matrix&lt;T&gt;</returns>
+        public object Clone()
+        {
+	        var type = typeof(T);
+	        if (type.IsPrimitive) return PrimitiveClone();
+	        if (type.IsSerializable) return SerializableClone();
+	        throw new Exception("Internal type of matrix can't be cloned");
+        }
+
+        private IMatrix<T> PrimitiveClone()
+        {
+	        var clone = new Matrix<T>(RowsCount, ColumnsCount);
+            for (var i = 0; i < RowsCount; i++)
+            {
+	            for (var j = 0; j < ColumnsCount; j++)
+	            {
+		            clone[i, j] = this[i, j];
+	            }
+            }
+
+            return clone;
+        }
+
+        private IMatrix<T> SerializableClone()
+        {
+	        var clone = new Matrix<T>(RowsCount, ColumnsCount);
+	        for (var i = 0; i < RowsCount; i++)
+	        {
+		        for (var j = 0; j < ColumnsCount; j++)
+		        {
+			        clone[i, j] = this[i, j].SerializableDeepCopy();
+		        }
+	        }
+
+	        return clone;
+        }
+
+        /// <summary>
         /// Creates new <see cref="IMatrix{T}"/> identity matrix.
         /// <para></para>
         /// <example>
@@ -194,25 +238,6 @@ namespace CyberMath.Structures.Matrices.Matrix
             for (var i = 0; i < rowsAndColumnsCount; i++)
                 result[i, i] = 1;
             return result;
-        }
-
-        /// <summary>
-        /// Creates a vanilla matrix <see>
-        ///     <cref>T</cref>
-        /// </see>
-        /// [,]
-        /// </summary>
-        /// <returns>Vanilla matrix which represents initial matrix</returns>
-        public T[,] CreateVanilla()
-        {
-	        var matrix = new T[RowsCount, ColumnsCount];
-            for (var i = 0; i < RowsCount; i++)
-            {
-	            for (var j = 0; j < ColumnsCount; j++)
-		            matrix[i, j] = this[i, j];
-            }
-
-            return matrix;
         }
 
         #endregion

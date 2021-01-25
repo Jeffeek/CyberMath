@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CyberMath.Helpers;
+using CyberMath.Structures.Matrices.Extensions;
 
 namespace CyberMath.Structures.Matrices.JaggedMatrix
 {
@@ -104,29 +106,48 @@ namespace CyberMath.Structures.Matrices.JaggedMatrix
         /// <inheritdoc/>
         public int ElementsInRow(int rowIndex) => _innerMatrix[rowIndex].Length;
 
-        #region Matrix Creation
-
         /// <summary>
-        /// Creates a vanilla array of arrays <see>
-        ///     <cref>T</cref>
-        /// </see>
-        /// [][]
+        /// Returns a new cloned object of initial matrix.
+        /// <remarks>
+        /// Works only with primitives and [Serializable] types
+        /// </remarks>
         /// </summary>
-        /// <returns>Vanilla array of arrays which represents initial matrix</returns>
-        public T[][] CreateVanilla()
+        /// <returns>New matrix&lt;T&gt;</returns>
+        public object Clone()
         {
-	        var matrix = new T[RowsCount][];
-	        for (var i = 0; i < RowsCount; i++)
-	        {
-		        matrix[i] = new T[ElementsInRow(i)];
-		        for (var j = 0; j < ElementsInRow(i); j++)
-			        matrix[i][j] = this[i, j];
-	        }
-
-	        return matrix;
+	        var type = typeof(T);
+	        if (type.IsPrimitive) return PrimitiveClone();
+	        if (type.IsSerializable) return SerializableClone();
+	        throw new Exception("Internal type of matrix can't be cloned");
         }
 
-        #endregion
+        private IJuggedMatrix<T> PrimitiveClone()
+        {
+	        var clone = new JuggedMatrix<T>(RowsCount, this.CountOnEachRow());
+	        for (var i = 0; i < RowsCount; i++)
+	        {
+		        for (var j = 0; j < ElementsInRow(i); j++)
+		        {
+			        clone[i, j] = this[i, j];
+		        }
+	        }
+
+	        return clone;
+        }
+
+        private IJuggedMatrix<T> SerializableClone()
+        {
+	        var clone = new JuggedMatrix<T>(RowsCount, this.CountOnEachRow());
+	        for (var i = 0; i < RowsCount; i++)
+	        {
+		        for (var j = 0; j < ElementsInRow(i); j++)
+		        {
+			        clone[i, j] = this[i, j].SerializableDeepCopy();
+		        }
+	        }
+
+	        return clone;
+        }
 
         #region Row Sorting
 
