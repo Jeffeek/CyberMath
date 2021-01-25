@@ -30,12 +30,12 @@
 
 - **Helpers**
   - FixExpressionConverter **(Class for converting xFix expression into yFix)**
-    - Infix -> Postfix"/> => "A+B\*C/(E-F) -> ABC\*EF-/+"<br/>
-    - Infix -> Prefix"/> => A+B\*C/(E-F) -> +A\*B/C-EF"<br/>
-    - Postfix -> Infix"/> => ABC\*EF-/+ -> (A+((B\*C)/(E-F)))"<br/>
-    - Postfix -> Prefix"/> => ABC/-AK/L-\* -> \*-A/BC-/AKL"<br/>
-    - Prefix -> Infix"/> => +A\*B/C-EF -> (A+(B\*(C/(E-F))))"<br/>
-    - Prefix -> Postfix"/> => \*-A/BC-/AKL -> ABC/-AK/L-\*">
+    - Infix -> Postfix => "A+B\*C/(E-F) -> ABC\*EF-/+<br/>
+    - Infix -> Prefix => A+B\*C/(E-F) -> +A\*B/C-EF<br/>
+    - Postfix -> Infix => ABC\*EF-/+ -> (A+((B\*C)/(E-F)))<br/>
+    - Postfix -> Prefix => ABC/-AK/L-\* -> \*-A/BC-/AKL<br/>
+    - Prefix -> Infix => +A\*B/C-EF -> (A+(B\*(C/(E-F))))<br/>
+    - Prefix -> Postfix => \*-A/BC-/AKL -> ABC/-AK/L-\*
   - GenericTypesExtensions **(Just a class to make out life and programing faster and more productive)**
     - SerializableDeepCopy -> T *(Makes a deep copy of item. Type of item should be marked as [Serializable]; otherwise -> EXCEPTION)*
     
