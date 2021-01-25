@@ -28,6 +28,19 @@
   
 <hr>
 
+- **Helpers**
+  - FixExpressionConverter **(Class for converting xFix expression into yFix)**
+    - Infix -> Postfix"/> => "A+B\*C/(E-F) -> ABC\*EF-/+"<br/>
+    - Infix -> Prefix"/> => A+B\*C/(E-F) -> +A\*B/C-EF"<br/>
+    - Postfix -> Infix"/> => ABC\*EF-/+ -> (A+((B\*C)/(E-F)))"<br/>
+    - Postfix -> Prefix"/> => ABC/-AK/L-\* -> \*-A/BC-/AKL"<br/>
+    - Prefix -> Infix"/> => +A\*B/C-EF -> (A+(B\*(C/(E-F))))"<br/>
+    - Prefix -> Postfix"/> => \*-A/BC-/AKL -> ABC/-AK/L-\*">
+  - GenericTypesExtensions **(Just a class to make out life and programing faster and more productive)**
+    - SerializableDeepCopy -> T *(Makes a deep copy of item. Type of item should be marked as [Serializable]; otherwise -> EXCEPTION)*
+    
+<hr>
+
 - **Extension methods**
   - Extension methods for **collections**
     - Swap -> void *(Swaps items in indexed collections)*
@@ -43,7 +56,8 @@
     - IsAnagramOf -> bool *(Checks two string for anagramism)*
     - WordsFrequency -> Dictionary&lt;char,int&gt; *(Creates a Dictionary&lt;TKey,TValue&gt; where **TKey** is char and **TValue** is int **(count of TKey in input string)**)*
     - ToInt32 -> int *(Returns string parsed to Int32)*
-    - ToInt64 - long *(Returns string parsed to Int64)*
+    - ToInt64 -> long *(Returns string parsed to Int64)*
+    - ToAlternatingCase -> *(Converts input string to alternating case)*
   <hr>
 
   - Extension methods for **Random**
@@ -69,12 +83,14 @@
       - GeneratePrimeNumbers -> IEnumerable&lt;Int32/Int64&gt; *(Generates IEnumerable collection of prime numbers which are less than max)*
   <hr>
 
-  - Extension methods for all **IMatrixBase&lt;T&gt;** 
+  - Extension methods for all matrices
     - IsMaxInColumn -> bool *(Returns bool value if element at [i, j] is max in IMatrixBase&lt;IComparable&gt; matrix column at index j)*
     - IsMinInRow -> bool *(Returns bool value if element at [i, j] is min in IMatrixBase&lt;IComparable&gt; matrix row at index i)*
     - DiagonalSum -> int/long/souble/decimal/short and Nullable *(**ONLY FOR SQUARE** Calculates sum of all items on main diagonal)*
     - SideDiagonalSum -> int/long/souble/decimal/short and Nullable *(**ONLY FOR SQUARE** Calculates sum of all items on side diagonal)*
     - SumSaddlePoints -> int/long/souble/decimal/short and Nullable *(Calculates sum of all saddle points in matrix)*
+    - CreateMatrixWithoutRow -> IJuggedMatrix/IMatrix *(Creates a new matrix without row at rowIndex)*
+    - CreateMatrixWithoutColumn -> IJuggedMatrix/IMatrix *(Creates a new matrix without column at columnIndex)*
     <hr>
 
     - For primitives
@@ -87,12 +103,12 @@
   - Extension methods for **JuggedMatrix&lt;T&gt;** 
     - CountOnEachRow -> IEnumerable&lt;int&gt; *()*
     - ToMatrix -> IMatrix&lt;T&gt; *(Creates a new instance of IMatrix from IJuggedMatrix)*
-    - [NextV] CreateVanilla -> T[][] *()*
+    - CreateVanilla -> T[][] *(Creates a vanilla array of arrays on base of JuggedMatrix)*
   <hr>
 
   - Extension methods for **IMatrix&lt;T&gt;**
     - ToJuggedMatrix -> IJuggedMatrix&lt;T&gt; *(Creates a new instance of IJuggedMatrix from IMatrix)*
-    - [NextV] CreateVanilla -> T[,] *()*
+    - CreateVanilla -> T[,] *(Creates a vanilla matrix on base of Matrix)*
     <hr>
 
     - For primitives
