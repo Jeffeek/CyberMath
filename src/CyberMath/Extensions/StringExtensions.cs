@@ -34,7 +34,7 @@ namespace CyberMath.Extensions
         /// <param name="inputOriginal">First string to check</param>
         /// <param name="testInput">Second string to check</param>
         /// <returns><see cref="bool"/>: true if two string are anagrams of each other</returns>
-        public static bool IsAnagram(this string inputOriginal, string testInput)
+        public static bool IsAnagramOf(this string inputOriginal, string testInput)
         {
             if (ReferenceEquals(inputOriginal, null)) throw new ArgumentNullException(nameof(inputOriginal));
             if (ReferenceEquals(testInput, null)) throw new ArgumentNullException(nameof(testInput));
@@ -52,7 +52,6 @@ namespace CyberMath.Extensions
             return true;
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Creates a <see cref="Dictionary{TKey,TValue}"/> where <see langword="TKey"/> is <see cref="char"/> and <see langword="TValue"/> is <see cref="int"/> (count of <see langword="TKey"/> in input string)
         /// </summary>
@@ -116,11 +115,13 @@ namespace CyberMath.Extensions
             return sb.ToString();
         }
 
+        //TODO: unit-test
         /// <summary>
         /// Returns <paramref name="input"/> <seealso cref="string"/> converted to <see cref="int"/>
         /// </summary>
         /// <param name="input">Input string, which is number</param>
         /// <returns><see cref="int"/> result number</returns>
+        /// <exception cref="ArgumentException">When <paramref name="input"/> represents not <see cref="Int32"/></exception>
         public static int ToInt32(this string input)
         {
             if (ReferenceEquals(input, null)) throw new NullReferenceException(nameof(input));
@@ -129,17 +130,55 @@ namespace CyberMath.Extensions
             throw new ArgumentException(nameof(input));
         }
 
+        //TODO: unit-test
         /// <summary>
         /// Returns <paramref name="input"/> <seealso cref="string"/> converted to <see cref="long"/>
         /// </summary>
         /// <param name="input">Input string, which is number</param>
         /// <returns><see cref="long"/> result number</returns>
+        /// <exception cref="ArgumentException">When <paramref name="input"/> represents not <see cref="Int64"/></exception>
         public static long ToInt64(this string input)
         {
             if (ReferenceEquals(input, null)) throw new NullReferenceException(nameof(input));
             if (long.TryParse(input, out var result))
                 return result;
             throw new ArgumentException(nameof(input));
+        }
+
+        /// <summary>
+        /// Converts <paramref name="input"/> string to alternating case
+        /// <br/>
+        /// <c><example>
+        /// <paramref name="input"/> = kEk<br/>
+        /// output = KeK
+        /// </example></c>
+        /// </summary>
+        /// <param name="input">Input string to convert</param>
+        /// <returns>New alternating string of <paramref name="input"/></returns>
+        public static string ToAlternatingCase(this string input)
+        {
+	        if (ReferenceEquals(input, null)) throw new ArgumentNullException(nameof(input));
+	        var length = input.Length;
+	        var output = new char[length];
+	        int i = 0, j = length - 1;
+	        while (i <= j)
+	        {
+		        output[i] = ShiftCase(input[i++]);
+		        output[j] = ShiftCase(input[j--]);
+	        }
+
+	        return String.Concat(output);
+        }
+
+        private static char ShiftCase(char c)
+        {
+	        var i = (int)(c);
+	        if (i < 65 || i > 122)
+		        return c;
+	        if (i < 97 && i > 90)
+		        return c;
+
+	        return (char)(i > 90 ? (c & ~0x20) : (c | 0x20));
         }
     }
 }

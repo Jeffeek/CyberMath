@@ -24,7 +24,6 @@ namespace CyberMath.Structures.Matrices.Extensions
                 yield return matrix.ElementsInRow(i);
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Creates a new instance of <see cref="IMatrix{T}"/> from <see cref="IJuggedMatrix{T}"/>
         /// </summary>
@@ -69,7 +68,6 @@ namespace CyberMath.Structures.Matrices.Extensions
             return juggedMatrix;
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Converts a vanilla .NET matrix <see langword="T"/>[,] to <see cref="IMatrix{T}"/>
         /// </summary>
@@ -91,7 +89,6 @@ namespace CyberMath.Structures.Matrices.Extensions
 	        return newMatrix;
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Converts a vanilla .NET matrix <see langword="T"/>[][] to <see cref="IJuggedMatrix{T}"/>
         /// </summary>
@@ -112,6 +109,47 @@ namespace CyberMath.Structures.Matrices.Extensions
 	        }
 
 	        return newJuggedMatrix;
+        }
+
+        /// <summary>
+        /// Creates a vanilla array of arrays <see>
+        ///     <cref>T</cref>
+        /// </see>
+        /// [][]
+        /// </summary>
+        /// <returns>Vanilla array of arrays which represents initial matrix</returns>
+        public static T[][] CreateVanilla<T>(this IJuggedMatrix<T> juggedMatrix)
+        {
+	        if (ReferenceEquals(juggedMatrix, null)) throw new ArgumentNullException(nameof(juggedMatrix));
+	        var tempMatrix = new T[juggedMatrix.RowsCount][];
+	        for (var i = 0; i < juggedMatrix.RowsCount; i++)
+	        {
+		        tempMatrix[i] = new T[juggedMatrix.ElementsInRow(i)];
+		        for (var j = 0; j < juggedMatrix.ElementsInRow(i); j++)
+			        tempMatrix[i][j] = juggedMatrix[i, j];
+	        }
+
+	        return tempMatrix;
+        }
+
+        /// <summary>
+        /// Creates a vanilla matrix <see>
+        ///     <cref>T</cref>
+        /// </see>
+        /// [,]
+        /// </summary>
+        /// <returns>Vanilla matrix which represents initial matrix</returns>
+        public static T[,] CreateVanilla<T>(this IMatrix<T> matrix)
+        {
+	        if (ReferenceEquals(matrix, null)) throw new ArgumentNullException(nameof(matrix));
+            var tempMatrix = new T[matrix.RowsCount, matrix.ColumnsCount];
+	        for (var i = 0; i < matrix.RowsCount; i++)
+	        {
+		        for (var j = 0; j < matrix.ColumnsCount; j++)
+			        tempMatrix[i, j] = matrix[i, j];
+	        }
+
+	        return tempMatrix;
         }
     }
 }

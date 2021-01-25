@@ -118,7 +118,7 @@ namespace CyberMath.Structures.Matrices.Extensions
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] *
-                          ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<int>)?.CreateMatrixWithoutRow(1) as IMatrix<int>).CalculateDeterminant();
+                          (matrix.CreateMatrixWithoutColumn(j)?.CreateMatrixWithoutRow(1)).CalculateDeterminant();
             }
             return result;
         }
@@ -153,7 +153,7 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <param name="i"></param>
         /// <param name="j"></param>
         /// <returns>Minor</returns>
-        public static double CalculateMinor(this IMatrix<int> matrix, int i, int j) => ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<int>)?.CreateMatrixWithoutRow(i) as IMatrix<int>).CalculateDeterminant();
+        public static double CalculateMinor(this IMatrix<int> matrix, int i, int j) => (matrix.CreateMatrixWithoutColumn(j)?.CreateMatrixWithoutRow(i)).CalculateDeterminant();
 
         #endregion
 
@@ -307,7 +307,7 @@ namespace CyberMath.Structures.Matrices.Extensions
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] *
-                          ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<long>)?.CreateMatrixWithoutRow(1) as IMatrix<long>).CalculateDeterminant();
+                          (matrix.CreateMatrixWithoutColumn(j)?.CreateMatrixWithoutRow(1)).CalculateDeterminant();
             }
             return result;
         }
@@ -342,7 +342,7 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <param name="i"></param>
         /// <param name="j"></param>
         /// <returns>Minor</returns>
-        public static double CalculateMinor(this IMatrix<long> matrix, int i, int j) => ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<long>)?.CreateMatrixWithoutRow(i) as IMatrix<long>).CalculateDeterminant();
+        public static double CalculateMinor(this IMatrix<long> matrix, int i, int j) => (matrix.CreateMatrixWithoutColumn(j)?.CreateMatrixWithoutRow(i)).CalculateDeterminant();
 
         #endregion
 
@@ -496,7 +496,7 @@ namespace CyberMath.Structures.Matrices.Extensions
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] *
-                          ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<double>)?.CreateMatrixWithoutRow(1) as IMatrix<double>).CalculateDeterminant();
+                          (matrix.CreateMatrixWithoutColumn(j)?.CreateMatrixWithoutRow(1)).CalculateDeterminant();
             }
             return result;
         }
@@ -531,7 +531,7 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <param name="i"></param>
         /// <param name="j"></param>
         /// <returns>Minor</returns>
-        public static double CalculateMinor(this IMatrix<double> matrix, int i, int j) => ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<double>)?.CreateMatrixWithoutRow(i) as IMatrix<double>).CalculateDeterminant();
+        public static double CalculateMinor(this IMatrix<double> matrix, int i, int j) => (matrix.CreateMatrixWithoutColumn(j)?.CreateMatrixWithoutRow(i)).CalculateDeterminant();
 
         #endregion
 
@@ -685,7 +685,7 @@ namespace CyberMath.Structures.Matrices.Extensions
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] *
-                          ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<decimal>)?.CreateMatrixWithoutRow(1) as IMatrix<decimal>).CalculateDeterminant();
+                          (matrix.CreateMatrixWithoutColumn(j)?.CreateMatrixWithoutRow(1)).CalculateDeterminant();
             }
             return result;
         }
@@ -720,7 +720,7 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <param name="i"></param>
         /// <param name="j"></param>
         /// <returns>Minor</returns>
-        public static decimal CalculateMinor(this IMatrix<decimal> matrix, int i, int j) => ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<decimal>)?.CreateMatrixWithoutRow(i) as IMatrix<decimal>).CalculateDeterminant();
+        public static decimal CalculateMinor(this IMatrix<decimal> matrix, int i, int j) => (matrix.CreateMatrixWithoutColumn(j)?.CreateMatrixWithoutRow(i)).CalculateDeterminant();
 
         #endregion
 
@@ -961,7 +961,7 @@ namespace CyberMath.Structures.Matrices.Extensions
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] ?? 0 *
-                                                            ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<int?>)?.CreateMatrixWithoutRow(1) as IMatrix<int?>).CalculateDeterminant();
+                                                            (matrix.CreateMatrixWithoutColumn(j)?.CreateMatrixWithoutRow(1)).CalculateDeterminant();
             }
             return result;
         }
@@ -995,7 +995,7 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <param name="i"></param>
         /// <param name="j"></param>
         /// <returns>Minor</returns>
-        public static double CalculateMinor(this IMatrix<int?> matrix, int i, int j) => ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<int?>)?.CreateMatrixWithoutRow(i) as IMatrix<int?>).CalculateDeterminant();
+        public static double CalculateMinor(this IMatrix<int?> matrix, int i, int j) => (matrix.CreateMatrixWithoutColumn(j)?.CreateMatrixWithoutRow(i)).CalculateDeterminant();
 
         #endregion
 
@@ -1165,7 +1165,7 @@ namespace CyberMath.Structures.Matrices.Extensions
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] == null ? 0 : matrix[1, j].Value *
-                                                                             ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<long?>)?.CreateMatrixWithoutRow(1) as IMatrix<long?>).CalculateDeterminant();
+                                                                             (matrix.CreateMatrixWithoutColumn(j)?.CreateMatrixWithoutRow(1)).CalculateDeterminant();
             }
             return result;
         }
@@ -1201,7 +1201,7 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <param name="i"></param>
         /// <param name="j"></param>
         /// <returns>Minor</returns>
-        public static double CalculateMinor(this IMatrix<long?> matrix, int i, int j) => ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<long?>)?.CreateMatrixWithoutRow(i) as IMatrix<long?>).CalculateDeterminant();
+        public static double CalculateMinor(this IMatrix<long?> matrix, int i, int j) => (matrix.CreateMatrixWithoutColumn(j)?.CreateMatrixWithoutRow(i)).CalculateDeterminant();
 
         #endregion
 
@@ -1371,7 +1371,7 @@ namespace CyberMath.Structures.Matrices.Extensions
             for (var j = 0; j < matrix.ColumnsCount; j++)
             {
                 result += (j % 2 == 1 ? 1 : -1) * matrix[1, j] ?? 0 *
-                                                            ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<double?>)?.CreateMatrixWithoutRow(1) as IMatrix<double?>).CalculateDeterminant();
+                                                            (matrix.CreateMatrixWithoutColumn(j)?.CreateMatrixWithoutRow(1)).CalculateDeterminant();
             }
             return result;
         }
@@ -1406,7 +1406,7 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <param name="i"></param>
         /// <param name="j"></param>
         /// <returns>Minor</returns>
-        public static double CalculateMinor(this IMatrix<double?> matrix, int i, int j) => ((matrix.CreateMatrixWithoutColumn(j) as IMatrix<double?>)?.CreateMatrixWithoutRow(i) as IMatrix<double?>).CalculateDeterminant();
+        public static double CalculateMinor(this IMatrix<double?> matrix, int i, int j) => (matrix.CreateMatrixWithoutColumn(j)?.CreateMatrixWithoutRow(i)).CalculateDeterminant();
 
         #endregion
 

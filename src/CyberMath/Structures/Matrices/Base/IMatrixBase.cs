@@ -37,18 +37,6 @@ namespace CyberMath.Structures.Matrices.Base
         /// <returns>Count of elements in row</returns>
         int ElementsInRow(int rowIndex);
         /// <summary>
-        /// Creates a new <see cref="IMatrixBase{T}"/> matrix without column at <paramref name="columnIndex"/>
-        /// </summary>
-        /// <param name="columnIndex">Column index to remove</param>
-        /// <returns>A new <see cref="IMatrixBase{T}"/> matrix without column at <paramref name="columnIndex"/></returns>
-        IMatrixBase<T> CreateMatrixWithoutColumn(int columnIndex);
-        /// <summary>
-        /// Creates a new <see cref="IMatrixBase{T}"/> matrix without row at <paramref name="rowIndex"/>
-        /// </summary>
-        /// <param name="rowIndex">Column index to remove</param>
-        /// <returns>A new <see cref="IMatrixBase{T}"/> matrix without row at <paramref name="rowIndex"/></returns>
-        IMatrixBase<T> CreateMatrixWithoutRow(int rowIndex);
-        /// <summary>
         /// Returns enumerable, which is 'walks' on the column neither default <see cref="IEnumerator"/>
         /// </summary>
         /// <returns><see cref="IEnumerable"/> of <see cref="IEnumerable{T}"/> - columns of matrix</returns>

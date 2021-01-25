@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using CyberMath.Structures.Matrices.Base;
+using CyberMath.Helpers;
 
 namespace CyberMath.Structures.Matrices.Matrix
 {
@@ -10,7 +10,7 @@ namespace CyberMath.Structures.Matrices.Matrix
     /// Implementation of <see cref="T:CyberMath.Structures.Matrices.Matrix.IMatrix`1" /> with Math-functional methods
     /// </summary>
     /// <typeparam name="T" />
-    public sealed class Matrix<T> : IMatrix<T>, IEquatable<Matrix<T>>
+    public class Matrix<T> : IMatrix<T>, IEquatable<Matrix<T>>
     {
         /// <summary>
         /// Internal matrix needed to implement the class <see cref="Matrix{T}"/>
@@ -46,6 +46,16 @@ namespace CyberMath.Structures.Matrices.Matrix
         }
 
         /// <summary>
+        /// Creates an empty matrix with 0 rows and 0 columns
+        /// </summary>
+        protected Matrix()
+        {
+            ColumnsCount = 0;
+            RowsCount = 0;
+            _innerMatrix = new T[0, 0];
+        }
+
+        /// <summary>
         /// Initializes a new matrix object with the help of <paramref name="matrix"/>
         /// </summary>
         /// <param name="matrix">Matrix for init initial <see cref="Matrix{T}"/></param>
@@ -78,6 +88,7 @@ namespace CyberMath.Structures.Matrices.Matrix
             return result;
         }
 
+        ///<inheritdoc/>
         public void ProcessFunctionOverData(Action<int, int> func)
         {
             if (ReferenceEquals(func, null)) return;
@@ -94,6 +105,7 @@ namespace CyberMath.Structures.Matrices.Matrix
 
         #region Extra Operations
 
+        ///<inheritdoc/>
         public bool Equals(Matrix<T> other)
         {
             if (ReferenceEquals(null, other)) return false;
@@ -112,6 +124,7 @@ namespace CyberMath.Structures.Matrices.Matrix
             return true;
         }
 
+        ///<inheritdoc/>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
@@ -120,6 +133,7 @@ namespace CyberMath.Structures.Matrices.Matrix
             return Equals((Matrix<T>)obj);
         }
 
+        ///<inheritdoc/>
         public override int GetHashCode()
         {
             unchecked
@@ -135,8 +149,10 @@ namespace CyberMath.Structures.Matrices.Matrix
 
         #region Presentation
 
+        ///<inheritdoc/>
         public int ElementsInRow(int rowIndex) => ColumnsCount;
 
+        ///<inheritdoc/>
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -158,27 +174,46 @@ namespace CyberMath.Structures.Matrices.Matrix
         #region Creation
 
         /// <summary>
-        /// <inheritdoc/>
+        /// Returns a new cloned object of initial matrix.
+        /// <remarks>
+        /// Works only with primitives and [Serializable] types
+        /// </remarks>
         /// </summary>
-        public IMatrixBase<T> CreateMatrixWithoutColumn(int columnIndex)
+        /// <returns>New matrix&lt;T&gt;</returns>
+        public object Clone()
         {
-            if (columnIndex < 0 || columnIndex >= ColumnsCount) throw new ArgumentException("invalid column index");
-	        var result = new Matrix<T>(RowsCount, ColumnsCount - 1);
-            result.ProcessFunctionOverData((i, j) =>
-                result[i, j] = j < columnIndex ? this[i, j] : this[i, j + 1]);
-            return result;
+	        var type = typeof(T);
+	        if (type.IsPrimitive) return PrimitiveClone();
+	        if (type.IsSerializable) return SerializableClone();
+	        throw new Exception("Internal type of matrix can't be cloned");
         }
 
-        /// <summary>
-        /// <inheritdoc/>
-        /// </summary>
-        public IMatrixBase<T> CreateMatrixWithoutRow(int rowIndex)
+        private IMatrix<T> PrimitiveClone()
         {
-            if (rowIndex < 0 || rowIndex >= RowsCount) throw new ArgumentException("invalid row index");
-            var result = new Matrix<T>(RowsCount - 1, ColumnsCount);
-            result.ProcessFunctionOverData((i, j) =>
-                result[i, j] = i < rowIndex ? this[i, j] : this[i + 1, j]);
-            return result;
+	        var clone = new Matrix<T>(RowsCount, ColumnsCount);
+            for (var i = 0; i < RowsCount; i++)
+            {
+	            for (var j = 0; j < ColumnsCount; j++)
+	            {
+		            clone[i, j] = this[i, j];
+	            }
+            }
+
+            return clone;
+        }
+
+        private IMatrix<T> SerializableClone()
+        {
+	        var clone = new Matrix<T>(RowsCount, ColumnsCount);
+	        for (var i = 0; i < RowsCount; i++)
+	        {
+		        for (var j = 0; j < ColumnsCount; j++)
+		        {
+			        clone[i, j] = this[i, j].SerializableDeepCopy();
+		        }
+	        }
+
+	        return clone;
         }
 
         /// <summary>
@@ -203,25 +238,6 @@ namespace CyberMath.Structures.Matrices.Matrix
             for (var i = 0; i < rowsAndColumnsCount; i++)
                 result[i, i] = 1;
             return result;
-        }
-
-        /// <summary>
-        /// Creates a vanilla matrix <see>
-        ///     <cref>T</cref>
-        /// </see>
-        /// [,]
-        /// </summary>
-        /// <returns>Vanilla matrix which represents initial matrix</returns>
-        public T[,] CreateVanilla()
-        {
-	        var matrix = new T[RowsCount, ColumnsCount];
-            for (var i = 0; i < RowsCount; i++)
-            {
-	            for (var j = 0; j < ColumnsCount; j++)
-		            matrix[i, j] = this[i, j];
-            }
-
-            return matrix;
         }
 
         #endregion
