@@ -10,8 +10,8 @@
 <img src="https://img.shields.io/nuget/dt/CyberMath?style=for-the-badge">
 <img src="https://img.shields.io/github/stars/Jeffeek/CyberMath?style=for-the-badge">
 <img src="https://img.shields.io/github/issues/Jeffeek/CyberMath?style=for-the-badge">
-<img src="https://img.shields.io/github/issues-pr/Jeffeek/CyberMath?style=for-the-badge">
 <img src="https://img.shields.io/github/repo-size/Jeffeek/CyberMath?style=for-the-badge">
+<img src="https://img.shields.io/tokei/lines/github/Jeffeek/CyberMath?style=for-the-badge">
 </p>
 <hr>
 
@@ -113,8 +113,8 @@
     <hr>
 
     - For primitives
-      - Multiplication -> IMatrix&lt;int&gt; *(Returns the mul IMatrix first and IMatrix second)*
-      - CalculateDeterminant -> int/long/souble/decimal and Nullable *(Calculates determinant for IMatrix)*
+      - Multiplication -> IMatrix&lt;T&gt; *(Returns the mul IMatrix first and IMatrix second)*
+      - CalculateDeterminant -> int/long/double/decimal and Nullable *(Calculates determinant for IMatrix)*
       - CreateInvertibleMatrix -> IMatrix&lt;double&gt; *(Creates inverted matrix from IMatrix)*
       - CalculateMinor -> int/long/souble/decimal and Nullable *(Calculates minor for IMatrix)*
 <hr>
