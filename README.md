@@ -16,7 +16,7 @@
 <hr>
 
 ## Nuget Package
->PM> Install-Package CyberMath -Version 1.0.1
+>PM> Install-Package CyberMath -Version 1.0.2
 <hr>
 
 - **Two-dimensional arrays**
@@ -41,7 +41,7 @@
     - Postfix -> Prefix => ABC/-AK/L-\* -> \*-A/BC-/AKL<br/>
     - Prefix -> Infix => +A\*B/C-EF -> (A+(B\*(C/(E-F))))<br/>
     - Prefix -> Postfix => \*-A/BC-/AKL -> ABC/-AK/L-\*
-  - GenericTypesExtensions **(Just a class to make out life and programing faster and more productive)**
+  - GenericTypesExtensions **(Just a class to make out life and programming faster and more productive)**
     - SerializableDeepCopy -> T *(Makes a deep copy of item. Type of item should be marked as [Serializable]; otherwise -> EXCEPTION)*
     
 <hr>
