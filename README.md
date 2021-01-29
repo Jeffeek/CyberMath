@@ -15,6 +15,10 @@
 </p>
 <hr>
 
+## Nuget Package
+>PM> Install-Package CyberMath -Version 1.0.1
+<hr>
+
 - **Two-dimensional arrays**
   - Matrix
   - Jugged Matrix
