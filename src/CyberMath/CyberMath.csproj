@@ -2,14 +2,14 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Authors>Jeffeek</Authors>
-    <Description>A library with data structures and useful extension methods.Support: .NET Core 3.1</Description>
-    <Copyright>Free</Copyright>
+    <Description>A library with data structures and useful extension methods. Very useful for students :)</Description>
+    <Copyright>Jeffeek dev.</Copyright>
     <PackageProjectUrl>https://github.com/Jeffeek/CyberMath</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Jeffeek/CyberMath</RepositoryUrl>
     <PackageTags>math, matrix, structures, binary-search-tree, binary-tree, extension-methods, cyber, CyberMath</PackageTags>
     <PackageReleaseNotes>Alpha. Support Core 3.1</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageIcon>cyberMath.png</PackageIcon>
