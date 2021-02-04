@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CyberMath.Extensions.Int32
 {
@@ -118,16 +119,8 @@ namespace CyberMath.Extensions.Int32
         /// <param name="number">number to convert</param>
         /// <returns><see cref="string"/> representation of the HEX form of a <paramref name="number"/></returns>
         public static string ToHex(this int number) => Convert.ToString(number, 16);
-    }
-}
-		/// <summary>
-		///     Converts <see cref="Int32" /> <paramref name="number" /> to HEX(16) format
-		/// </summary>
-		/// <param name="number">number to convert</param>
-		/// <returns><see cref="string" /> representation of the HEX form of a <paramref name="number" /></returns>
-		public static string ToHex(this int number) => Convert.ToString(number, 16);
 
-		/// <summary>
+        /// <summary>
 		/// Return a <see cref="IEnumerable{T}"/> collection of all digits of <paramref name="number"/>
 		/// </summary>
 		/// <param name="number">Number to parse</param>
@@ -142,9 +135,10 @@ namespace CyberMath.Extensions.Int32
 			{
 				digits[iterator] = (byte)(number % 10);
 				number /= 10;
+                iterator++;
 			}
 
-			return digits;
+			return digits.Reverse();
 		}
 	}
 }

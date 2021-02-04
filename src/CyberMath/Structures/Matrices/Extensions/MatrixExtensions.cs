@@ -151,5 +151,74 @@ namespace CyberMath.Structures.Matrices.Extensions
 
 	        return tempMatrix;
         }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="IMatrix{T}"/> which contains elements from <see cref="IEnumerable{T}"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static IMatrix<T> CreateMatrix<T>(this IEnumerable<IEnumerable<T>> source)
+        {
+	        if (ReferenceEquals(source, null)) throw new ArgumentNullException(nameof(source));
+	        var enumerables = source as IEnumerable<T>[] ?? source.ToArray();
+	        if (enumerables.Any(item => ReferenceEquals(item, null)))
+		        throw new ArgumentNullException(nameof(source) + ": one of enumerables was null");
+
+	        var columnsCount = enumerables[0].Count();
+	        if (enumerables.All(item => item.Count() == columnsCount))
+		        throw new ArgumentException("Number of elements in inner enumerables should be equal");
+
+	        var matrix = new Matrix<T>(enumerables.Length, enumerables[0].Count());
+
+	        var rowIndex = 0;
+	        var columnIndex = 0;
+	        foreach (var row in enumerables)
+	        {
+		        foreach (var item in row)
+		        {
+			        matrix[rowIndex, columnIndex] = item;
+			        columnIndex++;
+		        }
+
+		        rowIndex++;
+		        columnIndex = 0;
+	        }
+
+	        return matrix;
+        }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="IJuggedMatrix{T}"/> which contains elements from <see cref="IEnumerable{T}"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static IJuggedMatrix<T> CreateJuggedMatrix<T>(this IEnumerable<IEnumerable<T>> source)
+        {
+	        if (ReferenceEquals(source, null)) throw new ArgumentNullException(nameof(source));
+	        var enumerables = source as IEnumerable<T>[] ?? source.ToArray();
+	        if (enumerables.Any(item => ReferenceEquals(item, null)))
+		        throw new ArgumentNullException(nameof(source) + ": one of enumerables was null");
+
+	        var columnsCounts = enumerables.Select(row => row.Count());
+	        var matrix = new JuggedMatrix<T>(enumerables.Length, columnsCounts);
+
+	        var rowIndex = 0;
+	        var columnIndex = 0;
+	        foreach (var row in enumerables)
+	        {
+		        foreach (var item in row)
+		        {
+			        matrix[rowIndex, columnIndex] = item;
+			        columnIndex++;
+		        }
+
+		        rowIndex++;
+		        columnIndex = 0;
+	        }
+
+	        return matrix;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CyberMath.Extensions.Int32;
+﻿using System.Linq;
+using CyberMath.Extensions.Int32;
 using CyberMath.Extensions.Int64;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -32,6 +33,33 @@ namespace CyberMath.PrimitivesExtensions.Tests
 
             Assert.IsTrue(expectZero == actualZero);
             Assert.IsTrue(expectMaxValue == actualMaxValue);
+        }
+
+        [TestMethod]
+        public void Int64_GetDigits_test()
+        {
+            var testNumber = 12398564564353;
+            var expected = new byte[] { 1,2,3,9,8,5,6,4,5,6,4,3,5,3 };
+            var actual = testNumber.GetDigits().ToArray();
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Int64_GetDigits_zero_test()
+        {
+            long testNumber = 0;
+            var expected = new byte[] { 0 };
+            var actual = testNumber.GetDigits().ToArray();
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Int64_GetDigits_minus_test()
+        {
+            var testNumber = -94564651554563813;
+            var expected = new byte[] { 9,4,5,6,4,6,5,1,5,5,4,5,6,3,8,1,3 };
+            var actual = testNumber.GetDigits().ToArray();
+            CollectionAssert.AreEqual(expected, actual);
         }
     }
 }
