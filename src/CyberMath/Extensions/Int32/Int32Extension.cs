@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CyberMath.Extensions.Int32
 {
@@ -118,4 +119,32 @@ namespace CyberMath.Extensions.Int32
         /// <returns><see cref="string"/> representation of the HEX form of a <paramref name="number"/></returns>
         public static string ToHex(this int number) => Convert.ToString(number, 16);
     }
+}
+		/// <summary>
+		///     Converts <see cref="Int32" /> <paramref name="number" /> to HEX(16) format
+		/// </summary>
+		/// <param name="number">number to convert</param>
+		/// <returns><see cref="string" /> representation of the HEX form of a <paramref name="number" /></returns>
+		public static string ToHex(this int number) => Convert.ToString(number, 16);
+
+		/// <summary>
+		/// Return a <see cref="IEnumerable{T}"/> collection of all digits of <paramref name="number"/>
+		/// </summary>
+		/// <param name="number">Number to parse</param>
+		/// <returns><see cref="IEnumerable{T}"/> collection of digits</returns>
+		public static IEnumerable<byte> GetDigits(this int number)
+		{
+			if (number == 0) return new byte[] { 0 };
+			number = Math.Abs(number);
+			var digits = new byte[number.GetLength()];
+			var iterator = 0;
+			while (number > 0)
+			{
+				digits[iterator] = (byte)(number % 10);
+				number /= 10;
+			}
+
+			return digits;
+		}
+	}
 }
