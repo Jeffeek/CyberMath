@@ -10,7 +10,7 @@ namespace CyberMath.Structures.Matrices.Matrix
     /// Implementation of <see cref="T:CyberMath.Structures.Matrices.Matrix.IMatrix`1" /> with Math-functional methods
     /// </summary>
     /// <typeparam name="T" />
-    public class Matrix<T> : IMatrix<T>, IEquatable<IMatrix<T>>
+    public class Matrix<T> : IMatrix<T>, ICloneable
     {
         /// <summary>
         /// Internal matrix needed to implement the class <see cref="Matrix{T}"/>

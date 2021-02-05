@@ -6,13 +6,13 @@ using System.Text;
 using CyberMath.Helpers;
 using CyberMath.Structures.Matrices.Extensions;
 
-namespace CyberMath.Structures.Matrices.JaggedMatrix
+namespace CyberMath.Structures.Matrices.Jagged_Matrix
 {
     /// <summary>
     /// Describes a Jugged Matrix. Implements <see cref="IJuggedMatrix{T}"/>
     /// </summary>
     /// <typeparam name="T">ANY</typeparam>
-    public class JuggedMatrix<T> : IJuggedMatrix<T>, IEquatable<JuggedMatrix<T>>
+    public class JuggedMatrix<T> : IJuggedMatrix<T>, ICloneable
     {
         private protected T[][] _innerMatrix;
         /// <inheritdoc/>
@@ -29,16 +29,7 @@ namespace CyberMath.Structures.Matrices.JaggedMatrix
         /// <param name="rowsCount"></param>
         /// <param name="elementsAtRow"></param>
         /// <exception cref="ArgumentException"></exception>
-        public JuggedMatrix(int rowsCount, params int[] elementsAtRow)
-        {
-            if (elementsAtRow.Length != rowsCount) throw new ArgumentException("Count of Elements in row should be the same length as RowsCount");
-            RowsCount = rowsCount;
-            _innerMatrix = new T[rowsCount][];
-            InitMatrix(elementsAtRow);
-            if (elementsAtRow.All(x => x == RowsCount))
-                IsSquare = true;
-        }
-
+        public JuggedMatrix(int rowsCount, params int[] elementsAtRow) : this(rowsCount, elementsAtRow.AsEnumerable()) { }
 
         /// <summary>
         /// Initializes a new matrix object with count of rows = <paramref name="rowsCount"/>
@@ -53,7 +44,8 @@ namespace CyberMath.Structures.Matrices.JaggedMatrix
 	        if (elementsCount.Length != rowsCount) throw new ArgumentException("Count of Elements in row should be the same length as RowsCount");
             RowsCount = rowsCount;
             _innerMatrix = new T[rowsCount][];
-            InitMatrix(elementsCount.ToArray());
+            for (var i = 0; i < RowsCount; i++)
+                _innerMatrix[i] = new T[elementsCount[i]];
             if (elementsCount.All(x => x == RowsCount))
                 IsSquare = true;
         }
@@ -69,16 +61,6 @@ namespace CyberMath.Structures.Matrices.JaggedMatrix
         {
             RowsCount = rowsCount;
             _innerMatrix = new T[RowsCount][];
-        }
-
-        #endregion
-
-        #region Matrix Init
-
-        private void InitMatrix(IReadOnlyList<int> elementsAtRow)
-        {
-            for (var i = 0; i < RowsCount; i++)
-                _innerMatrix[i] = new T[elementsAtRow[i]];
         }
 
         #endregion
@@ -252,13 +234,14 @@ namespace CyberMath.Structures.Matrices.JaggedMatrix
         #region Equality members
 
         /// <inheritdoc />
-        public bool Equals(JuggedMatrix<T> other)
+        public bool Equals(IJuggedMatrix<T> other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
             if (RowsCount != other.RowsCount) return false;
             for (var i = 0; i < RowsCount; i++)
             {
+                if (ElementsInRow(i) != other.ElementsInRow(i)) return false;
                 for (var j = 0; j < ElementsInRow(i); j++)
                 {
                     if (!this[i, j].Equals(other[i, j]))
@@ -274,8 +257,8 @@ namespace CyberMath.Structures.Matrices.JaggedMatrix
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((JuggedMatrix<T>)obj);
+            if (obj is IJuggedMatrix<T> matrix) return Equals(matrix);
+            return false;
         }
 
         /// <inheritdoc />

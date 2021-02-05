@@ -1,9 +1,9 @@
 using CyberMath.Structures.Matrices.Base.Exceptions;
+using CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Jugged_Matrix;
 using CyberMath.Structures.Matrices.Extensions;
-using CyberMath.Structures.Matrices.Jagged_Matrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CyberMath.JaggedMatrix.Tests
+namespace CyberMath.DynamicJuggedMatrix.Tests
 {
     [TestClass]
     public class MathPrimitiveOperations
@@ -11,7 +11,7 @@ namespace CyberMath.JaggedMatrix.Tests
         [TestMethod]
         public void Add_int_positive()
         {
-            var matrix1 = new JuggedMatrix<int>(3, new[] { 3, 3, 3 })
+            var matrix1 = new DynamicJuggedMatrix<int>(3, 3, 3, 3)
             {
                 [0, 0] = 6,
                 [0, 1] = 3,
@@ -24,7 +24,7 @@ namespace CyberMath.JaggedMatrix.Tests
                 [2, 2] = 2
             };
 
-            var matrix2 = new JuggedMatrix<int>(3, 3, 3, 3)
+            var matrix2 = new DynamicJuggedMatrix<int>(3, 3, 3, 3)
             {
                 [0, 0] = 234,
                 [0, 1] = 2,
@@ -37,7 +37,7 @@ namespace CyberMath.JaggedMatrix.Tests
                 [2, 2] = 2
             };
 
-            var expected = new JuggedMatrix<int>(3, 3, 3, 3)
+            var expected = new DynamicJuggedMatrix<int>(3, 3, 3, 3)
             {
                 [0, 0] = 240,
                 [0, 1] = 5,
@@ -57,34 +57,26 @@ namespace CyberMath.JaggedMatrix.Tests
         [TestMethod]
         public void Add_int_column_exception()
         {
-            var matrix1 = new JuggedMatrix<int>(3, 4, 4, 4)
+            var matrix1 = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
             {
-                [0, 0] = 6,
-                [0, 1] = 3,
-                [0, 2] = 5,
-                [0, 3] = -1,
-                [1, 0] = 4,
-                [1, 1] = 34,
-                [1, 2] = 6,
-                [1, 3] = -1,
-                [2, 0] = 34,
-                [2, 1] = 0,
-                [2, 2] = 2,
-                [2, 3] = -1
+                [0, 0] = 6, [0, 1] = 3, [0, 2] = 5, [0, 3] = -1, 
+                [1, 0] = 4, [1, 1] = 34, [1, 2] = 6, [1, 3] = -1,
+                [2, 0] = 34, [2, 1] = 0, [2, 2] = 2, [2, 3] = -1
             };
 
-            var matrix2 = new JuggedMatrix<int>(3, 3, 3, 3)
-            {
-                [0, 0] = 234,
-                [0, 1] = 2,
-                [0, 2] = 1,
-                [1, 0] = 3,
-                [1, 1] = 42,
-                [1, 2] = -90,
-                [2, 0] = 4,
-                [2, 1] = 2,
-                [2, 2] = 2
-            };
+
+            var matrix2 = new DynamicJuggedMatrix<int>(3, 3, 3, 3)
+                          {
+	                          [0, 0] = 234,
+	                          [0, 1] = 2,
+	                          [0, 2] = 1,
+	                          [1, 0] = 3,
+	                          [1, 1] = 42,
+	                          [1, 2] = -90,
+	                          [2, 0] = 4,
+	                          [2, 1] = 2,
+	                          [2, 2] = 2
+                          };
 
             Assert.ThrowsException<MatrixInvalidOperationException>(() => matrix1.Add(matrix2));
         }
@@ -92,7 +84,7 @@ namespace CyberMath.JaggedMatrix.Tests
         [TestMethod]
         public void Add_int_row_exception()
         {
-            var matrix1 = new JuggedMatrix<int>(4, 3, 3, 3, 3)
+            var matrix1 = new DynamicJuggedMatrix<int>(4, 3, 3, 3, 3)
             {
                 [0, 0] = 6,
                 [0, 1] = 3,
@@ -108,7 +100,7 @@ namespace CyberMath.JaggedMatrix.Tests
                 [3, 2] = 11
             };
 
-            var matrix2 = new JuggedMatrix<int>(3, 3, 3, 3)
+            var matrix2 = new DynamicJuggedMatrix<int>(3, 3, 3, 3)
             {
                 [0, 0] = 234,
                 [0, 1] = 2,
@@ -128,7 +120,7 @@ namespace CyberMath.JaggedMatrix.Tests
         public void Add_int_number_positive()
         {
             var number = 5;
-            var matrix = new JuggedMatrix<int>(3, 3, 3, 3)
+            var matrix = new DynamicJuggedMatrix<int>(3, 3, 3, 3)
             {
                 [0, 0] = 6,
                 [0, 1] = 3,
@@ -142,7 +134,7 @@ namespace CyberMath.JaggedMatrix.Tests
             };
 
             var actual = matrix.MulOnNumber(number);
-            var expected = new JuggedMatrix<int>(3, 3, 3, 3)
+            var expected = new DynamicJuggedMatrix<int>(3, 3, 3, 3)
             {
                 [0, 0] = 30,
                 [0, 1] = 15,
@@ -161,7 +153,7 @@ namespace CyberMath.JaggedMatrix.Tests
         [TestMethod]
         public void Sub_int_positive()
         {
-            var matrix1 = new JuggedMatrix<int>(3, 3, 3, 3)
+            var matrix1 = new DynamicJuggedMatrix<int>(3, 3, 3, 3)
             {
                 [0, 0] = 6,
                 [0, 1] = 3,
@@ -174,7 +166,7 @@ namespace CyberMath.JaggedMatrix.Tests
                 [2, 2] = 2
             };
 
-            var matrix2 = new JuggedMatrix<int>(3, 3, 3, 3)
+            var matrix2 = new DynamicJuggedMatrix<int>(3, 3, 3, 3)
             {
                 [0, 0] = 234,
                 [0, 1] = 2,
@@ -187,7 +179,7 @@ namespace CyberMath.JaggedMatrix.Tests
                 [2, 2] = 2
             };
 
-            var expected = new JuggedMatrix<int>(3, 3, 3, 3)
+            var expected = new DynamicJuggedMatrix<int>(3, 3, 3, 3)
             {
                 [0, 0] = -228,
                 [0, 1] = 1,
@@ -207,7 +199,7 @@ namespace CyberMath.JaggedMatrix.Tests
         [TestMethod]
         public void Sub_int_column_exception()
         {
-            var matrix1 = new JuggedMatrix<int>(3, 4, 4, 4)
+            var matrix1 = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
             {
                 [0, 0] = 6,
                 [0, 1] = 3,
@@ -223,7 +215,7 @@ namespace CyberMath.JaggedMatrix.Tests
                 [2, 3] = -1
             };
 
-            var matrix2 = new JuggedMatrix<int>(3, 3, 3, 3)
+            var matrix2 = new DynamicJuggedMatrix<int>(3, 3, 3, 3)
             {
                 [0, 0] = 234,
                 [0, 1] = 2,
@@ -242,7 +234,7 @@ namespace CyberMath.JaggedMatrix.Tests
         [TestMethod]
         public void Sub_int_row_exception()
         {
-            var matrix1 = new JuggedMatrix<int>(4, 3, 3, 3, 3)
+            var matrix1 = new DynamicJuggedMatrix<int>(4, 3, 3, 3, 3)
             {
                 [0, 0] = 6,
                 [0, 1] = 3,
@@ -258,7 +250,7 @@ namespace CyberMath.JaggedMatrix.Tests
                 [3, 2] = 11
             };
 
-            var matrix2 = new JuggedMatrix<int>(3, 3, 3, 3)
+            var matrix2 = new DynamicJuggedMatrix<int>(3, 3, 3, 3)
             {
                 [0, 0] = 234,
                 [0, 1] = 2,

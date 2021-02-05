@@ -1,13 +1,13 @@
 ﻿using System;
 using CyberMath.Structures.Matrices.Base;
 
-namespace CyberMath.Structures.Matrices.JaggedMatrix
+namespace CyberMath.Structures.Matrices.Jagged_Matrix
 {
     /// <summary>
     /// Interface for Jugged Matrix. It implements <see cref="IMatrixBase{T}"/>
     /// </summary>
     /// <typeparam name="T">ANY</typeparam>
-    public interface IJuggedMatrix<T> : IMatrixBase<T>, ICloneable
+    public interface IJuggedMatrix<T> : IMatrixBase<T>, IEquatable<IJuggedMatrix<T>>
     {
         /// <summary>
         /// Sorts rows in <see cref="IJuggedMatrix{T}"/> by count of elements

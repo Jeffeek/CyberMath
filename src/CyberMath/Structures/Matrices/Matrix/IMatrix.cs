@@ -1,4 +1,5 @@
-﻿using CyberMath.Structures.Matrices.Base;
+﻿using System;
+using CyberMath.Structures.Matrices.Base;
 
 namespace CyberMath.Structures.Matrices.Matrix
 {
@@ -7,7 +8,7 @@ namespace CyberMath.Structures.Matrices.Matrix
     /// Interface for vanilla Matrix. Implements <see cref="T:CyberMath.Structures.Matrices.Base.IMatrixBase`1" />
     /// </summary>
     /// <typeparam name="T">ANY</typeparam>
-    public interface IMatrix<T> : IMatrixBase<T>
+    public interface IMatrix<T> : IMatrixBase<T>, IEquatable<IMatrix<T>>
     {
         /// <summary>
         /// Count of columns in <see cref="IMatrix{T}"/>

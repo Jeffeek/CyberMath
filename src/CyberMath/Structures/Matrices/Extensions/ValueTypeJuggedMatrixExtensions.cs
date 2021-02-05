@@ -2,7 +2,7 @@
 using System.Linq;
 using CyberMath.Extensions;
 using CyberMath.Structures.Matrices.Base.Exceptions;
-using CyberMath.Structures.Matrices.JaggedMatrix;
+using CyberMath.Structures.Matrices.Jagged_Matrix;
 
 namespace CyberMath.Structures.Matrices.Extensions
 {

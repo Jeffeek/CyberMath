@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using CyberMath.Structures.Matrices.Dynamic_Matrices;
+using CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Matrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CyberMath.DynamicMatrix.Tests

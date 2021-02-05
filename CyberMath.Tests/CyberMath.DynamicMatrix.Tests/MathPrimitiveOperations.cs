@@ -1,5 +1,5 @@
 using CyberMath.Structures.Matrices.Base.Exceptions;
-using CyberMath.Structures.Matrices.Dynamic_Matrices;
+using CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Matrix;
 using CyberMath.Structures.Matrices.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

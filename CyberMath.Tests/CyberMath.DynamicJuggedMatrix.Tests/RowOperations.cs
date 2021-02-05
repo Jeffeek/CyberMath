@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
-using CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Matrix;
+﻿using System.Linq;
+using CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Jugged_Matrix;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CyberMath.DynamicMatrix.Tests
+namespace CyberMath.DynamicJuggedMatrix.Tests
 {
     [TestClass]
     public class RowOperations
@@ -12,7 +12,7 @@ namespace CyberMath.DynamicMatrix.Tests
 		[TestMethod]
 		public void RemoveRowAtStart_test()
 		{
-			var actualMatrix = new DynamicMatrix<int>(3, 4)
+			var actualMatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
 			{
 				[0, 0] = 3,
 				[0, 1] = 4,
@@ -30,7 +30,7 @@ namespace CyberMath.DynamicMatrix.Tests
 
 			actualMatrix.RemoveRow(0);
 
-			var expectedmatrix = new DynamicMatrix<int>(2, 4)
+			var expectedmatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
 			{
 				[0, 0] = 3,
 				[0, 1] = 4,
@@ -48,7 +48,7 @@ namespace CyberMath.DynamicMatrix.Tests
 		[TestMethod]
 		public void RemoveRowAtMiddle_test()
 		{
-			var actualMatrix = new DynamicMatrix<int>(3, 4)
+			var actualMatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
 			{
 				[0, 0] = 3,
 				[0, 1] = 4,
@@ -66,7 +66,7 @@ namespace CyberMath.DynamicMatrix.Tests
 
 			actualMatrix.RemoveRow(1);
 
-			var expectedmatrix = new DynamicMatrix<int>(2, 4)
+			var expectedmatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
 			{
 				[0, 0] = 3,
 				[0, 1] = 4,
@@ -84,7 +84,7 @@ namespace CyberMath.DynamicMatrix.Tests
 		[TestMethod]
 		public void RemoveRowAtEnd_test()
 		{
-			var actualMatrix = new DynamicMatrix<int>(3, 4)
+			var actualMatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
 			{
 				[0, 0] = 3,
 				[0, 1] = 4,
@@ -102,7 +102,7 @@ namespace CyberMath.DynamicMatrix.Tests
 
 			actualMatrix.RemoveRow(2);
 
-			var expectedmatrix = new DynamicMatrix<int>(2, 4)
+			var expectedmatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
 			{
 				[0, 0] = 3,
 				[0, 1] = 4,
@@ -124,7 +124,7 @@ namespace CyberMath.DynamicMatrix.Tests
 		[TestMethod]
 		public void InsertRowAtStart_test()
 		{
-			var actualMatrix = new DynamicMatrix<int>(2, 4)
+			var actualMatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
 			{
 				[0, 0] = 3,
 				[0, 1] = 4,
@@ -139,7 +139,7 @@ namespace CyberMath.DynamicMatrix.Tests
 
 			actualMatrix.InsertRow(0, elements);
 
-			var expectedmatrix = new DynamicMatrix<int>(3, 4)
+			var expectedmatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
 			{
 				[0, 0] = 3,
 				[0, 1] = 4,
@@ -161,7 +161,7 @@ namespace CyberMath.DynamicMatrix.Tests
 		[TestMethod]
 		public void InsertRowAtMiddle_test()
 		{
-			var actualMatrix = new DynamicMatrix<int>(2, 4)
+			var actualMatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
 			{
 				[0, 0] = 3,
 				[0, 1] = 4,
@@ -176,7 +176,7 @@ namespace CyberMath.DynamicMatrix.Tests
 
 			actualMatrix.InsertRow(1, elements);
 
-			var expectedmatrix = new DynamicMatrix<int>(3, 4)
+			var expectedmatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
 			{
 				[0, 0] = 3,
 				[0, 1] = 4,
@@ -198,35 +198,20 @@ namespace CyberMath.DynamicMatrix.Tests
 		[TestMethod]
 		public void AddRow_test()
 		{
-			var actualMatrix = new DynamicMatrix<int>(2, 4)
+			var actualMatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
 			{
-				[0, 0] = 3,
-				[0, 1] = 4,
-				[0, 2] = 5,
-				[0, 3] = 6,
-				[1, 0] = 3,
-				[1, 1] = 4,
-				[1, 2] = 5,
-				[1, 3] = 6
+				[0, 0] = 3, [0, 1] = 4, [0, 2] = 5, [0, 3] = 6,
+				[1, 0] = 3, [1, 1] = 4, [1, 2] = 5, [1, 3] = 6
 			};
 			var elements = new[] { 3, 4, 10, 6 };
 
 			actualMatrix.InsertRow(2, elements);
 
-			var expectedmatrix = new DynamicMatrix<int>(3, 4)
+			var expectedmatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
 			{
-				[0, 0] = 3,
-				[0, 1] = 4,
-				[0, 2] = 5,
-				[0, 3] = 6,
-				[1, 0] = 3,
-				[1, 1] = 4,
-				[1, 2] = 5,
-				[1, 3] = 6,
-				[2, 0] = 3,
-				[2, 1] = 4,
-				[2, 2] = 10,
-				[2, 3] = 6,
+				[0, 0] = 3, [0, 1] = 4, [0, 2] = 5, [0, 3] = 6,
+				[1, 0] = 3, [1, 1] = 4, [1, 2] = 5, [1, 3] = 6,
+				[2, 0] = 3, [2, 1] = 4, [2, 2] = 10, [2, 3] = 6,
 			};
 
 			Assert.IsTrue(actualMatrix.Equals(expectedmatrix));
@@ -237,12 +222,10 @@ namespace CyberMath.DynamicMatrix.Tests
 		[TestMethod]
 		public void AvgInRowTest_int()
 		{
-			var matrix = new DynamicMatrix<int>(2, 2)
+			var matrix = new DynamicJuggedMatrix<int>(2, 2, 2)
 			{
-				[0, 0] = 5,
-				[0, 1] = 10,
-				[1, 0] = 20,
-				[1, 1] = 50
+				[0, 0] = 5, [0, 1] = 10,
+				[1, 0] = 20, [1, 1] = 50
 			};
 
 			var actual = matrix.Select(x => x.Average()).ToArray();
@@ -253,7 +236,7 @@ namespace CyberMath.DynamicMatrix.Tests
 		[TestMethod]
 		public void MinInRowTest_int()
 		{
-			var matrix = new DynamicMatrix<int>(2, 2)
+			var matrix = new DynamicJuggedMatrix<int>(2, 2, 2)
 			{
 				[0, 0] = 5,
 				[0, 1] = 10,
@@ -269,7 +252,7 @@ namespace CyberMath.DynamicMatrix.Tests
 		[TestMethod]
 		public void MaxInRowTest_int()
 		{
-			var matrix = new DynamicMatrix<int>(2, 2)
+			var matrix = new DynamicJuggedMatrix<int>(2, 2, 2)
 			{
 				[0, 0] = 5,
 				[0, 1] = 10,
@@ -285,7 +268,7 @@ namespace CyberMath.DynamicMatrix.Tests
 		[TestMethod]
 		public void MinInRowTest_string()
 		{
-			var matrix = new DynamicMatrix<string>(2, 2)
+			var matrix = new DynamicJuggedMatrix<string>(2, 2, 2)
 			{
 				[0, 0] = "ab",
 				[0, 1] = "bc",
@@ -301,7 +284,7 @@ namespace CyberMath.DynamicMatrix.Tests
 		[TestMethod]
 		public void MaxInRowTest_string()
 		{
-			var matrix = new DynamicMatrix<string>(2, 2)
+			var matrix = new DynamicJuggedMatrix<string>(2, 2, 2)
 			{
 				[0, 0] = "ab",
 				[0, 1] = "bc",

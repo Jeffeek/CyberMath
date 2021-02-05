@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CyberMath.Structures.Matrices.JaggedMatrix;
+using CyberMath.Structures.Matrices.Jagged_Matrix;
 using CyberMath.Structures.Matrices.Matrix;
 
 namespace CyberMath.Structures.Matrices.Extensions

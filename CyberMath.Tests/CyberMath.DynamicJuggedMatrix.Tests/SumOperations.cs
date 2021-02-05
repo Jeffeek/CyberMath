@@ -3,7 +3,7 @@ using CyberMath.Structures.Matrices.Base;
 using CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Matrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CyberMath.DynamicMatrix.Tests
+namespace CyberMath.DynamicJuggedMatrix.Tests
 {
     [TestClass]
     public class SumOperations

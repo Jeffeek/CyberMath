@@ -1319,12 +1319,13 @@ namespace CyberMath.Structures.Matrices.Extensions
             return matrix;
         }
 
+        
         /// <summary>
-        /// <inheritdoc cref="MulOnNumber(Matrix{int},int)"/>
+        /// <inheritdoc cref="MulOnNumber(IMatrix{int},int)"/>
         /// </summary>
-        /// <param name="first"><inheritdoc cref="MulOnNumber(Matrix{int},int)"/></param>
-        /// <param name="number"><inheritdoc cref="MulOnNumber(Matrix{int},int)"/></param>
-        /// <returns><inheritdoc cref="MulOnNumber(Matrix{int},int)"/></returns>
+        /// <param name="first"></param>
+        /// <param name="number"></param>
+        /// <returns></returns>
         public static IMatrix<double?> MulOnNumber(this IMatrix<double?> first, double number)
         {
             var matrix = new Matrix<double?>(first.RowsCount, first.ColumnsCount);

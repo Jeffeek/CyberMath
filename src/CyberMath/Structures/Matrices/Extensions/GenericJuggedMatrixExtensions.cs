@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using CyberMath.Structures.Matrices.JaggedMatrix;
+using CyberMath.Structures.Matrices.Jagged_Matrix;
 
 namespace CyberMath.Structures.Matrices.Extensions
 {
