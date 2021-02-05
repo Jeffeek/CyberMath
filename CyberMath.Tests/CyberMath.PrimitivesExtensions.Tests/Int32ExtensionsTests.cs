@@ -52,5 +52,12 @@ namespace CyberMath.PrimitivesExtensions.Tests
 			var actual = testNumber.GetDigits().ToArray();
 			CollectionAssert.AreEqual(expected, actual);
 		}
+
+        [TestMethod]
+        public void Fib()
+		{
+            var num = int.MaxValue;
+            var fibbs = num.Fibonacci().ToArray();
+		}
 	}
 }

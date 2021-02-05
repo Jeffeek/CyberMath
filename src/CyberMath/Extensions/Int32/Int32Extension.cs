@@ -140,5 +140,24 @@ namespace CyberMath.Extensions.Int32
 
 			return digits.Reverse();
 		}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<int> Fibonacci(this int finish)
+        {
+            finish = Math.Abs(finish);
+            var a = 0;
+            var b = 1;
+
+            while (a <= finish && b > 0)
+            {
+                var tmp = a;
+                a = b;
+                b += tmp;
+                yield return a;
+            }
+        }
 	}
 }
