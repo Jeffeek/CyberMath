@@ -8,12 +8,11 @@ using System.Text;
 namespace CyberMath.Structures.Matrices.Dynamic_Matrices
 {
 	//TODO: summary
-	//TODO: unit-tests
 	/// <summary>
 	/// 
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-    public sealed class DynamicMatrix<T> : IDynamicMatrix<T>, IEquatable<DynamicMatrix<T>>
+    public sealed class DynamicMatrix<T> : IDynamicMatrix<T>, IEquatable<IMatrix<T>>
 	{
 	    /// <summary>
 	    /// 
@@ -36,6 +35,9 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices
 		    }
 	    }
 
+	    /// <summary>
+		/// 
+		/// </summary>
 	    public DynamicMatrix() : this(0, 0) { }
 	    
 	    private List<List<T>> _innerMatrix;
@@ -124,7 +126,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices
         {
 			if (ReferenceEquals(row, null)) throw new ArgumentNullException(nameof(row));
 			var rowAsList = row.ToList();
-			if (rowAsList.Count != ColumnsCount) throw new ArgumentException(nameof(index));
+			if (rowAsList.Count != ColumnsCount) throw new ArgumentException(nameof(row));
 			_innerMatrix.Insert(index, rowAsList);
 		}
 
@@ -142,7 +144,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices
 		/// <inheritdoc />
 		public void RemoveColumn(int index)
 		{
-			if (index < 0 &&
+			if (index < 0 ||
 			    index >= ColumnsCount) throw new ArgumentException(nameof(index));
 			for (var i = 0; i < RowsCount; i++)
 				_innerMatrix[i].RemoveAt(index);
@@ -151,7 +153,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices
 	    /// <inheritdoc />
 	    public void RemoveRow(int index)
         {
-			if (index < 0 &&
+			if (index < 0 ||
 			    index >= RowsCount) throw new ArgumentException(nameof(index));
 			_innerMatrix.RemoveAt(index);
 		}
@@ -163,18 +165,37 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices
 			for (var i = 0; i < RowsCount; i++)
 			{
 				for (var j = 0; j < ColumnsCount; j++)
-				{
 					result[j, i] = this[i, j];
-				}
 			}
 
 			return result;
 		}
 
+	    #region Overrides of Object
+
+	    /// <inheritdoc />
+	    public override string ToString()
+	    {
+		    var sb = new StringBuilder();
+		    for (var i = 0; i < RowsCount; i++)
+		    {
+			    for (var j = 0; j < ColumnsCount; j++)
+			    {
+				    sb.Append($"{this[i, j]} | ");
+			    }
+
+			    sb.AppendLine();
+		    }
+
+		    return sb.ToString();
+		}
+
+	    #endregion
+
 	    #region Equality members
 
 	    /// <inheritdoc />
-	    public bool Equals(DynamicMatrix<T> other)
+	    public bool Equals(IMatrix<T> other)
 	    {
 		    if (ReferenceEquals(null, other)) return false;
 		    if (ReferenceEquals(this, other)) return true;
@@ -194,11 +215,10 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices
 	    /// <inheritdoc />
 	    public override bool Equals(object obj)
 	    {
-		    if (ReferenceEquals(null, obj)) return false;
-		    if (ReferenceEquals(this, obj)) return true;
-		    if (obj.GetType() != this.GetType()) return false;
-		    return Equals((DynamicMatrix<T>) obj);
-	    }
+			if (ReferenceEquals(null, obj)) return false;
+			if (ReferenceEquals(this, obj)) return true;
+			return obj is IMatrix<T> matrix && Equals(matrix);
+		}
 
 	    /// <inheritdoc />
 	    public override int GetHashCode() => (_innerMatrix != null ? _innerMatrix.GetHashCode() : 0);

@@ -80,7 +80,7 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <param name="matrix">First</param>
         /// <param name="number"></param>
         /// <returns>New <see cref="IMatrix{T}"/> - the result multiplication of matrix <paramref name="matrix"/> on <paramref name="number"/></returns>
-        public static IMatrix<int> MulOnNumber(this Matrix<int> matrix, int number)
+        public static IMatrix<int> MulOnNumber(this IMatrix<int> matrix, int number)
         {
             var newMatrix = new Matrix<int>(matrix.RowsCount, matrix.ColumnsCount);
             for (var i = 0; i < matrix.RowsCount; i++)

@@ -10,7 +10,7 @@ namespace CyberMath.Structures.Matrices.Matrix
     /// Implementation of <see cref="T:CyberMath.Structures.Matrices.Matrix.IMatrix`1" /> with Math-functional methods
     /// </summary>
     /// <typeparam name="T" />
-    public class Matrix<T> : IMatrix<T>, IEquatable<Matrix<T>>
+    public class Matrix<T> : IMatrix<T>, IEquatable<IMatrix<T>>
     {
         /// <summary>
         /// Internal matrix needed to implement the class <see cref="Matrix{T}"/>
@@ -106,7 +106,7 @@ namespace CyberMath.Structures.Matrices.Matrix
         #region Extra Operations
 
         ///<inheritdoc/>
-        public bool Equals(Matrix<T> other)
+        public bool Equals(IMatrix<T> other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -129,8 +129,7 @@ namespace CyberMath.Structures.Matrices.Matrix
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((Matrix<T>)obj);
+            return obj is IMatrix<T> matrix && Equals(matrix);
         }
 
         ///<inheritdoc/>
