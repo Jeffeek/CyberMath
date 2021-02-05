@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using CyberMath.Structures.Matrices.Matrix;
 
-namespace CyberMath.Structures.Dynamic_Matrices
+namespace CyberMath.Structures.Matrices.Dynamic_Matrices
 {
 	//TODO: summary
-	//TODO: implementation
 	/// <summary>
 	/// 
 	/// </summary>
