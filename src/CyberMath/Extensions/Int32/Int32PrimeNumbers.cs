@@ -8,6 +8,7 @@ namespace CyberMath.Extensions.Int32
     /// </summary>
     public static class Int32PrimeNumbers
     {
+        //TODO: unit-test
         /// <summary>
         /// Checks <paramref name="number"/> for primality
         /// </summary>
@@ -26,6 +27,7 @@ namespace CyberMath.Extensions.Int32
             return true;
         }
 
+        //TODO: unit-test
         /// <summary>
         /// Generating one random prime number between <paramref name="min"/> and <paramref name="max"/>
         /// </summary>
@@ -50,6 +52,7 @@ namespace CyberMath.Extensions.Int32
             return number;
         }
 
+        //TODO: unit-test
         /// <summary>
         /// Generates <see cref="IEnumerable{T}"/> collection of prime numbers which are less than <paramref name="max"/>
         /// </summary>
@@ -65,6 +68,7 @@ namespace CyberMath.Extensions.Int32
             }
         }
 
+        //TODO: unit-test
         /// <summary>
         /// Generator of prime numbers until <seealso cref="int.MaxValue"/>
         /// </summary>

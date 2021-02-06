@@ -9,6 +9,7 @@ namespace CyberMath.Extensions.Int32
     /// </summary>
     public static class Int32Extension
     {
+        //TODO: unit-test
         /// <summary>
         /// Checks is number odd
         /// </summary>
@@ -16,6 +17,7 @@ namespace CyberMath.Extensions.Int32
         /// <returns><see langword="true"/> if number is odd; otherwise <see langword="false"/></returns>
         public static bool IsOdd(this int number) => number % 2 == 0;
 
+        //TODO: unit-test
         /// <summary>
         /// Checks is number even
         /// </summary>
@@ -23,6 +25,7 @@ namespace CyberMath.Extensions.Int32
         /// <returns>is number even</returns>
         public static bool IsEven(this int number) => number % 2 != 0;
 
+        //TODO: unit-test
         /// <summary>
         /// Calculates greatest common divisor between two <see cref="Int32"/> numbers
         /// </summary>
@@ -42,6 +45,7 @@ namespace CyberMath.Extensions.Int32
             return a;
         }
 
+        //TODO: unit-test
         /// <summary>
         /// Calculates lowest common multiple between two <see cref="Int32"/> numbers
         /// </summary>
@@ -50,6 +54,7 @@ namespace CyberMath.Extensions.Int32
         /// <returns>Lowest common multiple</returns>
         public static int LCM(this int a, int b) => a / GCD(a, b) * b;
 
+        //TODO: unit-test
         /// <summary>
         /// Swaps two integers
         /// </summary>
@@ -106,6 +111,7 @@ namespace CyberMath.Extensions.Int32
                             number < 1000000000 ? 9 : 10;
         }
 
+        //TODO: unit-test
         /// <summary>
         /// Converts <see cref="Int32"/> <paramref name="number"/> to binary(2) format
         /// </summary>
@@ -113,6 +119,7 @@ namespace CyberMath.Extensions.Int32
         /// <returns><see cref="string"/> representation of the binary form of a <paramref name="number"/></returns>
         public static string ToBinary(this int number) => Convert.ToString(number, 2);
 
+        //TODO: unit-test
         /// <summary>
         /// Converts <see cref="Int32"/> <paramref name="number"/> to HEX(16) format
         /// </summary>
@@ -140,24 +147,5 @@ namespace CyberMath.Extensions.Int32
 
 			return digits.Reverse();
 		}
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<int> Fibonacci(this int finish)
-        {
-            finish = Math.Abs(finish);
-            var a = 0;
-            var b = 1;
-
-            while (a <= finish && b > 0)
-            {
-                var tmp = a;
-                a = b;
-                b += tmp;
-                yield return a;
-            }
-        }
-	}
+    }
 }
