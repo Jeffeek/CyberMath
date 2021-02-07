@@ -57,8 +57,8 @@ namespace CyberMath.Helpers
 
 			if (GetOperatorPriority(expToValidate[0]) > 0 &&
 			    GetOperatorPriority(expToValidate[0]) != 5 ||
-			    GetOperatorPriority(expToValidate[^1]) > 0 &&
-			    GetOperatorPriority(expToValidate[^1]) != 1 ||
+			    GetOperatorPriority(expToValidate[expToValidate.Length - 1]) > 0 &&
+			    GetOperatorPriority(expToValidate[expToValidate.Length - 1]) != 1 ||
 			    expToValidate.Length == 0)
 				return false;
 
@@ -178,12 +178,20 @@ namespace CyberMath.Helpers
 
 			for (var i = expression.Length; i > 0; i--)
 			{
-				reversedInfixExpression += expression[i - 1] switch
-				                           {
-					                           ')' => '(',
-					                           '(' => ')',
-					                           _   => expression[i - 1]
-				                           };
+				switch (expression[i - 1])
+				{
+					case ')':
+						reversedInfixExpression += '(';
+						break;
+
+					case '(':
+						reversedInfixExpression += ')';
+						break;
+
+					default:
+						reversedInfixExpression += expression[i - 1];
+						break;
+				}
 			}
 
 			var reversedPrefixExpression = InfixToPostfix(reversedInfixExpression);

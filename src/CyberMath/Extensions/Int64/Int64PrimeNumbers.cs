@@ -7,17 +7,17 @@ using System.Collections.Generic;
 
 namespace CyberMath.Extensions.Int64
 {
-	/// <summary>
-	///     Extension methods of prime numbers for <see cref="int" />
-	/// </summary>
-	public static class Int64PrimeNumbers
+    /// <summary>
+    ///     Extension methods of prime numbers for <see cref="int" />
+    /// </summary>
+    public static class Int64PrimeNumbers
 	{
-		/// <summary>
-		///     Checks <paramref name="number" /> for primality
-		/// </summary>
-		/// <param name="number"></param>
-		/// <returns><see langword="true" /> if <paramref name="number" /> is prime; otherwise <see langword="false" /></returns>
-		public static bool IsPrime(this long number)
+        /// <summary>
+        ///     Checks <paramref name="number" /> for primality
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns><see langword="true" /> if <paramref name="number" /> is prime; otherwise <see langword="false" /></returns>
+        public static bool IsPrime(this long number)
 		{
 			if (number < 0) throw new Exception("Number was lower than zero");
 			if (number == 0) return false;
@@ -31,13 +31,13 @@ namespace CyberMath.Extensions.Int64
 			return true;
 		}
 
-		/// <summary>
-		///     Generating one random prime number between <paramref name="min" /> and <paramref name="max" />
-		/// </summary>
-		/// <param name="min"></param>
-		/// <param name="max"></param>
-		/// <returns>Prime number</returns>
-		public static long GenerateRandomPrimeNumber(long min = 3, long max = long.MaxValue)
+        /// <summary>
+        ///     Generating one random prime number between <paramref name="min" /> and <paramref name="max" />
+        /// </summary>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns>Prime number</returns>
+        public static long GenerateRandomPrimeNumber(long min = 3, long max = long.MaxValue)
 		{
 			if (min < 0) throw new Exception("Min was less than zero");
 			if (max < 0) throw new Exception("Max was less than zero");
@@ -56,12 +56,12 @@ namespace CyberMath.Extensions.Int64
 			return number;
 		}
 
-		/// <summary>
-		///     Generates <see cref="IEnumerable{T}" /> collection of prime numbers which are less than <paramref name="max" />
-		/// </summary>
-		/// <param name="max"></param>
-		/// <returns><see cref="IEnumerable{T}" /> of prime numbers between 2 and <paramref name="max" /></returns>
-		public static IEnumerable<long> GeneratePrimeNumbers(long max)
+        /// <summary>
+        ///     Generates <see cref="IEnumerable{T}" /> collection of prime numbers which are less than <paramref name="max" />
+        /// </summary>
+        /// <param name="max"></param>
+        /// <returns><see cref="IEnumerable{T}" /> of prime numbers between 2 and <paramref name="max" /></returns>
+        public static IEnumerable<long> GeneratePrimeNumbers(long max)
 		{
 			if (max <= 2) throw new Exception("Max was less or equal 2");
 			for (long i = 2; i <= max; i++)
@@ -71,13 +71,13 @@ namespace CyberMath.Extensions.Int64
 			}
 		}
 
-		/// <summary>
-		///     Generator of prime numbers until <seealso cref="long.MaxValue" />
-		/// </summary>
-		/// <returns>
-		///     <see cref="IEnumerable{T}" />
-		/// </returns>
-		public static IEnumerable<long> GeneratePrimeNumbers()
+        /// <summary>
+        ///     Generator of prime numbers until <seealso cref="long.MaxValue" />
+        /// </summary>
+        /// <returns>
+        ///     <see cref="IEnumerable{T}" />
+        /// </returns>
+        public static IEnumerable<long> GeneratePrimeNumbers()
 		{
 			long number = 2;
 			while (true)

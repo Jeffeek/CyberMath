@@ -29,10 +29,12 @@ namespace CyberMath.Helpers
 				throw new ArgumentException("Inserted type should be with [Serializable] attribute");
 
 			var formatter = new BinaryFormatter();
-			using var stream = new MemoryStream();
-			formatter.Serialize(stream, item);
-			stream.Seek(0, SeekOrigin.Begin);
-			return (T)formatter.Deserialize(stream);
+			using (var stream = new MemoryStream())
+			{
+				formatter.Serialize(stream, item);
+				stream.Seek(0, SeekOrigin.Begin);
+				return (T)formatter.Deserialize(stream);
+			}
 		}
 	}
 }

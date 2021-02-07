@@ -62,9 +62,15 @@ namespace CyberMath.Matrix.Tests
 			var n = 3;
 			var matrix = new Matrix<int>(n, n)
 			             {
-				             [0, 0] = 50, [0, 1] = 50, [0, 2] = 50,
-				             [1, 0] = 5, [1, 1] = 5, [1, 2] = 5,
-				             [2, 0] = 1, [2, 1] = 1, [2, 2] = 1
+				             [0, 0] = 50,
+				             [0, 1] = 50,
+				             [0, 2] = 50,
+				             [1, 0] = 5,
+				             [1, 1] = 5,
+				             [1, 2] = 5,
+				             [2, 0] = 1,
+				             [2, 1] = 1,
+				             [2, 2] = 1
 			             };
 
 
@@ -79,29 +85,19 @@ namespace CyberMath.Matrix.Tests
 			var n = 3;
 			var matrix = new Matrix<int>(n, n)
 			             {
-				             [0, 0] = 50, [0, 1] = 50, [0, 2] = 50,
-				             [1, 0] = 5, [1, 1] = 5, [1, 2] = 5,
-				             [2, 0] = 1, [2, 1] = 1, [2, 2] = 1
+				             [0, 0] = 50,
+				             [0, 1] = 50,
+				             [0, 2] = 50,
+				             [1, 0] = 5,
+				             [1, 1] = 5,
+				             [1, 2] = 5,
+				             [2, 0] = 1,
+				             [2, 1] = 1,
+				             [2, 2] = 1
 			             };
 
 			var expected = 150;
 			var actual = matrix.SumSaddlePoints();
-			Assert.IsTrue(actual == expected);
-		}
-
-		[TestMethod]
-		public void DiagonalSum_nullable_int()
-		{
-			var n = 3;
-			var matrix = new Matrix<int?>(n, n)
-			             {
-				             [0, 0] = 50, [0, 1] = null, [0, 2] = null,
-				             [1, 0] = 5,  [1, 1] = null, [1, 2] = 5,
-				             [2, 0] = 1,  [2, 1] = 1,    [2, 2] = 1
-			             };
-
-			var expected = 51;
-			var actual = matrix.DiagonalSum();
 			Assert.IsTrue(actual == expected);
 		}
 	}

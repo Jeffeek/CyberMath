@@ -9,27 +9,27 @@ using System.Linq;
 
 namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
 {
-	/// <summary>
-	///     Implementing of native <see cref="IBinaryTree{T}" />
-	/// </summary>
-	/// <typeparam name="T">
-	///     <see cref="IComparable{T}" />
-	/// </typeparam>
-	public abstract class BinaryTreeBase<T> : IBinaryTree<T>
+    /// <summary>
+    ///     Implementing of native <see cref="IBinaryTree{T}" />
+    /// </summary>
+    /// <typeparam name="T">
+    ///     <see cref="IComparable{T}" />
+    /// </typeparam>
+    public abstract class BinaryTreeBase<T> : IBinaryTree<T>
 		where T : IComparable, IComparable<T>
 	{
 		private bool _disposed;
 
-		/// <summary>
-		///     Creates an instance and adds <paramref name="values" /> to the tree
-		/// </summary>
-		/// <param name="values">values to add</param>
-		protected BinaryTreeBase(IEnumerable<T> values) => AddRange(values);
+        /// <summary>
+        ///     Creates an instance and adds <paramref name="values" /> to the tree
+        /// </summary>
+        /// <param name="values">values to add</param>
+        protected BinaryTreeBase(IEnumerable<T> values) => AddRange(values);
 
-		/// <summary>
-		///     Creates a new instance with 0 elements
-		/// </summary>
-		protected BinaryTreeBase() { }
+        /// <summary>
+        ///     Creates a new instance with 0 elements
+        /// </summary>
+        protected BinaryTreeBase() { }
 
 		/// <inheritdoc />
 		public IBinaryTreeNode<T> Root { get; protected set; }
@@ -78,16 +78,16 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
 		/// <inheritdoc />
 		public void CopyTo(T[] array, int arrayIndex)
 		{
-			var binaryTreeArrayInorder = Inorder().ToArray();
-			Array.Copy(Inorder().ToArray(), 0, array, arrayIndex, binaryTreeArrayInorder.Length);
+			if (arrayIndex < 0 ||
+			    arrayIndex >= array.Length) return;
 
-			//if (arrayIndex < 0 || arrayIndex >= array.Length) return;
-			//var currentBinaryTreeIndex = 0;
-			//for (var i = arrayIndex; i < array.Length; i++)
-			//{
-			//    array[i] = binaryTreeArrayInorder[currentBinaryTreeIndex];
-			//    currentBinaryTreeIndex++;
-			//}
+			var binaryTreeArrayInorder = Inorder().ToArray();
+			var currentBinaryTreeIndex = 0;
+			for (var i = arrayIndex; i < array.Length; i++)
+			{
+				array[i] = binaryTreeArrayInorder[currentBinaryTreeIndex];
+				currentBinaryTreeIndex++;
+			}
 		}
 
 		#endregion
@@ -117,13 +117,20 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
 		/// <inheritdoc />
 		public IEnumerator<T> GetEnumerator()
 		{
-			return TraversalOrderType switch
-			       {
-				       TraversalOrderType.Preorder => Preorder().GetEnumerator(),
-				       TraversalOrderType.Inorder => Inorder().GetEnumerator(),
-				       TraversalOrderType.Postorder => Postorder().GetEnumerator(),
-				       _ => throw new Exception("Something went wrong! Traversal strategy is not defined")
-			       };
+			switch (TraversalOrderType)
+			{
+				case TraversalOrderType.Preorder:
+					return Preorder().GetEnumerator();
+
+				case TraversalOrderType.Inorder:
+					return Inorder().GetEnumerator();
+
+				case TraversalOrderType.Postorder:
+					return Postorder().GetEnumerator();
+
+				default:
+					throw new Exception("Something went wrong! Traversal strategy is not defined");
+			}
 		}
 
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -135,13 +142,13 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
 		/// <inheritdoc />
 		public bool Contains(T item) => InternalContains(Root, item);
 
-		/// <summary>
-		///     Internal method for searching a <paramref name="data" /> in subtree <paramref name="node" />
-		/// </summary>
-		/// <param name="node">Subtree where to search</param>
-		/// <param name="data">A value to search</param>
-		/// <returns><see langword="true" /> if <paramref name="data" /> exists in subtree</returns>
-		protected bool InternalContains(IBinaryTreeNode<T> node, T data)
+        /// <summary>
+        ///     Internal method for searching a <paramref name="data" /> in subtree <paramref name="node" />
+        /// </summary>
+        /// <param name="node">Subtree where to search</param>
+        /// <param name="data">A value to search</param>
+        /// <returns><see langword="true" /> if <paramref name="data" /> exists in subtree</returns>
+        protected bool InternalContains(IBinaryTreeNode<T> node, T data)
 		{
 			while (true)
 			{

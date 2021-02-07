@@ -7,20 +7,20 @@ using CyberMath.Structures.BinaryTrees.BinaryTreeBase;
 
 namespace CyberMath.Structures.BinaryTrees.BinaryTree
 {
-	/// <summary>
-	///     Represents a vanilla Binary Tree NODE. Implements <see cref="BinaryTreeNodeBase{T}" />
-	/// </summary>
-	/// <typeparam name="T">
-	///     <see cref="IComparable{T}" />
-	/// </typeparam>
-	public class BinaryTreeNode<T> : BinaryTreeNodeBase<T>
+    /// <summary>
+    ///     Represents a vanilla Binary Tree NODE. Implements <see cref="BinaryTreeNodeBase{T}" />
+    /// </summary>
+    /// <typeparam name="T">
+    ///     <see cref="IComparable{T}" />
+    /// </typeparam>
+    public class BinaryTreeNode<T> : BinaryTreeNodeBase<T>
 		where T : IComparable<T>, IComparable
 	{
-		/// <summary>
-		///     Creates instance of <see cref="BinaryTreeNode{T}" /> with <paramref name="data" />
-		/// </summary>
-		/// <param name="data">Data to initialize</param>
-		public BinaryTreeNode(T data) : base(data) { }
+        /// <summary>
+        ///     Creates instance of <see cref="BinaryTreeNode{T}" /> with <paramref name="data" />
+        /// </summary>
+        /// <param name="data">Data to initialize</param>
+        public BinaryTreeNode(T data) : base(data) { }
 
 		/// <inheritdoc />
 		public override IBinaryTreeNode<T> Insert(T value)

@@ -10,24 +10,24 @@ using CyberMath.Helpers;
 
 namespace CyberMath.Structures.Matrices.Matrix
 {
-	/// <summary>
-	///     Implementation of <see cref="T:CyberMath.Structures.Matrices.Matrix.IMatrix`1" /> with Math-functional methods
-	/// </summary>
-	/// <typeparam name="T" />
-	public class Matrix<T> : IMatrix<T>, IEquatable<Matrix<T>>
+    /// <summary>
+    ///     Implementation of <see cref="T:CyberMath.Structures.Matrices.Matrix.IMatrix`1" /> with Math-functional methods
+    /// </summary>
+    /// <typeparam name="T" />
+    public class Matrix<T> : IMatrix<T>, ICloneable
 	{
-		/// <summary>
-		///     Internal matrix needed to implement the class <see cref="Matrix{T}" />
-		/// </summary>
-		private readonly T[,] _innerMatrix;
+        /// <summary>
+        ///     Internal matrix needed to implement the class <see cref="Matrix{T}" />
+        /// </summary>
+        private readonly T[,] _innerMatrix;
 
-		/// <summary>
-		///     Initializes a new matrix object with count of rows = <paramref name="rowsCount" />
-		///     and count of columns = <paramref name="columnsCount" />
-		/// </summary>
-		/// <param name="rowsCount">Count of rows in matrix</param>
-		/// <param name="columnsCount">Count of columns in matrix</param>
-		public Matrix(int rowsCount, int columnsCount)
+        /// <summary>
+        ///     Initializes a new matrix object with count of rows = <paramref name="rowsCount" />
+        ///     and count of columns = <paramref name="columnsCount" />
+        /// </summary>
+        /// <param name="rowsCount">Count of rows in matrix</param>
+        /// <param name="columnsCount">Count of columns in matrix</param>
+        public Matrix(int rowsCount, int columnsCount)
 		{
 			if (rowsCount <= 0) throw new ArgumentException(nameof(rowsCount));
 			if (columnsCount <= 0) throw new ArgumentException(nameof(columnsCount));
@@ -36,11 +36,11 @@ namespace CyberMath.Structures.Matrices.Matrix
 			_innerMatrix = new T[rowsCount, columnsCount];
 		}
 
-		/// <summary>
-		///     Initializes a new matrix object with the help of <paramref name="matrix" />
-		/// </summary>
-		/// <param name="matrix">Matrix for init initial <see cref="Matrix{T}" /></param>
-		public Matrix(T[,] matrix)
+        /// <summary>
+        ///     Initializes a new matrix object with <paramref name="matrix" />
+        /// </summary>
+        /// <param name="matrix">Matrix for init initial <see cref="Matrix{T}" /></param>
+        public Matrix(T[,] matrix)
 		{
 			if (matrix == null) throw new ArgumentNullException(nameof(matrix));
 			ColumnsCount = matrix.GetLength(1);
@@ -48,27 +48,27 @@ namespace CyberMath.Structures.Matrices.Matrix
 			_innerMatrix = matrix;
 		}
 
-		/// <summary>
-		///     Creates an empty matrix with 0 rows and 0 columns
-		/// </summary>
-		protected Matrix()
+        /// <summary>
+        ///     Creates an empty matrix with 0 rows and 0 columns
+        /// </summary>
+        protected Matrix()
 		{
 			ColumnsCount = 0;
 			RowsCount = 0;
 			_innerMatrix = new T[0, 0];
 		}
 
-		/// <inheritdoc />
-		public int ColumnsCount { get; }
+        /// <inheritdoc />
+        public int ColumnsCount { get; }
 
-		/// <inheritdoc />
-		public int RowsCount { get; }
+        /// <inheritdoc />
+        public int RowsCount { get; }
 
-		/// <inheritdoc />
-		public bool IsSquare => RowsCount == ColumnsCount;
+        /// <inheritdoc />
+        public bool IsSquare => RowsCount == ColumnsCount;
 
-		/// <inheritdoc />
-		public T this[int row, int column]
+        /// <inheritdoc />
+        public T this[int row, int column]
 		{
 			get => _innerMatrix[row, column];
 			set => _innerMatrix[row, column] = value;
@@ -76,11 +76,11 @@ namespace CyberMath.Structures.Matrices.Matrix
 
 		#region Operations
 
-		/// <summary>
-		///     Returns a new transposed matrix of initial one
-		/// </summary>
-		/// <returns><see cref="IMatrix{T}" /> matrix</returns>
-		public IMatrix<T> Transpose()
+        /// <summary>
+        ///     Returns a new transposed matrix of initial one
+        /// </summary>
+        /// <returns><see cref="IMatrix{T}" /> matrix</returns>
+        public IMatrix<T> Transpose()
 		{
 			var result = new Matrix<T>(ColumnsCount, RowsCount);
 
@@ -92,8 +92,8 @@ namespace CyberMath.Structures.Matrices.Matrix
 			return result;
 		}
 
-		/// <inheritdoc />
-		public void ProcessFunctionOverData(Action<int, int> func)
+        /// <inheritdoc />
+        public void ProcessFunctionOverData(Action<int, int> func)
 		{
 			if (ReferenceEquals(func, null)) return;
 			for (var i = 0; i < RowsCount; i++)
@@ -106,8 +106,8 @@ namespace CyberMath.Structures.Matrices.Matrix
 
 		#region Extra Operations
 
-		/// <inheritdoc />
-		public bool Equals(Matrix<T> other)
+        /// <inheritdoc />
+        public bool Equals(IMatrix<T> other)
 		{
 			if (ReferenceEquals(null, other)) return false;
 			if (ReferenceEquals(this, other)) return true;
@@ -125,17 +125,16 @@ namespace CyberMath.Structures.Matrices.Matrix
 			return true;
 		}
 
-		/// <inheritdoc />
-		public override bool Equals(object obj)
+        /// <inheritdoc />
+        public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
-			if (obj.GetType() != GetType()) return false;
-			return Equals((Matrix<T>)obj);
+			return obj is IMatrix<T> matrix && Equals(matrix);
 		}
 
-		/// <inheritdoc />
-		public override int GetHashCode()
+        /// <inheritdoc />
+        public override int GetHashCode()
 		{
 			unchecked
 			{
@@ -150,11 +149,11 @@ namespace CyberMath.Structures.Matrices.Matrix
 
 		#region Presentation
 
-		/// <inheritdoc />
-		public int ElementsInRow(int rowIndex) => ColumnsCount;
+        /// <inheritdoc />
+        public int ElementsInRow(int rowIndex) => ColumnsCount;
 
-		/// <inheritdoc />
-		public override string ToString()
+        /// <inheritdoc />
+        public override string ToString()
 		{
 			var sb = new StringBuilder();
 			for (var i = 0; i < RowsCount; i++)
@@ -171,14 +170,14 @@ namespace CyberMath.Structures.Matrices.Matrix
 
 		#region Creation
 
-		/// <summary>
-		///     Returns a new cloned object of initial matrix.
-		///     <remarks>
-		///         Works only with primitives and [Serializable] types
-		///     </remarks>
-		/// </summary>
-		/// <returns>New matrix&lt;T&gt;</returns>
-		public object Clone()
+        /// <summary>
+        ///     Returns a new cloned object of initial matrix.
+        ///     <remarks>
+        ///         Works only with primitives and [Serializable] types
+        ///     </remarks>
+        /// </summary>
+        /// <returns>New matrix&lt;T&gt;</returns>
+        public object Clone()
 		{
 			var type = typeof(T);
 			if (type.IsPrimitive) return PrimitiveClone();
@@ -208,28 +207,28 @@ namespace CyberMath.Structures.Matrices.Matrix
 			return clone;
 		}
 
-		/// <summary>
-		///     Creates new <see cref="IMatrix{T}" /> identity matrix.
-		///     <para></para>
-		///     <example>
-		///         n = 3
-		///         <para />
-		///         matrix =
-		///         <para />
-		///         {
-		///         <para />
-		///         {1,0,0},
-		///         <para />
-		///         {0,1,0},
-		///         <para />
-		///         {0,0,1}
-		///         <para />
-		///         }
-		///     </example>
-		/// </summary>
-		/// <param name="rowsAndColumnsCount">Count of rows and columns</param>
-		/// <returns>Identity <see cref="IMatrix{T}" /> matrix</returns>
-		public static IMatrix<int> CreateIdentityMatrix(int rowsAndColumnsCount)
+        /// <summary>
+        ///     Creates new <see cref="IMatrix{T}" /> identity matrix.
+        ///     <para></para>
+        ///     <example>
+        ///         n = 3
+        ///         <para />
+        ///         matrix =
+        ///         <para />
+        ///         {
+        ///         <para />
+        ///         {1,0,0},
+        ///         <para />
+        ///         {0,1,0},
+        ///         <para />
+        ///         {0,0,1}
+        ///         <para />
+        ///         }
+        ///     </example>
+        /// </summary>
+        /// <param name="rowsAndColumnsCount">Count of rows and columns</param>
+        /// <returns>Identity <see cref="IMatrix{T}" /> matrix</returns>
+        public static IMatrix<int> CreateIdentityMatrix(int rowsAndColumnsCount)
 		{
 			var result = new Matrix<int>(rowsAndColumnsCount, rowsAndColumnsCount);
 			for (var i = 0; i < rowsAndColumnsCount; i++)
@@ -249,12 +248,12 @@ namespace CyberMath.Structures.Matrices.Matrix
 				yield return RowEnumerator(i);
 		}
 
-		/// <summary>
-		///     Enumerates all elements in a row
-		/// </summary>
-		/// <param name="rowIndex">Row to enumerate</param>
-		/// <returns><see cref="IEnumerable{T}" /> elements in a <see cref="Matrix{T}" /> in <paramref name="rowIndex" /></returns>
-		private IEnumerable<T> RowEnumerator(int rowIndex)
+        /// <summary>
+        ///     Enumerates all elements in a row
+        /// </summary>
+        /// <param name="rowIndex">Row to enumerate</param>
+        /// <returns><see cref="IEnumerable{T}" /> elements in a <see cref="Matrix{T}" /> in <paramref name="rowIndex" /></returns>
+        private IEnumerable<T> RowEnumerator(int rowIndex)
 		{
 			for (var i = 0; i < ColumnsCount; i++)
 				yield return this[rowIndex, i];

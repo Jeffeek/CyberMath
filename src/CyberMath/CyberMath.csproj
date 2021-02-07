@@ -1,23 +1,35 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Company>Jeffeek Dev.</Company>
     <Authors>Jeffeek</Authors>
-    <Description>A library with data structures and useful extension methods. Very useful for students :)</Description>
-    <Copyright>Jeffeek dev.</Copyright>
+    <Version>1.0.3</Version>
+    <Copyright>Jeffeek Dev.</Copyright>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Description>A little library with useful data structures and extension methods. Very useful for students ^-^</Description>
     <PackageProjectUrl>https://github.com/Jeffeek/CyberMath</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Jeffeek/CyberMath</RepositoryUrl>
-    <PackageTags>math, matrix, structures, binary-search-tree, binary-tree, extension-methods, cyber, CyberMath</PackageTags>
-    <PackageReleaseNotes>Alpha. Support Core 3.1</PackageReleaseNotes>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.2</Version>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageIcon>cyberMath.png</PackageIcon>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageTags>math matrix structures binary-search-tree binary-tree extension-methods</PackageTags>
+    <PackageReleaseNotes>1.0.3:
+ - New extension methods
+ - New structures - Dynamic matrices
+ - Migration to .NET Standard 2.1
+</PackageReleaseNotes>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>E:\projectsVS\CyberMath\src\CyberMath\CyberMath.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Include="..\..\cyberMath.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
+
 </Project>

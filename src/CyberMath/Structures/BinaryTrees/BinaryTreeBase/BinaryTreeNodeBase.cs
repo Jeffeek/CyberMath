@@ -2,19 +2,18 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 #endregion
 
 namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
 {
-	/// <summary>
-	///     Implementing of native <see cref="IBinaryTreeNode{T}" />
-	/// </summary>
-	/// <typeparam name="T">
-	///     <see cref="IComparable{T}" />
-	/// </typeparam>
-	public abstract class BinaryTreeNodeBase<T> : IBinaryTreeNode<T>
+    /// <summary>
+    ///     Implementing of native <see cref="IBinaryTreeNode{T}" />
+    /// </summary>
+    /// <typeparam name="T">
+    ///     <see cref="IComparable{T}" />
+    /// </typeparam>
+    public abstract class BinaryTreeNodeBase<T> : IBinaryTreeNode<T>
 		where T : IComparable<T>, IComparable
 	{
 		/// <inheritdoc />
@@ -55,12 +54,12 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
 			return current;
 		}
 
-		/// <summary>
-		///     Internal method to find the deep of <paramref name="node" />
-		/// </summary>
-		/// <param name="node">Node where to search</param>
-		/// <returns>The deep of <paramref name="node" /></returns>
-		protected int InternalDepth(BinaryTreeNodeBase<T> node)
+        /// <summary>
+        ///     Internal method to find the deep of <paramref name="node" />
+        /// </summary>
+        /// <param name="node">Node where to search</param>
+        /// <returns>The deep of <paramref name="node" /></returns>
+        protected int InternalDepth(BinaryTreeNodeBase<T> node)
 		{
 			var levels = 0;
 			var queue = new Queue<IBinaryTreeNode<T>>();
@@ -84,13 +83,13 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
 			return levels;
 		}
 
-		/// <summary>
-		///     Finds node by <paramref name="value" />
-		/// </summary>
-		/// <param name="subTree">A <see cref="IBinaryTreeNode{T}" /> subTree where to find</param>
-		/// <param name="value">Value to find</param>
-		/// <returns>Reference to the node with <paramref name="value" /></returns>
-		protected IBinaryTreeNode<T> FindNode(IBinaryTreeNode<T> subTree, T value)
+        /// <summary>
+        ///     Finds node by <paramref name="value" />
+        /// </summary>
+        /// <param name="subTree">A <see cref="IBinaryTreeNode{T}" /> subTree where to find</param>
+        /// <param name="value">Value to find</param>
+        /// <returns>Reference to the node with <paramref name="value" /></returns>
+        protected IBinaryTreeNode<T> FindNode(IBinaryTreeNode<T> subTree, T value)
 		{
 			var current = subTree;
 			while (!ReferenceEquals(current, null))
@@ -113,12 +112,12 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
 			return default;
 		}
 
-		/// <summary>
-		///     Finds the successor of <paramref name="node" />
-		/// </summary>
-		/// <param name="node"><see cref="BinaryTreeNodeBase{T}" /> node from to find</param>
-		/// <returns>Reference to the successor</returns>
-		protected IBinaryTreeNode<T> GetSuccessor(BinaryTreeNodeBase<T> node)
+        /// <summary>
+        ///     Finds the successor of <paramref name="node" />
+        /// </summary>
+        /// <param name="node"><see cref="BinaryTreeNodeBase{T}" /> node from to find</param>
+        /// <returns>Reference to the successor</returns>
+        protected IBinaryTreeNode<T> GetSuccessor(BinaryTreeNodeBase<T> node)
 		{
 			var parentOfSuccessor = node;
 			var successor = node;
@@ -147,14 +146,14 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
 
 		#region Equality members
 
-		/// <summary>
-		///     Shows the equality of initial <see cref="IBinaryTreeNode{T}" /> and <paramref name="other" />
-		/// </summary>
-		/// <param name="other"></param>
-		/// <returns>
-		///     <see langword="true" /> if this node equals to <paramref name="other" />; otherwise <see langword="false" />
-		/// </returns>
-		protected bool Equals(BinaryTreeNodeBase<T> other) => this == other;
+        /// <summary>
+        ///     Shows the equality of initial <see cref="IBinaryTreeNode{T}" /> and <paramref name="other" />
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns>
+        ///     <see langword="true" /> if this node equals to <paramref name="other" />; otherwise <see langword="false" />
+        /// </returns>
+        protected bool Equals(BinaryTreeNodeBase<T> other) => this == other;
 
 		/// <inheritdoc />
 		public override int GetHashCode()
@@ -167,8 +166,7 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
 		}
 
 		/// <inheritdoc />
-		public bool Equals([AllowNull] IBinaryTreeNode<T> other) =>
-			!ReferenceEquals(other, null) && CompareTo(other) == 0;
+		public bool Equals(IBinaryTreeNode<T> other) => !ReferenceEquals(other, null) && CompareTo(other) == 0;
 
 		/// <inheritdoc />
 		public override bool Equals(object obj) =>
@@ -178,67 +176,69 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
 
 		#region Constructors
 
-		/// <summary>
-		///     Empty constructor to create an empty <see cref="IBinaryTreeNode{T}" />
-		/// </summary>
-		protected BinaryTreeNodeBase() { }
+        /// <summary>
+        ///     Empty constructor to create an empty <see cref="IBinaryTreeNode{T}" />
+        /// </summary>
+        protected BinaryTreeNodeBase() { }
 
-		/// <summary>
-		///     Create an instance of <see cref="IBinaryTreeNode{T}" /> with <paramref name="data" />
-		/// </summary>
-		/// <param name="data"></param>
-		protected BinaryTreeNodeBase(T data) => Data = data;
+        /// <summary>
+        ///     Create an instance of <see cref="IBinaryTreeNode{T}" /> with <paramref name="data" />
+        /// </summary>
+        /// <param name="data"></param>
+        protected BinaryTreeNodeBase(T data) => Data = data;
 
 		#endregion
 
 		#region CompareTo
 
 		/// <inheritdoc />
-		public int CompareTo([AllowNull] IBinaryTreeNode<T> other) =>
-			ReferenceEquals(this, other) ? 0 : Data.CompareTo(other.Data);
+		public int CompareTo(IBinaryTreeNode<T> other) => ReferenceEquals(this, other) ? 0 : Data.CompareTo(other.Data);
 
 		/// <inheritdoc />
 		public int CompareTo(object obj)
 		{
-			return obj switch
-			       {
-				       IBinaryTreeNode<T> other => CompareTo(other),
-				       _                        => throw new ArgumentException("obj is not tree node")
-			       };
+			switch (obj)
+			{
+				case IBinaryTreeNode<T> other:
+					return CompareTo(other);
+
+				default:
+					throw new ArgumentException("obj is not tree node");
+			}
 		}
 
 		#endregion
 
 		#region Operators
 
-		/// <summary>
-		///     Returns <see langword="true" /> if <paramref name="first" /> is greater than <paramref name="second" />; otherwise
-		///     <see langword="false" />
-		/// </summary>
-		/// <param name="first"></param>
-		/// <param name="second"></param>
-		/// <returns></returns>
-		public static bool operator >(BinaryTreeNodeBase<T> first, BinaryTreeNodeBase<T> second) =>
+        /// <summary>
+        ///     Returns <see langword="true" /> if <paramref name="first" /> is greater than <paramref name="second" />; otherwise
+        ///     <see langword="false" />
+        /// </summary>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        /// <returns></returns>
+        public static bool operator >(BinaryTreeNodeBase<T> first, BinaryTreeNodeBase<T> second) =>
 			first.CompareTo(second) == 1;
 
-		/// <summary>
-		///     Returns <see langword="true" /> if <paramref name="second" /> is greater than <paramref name="first" />; otherwise
-		///     <see langword="false" />
-		/// </summary>
-		/// <param name="first"></param>
-		/// <param name="second"></param>
-		/// <returns></returns>
-		public static bool operator <(BinaryTreeNodeBase<T> first, BinaryTreeNodeBase<T> second) =>
+        /// <summary>
+        ///     Returns <see langword="true" /> if <paramref name="second" /> is greater than <paramref name="first" />; otherwise
+        ///     <see langword="false" />
+        /// </summary>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        /// <returns></returns>
+        public static bool operator <(BinaryTreeNodeBase<T> first, BinaryTreeNodeBase<T> second) =>
 			first.CompareTo(second) == -1;
 
-		/// <summary>
-		///     Returns <see langword="true" /> if <paramref name="first" /> is equal by <see cref="Data" /> than
-		///     <paramref name="second" />; otherwise <see langword="false" />
-		/// </summary>
-		/// <param name="first"></param>
-		/// <param name="second"></param>
-		/// <returns></returns>
-		public static bool operator ==(BinaryTreeNodeBase<T> first, BinaryTreeNodeBase<T> second)
+        /// <summary>
+        ///     Returns <see langword="true" /> if <paramref name="first" /> is equal by <see cref="Data" /> than
+        ///     <paramref name="second" />; otherwise <see langword="false" />
+        /// </summary>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        /// <returns></returns>
+        public static bool operator ==(BinaryTreeNodeBase<T> first, BinaryTreeNodeBase<T> second)
 		{
 			if (ReferenceEquals(first, second)) return true;
 
@@ -256,14 +256,14 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
 			return first.Data.CompareTo(second.Data) == 0;
 		}
 
-		/// <summary>
-		///     Returns <see langword="true" /> if <paramref name="first" /> is not equal by <see cref="Data" /> than
-		///     <paramref name="second" />; otherwise <see langword="false" />
-		/// </summary>
-		/// <param name="first"></param>
-		/// <param name="second"></param>
-		/// <returns></returns>
-		public static bool operator !=(BinaryTreeNodeBase<T> first, BinaryTreeNodeBase<T> second) => !(first == second);
+        /// <summary>
+        ///     Returns <see langword="true" /> if <paramref name="first" /> is not equal by <see cref="Data" /> than
+        ///     <paramref name="second" />; otherwise <see langword="false" />
+        /// </summary>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        /// <returns></returns>
+        public static bool operator !=(BinaryTreeNodeBase<T> first, BinaryTreeNodeBase<T> second) => !(first == second);
 
 		#endregion
 	}
