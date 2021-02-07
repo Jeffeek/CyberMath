@@ -16,7 +16,7 @@
 <hr>
 
 ## Nuget Package
->PM> Install-Package CyberMath -Version 1.0.2
+>PM> Install-Package CyberMath -Version 1.0.3
 <hr>
 
 - **Two-dimensional arrays**
