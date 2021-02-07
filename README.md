@@ -22,6 +22,8 @@
 - **Two-dimensional arrays**
   - Matrix
   - Jugged Matrix
+  - DynamicMatrix
+  - Dynamic Jugged Matrix
 <hr>
 
 - **Binary Trees**
@@ -80,6 +82,7 @@
     - GetLength -> int *(Calculates the length of number)*
     - ToBinary -> string *(Converts number to binary(2) format)*
     - ToHex -> string *(Converts number to HEX(16) format)*
+    - GetDigits -> IEnumerable&lt;bytes&gt; *Return all digits in number as a collection*
     <hr>
 
     - Extension methods for **Prime Numbers**
