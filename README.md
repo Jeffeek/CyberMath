@@ -20,16 +20,63 @@
 <hr>
 
 - **Two-dimensional arrays**
-  - Matrix
-  - Jugged Matrix
-  - DynamicMatrix
-  - Dynamic Jugged Matrix
+  - **Matrix**
+    - IsSquare -> bool *(Represent a bool(true) value if the rows count equals elements count on each row; otherwise false)*
+    - [int row, int column] -> T *(Indexer for matrix)*
+    - ProcessFunctionOverData -> void *(Do action over every element in matrix)*
+    - ElementsInRow -> int *(Returns count of elements in row)*
+    - GetColumnsEnumerable -> IEnumerable&lt;IEnumerable&lt;T&gt;&gt; *(Returns enumerable, which is 'walks' on the column neither default)*
+    - RowsCount -> int *(Count of rows in matrix)*
+    - ColumnsCount -> int *(Count of columns in matrix)*
+    - Transpose -> IMatrix&lt;T&gt; Creates a new transposed matrix
+    <hr>
+    
+    - **DynamicMatrix**
+      - AddColumn -> void *(Inserting a new column to the end of matrix)*
+      - InsertColumn -> void *(Inserting the column into matrix by index)*
+      - AddRow -> void *(Inserting a new row to the end of matrix)*
+      - InsertRow -> void *(Inserting the row into matrix by index)*
+      - RemoveColumn -> void *(Removes a column in matrix at index)*
+      - RemoveRow -> void *(Removes a row in matrix at index)*
+  <hr>
+  
+  - **Jugged Matrix**
+    - IsSquare -> bool *(Represent a bool(true) value if the rows count equals elements count on each row; otherwise false)*
+    - [int row, int column] -> T *(Indexer for matrix)*
+    - ProcessFunctionOverData -> void *(Do action over every element in matrix)*
+    - ElementsInRow -> int *(Returns count of elements in row)*
+    - GetColumnsEnumerable -> IEnumerable&lt;IEnumerable&lt;T&gt;&gt; *(Returns enumerable, which is 'walks' on the column neither default)*
+    - RowsCount -> int *(Count of rows in matrix)*
+    - SortRows -> IJuggedMatrix&lt;T&gt; *(Sorts rows in matrix by count of elements)*
+    - SortRowsByDescending -> IJuggedMatrix&lt;T&gt; *(Sorts rows by descending in matrix by count of elements)*
+    <hr>
+    
+    - Dynamic Jugged Matrix
+      - AddColumn -> void *(Inserting a new column to the end of matrix if it's possible)*
+      - InsertColumn -> void *(Inserting the column into matrix by index)*
+      - AddRow -> void *(Inserting a new row to the end of matrix)*
+      - InsertRow -> void *(Inserting the row into matrix by index)*
+      - RemoveColumn -> void *(Removes a column in matrix at index)*
+      - RemoveRow -> void *(Removes a row in matrix at index)*
 <hr>
 
 - **Binary Trees**
-  - Vanilla Tree
-  - AVL Tree
-  - Red Black Tree 
+   - Root -> IBinaryTreeNode&lt;T&gt; *(Reference to the main node, called Root)*
+   - IsEmpty -> bool *(bool result which show the emptiness of IBinaryTree)*
+   - TraversalOrderType -> TraversalOrderType *(Traversal strategy for foreach statement)*
+   - Depth -> int *(Depth of BinaryTree)*
+   - Inorder -> IEnumerable&lt;T&gt; *(Returns an inorder traversal IEnumerable collection)*
+   - Preorder -> IEnumerable&lt;T&gt; *(Returns an preorder traversal IEnumerable collection)*
+   - Postorder -> IEnumerable&lt;T&gt; *(Returns an postorder traversal IEnumerable collection)*
+   - Min -> T *(Returns minimal element in BinaryTree)
+   - Max -> T *(Returns maximal element in BinaryTree)
+   - AddRange -> void *(Adds IEnumerable collection into BinaryTree)
+   - MergeWith -> void *(Merges initial IBinaryTree with another IBinaryTree)*
+   <hr>
+   
+  - **Vanilla Tree**
+  - **AVL Tree**
+  - **Red Black Tree** 
   
   - **Common interface: IBinaryTree : *ICollection*, IDisposable where T : IComparable&lt;T&gt;, IComparable**
   
@@ -109,7 +156,7 @@
   <hr>
 
   - Extension methods for **JuggedMatrix&lt;T&gt;** 
-    - CountOnEachRow -> IEnumerable&lt;int&gt; *()*
+    - CountOnEachRow -> IEnumerable&lt;int&gt; *(Returns an IEnumerable with the count of elements on each row of matrix)*
     - ToMatrix -> IMatrix&lt;T&gt; *(Creates a new instance of IMatrix from IJuggedMatrix)*
     - CreateVanilla -> T[][] *(Creates a vanilla array of arrays on base of JuggedMatrix)*
   <hr>
