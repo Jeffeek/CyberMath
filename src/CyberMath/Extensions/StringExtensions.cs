@@ -27,7 +27,6 @@ namespace CyberMath.Extensions
             return true;
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Checks two string for anagramism
         /// </summary>
@@ -115,7 +114,6 @@ namespace CyberMath.Extensions
             return sb.ToString();
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Returns <paramref name="input"/> <seealso cref="string"/> converted to <see cref="int"/>
         /// </summary>
@@ -130,7 +128,6 @@ namespace CyberMath.Extensions
             throw new ArgumentException(nameof(input));
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Returns <paramref name="input"/> <seealso cref="string"/> converted to <see cref="long"/>
         /// </summary>

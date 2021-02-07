@@ -10,7 +10,7 @@ using CyberMath.Structures.Matrices.Jagged_Matrix;
 namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Jugged_Matrix
 {
 	/// <summary>
-	/// 
+	/// Represents an implementation of <see cref="IDynamicJuggedMatrix{T}"/> -> <see cref="IJuggedMatrix{T}"/>
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	public class DynamicJuggedMatrix<T> : IDynamicJuggedMatrix<T>, ICloneable

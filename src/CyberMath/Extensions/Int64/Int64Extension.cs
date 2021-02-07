@@ -9,7 +9,6 @@ namespace CyberMath.Extensions.Int64
     /// </summary>
     public static class Int64Extension
     {
-        //TODO: unit-test
         /// <summary>
         /// Checks is number odd
         /// </summary>
@@ -17,7 +16,6 @@ namespace CyberMath.Extensions.Int64
         /// <returns><see langword="true"/> if number is odd; otherwise <see langword="false"/></returns>
         public static bool IsOdd(this long number) => number % 2 == 0;
 
-        //TODO: unit-test
         /// <summary>
         /// Checks is number even
         /// </summary>
@@ -25,7 +23,6 @@ namespace CyberMath.Extensions.Int64
         /// <returns>is number even</returns>
         public static bool IsEven(this long number) => number % 2 != 0;
 
-        //TODO: unit-test
         /// <summary>
         /// Calculates greatest common divisor between two <see cref="Int64"/> numbers
         /// </summary>
@@ -45,7 +42,6 @@ namespace CyberMath.Extensions.Int64
             return a;
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Calculates lowest common multiple between two <see cref="Int64"/> numbers
         /// </summary>
@@ -54,7 +50,6 @@ namespace CyberMath.Extensions.Int64
         /// <returns>Lowest common multiple</returns>
         public static long LCM(this long a, long b) => a / GCD(a, b) * b;
 
-        //TODO: unit-test
         /// <summary>
         /// Swaps two numbers
         /// </summary>
@@ -67,7 +62,6 @@ namespace CyberMath.Extensions.Int64
             b = temp;
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Checks <see cref="Int64"/> for palindromicity
         /// </summary>
@@ -91,7 +85,6 @@ namespace CyberMath.Extensions.Int64
             return true;
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Calculates the length of <see cref="Int64"/> number
         /// </summary>
@@ -121,7 +114,6 @@ namespace CyberMath.Extensions.Int64
                 number < 10 ? 1 : 2;
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Converts <see cref="Int64"/> <paramref name="number"/> to binary(2) format
         /// </summary>
@@ -129,7 +121,6 @@ namespace CyberMath.Extensions.Int64
         /// <returns><see cref="string"/> representation of the binary form of a <paramref name="number"/></returns>
         public static string ToBinary(this long number) => Convert.ToString(number, 2);
 
-        //TODO: unit-test
         /// <summary>
         /// Converts <see cref="Int64"/> <paramref name="number"/> to HEX(16) format
         /// </summary>
@@ -137,7 +128,6 @@ namespace CyberMath.Extensions.Int64
         /// <returns><see cref="string"/> representation of the HEX form of a <paramref name="number"/></returns>
         public static string ToHex(this long number) => Convert.ToString(number, 16);
 
-        //TODO: unit-test
         /// <summary>
         /// Return a <see cref="IEnumerable{T}"/> collection of all digits of <paramref name="number"/>
         /// </summary>

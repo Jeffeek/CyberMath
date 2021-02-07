@@ -4,8 +4,6 @@ using CyberMath.Structures.Matrices.Base.Exceptions;
 
 namespace CyberMath.Structures.Matrices.Base
 {
-    //TODO: unit-test
-
     /// <summary>
     /// Extension methods for <see cref="IMatrixBase{T}"/>
     /// </summary>
@@ -25,9 +23,10 @@ namespace CyberMath.Structures.Matrices.Base
         {
             for (var k = 0; k < matrix.RowsCount; k++)
             {
-                if (matrix[k, j] != null && matrix[i, j] != null)
-                    if (matrix[k, j].CompareTo(matrix[i, j]) == 1)
-                        return false;
+                if (matrix[k, j] != null &&
+                    matrix[i, j] != null &&
+                    matrix[k, j].CompareTo(matrix[i, j]) == 1)
+                    return false;
             }
             return true;
         }

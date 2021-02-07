@@ -8,21 +8,22 @@ using CyberMath.Structures.Matrices.Matrix;
 
 namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Matrix
 {
-	//TODO: summary
 	/// <summary>
-	/// 
+	/// Represents am implementation of <see cref="IDynamicMatrix{T}"/> -> <see cref="IMatrix{T}"/>
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
     public sealed class DynamicMatrix<T> : IDynamicMatrix<T>, ICloneable
 	{
+		private readonly List<List<T>> _innerMatrix;
+
 		#region Constructors
 
 		/// <summary>
-		/// 
+		/// Init matrix with <paramref name="rowsCount"/> and <paramref name="columnsCount"/> and sets a default values
 		/// </summary>
-		/// <param name="rowsCount"></param>
-		/// <param name="columnsCount"></param>
-		/// <exception cref="ArgumentException"></exception>
+		/// <param name="rowsCount">Count of rows in initial matrix</param>
+		/// <param name="columnsCount">Count of columns in initial matrix</param>
+		/// <exception cref="ArgumentException">If <paramref name="rowsCount"/> or <paramref name="columnsCount"/> less than 0</exception>
 		public DynamicMatrix(int rowsCount, int columnsCount)
 		{
 			if (rowsCount < 0) throw new ArgumentException(nameof(rowsCount) + $" was {rowsCount}");
@@ -39,15 +40,13 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Matrix
 		}
 
 		/// <summary>
-		/// 
+		/// Init matrix with 0 rows and 0 columns
 		/// </summary>
 		public DynamicMatrix() : this(0, 0) { }
 
 		#endregion
 
 		#region Properties
-
-		private List<List<T>> _innerMatrix;
 
 		/// <inheritdoc />
 		public T this[int row, int column]
@@ -289,7 +288,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Matrix
 		}
 
 	    /// <inheritdoc />
-	    public override int GetHashCode() => (_innerMatrix != null ? _innerMatrix.GetHashCode() : 0);
+	    public override int GetHashCode() => HashCode.Combine(ColumnsCount, RowsCount, IsSquare);
 
 	    #endregion
 	}

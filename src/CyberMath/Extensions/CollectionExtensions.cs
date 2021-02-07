@@ -46,7 +46,6 @@ namespace CyberMath.Extensions
             }
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Permute <see cref="IEnumerable{T}"> collection with all elements without repeating elements</see>
         /// </summary>
@@ -63,7 +62,6 @@ namespace CyberMath.Extensions
                     (t1, t2) => t1.Concat(new[] { t2 }));
         }
 
-        //TODO: unit-test
         /// <summary>
         /// Returns a new <see cref="IEnumerable{T}"> collections with all permutations of elements without repeating elements</see>
         /// </summary>

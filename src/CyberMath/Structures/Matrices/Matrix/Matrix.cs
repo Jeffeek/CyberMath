@@ -56,7 +56,7 @@ namespace CyberMath.Structures.Matrices.Matrix
         }
 
         /// <summary>
-        /// Initializes a new matrix object with the help of <paramref name="matrix"/>
+        /// Initializes a new matrix object with <paramref name="matrix"/>
         /// </summary>
         /// <param name="matrix">Matrix for init initial <see cref="Matrix{T}"/></param>
         public Matrix(T[,] matrix)
