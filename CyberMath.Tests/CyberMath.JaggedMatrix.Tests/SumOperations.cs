@@ -2,7 +2,7 @@
 
 using System.Linq;
 using CyberMath.Structures.Matrices.Base;
-using CyberMath.Structures.Matrices.JaggedMatrix;
+using CyberMath.Structures.Matrices.Jagged_Matrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #endregion

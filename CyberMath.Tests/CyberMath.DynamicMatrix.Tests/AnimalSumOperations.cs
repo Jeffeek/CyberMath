@@ -1,23 +1,24 @@
 ﻿using System.Linq;
-using CyberMath.Structures.Matrices.Jagged_Matrix;
+using CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Matrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CyberMath.JaggedMatrix.Tests
+namespace CyberMath.DynamicMatrix.Tests
 {
     [TestClass]
     public class AnimalSumOperations
     {
-        internal class Animal
+        internal sealed class Animal
         {
             public string Name { get; set; }
             public int Age { get; set; }
+
             public Animal(int age) => Age = age;
         }
 
         [TestMethod]
         public void SumAgeTest()
         {
-            var matrix = new JuggedMatrix<Animal>(3, new[] { 3, 3, 3 })
+            var matrix = new DynamicMatrix<Animal>(3, 3)
             {
                 [0, 0] = new Animal(5),
                 [0, 1] = new Animal(5),
