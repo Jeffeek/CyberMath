@@ -20,13 +20,13 @@
 <hr>
 
 - **Two-dimensional arrays**
-  - **Matrix**
     - IsSquare -> bool *(Represent a bool(true) value if the rows count equals elements count on each row; otherwise false)*
     - [int row, int column] -> T *(Indexer for matrix)*
     - ProcessFunctionOverData -> void *(Do action over every element in matrix)*
     - ElementsInRow -> int *(Returns count of elements in row)*
     - GetColumnsEnumerable -> IEnumerable&lt;IEnumerable&lt;T&gt;&gt; *(Returns enumerable, which is 'walks' on the column neither default)*
     - RowsCount -> int *(Count of rows in matrix)*
+  - **Matrix**
     - ColumnsCount -> int *(Count of columns in matrix)*
     - Transpose -> IMatrix&lt;T&gt; Creates a new transposed matrix
     <hr>
@@ -41,12 +41,6 @@
   <hr>
   
   - **Jugged Matrix**
-    - IsSquare -> bool *(Represent a bool(true) value if the rows count equals elements count on each row; otherwise false)*
-    - [int row, int column] -> T *(Indexer for matrix)*
-    - ProcessFunctionOverData -> void *(Do action over every element in matrix)*
-    - ElementsInRow -> int *(Returns count of elements in row)*
-    - GetColumnsEnumerable -> IEnumerable&lt;IEnumerable&lt;T&gt;&gt; *(Returns enumerable, which is 'walks' on the column neither default)*
-    - RowsCount -> int *(Count of rows in matrix)*
     - SortRows -> IJuggedMatrix&lt;T&gt; *(Sorts rows in matrix by count of elements)*
     - SortRowsByDescending -> IJuggedMatrix&lt;T&gt; *(Sorts rows by descending in matrix by count of elements)*
     <hr>
