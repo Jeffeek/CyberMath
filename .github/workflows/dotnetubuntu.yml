@@ -27,6 +27,3 @@ jobs:
       
     - name: Build Solution
       run: dotnet build CyberMath.sln
-      
-    - name: Test
-      run: dotnet test
