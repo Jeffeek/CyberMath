@@ -1,4 +1,4 @@
-﻿#region Using derectives
+﻿#region Using namespaces
 
 using System;
 using System.Collections;
@@ -13,12 +13,12 @@ using CyberMath.Structures.Matrices.Extensions;
 namespace CyberMath.Structures.Matrices.Jagged_Matrix
 {
     /// <summary>
-    ///     Describes a Jugged Matrix. Implements <see cref="IJuggedMatrix{T}" />
+    ///     Describes a Jugged Matrix. Implements <see cref="IJuggedMatrix{T}"/>
     /// </summary>
     /// <typeparam name="T">ANY</typeparam>
     public class JuggedMatrix<T> : IJuggedMatrix<T>, ICloneable
-	{
-		private protected T[][] _innerMatrix;
+    {
+        private protected T[][] _innerMatrix;
 
         /// <summary>
         ///     Returns a new cloned object of initial matrix.
@@ -28,251 +28,272 @@ namespace CyberMath.Structures.Matrices.Jagged_Matrix
         /// </summary>
         /// <returns>New matrix&lt;T&gt;</returns>
         public object Clone()
-		{
-			var type = typeof(T);
-			if (type.IsPrimitive) return PrimitiveClone();
-			if (type.IsSerializable) return SerializableClone();
-			throw new Exception("Internal type of matrix can't be cloned");
-		}
+        {
+            var type = typeof(T);
 
-        /// <inheritdoc />
+            if (type.IsPrimitive) return PrimitiveClone();
+            if (type.IsSerializable) return SerializableClone();
+
+            throw new Exception("Internal type of matrix can't be cloned");
+        }
+
+        /// <inheritdoc/>
         public int RowsCount { get; protected set; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public bool IsSquare { get; protected set; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public T this[int row, int column]
-		{
-			get => _innerMatrix[row][column];
-			set => _innerMatrix[row][column] = value;
-		}
+        {
+            get => _innerMatrix[row][column];
+            set => _innerMatrix[row][column] = value;
+        }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public void ProcessFunctionOverData(Action<int, int> func)
-		{
-			if (ReferenceEquals(func, null)) return;
-			for (var i = 0; i < RowsCount; i++)
-			{
-				for (var j = 0; j < ElementsInRow(i); j++) func.Invoke(i, j);
-			}
-		}
+        {
+            if (ReferenceEquals(func, null)) return;
 
-        /// <inheritdoc />
-        public int ElementsInRow(int rowIndex) => _innerMatrix[rowIndex].Length;
+            for (var i = 0; i < RowsCount; i++)
+            {
+                for (var j = 0; j < ElementsInRow(i); j++) func.Invoke(i, j);
+            }
+        }
 
-		private IJuggedMatrix<T> PrimitiveClone()
-		{
-			var clone = new JuggedMatrix<T>(RowsCount, this.CountOnEachRow());
-			for (var i = 0; i < RowsCount; i++)
-			{
-				for (var j = 0; j < ElementsInRow(i); j++) clone[i, j] = this[i, j];
-			}
+        /// <inheritdoc/>
+        public int ElementsInRow(int rowIndex) =>
+            _innerMatrix[rowIndex]
+                .Length;
 
-			return clone;
-		}
+        private IJuggedMatrix<T> PrimitiveClone()
+        {
+            var clone = new JuggedMatrix<T>(RowsCount, this.CountOnEachRow());
 
-		private IJuggedMatrix<T> SerializableClone()
-		{
-			var clone = new JuggedMatrix<T>(RowsCount, this.CountOnEachRow());
-			for (var i = 0; i < RowsCount; i++)
-			{
-				for (var j = 0; j < ElementsInRow(i); j++) clone[i, j] = this[i, j].SerializableDeepCopy();
-			}
+            for (var i = 0; i < RowsCount; i++)
+            {
+                for (var j = 0; j < ElementsInRow(i); j++) clone[i, j] = this[i, j];
+            }
 
-			return clone;
-		}
+            return clone;
+        }
+
+        private IJuggedMatrix<T> SerializableClone()
+        {
+            var clone = new JuggedMatrix<T>(RowsCount, this.CountOnEachRow());
+
+            for (var i = 0; i < RowsCount; i++)
+            {
+                for (var j = 0; j < ElementsInRow(i); j++)
+                    clone[i, j] = this[i, j]
+                        .SerializableDeepCopy();
+            }
+
+            return clone;
+        }
 
         /// <summary>
-        ///     Creates new <see cref="IJuggedMatrix{T}" /> identity matrix.
+        ///     Creates new <see cref="IJuggedMatrix{T}"/> identity matrix.
         ///     <para></para>
         ///     <example>
         ///         n = 3
-        ///         <para />
+        ///         <para/>
         ///         matrix =
-        ///         <para />
+        ///         <para/>
         ///         {
-        ///         <para />
+        ///         <para/>
         ///         {1,0,0},
-        ///         <para />
+        ///         <para/>
         ///         {0,1,0},
-        ///         <para />
+        ///         <para/>
         ///         {0,0,1}
-        ///         <para />
+        ///         <para/>
         ///         }
         ///     </example>
         /// </summary>
         /// <param name="rowsAndColumnsCount">Count of rows and columns</param>
-        /// <returns>Identity <see cref="IJuggedMatrix{T}" /> matrix</returns>
+        /// <returns>Identity <see cref="IJuggedMatrix{T}"/> matrix</returns>
         public static IJuggedMatrix<int> CreateIdentityMatrix(int rowsAndColumnsCount)
-		{
-			var result = new JuggedMatrix<int>(rowsAndColumnsCount,
-			                                   Enumerable.Repeat(rowsAndColumnsCount, rowsAndColumnsCount));
+        {
+            var result = new JuggedMatrix<int>(rowsAndColumnsCount,
+                                               Enumerable.Repeat(rowsAndColumnsCount, rowsAndColumnsCount));
 
-			for (var i = 0; i < rowsAndColumnsCount; i++)
-				result[i, i] = 1;
+            for (var i = 0; i < rowsAndColumnsCount; i++)
+                result[i, i] = 1;
 
-			return result;
-		}
+            return result;
+        }
 
-		/// <inheritdoc />
-		public override string ToString()
-		{
-			var sb = new StringBuilder();
-			for (var i = 0; i < RowsCount; i++)
-			{
-				for (var j = 0; j < ElementsInRow(i); j++) sb.Append($"{this[i, j]} | ");
-				sb.AppendLine();
-			}
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
 
-			return sb.ToString();
-		}
+            for (var i = 0; i < RowsCount; i++)
+            {
+                for (var j = 0; j < ElementsInRow(i); j++) sb.Append($"{this[i, j]} | ");
+                sb.AppendLine();
+            }
 
-		#region Constructors
+            return sb.ToString();
+        }
+
+        #region Constructors
 
         /// <summary>
-        ///     Initializes a new matrix object with count of rows = <paramref name="rowsCount" />
-        ///     and count of columns on each row => <paramref name="elementsAtRow" />
+        ///     Initializes a new matrix object with count of rows = <paramref name="rowsCount"/>
+        ///     and count of columns on each row => <paramref name="elementsAtRow"/>
         /// </summary>
         /// <param name="rowsCount"></param>
         /// <param name="elementsAtRow"></param>
         /// <exception cref="ArgumentException"></exception>
         public JuggedMatrix(int rowsCount, params int[] elementsAtRow) :
-			this(rowsCount, elementsAtRow.AsEnumerable()) { }
+            this(rowsCount, elementsAtRow.AsEnumerable()) { }
 
         /// <summary>
-        ///     Initializes a new matrix object with count of rows = <paramref name="rowsCount" />
-        ///     and count of columns on each row => <paramref name="elementsAtRow" />
+        ///     Initializes a new matrix object with count of rows = <paramref name="rowsCount"/>
+        ///     and count of columns on each row => <paramref name="elementsAtRow"/>
         /// </summary>
         /// <param name="rowsCount"></param>
         /// <param name="elementsAtRow"></param>
         /// <exception cref="ArgumentException"></exception>
         public JuggedMatrix(int rowsCount, IEnumerable<int> elementsAtRow)
-		{
-			var elementsCount = elementsAtRow as int[] ?? elementsAtRow.ToArray();
-			if (elementsCount.Length != rowsCount)
-				throw new ArgumentException("Count of Elements in row should be the same length as RowsCount");
+        {
+            var elementsCount = elementsAtRow as int[] ?? elementsAtRow.ToArray();
 
-			RowsCount = rowsCount;
-			_innerMatrix = new T[rowsCount][];
-			for (var i = 0; i < RowsCount; i++)
-				_innerMatrix[i] = new T[elementsCount[i]];
+            if (elementsCount.Length != rowsCount)
+                throw new ArgumentException("Count of Elements in row should be the same length as RowsCount");
 
-			if (elementsCount.All(x => x == RowsCount))
-				IsSquare = true;
-		}
+            RowsCount = rowsCount;
+            _innerMatrix = new T[rowsCount][];
 
-		public JuggedMatrix(T[][] matrix)
-		{
-			if (matrix == null) throw new ArgumentNullException(nameof(matrix));
-			RowsCount = matrix.Length;
-			_innerMatrix = matrix;
-		}
+            for (var i = 0; i < RowsCount; i++)
+                _innerMatrix[i] = new T[elementsCount[i]];
 
-		protected JuggedMatrix(int rowsCount)
-		{
-			RowsCount = rowsCount;
-			_innerMatrix = new T[RowsCount][];
-		}
+            if (elementsCount.All(x => x == RowsCount))
+                IsSquare = true;
+        }
 
-		#endregion
+        public JuggedMatrix(T[][] matrix)
+        {
+            if (matrix == null) throw new ArgumentNullException(nameof(matrix));
 
-		#region Row Sorting
+            RowsCount = matrix.Length;
+            _innerMatrix = matrix;
+        }
 
-		/// <inheritdoc />
-		public IJuggedMatrix<T> SortRows()
-		{
-			var orderedMatrix = _innerMatrix.OrderBy(x => x.Length).ToArray();
-			var matrix = new JuggedMatrix<T>(orderedMatrix.GetLength(0),
-			                                 orderedMatrix.Select(x => x.Length).ToArray())
-			             {
-				             _innerMatrix = orderedMatrix
-			             };
+        protected JuggedMatrix(int rowsCount)
+        {
+            RowsCount = rowsCount;
+            _innerMatrix = new T[RowsCount][];
+        }
 
-			return matrix;
-		}
+        #endregion
 
-		/// <inheritdoc />
-		public IJuggedMatrix<T> SortRowsByDescending()
-		{
-			var orderedMatrix = _innerMatrix.OrderByDescending(x => x.Length).ToArray();
-			var matrix = new JuggedMatrix<T>(orderedMatrix.GetLength(0),
-			                                 orderedMatrix.Select(x => x.Length).ToArray())
-			             {
-				             _innerMatrix = orderedMatrix
-			             };
+        #region Row Sorting
 
-			return matrix;
-		}
+        /// <inheritdoc/>
+        public IJuggedMatrix<T> SortRows()
+        {
+            var orderedMatrix = _innerMatrix.OrderBy(x => x.Length)
+                                            .ToArray();
 
-		#endregion
+            var matrix = new JuggedMatrix<T>(orderedMatrix.GetLength(0),
+                                             orderedMatrix.Select(x => x.Length)
+                                                          .ToArray())
+                         {
+                             _innerMatrix = orderedMatrix
+                         };
 
-		#region Enumeration
+            return matrix;
+        }
 
-		/// <inheritdoc />
-		public IEnumerator<IEnumerable<T>> GetEnumerator()
-		{
-			for (var i = 0; i < RowsCount; i++)
-				yield return RowEnumerator(i);
-		}
+        /// <inheritdoc/>
+        public IJuggedMatrix<T> SortRowsByDescending()
+        {
+            var orderedMatrix = _innerMatrix.OrderByDescending(x => x.Length)
+                                            .ToArray();
 
-		private IEnumerable<T> RowEnumerator(int rowIndex)
-		{
-			for (var i = 0; i < ElementsInRow(rowIndex); i++)
-				yield return this[rowIndex, i];
-		}
+            var matrix = new JuggedMatrix<T>(orderedMatrix.GetLength(0),
+                                             orderedMatrix.Select(x => x.Length)
+                                                          .ToArray())
+                         {
+                             _innerMatrix = orderedMatrix
+                         };
 
-		/// <inheritdoc />
-		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+            return matrix;
+        }
 
-		private IEnumerable<T> ColumnEnumerator(int columnIndex)
-		{
-			for (var i = 0; i < RowsCount; i++)
-				yield return this[i, columnIndex];
-		}
+        #endregion
 
-		/// <inheritdoc />
-		public IEnumerable<IEnumerable<T>> GetColumnsEnumerable()
-		{
-			for (var i = 0; i < ElementsInRow(i); i++)
-				yield return ColumnEnumerator(i);
-		}
+        #region Enumeration
 
-		#endregion
+        /// <inheritdoc/>
+        public IEnumerator<IEnumerable<T>> GetEnumerator()
+        {
+            for (var i = 0; i < RowsCount; i++)
+                yield return RowEnumerator(i);
+        }
 
-		#region Equality members
+        private IEnumerable<T> RowEnumerator(int rowIndex)
+        {
+            for (var i = 0; i < ElementsInRow(rowIndex); i++)
+                yield return this[rowIndex, i];
+        }
 
-		/// <inheritdoc />
-		public bool Equals(IJuggedMatrix<T> other)
-		{
-			if (ReferenceEquals(null, other)) return false;
-			if (ReferenceEquals(this, other)) return true;
-			if (RowsCount != other.RowsCount) return false;
-			for (var i = 0; i < RowsCount; i++)
-			{
-				if (ElementsInRow(i) != other.ElementsInRow(i)) return false;
-				for (var j = 0; j < ElementsInRow(i); j++)
-				{
-					if (!this[i, j].Equals(other[i, j]))
-						return false;
-				}
-			}
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-			return true;
-		}
+        private IEnumerable<T> ColumnEnumerator(int columnIndex)
+        {
+            for (var i = 0; i < RowsCount; i++)
+                yield return this[i, columnIndex];
+        }
 
-		/// <inheritdoc />
-		public override bool Equals(object obj)
-		{
-			if (ReferenceEquals(null, obj)) return false;
-			if (ReferenceEquals(this, obj)) return true;
-			if (obj is IJuggedMatrix<T> matrix) return Equals(matrix);
-			return false;
-		}
+        /// <inheritdoc/>
+        public IEnumerable<IEnumerable<T>> GetColumnsEnumerable()
+        {
+            for (var i = 0; i < ElementsInRow(i); i++)
+                yield return ColumnEnumerator(i);
+        }
 
-		/// <inheritdoc />
-		public override int GetHashCode() => RowsCount ^ (339 + this.Sum(x => x.Count())) ^ (112 + (IsSquare ? 1 : 0));
+        #endregion
 
-		#endregion
-	}
+        #region Equality members
+
+        /// <inheritdoc/>
+        public bool Equals(IJuggedMatrix<T> other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            if (RowsCount != other.RowsCount) return false;
+
+            for (var i = 0; i < RowsCount; i++)
+            {
+                if (ElementsInRow(i) != other.ElementsInRow(i)) return false;
+
+                for (var j = 0; j < ElementsInRow(i); j++)
+                    if (!this[i, j]
+                            .Equals(other[i, j]))
+                        return false;
+            }
+
+            return true;
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj is IJuggedMatrix<T> matrix) return Equals(matrix);
+
+            return false;
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode() => RowsCount ^ (339 + this.Sum(x => x.Count())) ^ (112 + (IsSquare ? 1 : 0));
+
+        #endregion
+    }
 }

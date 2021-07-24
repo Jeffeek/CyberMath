@@ -1,4 +1,4 @@
-﻿#region Using derectives
+﻿#region Using namespaces
 
 using BenchmarkDotNet.Running;
 
@@ -6,15 +6,15 @@ using BenchmarkDotNet.Running;
 
 namespace CyberMath.PerformanceTests.BinaryTrees
 {
-	public class Program
-	{
-		public static void Main(string[] args)
-		{
-			BenchmarkRunner.Run<BinaryTreesAddRangeBenchmark>();
-			BenchmarkRunner.Run<BinaryTreesAddBenchmark>();
-			BenchmarkRunner.Run<BinaryTreesRemoveBenchmark>();
-			BenchmarkRunner.Run<BinaryTreesMaxMinBenchmark>();
-			BenchmarkRunner.Run<BinaryTreesOrdersBenchmark>();
-		}
-	}
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            BenchmarkRunner.Run<BinaryTreesAddRangeBenchmark>();
+            BenchmarkRunner.Run<BinaryTreesAddBenchmark>();
+            BenchmarkRunner.Run<BinaryTreesRemoveBenchmark>();
+            BenchmarkRunner.Run<BinaryTreesMaxMinBenchmark>();
+            BenchmarkRunner.Run<BinaryTreesOrdersBenchmark>();
+        }
+    }
 }

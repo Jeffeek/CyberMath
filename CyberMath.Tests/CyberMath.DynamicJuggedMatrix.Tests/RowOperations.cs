@@ -1,4 +1,4 @@
-﻿#region Using derectives
+﻿#region Using namespaces
 
 using System.Linq;
 using CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Jugged_Matrix;
@@ -8,300 +8,356 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CyberMath.DynamicJuggedMatrix.Tests
 {
-	[TestClass]
-	public class RowOperations
-	{
-		[TestMethod]
-		public void AvgInRowTest_int()
-		{
-			var matrix = new DynamicJuggedMatrix<int>(2, 2, 2)
-			             {
-				             [0, 0] = 5, [0, 1] = 10,
-				             [1, 0] = 20, [1, 1] = 50
-			             };
+    [TestClass]
+    public class RowOperations
+    {
+        [TestMethod]
+        public void AvgInRowTest_int()
+        {
+            var matrix = new DynamicJuggedMatrix<int>(2, 2, 2)
+                         {
+                             [0, 0] = 5,
+                             [0, 1] = 10,
+                             [1, 0] = 20,
+                             [1, 1] = 50
+                         };
 
-			var actual = matrix.Select(x => x.Average()).ToArray();
-			var expected = new[] { 7.5, 35.0 };
-			CollectionAssert.AreEqual(actual, expected);
-		}
+            var actual = matrix.Select(x => x.Average())
+                               .ToArray();
 
-		[TestMethod]
-		public void MinInRowTest_int()
-		{
-			var matrix = new DynamicJuggedMatrix<int>(2, 2, 2)
-			             {
-				             [0, 0] = 5,
-				             [0, 1] = 10,
-				             [1, 0] = 20,
-				             [1, 1] = 50
-			             };
+            var expected = new[]
+                           {
+                               7.5, 35.0
+                           };
 
-			var actual = matrix.Select(x => x.Min()).ToArray();
-			var expected = new[] { 5, 20 };
-			CollectionAssert.AreEqual(actual, expected);
-		}
+            CollectionAssert.AreEqual(actual, expected);
+        }
 
-		[TestMethod]
-		public void MaxInRowTest_int()
-		{
-			var matrix = new DynamicJuggedMatrix<int>(2, 2, 2)
-			             {
-				             [0, 0] = 5,
-				             [0, 1] = 10,
-				             [1, 0] = 20,
-				             [1, 1] = 50
-			             };
+        [TestMethod]
+        public void MinInRowTest_int()
+        {
+            var matrix = new DynamicJuggedMatrix<int>(2, 2, 2)
+                         {
+                             [0, 0] = 5,
+                             [0, 1] = 10,
+                             [1, 0] = 20,
+                             [1, 1] = 50
+                         };
 
-			var actual = matrix.Select(x => x.Max()).ToArray();
-			var expected = new[] { 10, 50 };
-			CollectionAssert.AreEqual(actual, expected);
-		}
+            var actual = matrix.Select(x => x.Min())
+                               .ToArray();
 
-		[TestMethod]
-		public void MinInRowTest_string()
-		{
-			var matrix = new DynamicJuggedMatrix<string>(2, 2, 2)
-			             {
-				             [0, 0] = "ab",
-				             [0, 1] = "bc",
-				             [1, 0] = "cd",
-				             [1, 1] = "de"
-			             };
+            var expected = new[]
+                           {
+                               5, 20
+                           };
 
-			var actual = matrix.Select(x => x.Min()).ToArray();
-			var expected = new[] { "ab", "cd" };
-			CollectionAssert.AreEqual(actual, expected);
-		}
+            CollectionAssert.AreEqual(actual, expected);
+        }
 
-		[TestMethod]
-		public void MaxInRowTest_string()
-		{
-			var matrix = new DynamicJuggedMatrix<string>(2, 2, 2)
-			             {
-				             [0, 0] = "ab",
-				             [0, 1] = "bc",
-				             [1, 0] = "cd",
-				             [1, 1] = "de"
-			             };
+        [TestMethod]
+        public void MaxInRowTest_int()
+        {
+            var matrix = new DynamicJuggedMatrix<int>(2, 2, 2)
+                         {
+                             [0, 0] = 5,
+                             [0, 1] = 10,
+                             [1, 0] = 20,
+                             [1, 1] = 50
+                         };
 
-			var actual = matrix.Select(x => x.Max()).ToArray();
-			var expected = new[] { "bc", "de" };
-			CollectionAssert.AreEqual(actual, expected);
-		}
+            var actual = matrix.Select(x => x.Max())
+                               .ToArray();
 
-		#region Remove
+            var expected = new[]
+                           {
+                               10, 50
+                           };
 
-		[TestMethod]
-		public void RemoveRowAtStart_test()
-		{
-			var actualMatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
-			                   {
-				                   [0, 0] = 3,
-				                   [0, 1] = 4,
-				                   [0, 2] = 5,
-				                   [0, 3] = 10,
-				                   [1, 0] = 3,
-				                   [1, 1] = 4,
-				                   [1, 2] = 5,
-				                   [1, 3] = 6,
-				                   [2, 0] = 3,
-				                   [2, 1] = 4,
-				                   [2, 2] = 5,
-				                   [2, 3] = 6
-			                   };
+            CollectionAssert.AreEqual(actual, expected);
+        }
 
-			actualMatrix.RemoveRow(0);
+        [TestMethod]
+        public void MinInRowTest_string()
+        {
+            var matrix = new DynamicJuggedMatrix<string>(2, 2, 2)
+                         {
+                             [0, 0] = "ab",
+                             [0, 1] = "bc",
+                             [1, 0] = "cd",
+                             [1, 1] = "de"
+                         };
 
-			var expectedmatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
-			                     {
-				                     [0, 0] = 3,
-				                     [0, 1] = 4,
-				                     [0, 2] = 5,
-				                     [0, 3] = 6,
-				                     [1, 0] = 3,
-				                     [1, 1] = 4,
-				                     [1, 2] = 5,
-				                     [1, 3] = 6
-			                     };
+            var actual = matrix.Select(x => x.Min())
+                               .ToArray();
 
-			Assert.IsTrue(actualMatrix.Equals(expectedmatrix));
-		}
+            var expected = new[]
+                           {
+                               "ab", "cd"
+                           };
 
-		[TestMethod]
-		public void RemoveRowAtMiddle_test()
-		{
-			var actualMatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
-			                   {
-				                   [0, 0] = 3,
-				                   [0, 1] = 4,
-				                   [0, 2] = 5,
-				                   [0, 3] = 6,
-				                   [1, 0] = 3,
-				                   [1, 1] = 4,
-				                   [1, 2] = 5,
-				                   [1, 3] = 10,
-				                   [2, 0] = 3,
-				                   [2, 1] = 4,
-				                   [2, 2] = 5,
-				                   [2, 3] = 6
-			                   };
+            CollectionAssert.AreEqual(actual, expected);
+        }
 
-			actualMatrix.RemoveRow(1);
+        [TestMethod]
+        public void MaxInRowTest_string()
+        {
+            var matrix = new DynamicJuggedMatrix<string>(2, 2, 2)
+                         {
+                             [0, 0] = "ab",
+                             [0, 1] = "bc",
+                             [1, 0] = "cd",
+                             [1, 1] = "de"
+                         };
 
-			var expectedmatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
-			                     {
-				                     [0, 0] = 3,
-				                     [0, 1] = 4,
-				                     [0, 2] = 5,
-				                     [0, 3] = 6,
-				                     [1, 0] = 3,
-				                     [1, 1] = 4,
-				                     [1, 2] = 5,
-				                     [1, 3] = 6
-			                     };
+            var actual = matrix.Select(x => x.Max())
+                               .ToArray();
 
-			Assert.IsTrue(actualMatrix.Equals(expectedmatrix));
-		}
+            var expected = new[]
+                           {
+                               "bc", "de"
+                           };
 
-		[TestMethod]
-		public void RemoveRowAtEnd_test()
-		{
-			var actualMatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
-			                   {
-				                   [0, 0] = 3,
-				                   [0, 1] = 4,
-				                   [0, 2] = 5,
-				                   [0, 3] = 6,
-				                   [1, 0] = 3,
-				                   [1, 1] = 4,
-				                   [1, 2] = 5,
-				                   [1, 3] = 6,
-				                   [2, 0] = 3,
-				                   [2, 1] = 4,
-				                   [2, 2] = 10,
-				                   [2, 3] = 6
-			                   };
+            CollectionAssert.AreEqual(actual, expected);
+        }
 
-			actualMatrix.RemoveRow(2);
+        #region Remove
 
-			var expectedmatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
-			                     {
-				                     [0, 0] = 3,
-				                     [0, 1] = 4,
-				                     [0, 2] = 5,
-				                     [0, 3] = 6,
-				                     [1, 0] = 3,
-				                     [1, 1] = 4,
-				                     [1, 2] = 5,
-				                     [1, 3] = 6
-			                     };
+        [TestMethod]
+        public void RemoveRowAtStart_test()
+        {
+            var actualMatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
+                               {
+                                   [0, 0] = 3,
+                                   [0, 1] = 4,
+                                   [0, 2] = 5,
+                                   [0, 3] = 10,
+                                   [1, 0] = 3,
+                                   [1, 1] = 4,
+                                   [1, 2] = 5,
+                                   [1, 3] = 6,
+                                   [2, 0] = 3,
+                                   [2, 1] = 4,
+                                   [2, 2] = 5,
+                                   [2, 3] = 6
+                               };
 
-			Assert.IsTrue(actualMatrix.Equals(expectedmatrix));
-		}
+            actualMatrix.RemoveRow(0);
 
-		#endregion
+            var expectedmatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
+                                 {
+                                     [0, 0] = 3,
+                                     [0, 1] = 4,
+                                     [0, 2] = 5,
+                                     [0, 3] = 6,
+                                     [1, 0] = 3,
+                                     [1, 1] = 4,
+                                     [1, 2] = 5,
+                                     [1, 3] = 6
+                                 };
 
-		#region Insert
+            Assert.IsTrue(actualMatrix.Equals(expectedmatrix));
+        }
 
-		[TestMethod]
-		public void InsertRowAtStart_test()
-		{
-			var actualMatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
-			                   {
-				                   [0, 0] = 3,
-				                   [0, 1] = 4,
-				                   [0, 2] = 5,
-				                   [0, 3] = 6,
-				                   [1, 0] = 3,
-				                   [1, 1] = 4,
-				                   [1, 2] = 5,
-				                   [1, 3] = 6
-			                   };
+        [TestMethod]
+        public void RemoveRowAtMiddle_test()
+        {
+            var actualMatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
+                               {
+                                   [0, 0] = 3,
+                                   [0, 1] = 4,
+                                   [0, 2] = 5,
+                                   [0, 3] = 6,
+                                   [1, 0] = 3,
+                                   [1, 1] = 4,
+                                   [1, 2] = 5,
+                                   [1, 3] = 10,
+                                   [2, 0] = 3,
+                                   [2, 1] = 4,
+                                   [2, 2] = 5,
+                                   [2, 3] = 6
+                               };
 
-			var elements = new[] { 3, 4, 5, 10 };
+            actualMatrix.RemoveRow(1);
 
-			actualMatrix.InsertRow(0, elements);
+            var expectedmatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
+                                 {
+                                     [0, 0] = 3,
+                                     [0, 1] = 4,
+                                     [0, 2] = 5,
+                                     [0, 3] = 6,
+                                     [1, 0] = 3,
+                                     [1, 1] = 4,
+                                     [1, 2] = 5,
+                                     [1, 3] = 6
+                                 };
 
-			var expectedmatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
-			                     {
-				                     [0, 0] = 3,
-				                     [0, 1] = 4,
-				                     [0, 2] = 5,
-				                     [0, 3] = 10,
-				                     [1, 0] = 3,
-				                     [1, 1] = 4,
-				                     [1, 2] = 5,
-				                     [1, 3] = 6,
-				                     [2, 0] = 3,
-				                     [2, 1] = 4,
-				                     [2, 2] = 5,
-				                     [2, 3] = 6
-			                     };
+            Assert.IsTrue(actualMatrix.Equals(expectedmatrix));
+        }
 
-			Assert.IsTrue(actualMatrix.Equals(expectedmatrix));
-		}
+        [TestMethod]
+        public void RemoveRowAtEnd_test()
+        {
+            var actualMatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
+                               {
+                                   [0, 0] = 3,
+                                   [0, 1] = 4,
+                                   [0, 2] = 5,
+                                   [0, 3] = 6,
+                                   [1, 0] = 3,
+                                   [1, 1] = 4,
+                                   [1, 2] = 5,
+                                   [1, 3] = 6,
+                                   [2, 0] = 3,
+                                   [2, 1] = 4,
+                                   [2, 2] = 10,
+                                   [2, 3] = 6
+                               };
 
-		[TestMethod]
-		public void InsertRowAtMiddle_test()
-		{
-			var actualMatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
-			                   {
-				                   [0, 0] = 3,
-				                   [0, 1] = 4,
-				                   [0, 2] = 5,
-				                   [0, 3] = 6,
-				                   [1, 0] = 3,
-				                   [1, 1] = 4,
-				                   [1, 2] = 5,
-				                   [1, 3] = 6
-			                   };
+            actualMatrix.RemoveRow(2);
 
-			var elements = new[] { 3, 4, 5, 10 };
+            var expectedmatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
+                                 {
+                                     [0, 0] = 3,
+                                     [0, 1] = 4,
+                                     [0, 2] = 5,
+                                     [0, 3] = 6,
+                                     [1, 0] = 3,
+                                     [1, 1] = 4,
+                                     [1, 2] = 5,
+                                     [1, 3] = 6
+                                 };
 
-			actualMatrix.InsertRow(1, elements);
+            Assert.IsTrue(actualMatrix.Equals(expectedmatrix));
+        }
 
-			var expectedmatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
-			                     {
-				                     [0, 0] = 3,
-				                     [0, 1] = 4,
-				                     [0, 2] = 5,
-				                     [0, 3] = 6,
-				                     [1, 0] = 3,
-				                     [1, 1] = 4,
-				                     [1, 2] = 5,
-				                     [1, 3] = 10,
-				                     [2, 0] = 3,
-				                     [2, 1] = 4,
-				                     [2, 2] = 5,
-				                     [2, 3] = 6
-			                     };
+        #endregion
 
-			Assert.IsTrue(actualMatrix.Equals(expectedmatrix));
-		}
+        #region Insert
 
-		[TestMethod]
-		public void AddRow_test()
-		{
-			var actualMatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
-			                   {
-				                   [0, 0] = 3, [0, 1] = 4, [0, 2] = 5, [0, 3] = 6,
-				                   [1, 0] = 3, [1, 1] = 4, [1, 2] = 5, [1, 3] = 6
-			                   };
+        [TestMethod]
+        public void InsertRowAtStart_test()
+        {
+            var actualMatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
+                               {
+                                   [0, 0] = 3,
+                                   [0, 1] = 4,
+                                   [0, 2] = 5,
+                                   [0, 3] = 6,
+                                   [1, 0] = 3,
+                                   [1, 1] = 4,
+                                   [1, 2] = 5,
+                                   [1, 3] = 6
+                               };
 
-			var elements = new[] { 3, 4, 10, 6 };
+            var elements = new[]
+                           {
+                               3, 4, 5, 10
+                           };
 
-			actualMatrix.InsertRow(2, elements);
+            actualMatrix.InsertRow(0, elements);
 
-			var expectedmatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
-			                     {
-				                     [0, 0] = 3, [0, 1] = 4, [0, 2] = 5, [0, 3] = 6,
-				                     [1, 0] = 3, [1, 1] = 4, [1, 2] = 5, [1, 3] = 6,
-				                     [2, 0] = 3, [2, 1] = 4, [2, 2] = 10, [2, 3] = 6
-			                     };
+            var expectedmatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
+                                 {
+                                     [0, 0] = 3,
+                                     [0, 1] = 4,
+                                     [0, 2] = 5,
+                                     [0, 3] = 10,
+                                     [1, 0] = 3,
+                                     [1, 1] = 4,
+                                     [1, 2] = 5,
+                                     [1, 3] = 6,
+                                     [2, 0] = 3,
+                                     [2, 1] = 4,
+                                     [2, 2] = 5,
+                                     [2, 3] = 6
+                                 };
 
-			Assert.IsTrue(actualMatrix.Equals(expectedmatrix));
-		}
+            Assert.IsTrue(actualMatrix.Equals(expectedmatrix));
+        }
 
-		#endregion
-	}
+        [TestMethod]
+        public void InsertRowAtMiddle_test()
+        {
+            var actualMatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
+                               {
+                                   [0, 0] = 3,
+                                   [0, 1] = 4,
+                                   [0, 2] = 5,
+                                   [0, 3] = 6,
+                                   [1, 0] = 3,
+                                   [1, 1] = 4,
+                                   [1, 2] = 5,
+                                   [1, 3] = 6
+                               };
+
+            var elements = new[]
+                           {
+                               3, 4, 5, 10
+                           };
+
+            actualMatrix.InsertRow(1, elements);
+
+            var expectedmatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
+                                 {
+                                     [0, 0] = 3,
+                                     [0, 1] = 4,
+                                     [0, 2] = 5,
+                                     [0, 3] = 6,
+                                     [1, 0] = 3,
+                                     [1, 1] = 4,
+                                     [1, 2] = 5,
+                                     [1, 3] = 10,
+                                     [2, 0] = 3,
+                                     [2, 1] = 4,
+                                     [2, 2] = 5,
+                                     [2, 3] = 6
+                                 };
+
+            Assert.IsTrue(actualMatrix.Equals(expectedmatrix));
+        }
+
+        [TestMethod]
+        public void AddRow_test()
+        {
+            var actualMatrix = new DynamicJuggedMatrix<int>(2, 4, 4)
+                               {
+                                   [0, 0] = 3,
+                                   [0, 1] = 4,
+                                   [0, 2] = 5,
+                                   [0, 3] = 6,
+                                   [1, 0] = 3,
+                                   [1, 1] = 4,
+                                   [1, 2] = 5,
+                                   [1, 3] = 6
+                               };
+
+            var elements = new[]
+                           {
+                               3, 4, 10, 6
+                           };
+
+            actualMatrix.InsertRow(2, elements);
+
+            var expectedmatrix = new DynamicJuggedMatrix<int>(3, 4, 4, 4)
+                                 {
+                                     [0, 0] = 3,
+                                     [0, 1] = 4,
+                                     [0, 2] = 5,
+                                     [0, 3] = 6,
+                                     [1, 0] = 3,
+                                     [1, 1] = 4,
+                                     [1, 2] = 5,
+                                     [1, 3] = 6,
+                                     [2, 0] = 3,
+                                     [2, 1] = 4,
+                                     [2, 2] = 10,
+                                     [2, 3] = 6
+                                 };
+
+            Assert.IsTrue(actualMatrix.Equals(expectedmatrix));
+        }
+
+        #endregion
+    }
 }

@@ -1,4 +1,4 @@
-﻿#region Using derectives
+﻿#region Using namespaces
 
 using BenchmarkDotNet.Running;
 
@@ -6,11 +6,11 @@ using BenchmarkDotNet.Running;
 
 namespace CyberMath.PerformanceTests_Extensions
 {
-	internal static class Program
-	{
-		private static void Main(string[] args)
-		{
-			BenchmarkRunner.Run<StringExtensions>();
-		}
-	}
+    internal static class Program
+    {
+        private static void Main(string[] args)
+        {
+            BenchmarkRunner.Run<StringExtensions>();
+        }
+    }
 }
