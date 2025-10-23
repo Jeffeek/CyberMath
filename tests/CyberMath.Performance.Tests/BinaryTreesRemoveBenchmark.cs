@@ -9,7 +9,7 @@ using CyberMath.Structures.BinaryTrees.RedBlackBinaryTree;
 
 namespace CyberMath.Performance.Tests;
 
-public sealed class BinaryTreesRemoveBenchmark
+public class BinaryTreesRemoveBenchmark
 {
     [Benchmark]
     public void Remove_BinaryTree()

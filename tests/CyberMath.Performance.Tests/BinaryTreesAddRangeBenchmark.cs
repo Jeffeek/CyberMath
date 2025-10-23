@@ -10,7 +10,7 @@ using CyberMath.Structures.BinaryTrees.RedBlackBinaryTree;
 
 namespace CyberMath.Performance.Tests;
 
-public sealed class BinaryTreesAddRangeBenchmark
+public class BinaryTreesAddRangeBenchmark
 {
     [Params(1000, 100_000, 1_000_000)]
     public int Count;

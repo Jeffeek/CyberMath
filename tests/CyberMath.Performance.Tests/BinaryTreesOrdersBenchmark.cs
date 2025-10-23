@@ -12,7 +12,7 @@ using CyberMath.Structures.BinaryTrees.RedBlackBinaryTree;
 
 namespace CyberMath.Performance.Tests;
 
-public sealed class BinaryTreesOrdersBenchmark
+public class BinaryTreesOrdersBenchmark
 {
     private static readonly Random Rnd = new();
 

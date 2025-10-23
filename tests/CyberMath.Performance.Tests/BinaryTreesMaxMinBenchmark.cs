@@ -10,7 +10,7 @@ using CyberMath.Structures.BinaryTrees.BinaryTreeBase;
 
 namespace CyberMath.Performance.Tests;
 
-public sealed class BinaryTreesMaxMinBenchmark
+public class BinaryTreesMaxMinBenchmark
 {
     private static readonly Random Rnd = new();
 
