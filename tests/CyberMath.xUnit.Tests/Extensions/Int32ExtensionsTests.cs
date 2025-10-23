@@ -244,7 +244,7 @@ public class Int32PrimeNumbersTests
     [Theory]
     [InlineData(10, new[] { 2, 3, 5, 7 })]
     [InlineData(20, new[] { 2, 3, 5, 7, 11, 13, 17, 19 })]
-    [InlineData(2, new int[] { })]  // No primes less than 2
+    [InlineData(2, new[] { 2 })]  // 2 is prime
     public void GeneratePrimeNumbers_WithMax_ReturnsCorrectPrimes(int max, int[] expected)
     {
         var result = Int32PrimeNumbers.GeneratePrimeNumbers(max);
@@ -252,12 +252,12 @@ public class Int32PrimeNumbersTests
     }
 
     [Fact]
-    public void GeneratePrimeNumbers_WithMaxLessThanOrEqualTo2_ThrowsException()
+    public void GeneratePrimeNumbers_WithMaxLessThan2_ReturnsEmpty()
     {
-        Assert.Throws<ArgumentOutOfRangeException>(() =>
-            Int32PrimeNumbers.GeneratePrimeNumbers(2).ToList());
-        Assert.Throws<ArgumentOutOfRangeException>(() =>
-            Int32PrimeNumbers.GeneratePrimeNumbers(1).ToList());
+        // Changed behavior: returns empty enumerable instead of throwing
+        Assert.Empty(Int32PrimeNumbers.GeneratePrimeNumbers(1));
+        Assert.Empty(Int32PrimeNumbers.GeneratePrimeNumbers(0));
+        Assert.Empty(Int32PrimeNumbers.GeneratePrimeNumbers(-1));
     }
 
     [Fact]

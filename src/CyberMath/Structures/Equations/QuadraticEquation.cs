@@ -16,7 +16,7 @@ namespace CyberMath.Structures.Equations
     {
         private readonly Regex _quadraticEquationPattern =
             new
-                Regex("([+-]?\\d+|[+-]?\\d+\\.[\\d]{1,})[Xx]\\^2([+-]?\\d+|[+-]?\\d+\\.[\\d]{1,})[Xx]([+-]?\\d+|[+-]?\\d+\\.[\\d]{1,})");
+                Regex(@"^([+-]?\d+(?:\.\d+)?)[Xx]\^2([+-]?\d+(?:\.\d+)?)[Xx]([+-]?\d+(?:\.\d+)?)(?:=0)?$");
 
         /// <summary>
         ///     Creating a new instance of <see cref="QuadraticEquation"/> with 3 <seealso cref="double"/> arguments:
@@ -27,6 +27,9 @@ namespace CyberMath.Structures.Equations
         /// <param name="c"></param>
         public QuadraticEquation(double a, double b, double c)
         {
+            if (a == 0)
+                throw new ArgumentException("Coefficient 'a' cannot be zero in a quadratic equation", nameof(a));
+
             A = a;
             B = b;
             C = c;
@@ -40,19 +43,33 @@ namespace CyberMath.Structures.Equations
         /// <param name="quadraticEquation">A string to parse</param>
         public QuadraticEquation(string quadraticEquation)
         {
-            quadraticEquation = quadraticEquation.Replace(" ", string.Empty);
-            var match = _quadraticEquationPattern.Match(quadraticEquation);
+            if (string.IsNullOrWhiteSpace(quadraticEquation))
+                throw new ArgumentException("Quadratic equation string cannot be null or whitespace", nameof(quadraticEquation));
 
-            if (!match.Success) throw new Exception("Input quadratic equation is not valid");
+            var normalized = quadraticEquation.Replace(" ", string.Empty).Replace("\t", string.Empty);
+            var match = _quadraticEquationPattern.Match(normalized);
 
-            A = double.Parse(match.Groups[1]
-                                  .Value);
+            if (!match.Success)
+                throw new ArgumentException(
+                    $"Input string '{quadraticEquation}' is not a valid quadratic equation format. " +
+                    "Expected format: 'ax^2+bx+c' or 'ax^2+bx+c=0' (e.g., '1x^2+2x+3' or '5x^2-16x+12=0')",
+                    nameof(quadraticEquation));
 
-            B = double.Parse(match.Groups[2]
-                                  .Value);
+            if (!double.TryParse(match.Groups[1].Value, out var a))
+                throw new ArgumentException($"Failed to parse coefficient 'a' from '{match.Groups[1].Value}'", nameof(quadraticEquation));
 
-            C = double.Parse(match.Groups[3]
-                                  .Value);
+            if (a == 0)
+                throw new ArgumentException("Coefficient 'a' cannot be zero in a quadratic equation", nameof(quadraticEquation));
+
+            if (!double.TryParse(match.Groups[2].Value, out var b))
+                throw new ArgumentException($"Failed to parse coefficient 'b' from '{match.Groups[2].Value}'", nameof(quadraticEquation));
+
+            if (!double.TryParse(match.Groups[3].Value, out var c))
+                throw new ArgumentException($"Failed to parse coefficient 'c' from '{match.Groups[3].Value}'", nameof(quadraticEquation));
+
+            A = a;
+            B = b;
+            C = c;
 
             CalculateDeterminant();
         }

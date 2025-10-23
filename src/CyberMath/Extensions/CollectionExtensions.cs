@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 #endregion
 
@@ -13,6 +14,10 @@ namespace CyberMath.Extensions
     /// </summary>
     public static class CollectionExtensions
     {
+        [ThreadStatic]
+        private static Random? _threadLocalRandom;
+
+        private static Random ThreadLocalRandom => _threadLocalRandom ??= new Random(unchecked(Environment.TickCount * 31 + Thread.CurrentThread.ManagedThreadId));
         /// <summary>
         ///     Swaps items in indexed collections
         /// </summary>
@@ -42,15 +47,9 @@ namespace CyberMath.Extensions
             if (source is null) return;
             if (source.Count < 2) return;
 
-            var rnd = new Random();
-
             for (var i = source.Count - 1; i > 0; i--)
             {
-                var randomIndex = rnd.Next(0, i + 1);
-
-                while (randomIndex == i)
-                    randomIndex = rnd.Next(0, i + 1);
-
+                var randomIndex = ThreadLocalRandom.Next(0, i + 1);
                 source.Swap(i, randomIndex);
             }
         }
@@ -162,8 +161,7 @@ namespace CyberMath.Extensions
                     return enumerable.ElementAt(0);
             }
 
-            var rnd = new Random();
-            var randomIndex = rnd.Next(0, length);
+            var randomIndex = ThreadLocalRandom.Next(0, length);
 
             return enumerable[randomIndex];
         }

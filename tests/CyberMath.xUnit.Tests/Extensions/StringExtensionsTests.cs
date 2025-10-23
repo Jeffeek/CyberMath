@@ -55,10 +55,10 @@ public class StringExtensionTests
     }
 
     [Fact]
-    public void IsPalindrome_ThrowsOnNull()
+    public void IsPalindrome_ReturnsFalseForNull()
     {
         string? nullString = null;
-        Assert.Throws<ArgumentNullException>(() => nullString.IsPalindrome());
+        Assert.False(nullString.IsPalindrome());
     }
 
     #endregion
@@ -90,31 +90,48 @@ public class StringExtensionTests
 
     #endregion
 
-    #region WordsFrequency Tests
+    #region CharacterFrequency Tests
 
     [Fact]
-    public void WordsFrequency_ReturnsCorrectFrequencies()
+    public void CharacterFrequency_ReturnsCorrectFrequencies()
     {
         const string input = "hello world hello test world world";
-        var result = input.WordsFrequency();
+        var result = input.CharacterFrequency();
 
-        Assert.Equal(2, result['h']);  // 'hello' appears twice
-        Assert.Equal(3, result['w']);  // 'world' appears three times  
-        Assert.Equal(1, result['t']);  // 'test' appears once
+        // CharacterFrequency counts character frequency in the string
+        // String: "hello world hello test world world"
+        Assert.Equal(2, result['h']);  // 'h' appears 2 times (hello x2)
+        Assert.Equal(3, result['e']);  // 'e' appears 3 times (hello x2 + test)
+        Assert.Equal(7, result['l']);  // 'l' appears 7 times (hello x2 has 4, world x3 has 3)
+        Assert.Equal(5, result['o']);  // 'o' appears 5 times (hello x2 + world x3)
+        Assert.Equal(3, result['w']);  // 'w' appears 3 times (world x3)
+        Assert.Equal(2, result['t']);  // 't' appears 2 times (test)
+        Assert.Equal(5, result[' ']);  // 5 spaces
     }
 
     [Fact]
-    public void WordsFrequency_HandlesEmptyString()
+    public void CharacterFrequency_HandlesEmptyString()
     {
-        var result = "".WordsFrequency();
+        var result = "".CharacterFrequency();
         Assert.Empty(result);
     }
 
     [Fact]
-    public void WordsFrequency_ThrowsOnNull()
+    public void CharacterFrequency_ThrowsOnNull()
     {
         string? nullString = null;
-        Assert.Throws<ArgumentNullException>(() => nullString.WordsFrequency());
+        Assert.Throws<ArgumentNullException>(() => nullString.CharacterFrequency());
+    }
+
+    [Fact]
+    public void WordsFrequency_IsObsoleteAlias()
+    {
+        // Test that the obsolete WordsFrequency still works as an alias
+        const string input = "test";
+        #pragma warning disable CS0618 // Type or member is obsolete
+        var result = input.WordsFrequency();
+        #pragma warning restore CS0618
+        Assert.Equal(3, result.Count); // t, e, s (3 unique chars - 't' appears twice but counted once)
     }
 
     #endregion

@@ -149,7 +149,7 @@ public class Int64ExtensionTests
     [InlineData(100000000, 9)]
     [InlineData(999999999, 9)]
     [InlineData(1000000000, 10)]
-    [InlineData(long.MaxValue, 10)]
+    [InlineData(long.MaxValue, 19)]
     [InlineData(-1, 1)]
     [InlineData(-123, 3)]
     [InlineData(int.MinValue, 10)]
@@ -185,7 +185,7 @@ public class Int64ExtensionTests
     [InlineData(8, "1000")]
     [InlineData(15, "1111")]
     [InlineData(255, "11111111")]
-    [InlineData(-1, "11111111111111111111111111111111")]  // Two's complement
+    [InlineData(-1, "1111111111111111111111111111111111111111111111111111111111111111")]  // Two's complement (64-bit)
     public void ToBinary_ReturnsCorrectBinaryString(long number, string expected)
     {
         Assert.Equal(expected, number.ToBinary());
@@ -198,7 +198,7 @@ public class Int64ExtensionTests
     [InlineData(16, "10")]
     [InlineData(255, "ff")]
     [InlineData(4096, "1000")]
-    [InlineData(-1, "ffffffff")]  // Two's complement
+    [InlineData(-1, "ffffffffffffffff")]  // Two's complement (64-bit)
     public void ToHex_ReturnsCorrectHexString(long number, string expected)
     {
         Assert.Equal(expected, number.ToHex());
@@ -235,7 +235,7 @@ public class Int64PrimeNumbersTests
     [Theory]
     [InlineData(10, new long[] { 2, 3, 5, 7 })]
     [InlineData(20, new long[] { 2, 3, 5, 7, 11, 13, 17, 19 })]
-    [InlineData(2, new long[] { })]  // No primes less than 2
+    [InlineData(2, new long[] { 2 })]  // 2 is prime
     public void GeneratePrimeNumbers_WithMax_ReturnsCorrectPrimes(int max, long[] expected)
     {
         var result = Int64PrimeNumbers.GeneratePrimeNumbers(max);
@@ -243,12 +243,12 @@ public class Int64PrimeNumbersTests
     }
 
     [Fact]
-    public void GeneratePrimeNumbers_WithMaxLessThanOrEqualTo2_ThrowsException()
+    public void GeneratePrimeNumbers_WithMaxLessThan2_ReturnsEmpty()
     {
-        Assert.Throws<ArgumentOutOfRangeException>(() =>
-            Int64PrimeNumbers.GeneratePrimeNumbers(2).ToList());
-        Assert.Throws<ArgumentOutOfRangeException>(() =>
-            Int64PrimeNumbers.GeneratePrimeNumbers(1).ToList());
+        // Changed behavior: returns empty enumerable instead of throwing
+        Assert.Empty(Int64PrimeNumbers.GeneratePrimeNumbers(1));
+        Assert.Empty(Int64PrimeNumbers.GeneratePrimeNumbers(0));
+        Assert.Empty(Int64PrimeNumbers.GeneratePrimeNumbers(-1));
     }
 
     [Fact]

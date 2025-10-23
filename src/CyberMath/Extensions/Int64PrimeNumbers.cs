@@ -19,9 +19,7 @@ namespace CyberMath.Extensions
         /// <returns><see langword="true"/> if <paramref name="number"/> is prime; otherwise <see langword="false"/></returns>
         public static bool IsPrime(this long number)
         {
-            if (number < 0) throw new ArgumentOutOfRangeException(nameof(number), "Number was lower than zero");
-
-            if (number == 0) return false;
+            if (number < 2) return false;
             if (number == 2) return true;
 
             for (long i = 2; i <= Math.Sqrt(number); i++)
@@ -66,7 +64,7 @@ namespace CyberMath.Extensions
         /// <returns><see cref="IEnumerable{T}"/> of prime numbers between 2 and <paramref name="max"/></returns>
         public static IEnumerable<long> GeneratePrimeNumbers(long max)
         {
-            if (max <= 2) throw new ArgumentOutOfRangeException(nameof(max), "Max was less or equal 2");
+            if (max < 2) yield break;
 
             for (long i = 2; i <= max; i++)
                 if (i.IsPrime())

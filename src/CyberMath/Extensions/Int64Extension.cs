@@ -36,6 +36,9 @@ namespace CyberMath.Extensions
         // ReSharper disable once InconsistentNaming
         public static long GCD(this long a, long b)
         {
+            a = Math.Abs(a);
+            b = Math.Abs(b);
+
             if (a < b)
                 a.Swap(ref b);
 
@@ -85,7 +88,8 @@ namespace CyberMath.Extensions
         /// <returns></returns>
         public static bool IsPalindrome(this long number)
         {
-            number = Math.Abs(number);
+            if (number < 0) return false;
+
             var div = 1;
 
             while (number / div >= 10)
@@ -119,37 +123,37 @@ namespace CyberMath.Extensions
 
             return number >= 1_000_000_000_000_000_000
                        ? 19
-                       : number >= 1_000_000_000_000_000_00
+                       : number >= 100_000_000_000_000_000
                            ? 18
-                           : number >= 1_000_000_000_000_000_0
+                           : number >= 10_000_000_000_000_000
                                ? 17
                                : number >= 1_000_000_000_000_000
                                    ? 16
-                                   : number >= 1_000_000_000_000_00
+                                   : number >= 100_000_000_000_000
                                        ? 15
-                                       : number >= 1_000_000_000_000_0
+                                       : number >= 10_000_000_000_000
                                            ? 14
                                            : number >= 1_000_000_000_000
                                                ? 13
-                                               : number >= 1_000_000_000_00
+                                               : number >= 100_000_000_000
                                                    ? 12
-                                                   : number >= 1_000_000_000_0
+                                                   : number >= 10_000_000_000
                                                        ? 11
                                                        : number >= 1_000_000_000
                                                            ? 10
-                                                           : number >= 1_000_000_00
+                                                           : number >= 100_000_000
                                                                ? 9
-                                                               : number >= 1_000_000_0
+                                                               : number >= 10_000_000
                                                                    ? 8
                                                                    : number >= 1_000_000
                                                                        ? 7
-                                                                       : number >= 1_000_00
+                                                                       : number >= 100_000
                                                                            ? 6
-                                                                           : number >= 1_000_0
+                                                                           : number >= 10_000
                                                                                ? 5
                                                                                : number >= 1_000
                                                                                    ? 4
-                                                                                   : number >= 1_00
+                                                                                   : number >= 100
                                                                                        ? 3
                                                                                        : number < 10
                                                                                            ? 1

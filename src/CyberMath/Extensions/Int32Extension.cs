@@ -36,6 +36,9 @@ namespace CyberMath.Extensions
         // ReSharper disable once InconsistentNaming
         public static int GCD(this int a, int b)
         {
+            a = Math.Abs(a);
+            b = Math.Abs(b);
+
             if (a < b)
                 a.Swap(ref b);
 

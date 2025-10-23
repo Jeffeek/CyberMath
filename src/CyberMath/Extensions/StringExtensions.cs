@@ -17,7 +17,7 @@ namespace CyberMath.Extensions
         private const char UPPERCASE_Z = 'Z';
         private const char LOWERCASE_A = 'a';
         private const char LOWERCASE_Z = 'z';
-        private const int ASCII_CASE_DIFFERENCE = LOWERCASE_A - LOWERCASE_A;
+        private const int ASCII_CASE_DIFFERENCE = LOWERCASE_A - UPPERCASE_A;
 
         /// <summary>
         ///     Checks <paramref name="input"/> for palindromicity
@@ -69,9 +69,9 @@ namespace CyberMath.Extensions
         ///     Creates a <see cref="Dictionary{TKey,TValue}"/> where <see langword="TKey"/> is <see cref="char"/> and
         ///     <see langword="TValue"/> is <see cref="int"/> (count of <see langword="TKey"/> in input string)
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="input">Input string to analyze</param>
         /// <returns>New <see cref="Dictionary{TKey,TValue}"/> where Key is char in input string and Value is count of this char</returns>
-        public static Dictionary<char, int> WordsFrequency(this string? input)
+        public static Dictionary<char, int> CharacterFrequency(this string? input)
         {
             if (input is null) throw new ArgumentNullException(nameof(input));
 
@@ -85,6 +85,15 @@ namespace CyberMath.Extensions
 
             return frequency;
         }
+
+        /// <summary>
+        ///     Creates a <see cref="Dictionary{TKey,TValue}"/> where <see langword="TKey"/> is <see cref="char"/> and
+        ///     <see langword="TValue"/> is <see cref="int"/> (count of <see langword="TKey"/> in input string)
+        /// </summary>
+        /// <param name="input">Input string to analyze</param>
+        /// <returns>New <see cref="Dictionary{TKey,TValue}"/> where Key is char in input string and Value is count of this char</returns>
+        [Obsolete("Use CharacterFrequency instead. This method name is misleading - it counts characters, not words.", false)]
+        public static Dictionary<char, int> WordsFrequency(this string? input) => CharacterFrequency(input);
 
         /// <summary>
         ///     Concatenates a string the <paramref name="count"/> of times and can append line if <paramref name="appendLine"/>

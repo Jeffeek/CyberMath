@@ -1,15 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36327.8 d17.14
+VisualStudioVersion = 17.14.36327.8
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Tests", "CyberMath.Tests", "{4269EFA0-C379-4EA3-BFB0-174D62861DF9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4269EFA0-C379-4EA3-BFB0-174D62861DF9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.xUnit.Tests", "CyberMath.Tests\CyberMath.AVLBinaryTree.Tests\CyberMath.xUnit.Tests.csproj", "{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Tests.Performance", "CyberMath.Tests.Performance", "{E2BBB33F-3CE9-4EEF-8533-A80B361C66FA}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.PerformanceTests", "CyberMath.Tests\CyberMath.Tests.Performance\CyberMath.PerformanceTests.BinaryTrees\CyberMath.PerformanceTests.csproj", "{0EE32045-DC86-4D9F-B152-602EAEF50E1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Performance.Tests", "tests\CyberMath.Performance.Tests\CyberMath.Performance.Tests.csproj", "{0EE32045-DC86-4D9F-B152-602EAEF50E1E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6BA248A2-DCF6-4BE8-9590-7658FF12523D}"
 	ProjectSection(SolutionItems) = preProject
@@ -20,16 +16,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FF05A7BD-61C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath", "src\CyberMath\CyberMath.csproj", "{C9930B82-09AE-4461-B611-5A7640F8A382}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath.xUnit.Tests", "tests\CyberMath.xUnit.Tests\CyberMath.xUnit.Tests.csproj", "{8049E858-B3AF-15A4-91AA-A74A318D227C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0EE32045-DC86-4D9F-B152-602EAEF50E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0EE32045-DC86-4D9F-B152-602EAEF50E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EE32045-DC86-4D9F-B152-602EAEF50E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -38,15 +32,18 @@ Global
 		{C9930B82-09AE-4461-B611-5A7640F8A382}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9930B82-09AE-4461-B611-5A7640F8A382}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9930B82-09AE-4461-B611-5A7640F8A382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8049E858-B3AF-15A4-91AA-A74A318D227C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8049E858-B3AF-15A4-91AA-A74A318D227C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8049E858-B3AF-15A4-91AA-A74A318D227C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8049E858-B3AF-15A4-91AA-A74A318D227C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{A09CCBB6-1736-42AE-8575-D43FEA4B46FB} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
-		{E2BBB33F-3CE9-4EEF-8533-A80B361C66FA} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
-		{0EE32045-DC86-4D9F-B152-602EAEF50E1E} = {E2BBB33F-3CE9-4EEF-8533-A80B361C66FA}
+		{0EE32045-DC86-4D9F-B152-602EAEF50E1E} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
 		{C9930B82-09AE-4461-B611-5A7640F8A382} = {FF05A7BD-61C1-44D1-A6F1-C00C446CC54F}
+		{8049E858-B3AF-15A4-91AA-A74A318D227C} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7E269A4-25A3-44C8-B284-55DF80EEAA03}

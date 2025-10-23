@@ -12,7 +12,7 @@ using System.Reflection;
 namespace CyberMath.Extensions
 {
     /// <summary>
-    ///     Just a class to make out life and programing faster and more productive
+    ///     Just a class to make our life and programming faster and more productive
     /// </summary>
     public static class GenericTypesExtensions
     {
