@@ -19,6 +19,7 @@
  - Migration to .NET Standard 2.1
 </PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

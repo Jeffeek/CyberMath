@@ -40,7 +40,7 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTree
 
         private IBinaryTreeNode<T> InternalRemove(BinaryTreeNode<T> node, T value)
         {
-            if (ReferenceEquals(node, null)) return null;
+            if (node is null) return null;
 
             switch (value.CompareTo(node.Data))
             {

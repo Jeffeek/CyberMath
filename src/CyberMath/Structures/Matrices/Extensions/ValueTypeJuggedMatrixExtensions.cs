@@ -561,7 +561,7 @@ namespace CyberMath.Structures.Matrices.Extensions
             for (var i = 0; i < first.RowsCount; i++)
             {
                 for (var j = 0; j < first.ElementsInRow(i); j++)
-                    juggedMatrix[i, j] = String.Concat(first[i, j]
+                    juggedMatrix[i, j] = string.Concat(first[i, j]
                                                            .Except(second[i, j]));
             }
 

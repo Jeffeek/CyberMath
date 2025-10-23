@@ -21,7 +21,7 @@ namespace CyberMath.Helpers
     /// </summary>
     public static class FixExpressionConverter
     {
-        private static readonly char[] _operators =
+        private static readonly char[] Operators =
         {
             '*', '-', '+', '/', '^'
         };
@@ -59,7 +59,7 @@ namespace CyberMath.Helpers
             var expStatus = false;
 
             if (GetOperatorPriority(expToValidate[0]) > 0 && GetOperatorPriority(expToValidate[0]) != 5
-                || GetOperatorPriority(expToValidate[expToValidate.Length - 1]) > 0 && GetOperatorPriority(expToValidate[expToValidate.Length - 1]) != 1
+                || GetOperatorPriority(expToValidate[^1]) > 0 && GetOperatorPriority(expToValidate[^1]) != 1
                 || expToValidate.Length == 0)
                 return false;
 
@@ -99,13 +99,7 @@ namespace CyberMath.Helpers
                 }
             }
 
-            if (bracesBalance == 0 && expStatus || bracesBalance == 0 && expStatus == false)
-                return true;
-
-            if (bracesBalance != 0)
-                return false;
-
-            return false;
+            return bracesBalance == 0 && expStatus || bracesBalance == 0 && expStatus == false;
         }
 
         /// <summary>
@@ -186,23 +180,12 @@ namespace CyberMath.Helpers
                    prefixExpression = "";
 
             for (var i = expression.Length; i > 0; i--)
-                switch (expression[i - 1])
+                reversedInfixExpression += expression[i - 1] switch
                 {
-                    case ')':
-                        reversedInfixExpression += '(';
-
-                        break;
-
-                    case '(':
-                        reversedInfixExpression += ')';
-
-                        break;
-
-                    default:
-                        reversedInfixExpression += expression[i - 1];
-
-                        break;
-                }
+                    ')' => '(',
+                    '(' => ')',
+                    _ => expression[i - 1]
+                };
 
             var reversedPrefixExpression = InfixToPostfix(reversedInfixExpression);
 
@@ -224,7 +207,7 @@ namespace CyberMath.Helpers
             var s = new Stack<string>();
 
             foreach (var t in expression)
-                if (Char.IsLetter(t))
+                if (char.IsLetter(t))
                 {
                     s.Push(t.ToString());
                 }
@@ -251,7 +234,7 @@ namespace CyberMath.Helpers
             var length = expression.Length;
 
             for (var i = length - 1; i >= 0; i--)
-                if (_operators.Contains(expression[i]))
+                if (Operators.Contains(expression[i]))
                 {
                     var op1 = s.Pop();
                     var op2 = s.Pop();
@@ -282,7 +265,7 @@ namespace CyberMath.Helpers
             var length = expression.Length;
 
             for (var i = 0; i < length; i++)
-                if (_operators.Contains(expression[i]))
+                if (Operators.Contains(expression[i]))
                 {
                     var op1 = s.Pop();
                     var op2 = s.Pop();
@@ -313,7 +296,7 @@ namespace CyberMath.Helpers
             var length = expression.Length;
 
             for (var i = length - 1; i >= 0; i--)
-                if (_operators.Contains(expression[i]))
+                if (Operators.Contains(expression[i]))
                 {
                     var op1 = s.Pop();
                     var op2 = s.Pop();

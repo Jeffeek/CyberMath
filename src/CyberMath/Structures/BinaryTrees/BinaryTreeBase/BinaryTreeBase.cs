@@ -25,6 +25,7 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         ///     Creates an instance and adds <paramref name="values"/> to the tree
         /// </summary>
         /// <param name="values">values to add</param>
+        // ReSharper disable once VirtualMemberCallInConstructor
         protected BinaryTreeBase(IEnumerable<T> values) => AddRange(values);
 
         /// <summary>
@@ -33,7 +34,7 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         protected BinaryTreeBase() { }
 
         /// <inheritdoc/>
-        public IBinaryTreeNode<T> Root { get; protected set; }
+        public IBinaryTreeNode<T>? Root { get; protected set; }
 
         /// <inheritdoc/>
         public int Count { get; protected set; }
@@ -48,12 +49,7 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         public TraversalOrderType TraversalOrderType { get; set; }
 
         /// <inheritdoc/>
-        public virtual int Depth()
-        {
-            if (IsEmpty) return -1;
-
-            return Root.Depth();
-        }
+        public virtual int Depth() => Root?.Depth() ?? 0;
 
         #region ICollection
 
@@ -63,7 +59,7 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         /// <inheritdoc/>
         public virtual bool Remove(T item)
         {
-            if (ReferenceEquals(Root, null)) return false;
+            if (Root is null) return false;
             if (!Contains(item)) return false;
 
             Root = Root.Remove(item);
@@ -103,7 +99,7 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         /// <inheritdoc/>
         public virtual void AddRange(IEnumerable<T> values)
         {
-            if (ReferenceEquals(values, null)) throw new ArgumentNullException(nameof(values));
+            if (values is null) throw new ArgumentNullException(nameof(values));
 
             foreach (var value in values)
                 Add(value);
@@ -123,26 +119,16 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         #region Enumeration
 
         /// <inheritdoc/>
-        public virtual IEnumerator<T> GetEnumerator()
-        {
-            switch (TraversalOrderType)
+        public virtual IEnumerator<T> GetEnumerator() =>
+            // ReSharper disable once NotDisposedResourceIsReturned
+            TraversalOrderType switch
             {
-                case TraversalOrderType.Preorder:
-                    return Preorder()
-                        .GetEnumerator();
-
-                case TraversalOrderType.Inorder:
-                    return Inorder()
-                        .GetEnumerator();
-
-                case TraversalOrderType.Postorder:
-                    return Postorder()
-                        .GetEnumerator();
-
-                default:
-                    throw new UnknownTraversalTypeException<BinaryTreeBase<T>, T>(this, TraversalOrderType, "Something went wrong! Traversal strategy is not defined");
-            }
-        }
+                TraversalOrderType.Preorder => Preorder().GetEnumerator(),
+                TraversalOrderType.Inorder => Inorder().GetEnumerator(),
+                TraversalOrderType.Postorder => Postorder().GetEnumerator(),
+                _ => throw new UnknownTraversalTypeException<BinaryTreeBase<T>, T>(this, TraversalOrderType,
+                    "Something went wrong! Traversal strategy is not defined")
+            };
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
@@ -163,7 +149,7 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         {
             while (true)
             {
-                if (ReferenceEquals(node, null)) return false;
+                if (node is null) return false;
 
                 switch (node.Data.CompareTo(data))
                 {
@@ -188,9 +174,9 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         #region Orders
 
         /// <inheritdoc/>
-        public virtual IEnumerable<T> Inorder() => ReferenceEquals(Root, null) ? Enumerable.Empty<T>() : InternalInorder(Root);
+        public virtual IEnumerable<T> Inorder() => Root is null ? Enumerable.Empty<T>() : InternalInorder(Root);
 
-        private IEnumerable<T> InternalInorder(IBinaryTreeNode<T> node)
+        private static IEnumerable<T> InternalInorder(IBinaryTreeNode<T>? node)
         {
             var list = new List<T>();
             var stack = new Stack<IBinaryTreeNode<T>>();
@@ -212,9 +198,9 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         }
 
         /// <inheritdoc/>
-        public virtual IEnumerable<T> Preorder() => ReferenceEquals(Root, null) ? Enumerable.Empty<T>() : InternalPreorder(Root);
+        public virtual IEnumerable<T> Preorder() => Root is null ? Enumerable.Empty<T>() : InternalPreorder(Root);
 
-        private IEnumerable<T> InternalPreorder(IBinaryTreeNode<T> node)
+        private static IEnumerable<T> InternalPreorder(IBinaryTreeNode<T> node)
         {
             var list = new List<T>();
             var stack = new Stack<IBinaryTreeNode<T>>();
@@ -236,9 +222,9 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         }
 
         /// <inheritdoc/>
-        public virtual IEnumerable<T> Postorder() => ReferenceEquals(Root, null) ? Enumerable.Empty<T>() : InternalPostorder(Root);
+        public virtual IEnumerable<T> Postorder() => Root is null ? Enumerable.Empty<T>() : InternalPostorder(Root);
 
-        private IEnumerable<T> InternalPostorder(IBinaryTreeNode<T> node)
+        private static IEnumerable<T> InternalPostorder(IBinaryTreeNode<T> node)
         {
             var list = new List<T>();
             var stack = new Stack<IBinaryTreeNode<T>>();

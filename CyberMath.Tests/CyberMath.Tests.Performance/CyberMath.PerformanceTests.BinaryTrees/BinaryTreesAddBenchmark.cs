@@ -8,39 +8,39 @@ using CyberMath.Structures.BinaryTrees.RedBlackBinaryTree;
 
 #endregion
 
-namespace CyberMath.PerformanceTests.BinaryTrees
+namespace CyberMath.PerformanceTests
 {
-    public class BinaryTreesAddBenchmark
+    public class BinaryTreesAddBenchmark(IBinaryTree<int> tree)
     {
-        public readonly int[] AddItem =
-        {
+        private readonly int[] _addItem =
+        [
             1, 2
-        };
+        ];
 
-        public IBinaryTree<int> Tree;
+        public IBinaryTree<int> Tree = tree;
 
         [Benchmark]
         public void Add_BinaryTree() =>
             Tree = new BinaryTree<int>
                    {
-                       AddItem[0],
-                       AddItem[1]
+                       _addItem[0],
+                       _addItem[1]
                    };
 
         [Benchmark]
         public void Add_AVLTree() =>
             Tree = new AVLBinaryTree<int>
                    {
-                       AddItem[0],
-                       AddItem[1]
+                       _addItem[0],
+                       _addItem[1]
                    };
 
         [Benchmark]
         public void Add_RedBlackTree() =>
             Tree = new RedBlackBinaryTree<int>
                    {
-                       AddItem[0],
-                       AddItem[1]
+                       _addItem[0],
+                       _addItem[1]
                    };
     }
 }

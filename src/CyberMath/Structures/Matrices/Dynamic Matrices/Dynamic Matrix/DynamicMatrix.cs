@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CyberMath.Helpers;
+using CyberMath.Extensions;
 using CyberMath.Structures.Matrices.Matrix;
 
 #endregion
@@ -23,7 +23,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Matrix
         /// <inheritdoc/>
         public void ProcessFunctionOverData(Action<int, int> func)
         {
-            if (ReferenceEquals(func, null)) return;
+            if (func is null) return;
 
             for (var i = 0; i < RowsCount; i++)
             {
@@ -166,7 +166,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Matrix
             {
                 for (var j = 0; j < ElementsInRow(i); j++)
                     clone[i, j] = this[i, j]
-                        .SerializableDeepCopy();
+                        .ReflectionDeepCopy();
             }
 
             return clone;
@@ -219,7 +219,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Matrix
         /// <inheritdoc/>
         public void AddColumn(IEnumerable<T> column)
         {
-            if (ReferenceEquals(column, null)) throw new ArgumentNullException(nameof(column));
+            if (column is null) throw new ArgumentNullException(nameof(column));
 
             InsertColumn(ColumnsCount, column);
         }
@@ -227,7 +227,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Matrix
         /// <inheritdoc/>
         public void AddRow(IEnumerable<T> row)
         {
-            if (ReferenceEquals(row, null)) throw new NullReferenceException(nameof(row));
+            if (row is null) throw new NullReferenceException(nameof(row));
 
             var rowAsList = row.ToList();
 
@@ -240,7 +240,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Matrix
         /// <inheritdoc/>
         public void InsertColumn(int index, IEnumerable<T> column)
         {
-            if (ReferenceEquals(column, null)) throw new ArgumentNullException(nameof(column));
+            if (column is null) throw new ArgumentNullException(nameof(column));
 
             var columnAsList = column.ToList();
 
@@ -254,7 +254,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Matrix
         /// <inheritdoc/>
         public void InsertRow(int index, IEnumerable<T> row)
         {
-            if (ReferenceEquals(row, null)) throw new ArgumentNullException(nameof(row));
+            if (row is null) throw new ArgumentNullException(nameof(row));
 
             var rowAsList = row.ToList();
 
@@ -292,7 +292,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Matrix
         /// <inheritdoc/>
         public bool Equals(IMatrix<T> other)
         {
-            if (ReferenceEquals(null, other)) return false;
+            if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
             if (ColumnsCount != other.ColumnsCount) return false;
             if (RowsCount != other.RowsCount) return false;
@@ -311,7 +311,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Matrix
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
+            if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
 
             return obj is IMatrix<T> matrix && Equals(matrix);

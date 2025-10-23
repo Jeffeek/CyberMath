@@ -8,7 +8,7 @@ using CyberMath.Structures.BinaryTrees.RedBlackBinaryTree;
 
 #endregion
 
-namespace CyberMath.PerformanceTests.BinaryTrees
+namespace CyberMath.PerformanceTests
 {
     public sealed class BinaryTreesAddRangeBenchmark
     {

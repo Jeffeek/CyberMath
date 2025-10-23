@@ -20,18 +20,16 @@ namespace CyberMath.Extensions
         /// <param name="source">Collection</param>
         /// <param name="firstIndex">First index for swapping</param>
         /// <param name="secondIndex">Second index for swapping</param>
-        public static void Swap<T>(this IList<T> source, int firstIndex, int secondIndex)
+        public static void Swap<T>(this IList<T>? source, int firstIndex, int secondIndex)
         {
-            if (ReferenceEquals(source, null)) return;
+            if (source is null) return;
             if (firstIndex < 0 || firstIndex >= source.Count) return;
 
             if (secondIndex < 0 || secondIndex >= source.Count) return;
 
             if (firstIndex == secondIndex) return;
 
-            var temp = source[firstIndex];
-            source[firstIndex] = source[secondIndex];
-            source[secondIndex] = temp;
+            (source[firstIndex], source[secondIndex]) = (source[secondIndex], source[firstIndex]);
         }
 
         /// <summary>
@@ -39,9 +37,9 @@ namespace CyberMath.Extensions
         /// </summary>
         /// <typeparam name="T">ANY</typeparam>
         /// <param name="source">The collection to shuffle</param>
-        public static void Shuffle<T>(this IList<T> source)
+        public static void Shuffle<T>(this IList<T>? source)
         {
-            if (ReferenceEquals(source, null)) return;
+            if (source is null) return;
             if (source.Count < 2) return;
 
             var rnd = new Random();
@@ -89,9 +87,9 @@ namespace CyberMath.Extensions
         /// <typeparam name="T">ANY</typeparam>
         /// <param name="source">List of elements</param>
         /// <returns>New <see cref="IEnumerable{T}"/> collection with permutations without repeating</returns>
-        public static IEnumerable<IEnumerable<T>> Permutations<T>(this IEnumerable<T> source)
+        public static IEnumerable<IEnumerable<T>> Permutations<T>(this IEnumerable<T>? source)
         {
-            if (ReferenceEquals(source, null)) return Enumerable.Empty<IEnumerable<T>>();
+            if (source is null) return Enumerable.Empty<IEnumerable<T>>();
 
             var enumerable = source as T[] ?? source.ToArray();
             var length = enumerable.Count();
@@ -133,9 +131,9 @@ namespace CyberMath.Extensions
         /// <typeparam name="T">ANY</typeparam>
         /// <param name="source">List of elements</param>
         /// <returns>New <see cref="IEnumerable{T}"/> collection with permutations with repeating</returns>
-        public static IEnumerable<IEnumerable<T>> PermutationsWithRepeat<T>(this IEnumerable<T> source)
+        public static IEnumerable<IEnumerable<T>> PermutationsWithRepeat<T>(this IEnumerable<T>? source)
         {
-            if (ReferenceEquals(source, null)) return Enumerable.Empty<IEnumerable<T>>();
+            if (source is null) return Enumerable.Empty<IEnumerable<T>>();
 
             var enumerable = source as T[] ?? source.ToArray();
             var length = enumerable.Count();
@@ -151,14 +149,18 @@ namespace CyberMath.Extensions
         /// <returns>Random item from enumerable collection</returns>
         public static T RandomItem<T>(this IEnumerable<T> source)
         {
-            if (ReferenceEquals(source, null)) throw new ArgumentNullException(nameof(source));
+            if (source is null) throw new ArgumentNullException(nameof(source));
 
             var enumerable = source as T[] ?? source.ToArray();
             var length = enumerable.Count();
 
-            if (length == 0) throw new ArgumentException(nameof(source) + " was empty");
-
-            if (length == 1) return enumerable.ElementAt(0);
+            switch (length)
+            {
+                case 0:
+                    throw new ArgumentException(nameof(source) + " was empty");
+                case 1:
+                    return enumerable.ElementAt(0);
+            }
 
             var rnd = new Random();
             var randomIndex = rnd.Next(0, length);

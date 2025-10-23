@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CyberMath.Helpers;
+using CyberMath.Extensions;
 using CyberMath.Structures.Matrices.Extensions;
 using CyberMath.Structures.Matrices.Jagged_Matrix;
 
@@ -66,7 +66,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Jugged_Matrix
         public DynamicJuggedMatrix(int rowsCount, IEnumerable<int> elementsAtRow)
         {
             if (rowsCount < 0) throw new ArgumentException(nameof(rowsCount));
-            if (ReferenceEquals(elementsAtRow, null)) throw new ArgumentNullException(nameof(elementsAtRow));
+            if (elementsAtRow is null) throw new ArgumentNullException(nameof(elementsAtRow));
 
             _innerMatrix = new List<List<T>>(rowsCount);
             var iterator = 0;
@@ -157,7 +157,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Jugged_Matrix
         /// <inheritdoc/>
         public void ProcessFunctionOverData(Action<int, int> func)
         {
-            if (ReferenceEquals(func, null)) return;
+            if (func is null) return;
 
             for (var i = 0; i < RowsCount; i++)
             {
@@ -220,7 +220,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Jugged_Matrix
             {
                 for (var j = 0; j < ElementsInRow(i); j++)
                     clone[i, j] = this[i, j]
-                        .SerializableDeepCopy();
+                        .ReflectionDeepCopy();
             }
 
             return clone;
@@ -249,7 +249,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Jugged_Matrix
         /// <inheritdoc/>
         public void AddColumn(IEnumerable<T> column)
         {
-            if (ReferenceEquals(column, null)) throw new ArgumentNullException(nameof(column));
+            if (column is null) throw new ArgumentNullException(nameof(column));
 
             var firstRowCount = _innerMatrix[0]
                                     ?.Count
@@ -273,7 +273,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Jugged_Matrix
         /// <inheritdoc/>
         public void InsertColumn(int index, IEnumerable<T> column)
         {
-            if (ReferenceEquals(column, null)) throw new ArgumentNullException(nameof(column));
+            if (column is null) throw new ArgumentNullException(nameof(column));
             if (index < 0 || _innerMatrix.Any(row => row.Count <= index)) throw new ArgumentException(nameof(index));
 
             var enumerable = column as T[] ?? column.ToArray();
@@ -290,7 +290,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Jugged_Matrix
         /// <inheritdoc/>
         public void AddRow(IEnumerable<T> row)
         {
-            if (ReferenceEquals(row, null)) throw new ArgumentNullException(nameof(row));
+            if (row is null) throw new ArgumentNullException(nameof(row));
 
             _innerMatrix.Add(row.ToList());
         }
@@ -298,7 +298,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Jugged_Matrix
         /// <inheritdoc/>
         public void InsertRow(int index, IEnumerable<T> row)
         {
-            if (ReferenceEquals(row, null)) throw new ArgumentNullException(nameof(row));
+            if (row is null) throw new ArgumentNullException(nameof(row));
             if (index < 0 || index > RowsCount) throw new ArgumentException(nameof(index));
 
             _innerMatrix.Insert(index, row.ToList());
@@ -335,7 +335,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Jugged_Matrix
         /// <inheritdoc/>
         public bool Equals(IJuggedMatrix<T> other)
         {
-            if (ReferenceEquals(null, other)) return false;
+            if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
             if (RowsCount != other.RowsCount) return false;
 
@@ -361,7 +361,7 @@ namespace CyberMath.Structures.Matrices.Dynamic_Matrices.Dynamic_Jugged_Matrix
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
+            if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj is IJuggedMatrix<T> matrix) return Equals(matrix);
 

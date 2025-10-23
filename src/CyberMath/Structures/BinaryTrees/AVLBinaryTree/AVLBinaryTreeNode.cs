@@ -2,7 +2,6 @@
 
 using System;
 using CyberMath.Structures.BinaryTrees.BinaryTreeBase;
-using CyberMath.Structures.Matrices.Base.Exceptions;
 
 #endregion
 
@@ -14,6 +13,7 @@ namespace CyberMath.Structures.BinaryTrees.AVLBinaryTree
     /// <typeparam name="T">
     ///     <see cref="IComparable{T}"/>
     /// </typeparam>
+    // ReSharper disable once InconsistentNaming
     public class AVLBinaryTreeNode<T> : BinaryTreeNodeBase<T>
         where T : IComparable<T>, IComparable
     {
@@ -32,39 +32,37 @@ namespace CyberMath.Structures.BinaryTrees.AVLBinaryTree
         public override IBinaryTreeNode<T> Insert(T value) => InternalInsert(this, value);
 
         /// <inheritdoc/>
-        public override IBinaryTreeNode<T> Remove(T value) => InternalRemove(this, value);
+        public override IBinaryTreeNode<T>? Remove(T value) => InternalRemove(this, value);
 
-        private AVLBinaryTreeNode<T> InternalRemove(AVLBinaryTreeNode<T> node, T value)
+        private AVLBinaryTreeNode<T>? InternalRemove(AVLBinaryTreeNode<T>? node, T value)
         {
-            if (ReferenceEquals(node, null))
+            if (node is null)
                 return null;
 
-            if (value.CompareTo(node.Data) == -1)
+            switch (value.CompareTo(node.Data))
             {
-                node.Left = InternalRemove(node.Left as AVLBinaryTreeNode<T>, value);
-            }
-            else if (value.CompareTo(node.Data) == 1)
-            {
-                node.Right = InternalRemove(node.Right as AVLBinaryTreeNode<T>, value);
-            }
-            else
-            {
-                var leftNode = node.Left as AVLBinaryTreeNode<T>;
-
-                if (!(node.Right is AVLBinaryTreeNode<T> rightNode))
-                    return leftNode;
-
-                var min = rightNode.Min() as AVLBinaryTreeNode<T>;
-
-                if (min != null)
+                case -1:
+                    node.Left = InternalRemove(node.Left as AVLBinaryTreeNode<T>, value);
+                    break;
+                case 1:
+                    node.Right = InternalRemove(node.Right as AVLBinaryTreeNode<T>, value);
+                    break;
+                default:
                 {
+                    var leftNode = node.Left as AVLBinaryTreeNode<T>;
+
+                    if (!(node.Right is AVLBinaryTreeNode<T> rightNode))
+                        return leftNode;
+
+                    var min = rightNode.Min() as AVLBinaryTreeNode<T>;
+
+                    if (min == null) throw new InvalidOperationException(nameof(min) + "node was null, when it's impossible");
+
                     min.Right = RemoveMin(rightNode);
                     min.Left = leftNode;
 
                     return Balance(min);
                 }
-
-                throw new InvalidOperationException(nameof(min) + "node was null, when it's impossible");
             }
 
             return Balance(node);
@@ -80,7 +78,7 @@ namespace CyberMath.Structures.BinaryTrees.AVLBinaryTree
         /// </returns>
         private AVLBinaryTreeNode<T> RemoveMin(AVLBinaryTreeNode<T> subTree)
         {
-            if (ReferenceEquals(subTree.Left, null))
+            if (subTree.Left is null)
                 return subTree.Right as AVLBinaryTreeNode<T>;
 
             subTree.Left = RemoveMin(subTree.Left as AVLBinaryTreeNode<T>);
@@ -96,7 +94,7 @@ namespace CyberMath.Structures.BinaryTrees.AVLBinaryTree
         /// <returns>Reference to root</returns>
         private AVLBinaryTreeNode<T> InternalInsert(AVLBinaryTreeNode<T> node, T data)
         {
-            if (ReferenceEquals(node, null)) return new AVLBinaryTreeNode<T>(data);
+            if (node is null) return new AVLBinaryTreeNode<T>(data);
 
             if (data.CompareTo(node.Data) == -1)
                 node.Left = InternalInsert(node.Left as AVLBinaryTreeNode<T>, data);
@@ -111,7 +109,7 @@ namespace CyberMath.Structures.BinaryTrees.AVLBinaryTree
         /// </summary>
         /// <param name="node"></param>
         /// <returns>Height of <paramref name="node"/></returns>
-        private int GetHeight(AVLBinaryTreeNode<T> node) => node?._height ?? 0;
+        private static int GetHeight(AVLBinaryTreeNode<T> node) => node?._height ?? 0;
 
         /// <summary>
         ///     Calculates BFactor in initial <see cref="AVLBinaryTreeNode{T}"/>

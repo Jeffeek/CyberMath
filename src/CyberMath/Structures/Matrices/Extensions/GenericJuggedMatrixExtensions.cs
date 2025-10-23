@@ -23,7 +23,7 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <returns>A new <see cref="IJuggedMatrix{T}"/> matrix without row at <paramref name="rowIndex"/></returns>
         public static IJuggedMatrix<T> CreateMatrixWithoutRow<T>(this IJuggedMatrix<T> juggedMatrix, int rowIndex)
         {
-            if (ReferenceEquals(juggedMatrix, null)) throw new ArgumentNullException(nameof(juggedMatrix));
+            if (juggedMatrix is null) throw new ArgumentNullException(nameof(juggedMatrix));
             if (rowIndex < 0) throw new ArgumentException("Row index is < 0");
             if (rowIndex >= juggedMatrix.RowsCount) throw new ArgumentException("Row index is out of range in matrix");
 
@@ -56,7 +56,7 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <returns>A new <see cref="IJuggedMatrix{T}"/> matrix without column at <paramref name="columnIndex"/></returns>
         public static IJuggedMatrix<T> CreateMatrixWithoutColumn<T>(this IJuggedMatrix<T> juggedMatrix, int columnIndex)
         {
-            if (ReferenceEquals(juggedMatrix, null)) throw new ArgumentNullException(nameof(juggedMatrix));
+            if (juggedMatrix is null) throw new ArgumentNullException(nameof(juggedMatrix));
 
             var maxColumn = juggedMatrix.Max(x => x.Count());
 

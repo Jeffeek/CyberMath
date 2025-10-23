@@ -21,7 +21,7 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         /// <summary>
         ///     Reference to the main node, called Root
         /// </summary>
-        IBinaryTreeNode<T> Root { get; }
+        IBinaryTreeNode<T>? Root { get; }
 
         /// <summary>
         ///     <see cref="bool"/> result which show the emptiness of <see cref="IBinaryTree{T}"/>
@@ -46,25 +46,25 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         IEnumerable<T> Inorder();
 
         /// <summary>
-        ///     Returns an preorder traversal <see cref="IEnumerable{T}"/> collection
+        ///     Returns a preorder traversal <see cref="IEnumerable{T}"/> collection
         /// </summary>
         /// <returns>Preorder traversal <see cref="IEnumerable{T}"/> collection</returns>
         IEnumerable<T> Preorder();
 
         /// <summary>
-        ///     Returns an postorder traversal <see cref="IEnumerable{T}"/> collection
+        ///     Returns a postorder traversal <see cref="IEnumerable{T}"/> collection
         /// </summary>
         /// <returns>Postorder traversal <see cref="IEnumerable{T}"/> collection</returns>
         IEnumerable<T> Postorder();
 
         /// <summary>
-        ///     Returns maximal element in <see cref="IBinaryTree{T}"/>
+        ///     Returns max element in <see cref="IBinaryTree{T}"/>
         /// </summary>
         /// <returns></returns>
         T Max();
 
         /// <summary>
-        ///     Returns minimal element in <see cref="IBinaryTree{T}"/>
+        ///     Returns min element in <see cref="IBinaryTree{T}"/>
         /// </summary>
         /// <returns></returns>
         T Min();

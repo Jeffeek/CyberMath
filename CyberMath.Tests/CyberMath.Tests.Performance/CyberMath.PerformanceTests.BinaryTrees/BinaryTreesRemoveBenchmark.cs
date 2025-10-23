@@ -7,44 +7,37 @@ using CyberMath.Structures.BinaryTrees.RedBlackBinaryTree;
 
 #endregion
 
-namespace CyberMath.PerformanceTests.BinaryTrees
+namespace CyberMath.PerformanceTests;
+
+public sealed class BinaryTreesRemoveBenchmark
 {
-    public sealed class BinaryTreesRemoveBenchmark
+    [Benchmark]
+    public void Remove_BinaryTree()
     {
-        [Benchmark]
-        public void Remove_BinaryTree()
-        {
-            using var tree = new BinaryTree<int>
-                             {
-                                 1,
-                                 2
-                             };
+        using var tree = new BinaryTree<int>();
+        tree.Add(1);
+        tree.Add(2);
 
-            tree.Remove(1);
-        }
+        tree.Remove(1);
+    }
 
-        [Benchmark]
-        public void Remove_AVLTree()
-        {
-            using var tree = new AVLBinaryTree<int>
-                             {
-                                 1,
-                                 2
-                             };
+    [Benchmark]
+    public void Remove_AVLTree()
+    {
+        using var tree = new AVLBinaryTree<int>();
+        tree.Add(1);
+        tree.Add(2);
 
-            tree.Remove(1);
-        }
+        tree.Remove(1);
+    }
 
-        [Benchmark]
-        public void Remove_RedBlackTree()
-        {
-            using var tree = new RedBlackBinaryTree<int>
-                             {
-                                 1,
-                                 2
-                             };
+    [Benchmark]
+    public void Remove_RedBlackTree()
+    {
+        using var tree = new RedBlackBinaryTree<int>();
+        tree.Add(1);
+        tree.Add(2);
 
-            tree.Remove(1);
-        }
+        tree.Remove(1);
     }
 }

@@ -10,46 +10,49 @@ using CyberMath.Structures.BinaryTrees.RedBlackBinaryTree;
 
 #endregion
 
-namespace CyberMath.PerformanceTests.BinaryTrees
+namespace CyberMath.PerformanceTests
 {
     public sealed class BinaryTreesOrdersBenchmark
     {
-        private static readonly Random rnd = new Random();
+        private static readonly Random Rnd = new();
 
-        private static readonly IEnumerable<int> _argument =
+        private static readonly IEnumerable<int> Argument =
             Enumerable.Range(0, 1_000_000)
-                      .Select(x => rnd.Next())
+                      .Select(_ => Rnd.Next())
                       .ToArray();
 
-        private static readonly BinaryTree<int> _tree = new BinaryTree<int>(_argument);
-        private static readonly AVLBinaryTree<int> _avl = new AVLBinaryTree<int>(_argument);
-        private static readonly RedBlackBinaryTree<int> _redBlack = new RedBlackBinaryTree<int>(_argument);
+        private static readonly BinaryTree<int> Tree = new(Argument);
+        private static readonly AVLBinaryTree<int> Avl = new(Argument);
+        private static readonly RedBlackBinaryTree<int> RedBlack = new(Argument);
 
         [Benchmark]
-        public void BinaryTreeInorder() => _tree.Inorder();
+        public void BinaryTreeInorder() => Tree.Inorder();
 
         [Benchmark]
-        public void AVLBinaryTreeInorder() => _avl.Inorder();
+        // ReSharper disable once InconsistentNaming
+        public void AVLBinaryTreeInorder() => Avl.Inorder();
 
         [Benchmark]
-        public void RedBlackBinaryTreeInorder() => _redBlack.Inorder();
+        public void RedBlackBinaryTreeInorder() => RedBlack.Inorder();
 
         [Benchmark]
-        public void BinaryTreePreorder() => _tree.Preorder();
+        public void BinaryTreePreorder() => Tree.Preorder();
 
         [Benchmark]
-        public void AVLBinaryTreePreorder() => _avl.Preorder();
+        // ReSharper disable once InconsistentNaming
+        public void AVLBinaryTreePreorder() => Avl.Preorder();
 
         [Benchmark]
-        public void RedBlackBinaryTreePreorder() => _redBlack.Preorder();
+        public void RedBlackBinaryTreePreorder() => RedBlack.Preorder();
 
         [Benchmark]
-        public void BinaryTreePostorder() => _tree.Postorder();
+        public void BinaryTreePostorder() => Tree.Postorder();
 
         [Benchmark]
-        public void AVLBinaryTreePostorder() => _avl.Postorder();
+        // ReSharper disable once InconsistentNaming
+        public void AVLBinaryTreePostorder() => Avl.Postorder();
 
         [Benchmark]
-        public void RedBlackBinaryTreePostorder() => _redBlack.Postorder();
+        public void RedBlackBinaryTreePostorder() => RedBlack.Postorder();
     }
 }

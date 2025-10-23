@@ -13,14 +13,20 @@ namespace CyberMath.Extensions
     /// </summary>
     public static class StringExtensions
     {
+        private const char UPPERCASE_A = 'A';
+        private const char UPPERCASE_Z = 'Z';
+        private const char LOWERCASE_A = 'a';
+        private const char LOWERCASE_Z = 'z';
+        private const int ASCII_CASE_DIFFERENCE = LOWERCASE_A - LOWERCASE_A;
+
         /// <summary>
         ///     Checks <paramref name="input"/> for palindromicity
         /// </summary>
         /// <param name="input">Input string</param>
         /// <returns><see cref="bool"/> true if <paramref name="input"/> is palindrome</returns>
-        public static bool IsPalindrome(this string input)
+        public static bool IsPalindrome(this string? input)
         {
-            if (ReferenceEquals(input, null)) return false;
+            if (input is null) return false;
             if (input.Length == 1) return true;
 
             for (var i = 0; i < input.Length / 2; i++)
@@ -36,20 +42,24 @@ namespace CyberMath.Extensions
         /// <param name="inputOriginal">First string to check</param>
         /// <param name="testInput">Second string to check</param>
         /// <returns><see cref="bool"/>: true if two string are anagrams of each other</returns>
-        public static bool IsAnagramOf(this string inputOriginal, string testInput)
+        public static bool IsAnagramOf(this string? inputOriginal, string? testInput)
         {
-            if (ReferenceEquals(inputOriginal, null)) throw new ArgumentNullException(nameof(inputOriginal));
-            if (ReferenceEquals(testInput, null)) throw new ArgumentNullException(nameof(testInput));
+            if (inputOriginal == null || testInput == null)
+                return false;
 
-            if (inputOriginal.Length != testInput.Length) return false;
+            if (inputOriginal.Length != testInput.Length)
+                return false;
 
-            var originalFrequency = WordsFrequency(inputOriginal);
-            var testFrequency = WordsFrequency(testInput);
+            var charCount = new int[256];
 
-            foreach (var key in originalFrequency.Keys)
+            foreach (var c in inputOriginal)
+                charCount[c]++;
+
+            foreach (var c in testInput)
             {
-                if (!testFrequency.ContainsKey(key)) return false;
-                if (originalFrequency[key] != testFrequency[key]) return false;
+                charCount[c]--;
+                if (charCount[c] < 0)
+                    return false;
             }
 
             return true;
@@ -61,17 +71,15 @@ namespace CyberMath.Extensions
         /// </summary>
         /// <param name="input"></param>
         /// <returns>New <see cref="Dictionary{TKey,TValue}"/> where Key is char in input string and Value is count of this char</returns>
-        public static Dictionary<char, int> WordsFrequency(this string input)
+        public static Dictionary<char, int> WordsFrequency(this string? input)
         {
-            if (ReferenceEquals(input, null)) throw new ArgumentNullException(nameof(input));
+            if (input is null) throw new ArgumentNullException(nameof(input));
 
             var frequency = new Dictionary<char, int>();
 
             foreach (var c in input)
             {
-                if (!frequency.ContainsKey(c))
-                    frequency.Add(c, 0);
-
+                frequency.TryAdd(c, 0);
                 ++frequency[c];
             }
 
@@ -85,12 +93,12 @@ namespace CyberMath.Extensions
         /// <param name="input">Input string</param>
         /// <param name="count">Count of repeating</param>
         /// <param name="appendLine">Setting for appending.</param>
-        /// <returns>New concated string <paramref name="count"/> times</returns>
-        public static string Concat(this string input, int count, bool appendLine = false)
+        /// <returns>New concatenated string <paramref name="count"/> times</returns>
+        public static string? Concat(this string? input, int count, bool appendLine = false)
         {
-            if (ReferenceEquals(input, null)) count = 0;
+            if (input is null) count = 0;
 
-            if (count == 0) return String.Empty;
+            if (count == 0) return string.Empty;
 
             count = Math.Abs(count);
 
@@ -116,12 +124,12 @@ namespace CyberMath.Extensions
         /// <param name="input">Input string</param>
         /// <param name="count">Count of repeating</param>
         /// <param name="separator">Separator between strings</param>
-        /// <returns>New concated string <paramref name="count"/> times with <paramref name="separator"/> between</returns>
-        public static string Concat(this string input, int count, string separator)
+        /// <returns>New concatenated string <paramref name="count"/> times with <paramref name="separator"/> between</returns>
+        public static string? Concat(this string? input, int count, string separator)
         {
-            if (ReferenceEquals(input, null)) count = 0;
+            if (input is null) count = 0;
 
-            if (count == 0) return String.Empty;
+            if (count == 0) return string.Empty;
 
             count = Math.Abs(count);
 
@@ -144,9 +152,9 @@ namespace CyberMath.Extensions
         /// <exception cref="ArgumentException">When <paramref name="input"/> represents not <see cref="Int32"/></exception>
         public static int ToInt32(this string input)
         {
-            if (ReferenceEquals(input, null)) throw new ArgumentNullException(nameof(input));
+            if (input is null) throw new ArgumentNullException(nameof(input));
 
-            if (System.Int32.TryParse(input, out var result))
+            if (int.TryParse(input, out var result))
                 return result;
 
             throw new ArgumentException("Input was not in correct format", nameof(input));
@@ -160,9 +168,9 @@ namespace CyberMath.Extensions
         /// <exception cref="ArgumentException">When <paramref name="input"/> represents not <see cref="Int64"/></exception>
         public static long ToInt64(this string input)
         {
-            if (ReferenceEquals(input, null)) throw new ArgumentNullException(nameof(input));
+            if (input is null) throw new ArgumentNullException(nameof(input));
 
-            if (System.Int64.TryParse(input, out var result))
+            if (long.TryParse(input, out var result))
                 return result;
 
             throw new ArgumentException("Input was not in correct format", nameof(input));
@@ -180,34 +188,24 @@ namespace CyberMath.Extensions
         /// </summary>
         /// <param name="input">Input string to convert</param>
         /// <returns>New alternating string of <paramref name="input"/></returns>
-        public static string ToAlternatingCase(this string input)
+        public static string ToAlternatingCase(this string? input)
         {
-            if (ReferenceEquals(input, null)) throw new ArgumentNullException(nameof(input));
+            if (input is null) throw new ArgumentNullException(nameof(input));
+            if (input.Length == 0) return input;
 
-            var length = input.Length;
-            var output = new char[length];
-            int i = 0, j = length - 1;
-
-            while (i <= j)
+            return string.Create(input.Length, input, (chars, state) =>
             {
-                output[i] = ShiftCase(input[i++]);
-                output[j] = ShiftCase(input[j--]);
-            }
-
-            return String.Concat(output);
+                for (var i = 0; i < chars.Length; i++)
+                    chars[i] = ShiftCase(state[i]);
+            });
         }
 
         private static char ShiftCase(char c)
         {
-            var i = (int)c;
+            if ((c >= UPPERCASE_A && c <= UPPERCASE_Z) || (c >= LOWERCASE_A && c <= LOWERCASE_Z))
+                return (char)(c ^ ASCII_CASE_DIFFERENCE);
 
-            if (i < 65 || i > 122)
-                return c;
-
-            if (i < 97 && i > 90)
-                return c;
-
-            return (char)(i > 90 ? c & ~0x20 : c | 0x20);
+            return c;
         }
     }
 }

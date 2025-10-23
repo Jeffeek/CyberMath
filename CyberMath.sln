@@ -1,29 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30717.126
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36327.8 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Matrix.Tests", "CyberMath.Tests\CyberMath.Matrix.Tests\CyberMath.Matrix.Tests.csproj", "{CB74BFC0-649E-4BDE-B293-50CA786E1E84}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.JaggedMatrix.Tests", "CyberMath.Tests\CyberMath.JaggedMatrix.Tests\CyberMath.JaggedMatrix.Tests.csproj", "{3B032C66-6143-4C4D-9F8B-31A21A2DDB57}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Tests", "CyberMath.Tests", "{4269EFA0-C379-4EA3-BFB0-174D62861DF9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.BinaryTree.Tests", "CyberMath.Tests\CyberMath.BinaryTree.Tests\CyberMath.BinaryTree.Tests.csproj", "{A88B3BB0-D673-4034-B433-5458CF601DB5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.QuadraticEquation.Tests", "CyberMath.Tests\CyberMath.QuadraticEquation.Tests\CyberMath.QuadraticEquation.Tests.csproj", "{94DE13C6-15F6-41FA-A78E-269058D0A10F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.AVLBinaryTree.Tests", "CyberMath.Tests\CyberMath.AVLBinaryTree.Tests\CyberMath.AVLBinaryTree.Tests.csproj", "{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.RedBlackBinaryTree.Tests", "CyberMath.Tests\CyberMath.RedBlackBinaryTree.Tests\CyberMath.RedBlackBinaryTree.Tests.csproj", "{552A42EF-2FDB-418E-BE68-63A12F1D0BFE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.PrimitivesExtensions.Tests", "CyberMath.Tests\CyberMath.PrimitivesExtensions.Tests\CyberMath.PrimitivesExtensions.Tests.csproj", "{B065F9D0-3C7D-42E2-B9FE-901522D08F8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.xUnit.Tests", "CyberMath.Tests\CyberMath.AVLBinaryTree.Tests\CyberMath.xUnit.Tests.csproj", "{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyberMath.Tests.Performance", "CyberMath.Tests.Performance", "{E2BBB33F-3CE9-4EEF-8533-A80B361C66FA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.PerformanceTests.BinaryTrees", "CyberMath.Tests\CyberMath.Tests.Performance\CyberMath.PerformanceTests.BinaryTrees\CyberMath.PerformanceTests.BinaryTrees.csproj", "{0EE32045-DC86-4D9F-B152-602EAEF50E1E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Extensions.Tests", "CyberMath.Tests\CyberMath.Extensions.Tests\CyberMath.Extensions.Tests.csproj", "{EE570311-283A-4816-9CCB-9F553C7F5509}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.PerformanceTests", "CyberMath.Tests\CyberMath.Tests.Performance\CyberMath.PerformanceTests.BinaryTrees\CyberMath.PerformanceTests.csproj", "{0EE32045-DC86-4D9F-B152-602EAEF50E1E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6BA248A2-DCF6-4BE8-9590-7658FF12523D}"
 	ProjectSection(SolutionItems) = preProject
@@ -31,14 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FF05A7BD-61C1-44D1-A6F1-C00C446CC54F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.Helpers.Tests", "CyberMath.Tests\CyberMath.Helpers.Tests\CyberMath.Helpers.Tests.csproj", "{1D7C1931-909C-411B-87A1-1C7630E2E7FE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.PerformanceTests.Extensions", "CyberMath.Tests\CyberMath.Tests.Performance\CyberMath.PerformanceTests,Extensions\CyberMath.PerformanceTests.Extensions.csproj", "{0CE3B207-73CE-4657-BA86-0A557ECCB5C4}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.DynamicMatrix.Tests", "CyberMath.Tests\CyberMath.DynamicMatrix.Tests\CyberMath.DynamicMatrix.Tests.csproj", "{71EABA68-966D-4891-AD65-3F418369F80B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberMath.DynamicJuggedMatrix.Tests", "CyberMath.Tests\CyberMath.DynamicJuggedMatrix.Tests\CyberMath.DynamicJuggedMatrix.Tests.csproj", "{6838C55F-E338-4E1C-96FB-CEE8D730A835}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberMath", "src\CyberMath\CyberMath.csproj", "{C9930B82-09AE-4461-B611-5A7640F8A382}"
 EndProject
@@ -48,58 +26,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CB74BFC0-649E-4BDE-B293-50CA786E1E84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CB74BFC0-649E-4BDE-B293-50CA786E1E84}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CB74BFC0-649E-4BDE-B293-50CA786E1E84}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CB74BFC0-649E-4BDE-B293-50CA786E1E84}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B032C66-6143-4C4D-9F8B-31A21A2DDB57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B032C66-6143-4C4D-9F8B-31A21A2DDB57}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B032C66-6143-4C4D-9F8B-31A21A2DDB57}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B032C66-6143-4C4D-9F8B-31A21A2DDB57}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A88B3BB0-D673-4034-B433-5458CF601DB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A88B3BB0-D673-4034-B433-5458CF601DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A88B3BB0-D673-4034-B433-5458CF601DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A88B3BB0-D673-4034-B433-5458CF601DB5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{94DE13C6-15F6-41FA-A78E-269058D0A10F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{94DE13C6-15F6-41FA-A78E-269058D0A10F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{94DE13C6-15F6-41FA-A78E-269058D0A10F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{94DE13C6-15F6-41FA-A78E-269058D0A10F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A09CCBB6-1736-42AE-8575-D43FEA4B46FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{552A42EF-2FDB-418E-BE68-63A12F1D0BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{552A42EF-2FDB-418E-BE68-63A12F1D0BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{552A42EF-2FDB-418E-BE68-63A12F1D0BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{552A42EF-2FDB-418E-BE68-63A12F1D0BFE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B065F9D0-3C7D-42E2-B9FE-901522D08F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B065F9D0-3C7D-42E2-B9FE-901522D08F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B065F9D0-3C7D-42E2-B9FE-901522D08F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B065F9D0-3C7D-42E2-B9FE-901522D08F8E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0EE32045-DC86-4D9F-B152-602EAEF50E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0EE32045-DC86-4D9F-B152-602EAEF50E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EE32045-DC86-4D9F-B152-602EAEF50E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EE32045-DC86-4D9F-B152-602EAEF50E1E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE570311-283A-4816-9CCB-9F553C7F5509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE570311-283A-4816-9CCB-9F553C7F5509}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE570311-283A-4816-9CCB-9F553C7F5509}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE570311-283A-4816-9CCB-9F553C7F5509}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D7C1931-909C-411B-87A1-1C7630E2E7FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D7C1931-909C-411B-87A1-1C7630E2E7FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D7C1931-909C-411B-87A1-1C7630E2E7FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D7C1931-909C-411B-87A1-1C7630E2E7FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0CE3B207-73CE-4657-BA86-0A557ECCB5C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0CE3B207-73CE-4657-BA86-0A557ECCB5C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0CE3B207-73CE-4657-BA86-0A557ECCB5C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0CE3B207-73CE-4657-BA86-0A557ECCB5C4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{71EABA68-966D-4891-AD65-3F418369F80B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{71EABA68-966D-4891-AD65-3F418369F80B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{71EABA68-966D-4891-AD65-3F418369F80B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{71EABA68-966D-4891-AD65-3F418369F80B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6838C55F-E338-4E1C-96FB-CEE8D730A835}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6838C55F-E338-4E1C-96FB-CEE8D730A835}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6838C55F-E338-4E1C-96FB-CEE8D730A835}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6838C55F-E338-4E1C-96FB-CEE8D730A835}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C9930B82-09AE-4461-B611-5A7640F8A382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C9930B82-09AE-4461-B611-5A7640F8A382}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9930B82-09AE-4461-B611-5A7640F8A382}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -109,20 +43,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{CB74BFC0-649E-4BDE-B293-50CA786E1E84} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
-		{3B032C66-6143-4C4D-9F8B-31A21A2DDB57} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
-		{A88B3BB0-D673-4034-B433-5458CF601DB5} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
-		{94DE13C6-15F6-41FA-A78E-269058D0A10F} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
 		{A09CCBB6-1736-42AE-8575-D43FEA4B46FB} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
-		{552A42EF-2FDB-418E-BE68-63A12F1D0BFE} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
-		{B065F9D0-3C7D-42E2-B9FE-901522D08F8E} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
 		{E2BBB33F-3CE9-4EEF-8533-A80B361C66FA} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
 		{0EE32045-DC86-4D9F-B152-602EAEF50E1E} = {E2BBB33F-3CE9-4EEF-8533-A80B361C66FA}
-		{EE570311-283A-4816-9CCB-9F553C7F5509} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
-		{1D7C1931-909C-411B-87A1-1C7630E2E7FE} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
-		{0CE3B207-73CE-4657-BA86-0A557ECCB5C4} = {E2BBB33F-3CE9-4EEF-8533-A80B361C66FA}
-		{71EABA68-966D-4891-AD65-3F418369F80B} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
-		{6838C55F-E338-4E1C-96FB-CEE8D730A835} = {4269EFA0-C379-4EA3-BFB0-174D62861DF9}
 		{C9930B82-09AE-4461-B611-5A7640F8A382} = {FF05A7BD-61C1-44D1-A6F1-C00C446CC54F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

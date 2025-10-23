@@ -22,7 +22,7 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <returns>A new <see cref="IMatrix{T}"/> matrix without column at <paramref name="columnIndex"/></returns>
         public static IMatrix<T> CreateMatrixWithoutColumn<T>(this IMatrix<T> matrix, int columnIndex)
         {
-            if (ReferenceEquals(matrix, null)) throw new ArgumentNullException(nameof(matrix));
+            if (matrix is null) throw new ArgumentNullException(nameof(matrix));
             if (columnIndex < 0 || columnIndex >= matrix.ColumnsCount) throw new ArgumentException("invalid column index");
 
             var result = new Matrix<T>(matrix.RowsCount, matrix.ColumnsCount - 1);
@@ -41,7 +41,7 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <returns>A new <see cref="IMatrix{T}"/> matrix without row at <paramref name="rowIndex"/></returns>
         public static IMatrix<T> CreateMatrixWithoutRow<T>(this IMatrix<T> matrix, int rowIndex)
         {
-            if (ReferenceEquals(matrix, null)) throw new ArgumentNullException(nameof(matrix));
+            if (matrix is null) throw new ArgumentNullException(nameof(matrix));
             if (rowIndex < 0 || rowIndex >= matrix.RowsCount) throw new ArgumentException("invalid row index");
 
             var result = new Matrix<T>(matrix.RowsCount - 1, matrix.ColumnsCount);

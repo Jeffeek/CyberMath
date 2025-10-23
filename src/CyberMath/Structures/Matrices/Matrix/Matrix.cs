@@ -4,7 +4,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using CyberMath.Helpers;
+using CyberMath.Extensions;
+
 
 #endregion
 
@@ -97,7 +98,7 @@ namespace CyberMath.Structures.Matrices.Matrix
         /// <inheritdoc/>
         public void ProcessFunctionOverData(Action<int, int> func)
         {
-            if (ReferenceEquals(func, null)) return;
+            if (func is null) return;
 
             for (var i = 0; i < RowsCount; i++)
             {
@@ -112,7 +113,7 @@ namespace CyberMath.Structures.Matrices.Matrix
         /// <inheritdoc/>
         public bool Equals(IMatrix<T> other)
         {
-            if (ReferenceEquals(null, other)) return false;
+            if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
             if (RowsCount != other.RowsCount) return false;
             if (ColumnsCount != other.ColumnsCount) return false;
@@ -131,7 +132,7 @@ namespace CyberMath.Structures.Matrices.Matrix
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
+            if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
 
             return obj is IMatrix<T> matrix && Equals(matrix);
@@ -213,7 +214,7 @@ namespace CyberMath.Structures.Matrices.Matrix
             {
                 for (var j = 0; j < ColumnsCount; j++)
                     clone[i, j] = this[i, j]
-                        .SerializableDeepCopy();
+                        .ReflectionDeepCopy();
             }
 
             return clone;

@@ -39,7 +39,7 @@ namespace CyberMath.Structures.BinaryTrees.RedBlackBinaryTree
         /// </summary>
         /// <param name="node"></param>
         /// <returns>Uncle of <paramref name="node"/></returns>
-        private RedBlackBinaryTreeNode<T> GetUncle(RedBlackBinaryTreeNode<T> node)
+        public RedBlackBinaryTreeNode<T> GetUncle(RedBlackBinaryTreeNode<T> node)
         {
             var parent = node._parent;
 
@@ -51,7 +51,7 @@ namespace CyberMath.Structures.BinaryTrees.RedBlackBinaryTree
         /// </summary>
         /// <param name="node"></param>
         /// <returns>Sibling of <paramref name="node"/></returns>
-        private RedBlackBinaryTreeNode<T> GetSibling(RedBlackBinaryTreeNode<T> node)
+        private static RedBlackBinaryTreeNode<T> GetSibling(RedBlackBinaryTreeNode<T> node)
         {
             var parent = node._parent;
 
@@ -67,7 +67,7 @@ namespace CyberMath.Structures.BinaryTrees.RedBlackBinaryTree
         /// </summary>
         /// <param name="node"></param>
         /// <returns>Grandparent of <paramref name="node"/></returns>
-        private RedBlackBinaryTreeNode<T> GetGrandparent(RedBlackBinaryTreeNode<T> node) => node?._parent?._parent;
+        public RedBlackBinaryTreeNode<T> GetGrandparent(RedBlackBinaryTreeNode<T> node) => node?._parent?._parent;
 
         #endregion
 
@@ -338,7 +338,7 @@ namespace CyberMath.Structures.BinaryTrees.RedBlackBinaryTree
         /// <param name="root">Reference to root</param>
         /// <param name="node">Reference to node to rotate</param>
         /// <returns>Reference to <paramref name="root"/></returns>
-        private RedBlackBinaryTreeNode<T> RotateLeft(RedBlackBinaryTreeNode<T> root, RedBlackBinaryTreeNode<T> node)
+        private static RedBlackBinaryTreeNode<T> RotateLeft(RedBlackBinaryTreeNode<T> root, RedBlackBinaryTreeNode<T> node)
         {
             var nodeY = node.Right as RedBlackBinaryTreeNode<T>;
             node.Right = nodeY.Left;
@@ -374,33 +374,33 @@ namespace CyberMath.Structures.BinaryTrees.RedBlackBinaryTree
         /// <param name="root">Reference to root</param>
         /// <param name="node">Reference to node to rotate</param>
         /// <returns>Reference to <paramref name="root"/></returns>
-        private RedBlackBinaryTreeNode<T> RotateRight(RedBlackBinaryTreeNode<T> root, RedBlackBinaryTreeNode<T> node)
+        private static RedBlackBinaryTreeNode<T> RotateRight(RedBlackBinaryTreeNode<T> root, RedBlackBinaryTreeNode<T> node)
         {
-            var X = node.Left as RedBlackBinaryTreeNode<T>;
-            node.Left = X.Right;
+            var x = node.Left as RedBlackBinaryTreeNode<T>;
+            node.Left = x.Right;
 
-            if (X.Right != null)
-                (X.Right as RedBlackBinaryTreeNode<T>)._parent = node;
+            if (x.Right != null)
+                (x.Right as RedBlackBinaryTreeNode<T>)._parent = node;
 
-            if (X != null)
-                X._parent = node._parent;
+            if (x != null)
+                x._parent = node._parent;
 
             if (node._parent == null)
-                root = X;
+                root = x;
 
             if (node._parent != null)
             {
                 if (node == node._parent.Right as RedBlackBinaryTreeNode<T>)
-                    node._parent.Right = X;
+                    node._parent.Right = x;
 
                 if (node == node._parent.Left as RedBlackBinaryTreeNode<T>)
-                    node._parent.Left = X;
+                    node._parent.Left = x;
             }
 
-            X.Right = node;
+            x.Right = node;
 
             if (node != null)
-                node._parent = X;
+                node._parent = x;
 
             return root;
         }

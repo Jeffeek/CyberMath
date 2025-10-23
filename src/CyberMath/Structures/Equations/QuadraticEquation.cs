@@ -40,18 +40,18 @@ namespace CyberMath.Structures.Equations
         /// <param name="quadraticEquation">A string to parse</param>
         public QuadraticEquation(string quadraticEquation)
         {
-            quadraticEquation = quadraticEquation.Replace(" ", String.Empty);
+            quadraticEquation = quadraticEquation.Replace(" ", string.Empty);
             var match = _quadraticEquationPattern.Match(quadraticEquation);
 
             if (!match.Success) throw new Exception("Input quadratic equation is not valid");
 
-            A = Double.Parse(match.Groups[1]
+            A = double.Parse(match.Groups[1]
                                   .Value);
 
-            B = Double.Parse(match.Groups[2]
+            B = double.Parse(match.Groups[2]
                                   .Value);
 
-            C = Double.Parse(match.Groups[3]
+            C = double.Parse(match.Groups[3]
                                   .Value);
 
             CalculateDeterminant();

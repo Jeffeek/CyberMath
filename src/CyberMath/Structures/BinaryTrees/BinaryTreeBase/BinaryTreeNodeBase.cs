@@ -17,10 +17,10 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         where T : IComparable<T>, IComparable
     {
         /// <inheritdoc/>
-        public IBinaryTreeNode<T> Left { get; protected set; }
+        public IBinaryTreeNode<T>? Left { get; protected set; }
 
         /// <inheritdoc/>
-        public IBinaryTreeNode<T> Right { get; protected set; }
+        public IBinaryTreeNode<T>? Right { get; protected set; }
 
         /// <inheritdoc/>
         public T Data { get; protected set; }
@@ -29,13 +29,13 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         public abstract IBinaryTreeNode<T> Insert(T value);
 
         /// <inheritdoc/>
-        public abstract IBinaryTreeNode<T> Remove(T value);
+        public abstract IBinaryTreeNode<T>? Remove(T value);
 
         /// <inheritdoc/>
         public virtual int Depth() => InternalDepth(this);
 
         /// <inheritdoc/>
-        public virtual IBinaryTreeNode<T> Min()
+        public virtual IBinaryTreeNode<T>? Min()
         {
             var current = this as IBinaryTreeNode<T>;
 
@@ -46,7 +46,7 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         }
 
         /// <inheritdoc/>
-        public virtual IBinaryTreeNode<T> Max()
+        public virtual IBinaryTreeNode<T>? Max()
         {
             var current = this as IBinaryTreeNode<T>;
 
@@ -61,7 +61,7 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         /// </summary>
         /// <param name="node">Node where to search</param>
         /// <returns>The deep of <paramref name="node"/></returns>
-        private int InternalDepth(BinaryTreeNodeBase<T> node)
+        private static int InternalDepth(BinaryTreeNodeBase<T> node)
         {
             var levels = 0;
             var queue = new Queue<IBinaryTreeNode<T>>();
@@ -94,11 +94,11 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         /// <param name="subTree">A <see cref="IBinaryTreeNode{T}"/> subTree where to find</param>
         /// <param name="value">Value to find</param>
         /// <returns>Reference to the node with <paramref name="value"/></returns>
-        protected virtual IBinaryTreeNode<T> FindNode(IBinaryTreeNode<T> subTree, T value)
+        protected virtual IBinaryTreeNode<T>? FindNode(IBinaryTreeNode<T> subTree, T value)
         {
             var current = subTree;
 
-            while (!ReferenceEquals(current, null))
+            while (current is object)
                 switch (current.Data.CompareTo(value))
                 {
                     case 0:
@@ -123,13 +123,13 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         /// </summary>
         /// <param name="node"><see cref="BinaryTreeNodeBase{T}"/> node from to find</param>
         /// <returns>Reference to the successor</returns>
-        protected virtual IBinaryTreeNode<T> GetSuccessor(BinaryTreeNodeBase<T> node)
+        protected virtual IBinaryTreeNode<T>? GetSuccessor(BinaryTreeNodeBase<T> node)
         {
             var parentOfSuccessor = node;
             var successor = node;
             var current = node.Right as BinaryTreeNodeBase<T>;
 
-            while (current != null)
+            while (current != null!)
             {
                 parentOfSuccessor = successor;
                 successor = current;
@@ -165,18 +165,21 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         public override int GetHashCode()
         {
             var start = 228 ^ (315 * 25);
+            // ReSharper disable once NonReadonlyMemberInGetHashCode
             if (Left == null) start = (start + 100) ^ 25;
+            // ReSharper disable once NonReadonlyMemberInGetHashCode
             if (Right == null) start = (start + 200) ^ 55;
-            if (Data == null) start = (start + 1000 * 5) ^ 300;
+            // ReSharper disable once NonReadonlyMemberInGetHashCode
+            if (Data == null!) start = (start + 1000 * 5) ^ 300;
 
             return start;
         }
 
         /// <inheritdoc/>
-        public bool Equals(IBinaryTreeNode<T> other) => !ReferenceEquals(other, null) && CompareTo(other) == 0;
+        public bool Equals(IBinaryTreeNode<T>? other) => other is object && CompareTo(other) == 0;
 
         /// <inheritdoc/>
-        public override bool Equals(object obj) => ReferenceEquals(this, obj) || obj is IBinaryTreeNode<T> other && Equals(other);
+        public override bool Equals(object? obj) => ReferenceEquals(this, obj) || obj is IBinaryTreeNode<T> other && Equals(other);
 
         #endregion
 
@@ -198,19 +201,21 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         #region CompareTo
 
         /// <inheritdoc/>
-        public virtual int CompareTo(IBinaryTreeNode<T> other) => ReferenceEquals(this, other) ? 0 : Data.CompareTo(other.Data);
+        public virtual int CompareTo(IBinaryTreeNode<T>? other)
+            => other == null
+                ? -1
+                : ReferenceEquals(this, other)
+                    ? 0
+                    : Data.CompareTo(other.Data);
 
         /// <inheritdoc/>
-        public virtual int CompareTo(object obj)
+        public virtual int CompareTo(object? obj)
         {
-            switch (obj)
+            return obj switch
             {
-                case IBinaryTreeNode<T> other:
-                    return CompareTo(other);
-
-                default:
-                    throw new ArgumentException("obj is not tree node");
-            }
+                IBinaryTreeNode<T> other => CompareTo(other),
+                _ => throw new ArgumentException("obj is not tree node")
+            };
         }
 
         #endregion
@@ -246,15 +251,15 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         {
             if (ReferenceEquals(first, second)) return true;
 
-            if (ReferenceEquals(first, null)) return false;
+            if (first is null) return false;
 
-            if (ReferenceEquals(second, null)) return false;
+            if (second is null) return false;
 
-            if (ReferenceEquals(first.Data, null) && ReferenceEquals(second.Data, null)) return true;
+            if (first.Data is null && second.Data is null) return true;
 
-            if (ReferenceEquals(first.Data, null)) return false;
+            if (first.Data is null) return false;
 
-            if (ReferenceEquals(second.Data, null)) return false;
+            if (second.Data is null) return false;
 
             return first.Data.CompareTo(second.Data) == 0;
         }

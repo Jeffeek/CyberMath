@@ -142,11 +142,11 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <returns></returns>
         public static Matrix<T> CreateMatrix<T>(this IEnumerable<IEnumerable<T>> source)
         {
-            if (ReferenceEquals(source, null)) throw new ArgumentNullException(nameof(source));
+            if (source is null) throw new ArgumentNullException(nameof(source));
 
             var enumerables = source as IEnumerable<T>[] ?? source.ToArray();
 
-            if (enumerables.Any(item => ReferenceEquals(item, null)))
+            if (enumerables.Any(item => item is null))
                 throw new ArgumentNullException(nameof(source) + ": one of enumerables was null");
 
             var columnsCount = enumerables[0]
@@ -187,11 +187,11 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <returns></returns>
         public static DynamicMatrix<T> CreateDynamicMatrix<T>(this IEnumerable<IEnumerable<T>> source)
         {
-            if (ReferenceEquals(source, null)) throw new ArgumentNullException(nameof(source));
+            if (source is null) throw new ArgumentNullException(nameof(source));
 
             var enumerables = source as IEnumerable<T>[] ?? source.ToArray();
 
-            if (enumerables.Any(item => ReferenceEquals(item, null)))
+            if (enumerables.Any(item => item is null))
                 throw new ArgumentNullException(nameof(source) + ": one of enumerables was null");
 
             var columnsCount = enumerables[0]
@@ -231,11 +231,11 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <returns></returns>
         public static JuggedMatrix<T> CreateJuggedMatrix<T>(this IEnumerable<IEnumerable<T>> source)
         {
-            if (ReferenceEquals(source, null)) throw new ArgumentNullException(nameof(source));
+            if (source is null) throw new ArgumentNullException(nameof(source));
 
             var enumerables = source as IEnumerable<T>[] ?? source.ToArray();
 
-            if (enumerables.Any(item => ReferenceEquals(item, null)))
+            if (enumerables.Any(item => item is null))
                 throw new ArgumentNullException(nameof(source) + ": one of enumerables was null");
 
             var columnsCounts = enumerables.Select(row => row.Count());
@@ -269,11 +269,11 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <returns></returns>
         public static DynamicJuggedMatrix<T> CreateDynamicJuggedMatrix<T>(this IEnumerable<IEnumerable<T>> source)
         {
-            if (ReferenceEquals(source, null)) throw new ArgumentNullException(nameof(source));
+            if (source is null) throw new ArgumentNullException(nameof(source));
 
             var enumerables = source as IEnumerable<T>[] ?? source.ToArray();
 
-            if (enumerables.Any(item => ReferenceEquals(item, null)))
+            if (enumerables.Any(item => item is null))
                 throw new ArgumentNullException(nameof(source) + ": one of enumerables was null");
 
             var columnsCounts = enumerables.Select(row => row.Count());
@@ -312,7 +312,7 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <returns>Vanilla array of arrays which represents initial matrix</returns>
         public static T[][] CreateVanilla<T>(this IJuggedMatrix<T> juggedMatrix)
         {
-            if (ReferenceEquals(juggedMatrix, null)) throw new ArgumentNullException(nameof(juggedMatrix));
+            if (juggedMatrix is null) throw new ArgumentNullException(nameof(juggedMatrix));
 
             var tempMatrix = new T[juggedMatrix.RowsCount][];
 
@@ -338,7 +338,7 @@ namespace CyberMath.Structures.Matrices.Extensions
         /// <returns>Vanilla matrix which represents initial matrix</returns>
         public static T[,] CreateVanilla<T>(this IMatrix<T> matrix)
         {
-            if (ReferenceEquals(matrix, null)) throw new ArgumentNullException(nameof(matrix));
+            if (matrix is null) throw new ArgumentNullException(nameof(matrix));
 
             var tempMatrix = new T[matrix.RowsCount, matrix.ColumnsCount];
 

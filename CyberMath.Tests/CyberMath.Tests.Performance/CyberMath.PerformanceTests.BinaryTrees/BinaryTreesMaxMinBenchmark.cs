@@ -8,38 +8,40 @@ using CyberMath.Structures.BinaryTrees.BinaryTreeBase;
 
 #endregion
 
-namespace CyberMath.PerformanceTests.BinaryTrees
+namespace CyberMath.PerformanceTests
 {
     public sealed class BinaryTreesMaxMinBenchmark
     {
-        private static readonly Random rnd = new Random();
+        private static readonly Random Rnd = new();
 
-        public static int[] Elements =
+        // ReSharper disable once MemberCanBePrivate.Global
+        public static readonly int[] Elements =
             Enumerable.Range(0, 10_000)
-                      .Select(x => rnd.Next(-10_000_000, 10_000_000))
+                      .Select(_ => Rnd.Next(-10_000_000, 10_000_000))
                       .ToArray();
 
-        private readonly IBinaryTree<int> AVL = new BinaryTree<int>(Elements);
-        private readonly IBinaryTree<int> REDBLACK = new BinaryTree<int>(Elements);
-
-        private readonly IBinaryTree<int> TREE = new BinaryTree<int>(Elements);
-
-        [Benchmark]
-        public void BinaryTreeMin() => TREE.Min();
+        private readonly IBinaryTree<int> _avl = new BinaryTree<int>(Elements);
+        private readonly IBinaryTree<int> _redBlack = new BinaryTree<int>(Elements);
+        private readonly IBinaryTree<int> _tree = new BinaryTree<int>(Elements);
 
         [Benchmark]
-        public void BinaryTreeMax() => TREE.Max();
+        public void BinaryTreeMin() => _tree.Min();
 
         [Benchmark]
-        public void AVLBinaryTreeMin() => AVL.Min();
+        public void BinaryTreeMax() => _tree.Max();
 
         [Benchmark]
-        public void AVLBinaryTreeMax() => AVL.Max();
+        // ReSharper disable once InconsistentNaming
+        public void AVLBinaryTreeMin() => _avl.Min();
 
         [Benchmark]
-        public void RedBlackBinaryTreeMin() => REDBLACK.Min();
+        // ReSharper disable once InconsistentNaming
+        public void AVLBinaryTreeMax() => _avl.Max();
 
         [Benchmark]
-        public void RedBlackBinaryTreeMax() => REDBLACK.Max();
+        public void RedBlackBinaryTreeMin() => _redBlack.Min();
+
+        [Benchmark]
+        public void RedBlackBinaryTreeMax() => _redBlack.Max();
     }
 }

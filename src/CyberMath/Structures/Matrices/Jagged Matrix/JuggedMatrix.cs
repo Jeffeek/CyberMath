@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CyberMath.Helpers;
+using CyberMath.Extensions;
 using CyberMath.Structures.Matrices.Extensions;
 
 #endregion
@@ -18,7 +18,7 @@ namespace CyberMath.Structures.Matrices.Jagged_Matrix
     /// <typeparam name="T">ANY</typeparam>
     public class JuggedMatrix<T> : IJuggedMatrix<T>, ICloneable
     {
-        private protected T[][] _innerMatrix;
+        private T[][] _innerMatrix;
 
         /// <summary>
         ///     Returns a new cloned object of initial matrix.
@@ -38,10 +38,10 @@ namespace CyberMath.Structures.Matrices.Jagged_Matrix
         }
 
         /// <inheritdoc/>
-        public int RowsCount { get; protected set; }
+        public int RowsCount { get; }
 
         /// <inheritdoc/>
-        public bool IsSquare { get; protected set; }
+        public bool IsSquare { get; }
 
         /// <inheritdoc/>
         public T this[int row, int column]
@@ -53,7 +53,7 @@ namespace CyberMath.Structures.Matrices.Jagged_Matrix
         /// <inheritdoc/>
         public void ProcessFunctionOverData(Action<int, int> func)
         {
-            if (ReferenceEquals(func, null)) return;
+            if (func is null) return;
 
             for (var i = 0; i < RowsCount; i++)
             {
@@ -86,7 +86,7 @@ namespace CyberMath.Structures.Matrices.Jagged_Matrix
             {
                 for (var j = 0; j < ElementsInRow(i); j++)
                     clone[i, j] = this[i, j]
-                        .SerializableDeepCopy();
+                        .ReflectionDeepCopy();
             }
 
             return clone;
@@ -264,7 +264,7 @@ namespace CyberMath.Structures.Matrices.Jagged_Matrix
         /// <inheritdoc/>
         public bool Equals(IJuggedMatrix<T> other)
         {
-            if (ReferenceEquals(null, other)) return false;
+            if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
             if (RowsCount != other.RowsCount) return false;
 
@@ -284,7 +284,7 @@ namespace CyberMath.Structures.Matrices.Jagged_Matrix
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
+            if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj is IJuggedMatrix<T> matrix) return Equals(matrix);
 

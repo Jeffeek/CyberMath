@@ -4,7 +4,7 @@ using BenchmarkDotNet.Running;
 
 #endregion
 
-namespace CyberMath.PerformanceTests.BinaryTrees
+namespace CyberMath.PerformanceTests
 {
     public class Program
     {

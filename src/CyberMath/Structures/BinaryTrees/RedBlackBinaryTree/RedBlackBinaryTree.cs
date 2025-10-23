@@ -29,7 +29,7 @@ namespace CyberMath.Structures.BinaryTrees.RedBlackBinaryTree
         /// <inheritdoc/>
         public override void Add(T item)
         {
-            if (ReferenceEquals(Root, null))
+            if (Root is null)
             {
                 Root = new RedBlackBinaryTreeNode<T>(item);
                 Count = 1;

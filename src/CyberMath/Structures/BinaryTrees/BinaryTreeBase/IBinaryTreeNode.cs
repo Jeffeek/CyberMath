@@ -21,12 +21,12 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         /// <summary>
         ///     Reference to the left-child node
         /// </summary>
-        IBinaryTreeNode<T> Left { get; }
+        IBinaryTreeNode<T>? Left { get; }
 
         /// <summary>
         ///     Reference to the right-child node
         /// </summary>
-        IBinaryTreeNode<T> Right { get; }
+        IBinaryTreeNode<T>? Right { get; }
 
         /// <summary>
         ///     Data in node
@@ -51,18 +51,18 @@ namespace CyberMath.Structures.BinaryTrees.BinaryTreeBase
         /// </summary>
         /// <param name="value"></param>
         /// <returns>Reference to the root</returns>
-        IBinaryTreeNode<T> Remove(T value);
+        IBinaryTreeNode<T>? Remove(T value);
 
         /// <summary>
         ///     Find the minimal <see cref="IBinaryTreeNode{T}"/> in initial <see cref="IBinaryTreeNode{T}"/>
         /// </summary>
         /// <returns>Reference to the minimal element</returns>
-        IBinaryTreeNode<T> Min();
+        IBinaryTreeNode<T>? Min();
 
         /// <summary>
         ///     Find the maximal <see cref="IBinaryTreeNode{T}"/> in initial <see cref="IBinaryTreeNode{T}"/>
         /// </summary>
         /// <returns>Reference to the maximal element</returns>
-        IBinaryTreeNode<T> Max();
+        IBinaryTreeNode<T>? Max();
     }
 }

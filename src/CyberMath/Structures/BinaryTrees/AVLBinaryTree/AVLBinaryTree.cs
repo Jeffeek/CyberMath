@@ -14,6 +14,7 @@ namespace CyberMath.Structures.BinaryTrees.AVLBinaryTree
     /// <typeparam name="T">
     ///     <see cref="IComparable{T}"/>
     /// </typeparam>
+    // ReSharper disable once InconsistentNaming
     public class AVLBinaryTree<T> : BinaryTreeBase<T>
         where T : IComparable, IComparable<T>
     {
@@ -35,7 +36,7 @@ namespace CyberMath.Structures.BinaryTrees.AVLBinaryTree
         /// <inheritdoc/>
         public override void Add(T item)
         {
-            if (ReferenceEquals(Root, null))
+            if (Root is null)
             {
                 Root = new AVLBinaryTreeNode<T>(item);
                 Count = 1;
