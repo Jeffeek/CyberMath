@@ -1,171 +1,140 @@
-<h1>CyberMath</h1>
-<img src="https://img.shields.io/github/workflow/status/Jeffeek/CyberMath/.NET?style=for-the-badge">
-<h2>A little library with useful data structures and extension methods.</h2>
-
-<h2 align="center">Some stats</h2>
+# CyberMath
 
 <p align="center">
-<img src="https://img.shields.io/nuget/v/CyberMath?style=for-the-badge">
-<img src="https://img.shields.io/github/last-commit/Jeffeek/CyberMath?style=for-the-badge">
-<img src="https://img.shields.io/nuget/dt/CyberMath?style=for-the-badge">
-<img src="https://img.shields.io/github/stars/Jeffeek/CyberMath?style=for-the-badge">
-<img src="https://img.shields.io/github/issues/Jeffeek/CyberMath?style=for-the-badge">
-<img src="https://img.shields.io/github/repo-size/Jeffeek/CyberMath?style=for-the-badge">
-<img src="https://img.shields.io/tokei/lines/github/Jeffeek/CyberMath?style=for-the-badge">
+  <img src="https://raw.githubusercontent.com/Jeffeek/CyberMath/master/cyberMath.png" alt="CyberMath Logo" width="200"/>
 </p>
-<hr>
 
-## Nuget Package
->PM> Install-Package CyberMath -Version 1.0.3
-<hr>
+<h3 align="center">A .NET library with a collection of useful data structures and extension methods, designed to simplify common mathematical and programming tasks.</h3>
 
-- **Two-dimensional arrays**
-    - IsSquare -> bool *(Represent a bool(true) value if the rows count equals elements count on each row; otherwise false)*
-    - [int row, int column] -> T *(Indexer for matrix)*
-    - ProcessFunctionOverData -> void *(Do action over every element in matrix)*
-    - ElementsInRow -> int *(Returns count of elements in row)*
-    - GetColumnsEnumerable -> IEnumerable&lt;IEnumerable&lt;T&gt;&gt; *(Returns enumerable, which is 'walks' on the column neither default)*
-    - RowsCount -> int *(Count of rows in matrix)*
-  - **Matrix**
-    - ColumnsCount -> int *(Count of columns in matrix)*
-    - Transpose -> IMatrix&lt;T&gt; Creates a new transposed matrix
-    <hr>
-    
-    - **DynamicMatrix**
-      - AddColumn -> void *(Inserting a new column to the end of matrix)*
-      - InsertColumn -> void *(Inserting the column into matrix by index)*
-      - AddRow -> void *(Inserting a new row to the end of matrix)*
-      - InsertRow -> void *(Inserting the row into matrix by index)*
-      - RemoveColumn -> void *(Removes a column in matrix at index)*
-      - RemoveRow -> void *(Removes a row in matrix at index)*
-  <hr>
-  
-  - **Jugged Matrix**
-    - SortRows -> IJuggedMatrix&lt;T&gt; *(Sorts rows in matrix by count of elements)*
-    - SortRowsByDescending -> IJuggedMatrix&lt;T&gt; *(Sorts rows by descending in matrix by count of elements)*
-    <hr>
-    
-    - Dynamic Jugged Matrix
-      - AddColumn -> void *(Inserting a new column to the end of matrix if it's possible)*
-      - InsertColumn -> void *(Inserting the column into matrix by index)*
-      - AddRow -> void *(Inserting a new row to the end of matrix)*
-      - InsertRow -> void *(Inserting the row into matrix by index)*
-      - RemoveColumn -> void *(Removes a column in matrix at index)*
-      - RemoveRow -> void *(Removes a row in matrix at index)*
-<hr>
+<p align="center">
+  <a href="https://github.com/Jeffeek/CyberMath/actions/workflows/dotnet.yml"><img src="https://img.shields.io/github/workflow/status/Jeffeek/CyberMath/.NET?style=for-the-badge&logo=github" alt="Build Status"></a>
+  <a href="https://www.nuget.org/packages/CyberMath"><img src="https://img.shields.io/nuget/v/CyberMath?style=for-the-badge&logo=nuget" alt="NuGet Version"></a>
+  <a href="https://www.nuget.org/packages/CyberMath"><img src="https://img.shields.io/nuget/dt/CyberMath?style=for-the-badge&logo=nuget" alt="NuGet Downloads"></a>
+  <a href="https://github.com/Jeffeek/CyberMath/stargazers"><img src="https://img.shields.io/github/stars/Jeffeek/CyberMath?style=for-the-badge&logo=github" alt="GitHub Stars"></a>
+  <a href="https://github.com/Jeffeek/CyberMath/issues"><img src="https://img.shields.io/github/issues/Jeffeek/CyberMath?style=for-the-badge&logo=github" alt="GitHub Issues"></a>
+</p>
 
-- **Binary Trees**
-   - Root -> IBinaryTreeNode&lt;T&gt; *(Reference to the main node, called Root)*
-   - IsEmpty -> bool *(bool result which show the emptiness of IBinaryTree)*
-   - TraversalOrderType -> TraversalOrderType *(Traversal strategy for foreach statement)*
-   - Depth -> int *(Depth of BinaryTree)*
-   - Inorder -> IEnumerable&lt;T&gt; *(Returns an inorder traversal IEnumerable collection)*
-   - Preorder -> IEnumerable&lt;T&gt; *(Returns an preorder traversal IEnumerable collection)*
-   - Postorder -> IEnumerable&lt;T&gt; *(Returns an postorder traversal IEnumerable collection)*
-   - Min -> T *(Returns minimal element in BinaryTree)
-   - Max -> T *(Returns maximal element in BinaryTree)
-   - AddRange -> void *(Adds IEnumerable collection into BinaryTree)
-   - MergeWith -> void *(Merges initial IBinaryTree with another IBinaryTree)*
-   <hr>
-   
-  - **Vanilla Tree**
-  - **AVL Tree**
-  - **Red Black Tree** 
-  
-  - **Common interface: IBinaryTree : *ICollection*, IDisposable where T : IComparable&lt;T&gt;, IComparable**
-  
-<hr>
+---
 
-- **Helpers**
-  - FixExpressionConverter **(Class for converting xFix expression into yFix)**
-    - Infix -> Postfix => A+B\*C/(E-F) -> ABC\*EF-/+<br/>
-    - Infix -> Prefix => A+B\*C/(E-F) -> +A\*B/C-EF<br/>
-    - Postfix -> Infix => ABC\*EF-/+ -> (A+((B\*C)/(E-F)))<br/>
-    - Postfix -> Prefix => ABC/-AK/L-\* -> \*-A/BC-/AKL<br/>
-    - Prefix -> Infix => +A\*B/C-EF -> (A+(B\*(C/(E-F))))<br/>
-    - Prefix -> Postfix => \*-A/BC-/AKL -> ABC/-AK/L-\*
-  - GenericTypesExtensions **(Just a class to make out life and programming faster and more productive)**
-    - SerializableDeepCopy -> T *(Makes a deep copy of item. Type of item should be marked as [Serializable]; otherwise -> EXCEPTION)*
-    
-<hr>
+## Features
 
-- **Extension methods**
-  - Extension methods for **collections**
-    - Swap -> void *(Swaps items in indexed collections)*
-    - Shuffle -> void *(Shuffles the items in an indexed collection)*
-    - RandomItem -> T *(Gets a random item from collection)*
-    - Permutations -> IEnumerable&lt;IEnumerable&lt;T&gt;&gt; *(Returns a new collections with all permutations of elements with repeating elements)*
-    - PermutationsWithRepeat -> IEnumerable&lt;IEnumerable&lt;T&gt;&gt *(Returns a new collections with all permutations of elements with repeating elements)*
-  <hr>
+CyberMath provides a rich set of tools to accelerate development, including:
 
-  - Extension methods for **strings**
-    - Concat -> string
-    - IsPalindrome -> bool *(Checks string for palindromicity)*
-    - IsAnagramOf -> bool *(Checks two string for anagramism)*
-    - WordsFrequency -> Dictionary&lt;char,int&gt; *(Creates a Dictionary&lt;TKey,TValue&gt; where **TKey** is char and **TValue** is int **(count of TKey in input string)**)*
-    - ToInt32 -> int *(Returns string parsed to Int32)*
-    - ToInt64 -> long *(Returns string parsed to Int64)*
-    - ToAlternatingCase -> *(Converts input string to alternating case)*
-  <hr>
+### Data Structures
 
-  - Extension methods for **Random**
-    - NextDouble -> double *(Generates a double number between min and max)*
-    - NextLong -> long *(Generates a long number between min and max)*
-  <hr>
+- **Matrices**: A comprehensive set of matrix types.
+  - `Matrix<T>`: A standard, fixed-size matrix.
+  - `DynamicMatrix<T>`: A matrix that allows adding or removing rows and columns.
+  - `JuggedMatrix<T>`: A matrix with rows that can have different lengths.
+  - `DynamicJuggedMatrix<T>`: A jagged matrix with dynamic row and column manipulation.
+- **Binary Trees**: A collection of binary tree implementations.
+  - `BinaryTree<T>`: A simple binary search tree.
+  - `AVLBinaryTree<T>`: A self-balancing AVL tree.
+  - `RedBlackBinaryTree<T>`: A self-balancing Red-Black tree.
 
-  - Extension methods for **Int32** and **Int64**
-    - IsPalindrome -> bool *(Checks number for palindromicity)*
-    - IsOdd -> bool *(Checks is number odd)*
-    - IsEven -> bool *(Checks is number even)*
-    - GCD **(greatest common divisor)** -> int/long *(Calculates greatest common divisor between two numbers)*
-    - LCM **(lowest common multiple)** -> int/long *(Calculates lowest common multiple between two numbers)*
-    - Swap -> void *(Swaps two integers in memory **(by ref)**)*
-    - GetLength -> int *(Calculates the length of number)*
-    - ToBinary -> string *(Converts number to binary(2) format)*
-    - ToHex -> string *(Converts number to HEX(16) format)*
-    - GetDigits -> IEnumerable&lt;bytes&gt; *Return all digits in number as a collection*
-    <hr>
+### Equations
 
-    - Extension methods for **Prime Numbers**
-      - IsPrime -> bool *(Checks number for primality)*
-      - GenerateRandomPrimeNumber -> Int32/Int64 *(Generating one random prime number)*
-      - GeneratePrimeNumbers -> IEnumerable&lt;Int32/Int64&gt; *(Generates IEnumerable collection of prime numbers which are less than max)*
-  <hr>
+- `QuadraticEquation`: A class to solve quadratic equations of the form `ax^2 + bx + c = 0`.
 
-  - Extension methods for all matrices
-    - IsMaxInColumn -> bool *(Returns bool value if element at [i, j] is max in IMatrixBase&lt;IComparable&gt; matrix column at index j)*
-    - IsMinInRow -> bool *(Returns bool value if element at [i, j] is min in IMatrixBase&lt;IComparable&gt; matrix row at index i)*
-    - DiagonalSum -> int/long/souble/decimal/short and Nullable *(**ONLY FOR SQUARE** Calculates sum of all items on main diagonal)*
-    - SideDiagonalSum -> int/long/souble/decimal/short and Nullable *(**ONLY FOR SQUARE** Calculates sum of all items on side diagonal)*
-    - SumSaddlePoints -> int/long/souble/decimal/short and Nullable *(Calculates sum of all saddle points in matrix)*
-    - CreateMatrixWithoutRow -> IJuggedMatrix/IMatrix *(Creates a new matrix without row at rowIndex)*
-    - CreateMatrixWithoutColumn -> IJuggedMatrix/IMatrix *(Creates a new matrix without column at columnIndex)*
-    <hr>
+### Extension Methods
 
-    - For primitives
-      - Add -> IMatrixBase&lt;T&gt; *(Returns the add IMatrixBase first and IMatrixBase second)*
-      - Sub -> IMatrixBase&lt;T&gt; *(Returns the sub IMatrixBase first and IMatrixBase second)*
-      - MulOnNumber -> IMatrixBase&lt;T&gt; *(Returns the multiplication IMatrixBase matrix on number)*
-      - FillRandomly -> void *(Fills matrix with randomly generated items)*
-  <hr>
+- **Collections**: A variety of extension methods for collections, including `Swap`, `Shuffle`, `RandomItem`, and `Permutations`.
+- **Strings**: A set of useful string extensions, such as `IsPalindrome`, `IsAnagramOf`, `WordsFrequency`, and `ToAlternatingCase`.
+- **Random**: Extensions for the `Random` class to generate numbers within a specified range (`NextDouble`, `NextLong`).
+- **Int32 and Int64**: A wide range of extensions for 32-bit and 64-bit integers, including:
+  - **Number Theory**: `IsPrime`, `IsOdd`, `IsEven`, `GCD`, `LCM`.
+  - **Number Manipulation**: `IsPalindrome`, `GetLength`, `GetDigits`.
+  - **Conversions**: `ToBinary`, `ToHex`.
 
-  - Extension methods for **JuggedMatrix&lt;T&gt;** 
-    - CountOnEachRow -> IEnumerable&lt;int&gt; *(Returns an IEnumerable with the count of elements on each row of matrix)*
-    - ToMatrix -> IMatrix&lt;T&gt; *(Creates a new instance of IMatrix from IJuggedMatrix)*
-    - CreateVanilla -> T[][] *(Creates a vanilla array of arrays on base of JuggedMatrix)*
-  <hr>
+### Helpers
 
-  - Extension methods for **IMatrix&lt;T&gt;**
-    - ToJuggedMatrix -> IJuggedMatrix&lt;T&gt; *(Creates a new instance of IJuggedMatrix from IMatrix)*
-    - CreateVanilla -> T[,] *(Creates a vanilla matrix on base of Matrix)*
-    <hr>
+- `FixExpressionConverter`: A utility class to convert expressions between infix, postfix, and prefix notations.
+- `GenericTypesExtensions`: Provides a `SerializableDeepCopy` method for creating a deep copy of any serializable object.
 
-    - For primitives
-      - Multiplication -> IMatrix&lt;T&gt; *(Returns the mul IMatrix first and IMatrix second)*
-      - CalculateDeterminant -> int/long/double/decimal and Nullable *(Calculates determinant for IMatrix)*
-      - CreateInvertibleMatrix -> IMatrix&lt;double&gt; *(Creates inverted matrix from IMatrix)*
-      - CalculateMinor -> int/long/souble/decimal and Nullable *(Calculates minor for IMatrix)*
-<hr>
+---
 
-- **Equations**
-  - Quadratic *(Represents a class for building quadratic equation)*
+## Installation
+
+You can install CyberMath via NuGet Package Manager:
+
+```shell
+PM> Install-Package CyberMath
+```
+
+---
+
+## Usage Examples
+
+### Matrix Operations
+
+```csharp
+using CyberMath.Structures.Matrices.Matrix;
+
+var matrix = new Matrix<int>(3, 3);
+matrix.FillRandomly(0, 10); // Fill with random numbers between 0 and 10
+
+Console.WriteLine("Original Matrix:");
+Console.WriteLine(matrix);
+
+var transposed = matrix.Transpose();
+Console.WriteLine("Transposed Matrix:");
+Console.WriteLine(transposed);
+```
+
+### Binary Tree
+
+```csharp
+using CyberMath.Structures.BinaryTrees.BinaryTree;
+
+var tree = new BinaryTree<int> { 5, 3, 8, 1, 4, 7, 9 };
+
+Console.WriteLine($"Max value: {tree.Max()}");
+Console.WriteLine($"Min value: {tree.Min()}");
+
+Console.WriteLine("In-order traversal:");
+foreach (var item in tree)
+{
+    Console.Write(item + " ");
+}
+// Output: 1 3 4 5 7 8 9
+```
+
+### Integer Extensions
+
+```csharp
+using CyberMath.Extensions;
+
+int number = 12321;
+Console.WriteLine($"{number} is a palindrome: {number.IsPalindrome()}"); // True
+
+int a = 48, b = 18;
+Console.WriteLine($"GCD of {a} and {b} is: {a.GCD(b)}"); // 6
+Console.WriteLine($"LCM of {a} and {b} is: {a.LCM(b)}"); // 144
+```
+
+---
+
+## Building from Source
+
+To build the project from source, you will need the .NET SDK. 
+
+1.  **Clone the repository:**
+    ```shell
+    git clone https://github.com/Jeffeek/CyberMath.git
+    ```
+2.  **Navigate to the project directory:**
+    ```shell
+    cd CyberMath
+    ```
+3.  **Build the solution:**
+    ```shell
+    dotnet build -c Release
+    ```
+
+## Running Tests
+
+To run the tests, navigate to the root of the project and run the following command:
+
+```shell
+dotnet test
+```
