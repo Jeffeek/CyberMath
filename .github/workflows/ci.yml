@@ -24,16 +24,14 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
-        fetch-depth: 0
+        fetch-depth: 30
 
     - name: Setup .NET 9.0.x
       uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 9.0.x
-      # Note: Test projects multi-target net8.0;net9.0
-      # .NET 9 SDK automatically runs tests for BOTH frameworks
 
     - name: Restore dependencies
       run: dotnet restore
