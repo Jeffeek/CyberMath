@@ -22,10 +22,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>E:\projectsVS\CyberMath\src\CyberMath\CyberMath.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
     <None Include="..\..\cyberMath.png">
       <Pack>True</Pack>
