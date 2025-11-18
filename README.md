@@ -1,7 +1,7 @@
 # CyberMath
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Jeffeek/CyberMath/master/cyberMath.png" alt="CyberMath Logo" width="200"/>
+  <img src="cyberMath.png" alt="CyberMath Logo" width="200"/>
 </p>
 
 <h3 align="center">A .NET library with a collection of useful data structures and extension methods, designed to simplify common mathematical and programming tasks.</h3>
