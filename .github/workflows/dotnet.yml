@@ -12,13 +12,13 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v5
       
     - name: Setup-msbuild
-      uses: microsoft/setup-msbuild@v1
+      uses: microsoft/setup-msbuild@v2
       
     - name: Setup NuGet.exe for use with actions
-      uses: NuGet/setup-nuget@v1.0.5
+      uses: NuGet/setup-nuget@v2.0.1
       
     - name: Restore Nuget package
       run: nuget restore CyberMath.sln
